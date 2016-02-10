@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Design", "Design\Design.modelproj", "{37650DBA-3A1C-4578-ACE5-B386100FBDC7}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{4A6D728E-A8EF-44AB-85EC-8791C2A1689E}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Software Managment Plan_Williams_v1.docx = Documentation\Software Managment Plan_Williams_v1.docx
+		Documentation\Software Managment Plan_Williams_v1.pdf = Documentation\Software Managment Plan_Williams_v1.pdf
 	EndProjectSection
 EndProject
 Global
@@ -47,5 +53,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A6D728E-A8EF-44AB-85EC-8791C2A1689E} = {F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}
 	EndGlobalSection
 EndGlobal
