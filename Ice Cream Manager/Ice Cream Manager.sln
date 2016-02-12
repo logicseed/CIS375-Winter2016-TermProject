@@ -25,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Software Managment Plan_Williams_v1.pdf = Documentation\Software Managment Plan_Williams_v1.pdf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlackBackups", "SlackBackups", "{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926}"
+	ProjectSection(SolutionItems) = preProject
+		SlackBackups\Cosmosys Slack export Feb 12 2016.zip = SlackBackups\Cosmosys Slack export Feb 12 2016.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,5 +62,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A6D728E-A8EF-44AB-85EC-8791C2A1689E} = {F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}
+		{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926} = {F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}
 	EndGlobalSection
 EndGlobal
