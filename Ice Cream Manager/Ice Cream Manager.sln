@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document Templates", "Docum
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Working Documents", "Working Documents", "{93F96048-8657-419F-B9A0-835E80CEAABC}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Working Documents\Complete ERD.pdf = Documentation\Working Documents\Complete ERD.pdf
+		Documentation\Working Documents\Complete ERD.xmi = Documentation\Working Documents\Complete ERD.xmi
 		Documentation\Working Documents\Software Requirements Specification Document.docx = Documentation\Working Documents\Software Requirements Specification Document.docx
 		Documentation\Working Documents\Traceability Matrix.xlsx = Documentation\Working Documents\Traceability Matrix.xlsx
 	EndProjectSection
