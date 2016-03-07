@@ -46,7 +46,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Working Documents", "Workin
 		Documentation\Working Documents\Use Case - Modify Item.docx = Documentation\Working Documents\Use Case - Modify Item.docx
 		Documentation\Working Documents\Use Case - Modify Route.docx = Documentation\Working Documents\Use Case - Modify Route.docx
 		Documentation\Working Documents\Use Case - Modify Settings.docx = Documentation\Working Documents\Use Case - Modify Settings.docx
+		Documentation\Working Documents\Use Case - Modify Truck.docx = Documentation\Working Documents\Use Case - Modify Truck.docx
+		Documentation\Working Documents\Use Case - Modify Voting.docx = Documentation\Working Documents\Use Case - Modify Voting.docx
 		Documentation\Working Documents\Use Case - Process Batch File.docx = Documentation\Working Documents\Use Case - Process Batch File.docx
+		Documentation\Working Documents\Use Case - View Fuel Usage.docx = Documentation\Working Documents\Use Case - View Fuel Usage.docx
+		Documentation\Working Documents\Use Case - View Sales.docx = Documentation\Working Documents\Use Case - View Sales.docx
 		Documentation\Working Documents\Use Case Summary Document.docx = Documentation\Working Documents\Use Case Summary Document.docx
 	EndProjectSection
 EndProject
