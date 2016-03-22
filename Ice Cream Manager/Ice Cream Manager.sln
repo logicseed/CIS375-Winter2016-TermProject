@@ -58,9 +58,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Working Documents", "Workin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baseline Documents", "Baseline Documents", "{6A5358FF-C227-41CC-99C5-7FD0A3FB0FD2}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Baseline Documents\Data Dictionary.xlsx = Documentation\Baseline Documents\Data Dictionary.xlsx
+		Documentation\Baseline Documents\Data Flow Diagrams.pdf = Documentation\Baseline Documents\Data Flow Diagrams.pdf
 		Documentation\Baseline Documents\Part 1 Presentation.pptx = Documentation\Baseline Documents\Part 1 Presentation.pptx
+		Documentation\Baseline Documents\Part 2 Presentation.pptx = Documentation\Baseline Documents\Part 2 Presentation.pptx
 		Documentation\Baseline Documents\Software Managment Plan_Williams_v1.docx = Documentation\Baseline Documents\Software Managment Plan_Williams_v1.docx
 		Documentation\Baseline Documents\Software Managment Plan_Williams_v1.pdf = Documentation\Baseline Documents\Software Managment Plan_Williams_v1.pdf
+		Documentation\Baseline Documents\Software Project Management Plan.pdf = Documentation\Baseline Documents\Software Project Management Plan.pdf
+		Documentation\Baseline Documents\Software Requirements Specification Document.pdf = Documentation\Baseline Documents\Software Requirements Specification Document.pdf
+		Documentation\Baseline Documents\Traceability Matrix.xlsx = Documentation\Baseline Documents\Traceability Matrix.xlsx
+		Documentation\Baseline Documents\Use Case - Manage Sales.pdf = Documentation\Baseline Documents\Use Case - Manage Sales.pdf
+		Documentation\Baseline Documents\Use Case - Modify Driver.pdf = Documentation\Baseline Documents\Use Case - Modify Driver.pdf
+		Documentation\Baseline Documents\Use Case - Modify Inventory.pdf = Documentation\Baseline Documents\Use Case - Modify Inventory.pdf
+		Documentation\Baseline Documents\Use Case - Modify Item.pdf = Documentation\Baseline Documents\Use Case - Modify Item.pdf
+		Documentation\Baseline Documents\Use Case - Modify Preset.pdf = Documentation\Baseline Documents\Use Case - Modify Preset.pdf
+		Documentation\Baseline Documents\Use Case - Modify Route.pdf = Documentation\Baseline Documents\Use Case - Modify Route.pdf
+		Documentation\Baseline Documents\Use Case - Modify Settings.pdf = Documentation\Baseline Documents\Use Case - Modify Settings.pdf
+		Documentation\Baseline Documents\Use Case - Modify Truck.pdf = Documentation\Baseline Documents\Use Case - Modify Truck.pdf
+		Documentation\Baseline Documents\Use Case - Modify Voting.pdf = Documentation\Baseline Documents\Use Case - Modify Voting.pdf
+		Documentation\Baseline Documents\Use Case - Process Batch File.pdf = Documentation\Baseline Documents\Use Case - Process Batch File.pdf
+		Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf = Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf
+		Documentation\Baseline Documents\Use Case Summary Document.pdf = Documentation\Baseline Documents\Use Case Summary Document.pdf
 	EndProjectSection
 EndProject
 Global
