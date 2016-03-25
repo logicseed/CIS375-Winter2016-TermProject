@@ -163,6 +163,36 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SalesChartsButton {
+            get {
+                object obj = ResourceManager.GetObject("SalesChartsButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SalesLedgerButton {
+            get {
+                object obj = ResourceManager.GetObject("SalesLedgerButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SaveChangesButton {
+            get {
+                object obj = ResourceManager.GetObject("SaveChangesButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SettingsButton {
             get {
                 object obj = ResourceManager.GetObject("SettingsButton", resourceCulture);
@@ -176,6 +206,16 @@ namespace View.Properties {
         internal static System.Drawing.Bitmap TruckButton {
             get {
                 object obj = ResourceManager.GetObject("TruckButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UndoChangesButton {
+            get {
+                object obj = ResourceManager.GetObject("UndoChangesButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

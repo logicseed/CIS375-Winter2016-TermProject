@@ -15,6 +15,10 @@ namespace View
         public MainForm()
         {
             InitializeComponent();
+            SalesPanel salesPanel = new SalesPanel();
+            salesPanel.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(salesPanel);
         }
+
     }
 }
