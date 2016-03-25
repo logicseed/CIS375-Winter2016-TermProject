@@ -63,9 +63,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap About {
+        internal static System.Drawing.Bitmap AboutButton {
             get {
-                object obj = ResourceManager.GetObject("About", resourceCulture);
+                object obj = ResourceManager.GetObject("AboutButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Batch {
+        internal static System.Drawing.Bitmap BatchButton {
             get {
-                object obj = ResourceManager.GetObject("Batch", resourceCulture);
+                object obj = ResourceManager.GetObject("BatchButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Drivers {
+        internal static System.Drawing.Bitmap DriversButton {
             get {
-                object obj = ResourceManager.GetObject("Drivers", resourceCulture);
+                object obj = ResourceManager.GetObject("DriversButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Items {
+        internal static System.Drawing.Bitmap ErrorButton {
             get {
-                object obj = ResourceManager.GetObject("Items", resourceCulture);
+                object obj = ResourceManager.GetObject("ErrorButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Presets {
+        internal static System.Drawing.Bitmap FuelButton {
             get {
-                object obj = ResourceManager.GetObject("Presets", resourceCulture);
+                object obj = ResourceManager.GetObject("FuelButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Routes {
+        internal static System.Drawing.Bitmap HelpButton {
             get {
-                object obj = ResourceManager.GetObject("Routes", resourceCulture);
+                object obj = ResourceManager.GetObject("HelpButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sales {
+        internal static System.Drawing.Bitmap ItemsButton {
             get {
-                object obj = ResourceManager.GetObject("Sales", resourceCulture);
+                object obj = ResourceManager.GetObject("ItemsButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Settings {
+        internal static System.Drawing.Bitmap PresetsButton {
             get {
-                object obj = ResourceManager.GetObject("Settings", resourceCulture);
+                object obj = ResourceManager.GetObject("PresetsButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Voting {
+        internal static System.Drawing.Bitmap RoutesButton {
             get {
-                object obj = ResourceManager.GetObject("Voting", resourceCulture);
+                object obj = ResourceManager.GetObject("RoutesButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Warehouse {
+        internal static System.Drawing.Bitmap SalesButton {
             get {
-                object obj = ResourceManager.GetObject("Warehouse", resourceCulture);
+                object obj = ResourceManager.GetObject("SalesButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,39 @@ namespace View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Zones {
+        internal static System.Drawing.Bitmap SettingsButton {
             get {
-                object obj = ResourceManager.GetObject("Zones", resourceCulture);
+                object obj = ResourceManager.GetObject("SettingsButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TruckButton {
+            get {
+                object obj = ResourceManager.GetObject("TruckButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VotingButton {
+            get {
+                object obj = ResourceManager.GetObject("VotingButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ZonesButton {
+            get {
+                object obj = ResourceManager.GetObject("ZonesButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
