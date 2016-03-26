@@ -36,6 +36,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlackBackups", "SlackBackups", "{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926}"
 	ProjectSection(SolutionItems) = preProject
 		SlackBackups\Cosmosys Slack export Feb 12 2016.zip = SlackBackups\Cosmosys Slack export Feb 12 2016.zip
+		SlackBackups\Cosmosys Slack export Mar 25 2016.zip = SlackBackups\Cosmosys Slack export Mar 25 2016.zip
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{351CFE27-A837-4397-B228-C2BE7B4CBC6B}"
