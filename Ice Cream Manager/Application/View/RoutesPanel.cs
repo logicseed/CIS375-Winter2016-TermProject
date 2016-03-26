@@ -12,9 +12,17 @@ namespace IceCreamManager.View
 {
     public partial class RoutesPanel : UserControl
     {
+        SaveUndoToolbar routesToolbar = new SaveUndoToolbar();
+        RoutesListPanel routesListPanel = new RoutesListPanel();
+
+
         public RoutesPanel()
         {
             InitializeComponent();
+
+            routesToolbar.Controls.Find("toolbarGroup", true)[0].Text = "Route Options";
+            routesToolbarPanel.Add(routesToolbar, 1);
+            routesToolbarPanel.Add(routesListPanel, 2);
         }
     }
 }

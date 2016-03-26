@@ -77,6 +77,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\RoutesListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RoutesListPanel.Designer.cs">
+      <DependentUpon>RoutesListPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RoutesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +138,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\RoutesListPanel.resx">
+      <DependentUpon>RoutesListPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\RoutesPanel.resx">
       <DependentUpon>RoutesPanel.cs</DependentUpon>
     </EmbeddedResource>
