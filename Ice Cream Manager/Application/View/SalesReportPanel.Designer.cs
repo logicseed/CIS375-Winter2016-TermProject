@@ -28,25 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.salesDataGrid = new System.Windows.Forms.DataGridView();
             this.saleDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataSet1 = new System.Data.DataSet();
-            this.dataTable1 = new System.Data.DataTable();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salesDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // salesDataGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.salesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.salesDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.saleDate});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(800, 600);
-            this.dataGridView1.TabIndex = 0;
+            this.salesDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.salesDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.salesDataGrid.Name = "salesDataGrid";
+            this.salesDataGrid.Size = new System.Drawing.Size(800, 600);
+            this.salesDataGrid.TabIndex = 0;
             // 
             // saleDate
             // 
@@ -54,36 +50,22 @@
             this.saleDate.HeaderText = "Date";
             this.saleDate.Name = "saleDate";
             // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "NewDataSet";
-            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
-            this.dataTable1});
-            // 
-            // dataTable1
-            // 
-            this.dataTable1.TableName = "Table1";
-            // 
             // SalesReportPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.salesDataGrid);
             this.Name = "SalesReportPanel";
             this.Size = new System.Drawing.Size(800, 600);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salesDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView salesDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleDate;
-        private System.Data.DataSet dataSet1;
-        private System.Data.DataTable dataTable1;
     }
 }

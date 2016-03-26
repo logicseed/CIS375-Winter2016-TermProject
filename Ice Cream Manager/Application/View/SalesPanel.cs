@@ -13,11 +13,15 @@ namespace IceCreamManager.View
     public partial class SalesPanel : UserControl
     {
         SalesReportPanel salesReportPanel = new SalesReportPanel();
-
+        SalesToolbar salesToolbar = new SalesToolbar();
+        SalesChartPanel salesChartPanel = new SalesChartPanel();
 
         public SalesPanel()
         {
             InitializeComponent();
+
+            salesChartPanel.Dock = DockStyle.Fill;
+            salesReportPanel.Dock = DockStyle.Fill;
 
             salesToolbarPanel.Add(salesToolbar, 1);
             salesToolbarPanel.Add(salesReportPanel, 2);

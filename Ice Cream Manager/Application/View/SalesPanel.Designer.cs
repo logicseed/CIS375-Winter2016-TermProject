@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.salesToolbarPanel = new IceCreamManager.View.ToolbarPanel();
-            this.salesToolbar = new IceCreamManager.View.SalesToolbar();
             this.SuspendLayout();
             // 
             // salesToolbarPanel
@@ -42,15 +41,6 @@
             this.salesToolbarPanel.Name = "salesToolbarPanel";
             this.salesToolbarPanel.Size = new System.Drawing.Size(800, 600);
             this.salesToolbarPanel.TabIndex = 0;
-            // 
-            // salesToolbar
-            // 
-            this.salesToolbar.AutoSize = true;
-            this.salesToolbar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.salesToolbar.Location = new System.Drawing.Point(4, 4);
-            this.salesToolbar.Name = "salesToolbar";
-            this.salesToolbar.Size = new System.Drawing.Size(133, 322);
-            this.salesToolbar.TabIndex = 1;
             // 
             // SalesPanel
             // 
@@ -66,6 +56,5 @@
 
         #endregion
         private ToolbarPanel salesToolbarPanel;
-        private SalesToolbar salesToolbar;
     }
 }

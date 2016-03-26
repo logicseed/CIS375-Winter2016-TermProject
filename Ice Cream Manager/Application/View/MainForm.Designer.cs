@@ -32,7 +32,7 @@
             this.salesButton = new System.Windows.Forms.ToolStripButton();
             this.batchButton = new System.Windows.Forms.ToolStripButton();
             this.zonesButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.routesButton = new System.Windows.Forms.ToolStripButton();
             this.trucksButton = new System.Windows.Forms.ToolStripButton();
             this.driversButton = new System.Windows.Forms.ToolStripButton();
             this.fuelUsageButton = new System.Windows.Forms.ToolStripButton();
@@ -44,7 +44,7 @@
             this.helpButtonSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mainStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.mainToolStrip.SuspendLayout();
@@ -58,7 +58,7 @@
             this.salesButton,
             this.batchButton,
             this.zonesButton,
-            this.toolStripButton14,
+            this.routesButton,
             this.trucksButton,
             this.driversButton,
             this.fuelUsageButton,
@@ -105,15 +105,15 @@
             this.zonesButton.Size = new System.Drawing.Size(52, 52);
             this.zonesButton.Text = "Zones";
             // 
-            // toolStripButton14
+            // routesButton
             // 
-            this.toolStripButton14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton14.Image = global::IceCreamManager.Properties.Resources.RoutesButton;
-            this.toolStripButton14.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(52, 52);
-            this.toolStripButton14.Text = "Routes";
+            this.routesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.routesButton.Image = global::IceCreamManager.Properties.Resources.RoutesButton;
+            this.routesButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.routesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.routesButton.Name = "routesButton";
+            this.routesButton.Size = new System.Drawing.Size(52, 52);
+            this.routesButton.Text = "Routes";
             // 
             // trucksButton
             // 
@@ -213,7 +213,7 @@
             // mainStatusStrip
             // 
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
+            this.mainStatusLabel,
             this.mainStatusProgressBar});
             this.mainStatusStrip.Location = new System.Drawing.Point(0, 639);
             this.mainStatusStrip.Name = "mainStatusStrip";
@@ -221,11 +221,11 @@
             this.mainStatusStrip.TabIndex = 1;
             this.mainStatusStrip.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // mainStatusLabel
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(94, 17);
-            this.toolStripStatusLabel1.Text = "mainStatusLabel";
+            this.mainStatusLabel.Name = "mainStatusLabel";
+            this.mainStatusLabel.Size = new System.Drawing.Size(94, 17);
+            this.mainStatusLabel.Text = "mainStatusLabel";
             // 
             // mainStatusProgressBar
             // 
@@ -267,7 +267,7 @@
         private System.Windows.Forms.ToolStripButton salesButton;
         private System.Windows.Forms.ToolStripButton batchButton;
         private System.Windows.Forms.ToolStripButton zonesButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton14;
+        private System.Windows.Forms.ToolStripButton routesButton;
         private System.Windows.Forms.ToolStripButton trucksButton;
         private System.Windows.Forms.ToolStripButton aboutButton;
         private System.Windows.Forms.ToolStripButton driversButton;
@@ -278,7 +278,7 @@
         private System.Windows.Forms.ToolStripButton votingButton;
         private System.Windows.Forms.ToolStripButton helpButton;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel mainStatusLabel;
         private System.Windows.Forms.ToolStripProgressBar mainStatusProgressBar;
         private System.Windows.Forms.ToolStripSeparator helpButtonSeparator;
     }
