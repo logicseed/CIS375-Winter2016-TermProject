@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{1C59D3B8-FA3B-40A6-9C5D-5A98665E71E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "View\Application.csproj", "{351CFE27-A837-4397-B228-C2BE7B4CBC6B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -80,6 +78,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baseline Documents", "Basel
 		Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf = Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf
 		Documentation\Baseline Documents\Use Case Summary Document.pdf = Documentation\Baseline Documents\Use Case Summary Document.pdf
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{351CFE27-A837-4397-B228-C2BE7B4CBC6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
