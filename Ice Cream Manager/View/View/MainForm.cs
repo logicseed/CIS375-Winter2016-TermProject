@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace View
+namespace IceCreamManager.View
 {
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
-            SalesPanel salesPanel = new SalesPanel();
+            View.SalesPanel salesPanel = new View.SalesPanel();
             salesPanel.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(salesPanel);
         }
