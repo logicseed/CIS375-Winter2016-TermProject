@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace IceCreamManager.View
 {
-    public partial class SalesReportPanel : UserControl
+    public partial class RoutesPanel : UserControl
     {
-        public SalesReportPanel()
+        public RoutesPanel()
         {
             InitializeComponent();
         }

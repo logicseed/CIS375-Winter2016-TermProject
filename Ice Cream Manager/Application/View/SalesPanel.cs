@@ -12,7 +12,7 @@ namespace IceCreamManager.View
 {
     public partial class SalesPanel : UserControl
     {
-        SalesReportPanel salesReportPanel = new SalesReportPanel();
+        SalesListPanel salesReportPanel = new SalesListPanel();
         SalesToolbar salesToolbar = new SalesToolbar();
         SalesChartPanel salesChartPanel = new SalesChartPanel();
 

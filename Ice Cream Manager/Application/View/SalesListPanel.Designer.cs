@@ -1,6 +1,6 @@
 ﻿namespace IceCreamManager.View
 {
-    partial class SalesReportPanel
+    partial class SalesListPanel
     {
         /// <summary> 
         /// Required designer variable.
