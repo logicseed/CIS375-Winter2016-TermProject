@@ -15,10 +15,42 @@ namespace IceCreamManager.View
         public MainForm()
         {
             InitializeComponent();
-            View.SalesPanel salesPanel = new View.SalesPanel();
-            salesPanel.Dock = DockStyle.Fill;
-            mainPanel.Controls.Add(salesPanel);
+            // Default view
+            salesButton_Click(this, new EventArgs());
         }
 
+        private void highlightToolStripButton(String buttonName)
+        {
+            // Remove existing highlights
+            foreach (ToolStripItem item in mainToolStrip.Items)
+            {
+                if (item is ToolStripButton)
+                {
+                    item.BackColor = Color.Transparent;
+                }
+            }
+
+            // Highlight specified button
+            mainToolStrip.Items.Find(buttonName, true)[0].BackColor = SystemColors.Highlight;
+        }
+
+        private void switchPanel(UserControl panel)
+        {
+            panel.Dock = DockStyle.Fill;
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(panel);
+        }
+
+        private void salesButton_Click(object sender, EventArgs e)
+        {
+            highlightToolStripButton("salesButton");
+            switchPanel(new SalesPanel());
+        }
+
+        private void routesButton_Click(object sender, EventArgs e)
+        {
+            highlightToolStripButton("routesButton");
+            switchPanel(new RoutesPanel());
+        }
     }
 }

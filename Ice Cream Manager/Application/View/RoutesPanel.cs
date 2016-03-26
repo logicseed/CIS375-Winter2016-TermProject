@@ -22,6 +22,7 @@ namespace IceCreamManager.View
 
             routesToolbar.Controls.Find("toolbarGroup", true)[0].Text = "Route Options";
             routesToolbarPanel.Add(routesToolbar, 1);
+            routesListPanel.Dock = DockStyle.Fill;
             routesToolbarPanel.Add(routesListPanel, 2);
         }
     }

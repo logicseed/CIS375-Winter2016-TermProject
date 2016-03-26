@@ -84,6 +84,7 @@
             this.salesButton.Name = "salesButton";
             this.salesButton.Size = new System.Drawing.Size(52, 52);
             this.salesButton.Text = "Sales";
+            this.salesButton.Click += new System.EventHandler(this.salesButton_Click);
             // 
             // batchButton
             // 
@@ -114,6 +115,7 @@
             this.routesButton.Name = "routesButton";
             this.routesButton.Size = new System.Drawing.Size(52, 52);
             this.routesButton.Text = "Routes";
+            this.routesButton.Click += new System.EventHandler(this.routesButton_Click);
             // 
             // trucksButton
             // 
