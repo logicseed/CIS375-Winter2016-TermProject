@@ -9,46 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{4A6D728E-A8EF-44AB-85EC-8791C2A1689E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlackBackups", "SlackBackups", "{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926}"
-	ProjectSection(SolutionItems) = preProject
-		SlackBackups\Cosmosys Slack export Feb 12 2016.zip = SlackBackups\Cosmosys Slack export Feb 12 2016.zip
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document Templates", "Document Templates", "{37E0A19E-9B6E-4253-BF81-5F0BA81037D7}"
-	ProjectSection(SolutionItems) = preProject
-		Documentation\Document Templates\Roboto Fonts.zip = Documentation\Document Templates\Roboto Fonts.zip
-		Documentation\Document Templates\Software Requirements Specification Document Template Preview.pdf = Documentation\Document Templates\Software Requirements Specification Document Template Preview.pdf
-		Documentation\Document Templates\Software Requirements Specification Document Template.dotx = Documentation\Document Templates\Software Requirements Specification Document Template.dotx
-		Documentation\Document Templates\Use Case Specification Document Template Preview.pdf = Documentation\Document Templates\Use Case Specification Document Template Preview.pdf
-		Documentation\Document Templates\Use Case Specification Document Template.dotx = Documentation\Document Templates\Use Case Specification Document Template.dotx
-		Documentation\Document Templates\Use Case Summary Document Template Preview.pdf = Documentation\Document Templates\Use Case Summary Document Template Preview.pdf
-		Documentation\Document Templates\Use Case Summary Document Template.dotx = Documentation\Document Templates\Use Case Summary Document Template.dotx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Working Documents", "Working Documents", "{93F96048-8657-419F-B9A0-835E80CEAABC}"
-	ProjectSection(SolutionItems) = preProject
-		Documentation\Working Documents\Complete ERD.pdf = Documentation\Working Documents\Complete ERD.pdf
-		Documentation\Working Documents\Complete ERD.xmi = Documentation\Working Documents\Complete ERD.xmi
-		Documentation\Working Documents\Diagrams.vsdx = Documentation\Working Documents\Diagrams.vsdx
-		Documentation\Working Documents\Software Project Management Plan.docx = Documentation\Working Documents\Software Project Management Plan.docx
-		Documentation\Working Documents\Software Requirements Specification Document.docx = Documentation\Working Documents\Software Requirements Specification Document.docx
-		Documentation\Working Documents\Traceability Matrix.xlsx = Documentation\Working Documents\Traceability Matrix.xlsx
-		Documentation\Working Documents\Use Case - Modify Driver.docx = Documentation\Working Documents\Use Case - Modify Driver.docx
-		Documentation\Working Documents\Use Case - Modify Inventory.docx = Documentation\Working Documents\Use Case - Modify Inventory.docx
-		Documentation\Working Documents\Use Case - Modify Item.docx = Documentation\Working Documents\Use Case - Modify Item.docx
-		Documentation\Working Documents\Use Case - Modify Preset.docx = Documentation\Working Documents\Use Case - Modify Preset.docx
-		Documentation\Working Documents\Use Case - Modify Route.docx = Documentation\Working Documents\Use Case - Modify Route.docx
-		Documentation\Working Documents\Use Case - Modify Settings.docx = Documentation\Working Documents\Use Case - Modify Settings.docx
-		Documentation\Working Documents\Use Case - Modify Truck.docx = Documentation\Working Documents\Use Case - Modify Truck.docx
-		Documentation\Working Documents\Use Case - Modify Voting.docx = Documentation\Working Documents\Use Case - Modify Voting.docx
-		Documentation\Working Documents\Use Case - Process Batch File.docx = Documentation\Working Documents\Use Case - Process Batch File.docx
-		Documentation\Working Documents\Use Case - View Fuel Usage.docx = Documentation\Working Documents\Use Case - View Fuel Usage.docx
-		Documentation\Working Documents\Use Case - View Sales.docx = Documentation\Working Documents\Use Case - View Sales.docx
-		Documentation\Working Documents\Use Case Summary Document.docx = Documentation\Working Documents\Use Case Summary Document.docx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baseline Documents", "Baseline Documents", "{6A5358FF-C227-41CC-99C5-7FD0A3FB0FD2}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Baseline Documents\Data Dictionary.xlsx = Documentation\Baseline Documents\Data Dictionary.xlsx
 		Documentation\Baseline Documents\Data Flow Diagrams.pdf = Documentation\Baseline Documents\Data Flow Diagrams.pdf
@@ -71,6 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baseline Documents", "Basel
 		Documentation\Baseline Documents\Use Case - Process Batch File.pdf = Documentation\Baseline Documents\Use Case - Process Batch File.pdf
 		Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf = Documentation\Baseline Documents\Use Case - View Fuel Usage.pdf
 		Documentation\Baseline Documents\Use Case Summary Document.pdf = Documentation\Baseline Documents\Use Case Summary Document.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlackBackups", "SlackBackups", "{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926}"
+	ProjectSection(SolutionItems) = preProject
+		SlackBackups\Cosmosys Slack export Feb 12 2016.zip = SlackBackups\Cosmosys Slack export Feb 12 2016.zip
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{351CFE27-A837-4397-B228-C2BE7B4CBC6B}"
@@ -98,8 +63,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4A6D728E-A8EF-44AB-85EC-8791C2A1689E} = {F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}
 		{1B2EA156-7249-4EA1-A2CA-FA81A3BC6926} = {F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}
-		{37E0A19E-9B6E-4253-BF81-5F0BA81037D7} = {4A6D728E-A8EF-44AB-85EC-8791C2A1689E}
-		{93F96048-8657-419F-B9A0-835E80CEAABC} = {4A6D728E-A8EF-44AB-85EC-8791C2A1689E}
-		{6A5358FF-C227-41CC-99C5-7FD0A3FB0FD2} = {4A6D728E-A8EF-44AB-85EC-8791C2A1689E}
 	EndGlobalSection
 EndGlobal
