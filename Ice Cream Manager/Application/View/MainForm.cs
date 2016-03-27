@@ -94,7 +94,8 @@ namespace IceCreamManager.View
 
         private void votingButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("votingButton");
+            switchPanel(new VotingPanel());
         }
 
         private void aboutButton_Click(object sender, EventArgs e)

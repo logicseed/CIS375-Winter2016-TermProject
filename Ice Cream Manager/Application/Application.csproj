@@ -174,6 +174,42 @@
     <Compile Include="View\TrucksPanel.Designer.cs">
       <DependentUpon>TrucksPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\VotingCreateItemsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingCreateItemsPanel.Designer.cs">
+      <DependentUpon>VotingCreateItemsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VotingCreateListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingCreateListPanel.Designer.cs">
+      <DependentUpon>VotingCreateListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VotingCreatePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingCreatePanel.Designer.cs">
+      <DependentUpon>VotingCreatePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VotingPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingPanel.Designer.cs">
+      <DependentUpon>VotingPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VotingResultsListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingResultsListPanel.Designer.cs">
+      <DependentUpon>VotingResultsListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VotingToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VotingToolbar.Designer.cs">
+      <DependentUpon>VotingToolbar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ZonesListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +282,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\TrucksPanel.resx">
       <DependentUpon>TrucksPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingCreateItemsPanel.resx">
+      <DependentUpon>VotingCreateItemsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingCreateListPanel.resx">
+      <DependentUpon>VotingCreateListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingCreatePanel.resx">
+      <DependentUpon>VotingCreatePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingPanel.resx">
+      <DependentUpon>VotingPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingResultsListPanel.resx">
+      <DependentUpon>VotingResultsListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VotingToolbar.resx">
+      <DependentUpon>VotingToolbar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ZonesListPanel.resx">
       <DependentUpon>ZonesListPanel.cs</DependentUpon>
@@ -346,6 +400,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
