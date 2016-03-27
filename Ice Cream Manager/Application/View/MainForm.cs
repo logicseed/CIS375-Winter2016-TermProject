@@ -61,7 +61,8 @@ namespace IceCreamManager.View
 
         private void trucksButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("trucksButton");
+            switchPanel(new TrucksPanel());
         }
 
         private void driversButton_Click(object sender, EventArgs e)

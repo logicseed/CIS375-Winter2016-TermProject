@@ -125,6 +125,18 @@
     <Compile Include="View\ToolbarPanel.Designer.cs">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TrucksListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TrucksListPanel.Designer.cs">
+      <DependentUpon>TrucksListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TrucksPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TrucksPanel.Designer.cs">
+      <DependentUpon>TrucksPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ZonesListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ToolbarPanel.resx">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrucksListPanel.resx">
+      <DependentUpon>TrucksListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrucksPanel.resx">
+      <DependentUpon>TrucksPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ZonesListPanel.resx">
       <DependentUpon>ZonesListPanel.cs</DependentUpon>
