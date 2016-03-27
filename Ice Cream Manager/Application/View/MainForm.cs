@@ -52,5 +52,56 @@ namespace IceCreamManager.View
             highlightToolStripButton("routesButton");
             switchPanel(new RoutesPanel());
         }
+
+        private void zonesButton_Click(object sender, EventArgs e)
+        {
+            highlightToolStripButton("zonesButton");
+            switchPanel(new ZonesPanel());
+        }
+
+        private void trucksButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void driversButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fuelUsageButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void itemsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void presetsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void votingButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -125,6 +125,18 @@
     <Compile Include="View\ToolbarPanel.Designer.cs">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ZonesListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ZonesListPanel.Designer.cs">
+      <DependentUpon>ZonesListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZonesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ZonesPanel.Designer.cs">
+      <DependentUpon>ZonesPanel.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ToolbarPanel.resx">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ZonesListPanel.resx">
+      <DependentUpon>ZonesListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ZonesPanel.resx">
+      <DependentUpon>ZonesPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="IceCreamManagerDataSet.xsc">
       <DependentUpon>IceCreamManagerDataSet.xsd</DependentUpon>
