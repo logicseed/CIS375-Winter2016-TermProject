@@ -88,6 +88,18 @@
     <Compile Include="View\DualListPanel.Designer.cs">
       <DependentUpon>DualListPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ItemsListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ItemsListPanel.Designer.cs">
+      <DependentUpon>ItemsListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ItemsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ItemsPanel.Designer.cs">
+      <DependentUpon>ItemsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DualListPanel.resx">
       <DependentUpon>DualListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ItemsListPanel.resx">
+      <DependentUpon>ItemsListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ItemsPanel.resx">
+      <DependentUpon>ItemsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -78,7 +78,8 @@ namespace IceCreamManager.View
 
         private void itemsButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("itemsButton");
+            switchPanel(new ItemsPanel());
         }
 
         private void presetsButton_Click(object sender, EventArgs e)
