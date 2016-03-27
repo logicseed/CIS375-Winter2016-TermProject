@@ -12,7 +12,7 @@ namespace IceCreamManager.View
 {
     public partial class SalesPanel : UserControl
     {
-        SalesListPanel salesReportPanel = new SalesListPanel();
+        SalesListPanel salesListPanel = new SalesListPanel();
         SalesToolbar salesToolbar = new SalesToolbar();
         SalesChartPanel salesChartPanel = new SalesChartPanel();
 
@@ -21,10 +21,10 @@ namespace IceCreamManager.View
             InitializeComponent();
 
             salesChartPanel.Dock = DockStyle.Fill;
-            salesReportPanel.Dock = DockStyle.Fill;
+            salesListPanel.Dock = DockStyle.Fill;
 
             salesToolbarPanel.Add(salesToolbar, 1);
-            salesToolbarPanel.Add(salesReportPanel, 2);
+            salesToolbarPanel.Add(salesListPanel, 2);
         }
     }
 }

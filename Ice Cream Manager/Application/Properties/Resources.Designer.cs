@@ -93,6 +93,16 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ChartButton {
+            get {
+                object obj = ResourceManager.GetObject("ChartButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DriversButton {
             get {
                 object obj = ResourceManager.GetObject("DriversButton", resourceCulture);
@@ -183,29 +193,19 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SalesChartsButton {
-            get {
-                object obj = ResourceManager.GetObject("SalesChartsButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SalesLedgerButton {
-            get {
-                object obj = ResourceManager.GetObject("SalesLedgerButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap SaveChangesButton {
             get {
                 object obj = ResourceManager.GetObject("SaveChangesButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SchedulePresetButton {
+            get {
+                object obj = ResourceManager.GetObject("SchedulePresetButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

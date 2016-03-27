@@ -88,6 +88,30 @@
     <Compile Include="View\DualListPanel.Designer.cs">
       <DependentUpon>DualListPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FuelUsageChartPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FuelUsageChartPanel.Designer.cs">
+      <DependentUpon>FuelUsageChartPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FuelUsageListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FuelUsageListPanel.Designer.cs">
+      <DependentUpon>FuelUsageListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FuelUsagePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FuelUsagePanel.Designer.cs">
+      <DependentUpon>FuelUsagePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FuelUsageToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FuelUsageToolbar.Designer.cs">
+      <DependentUpon>FuelUsageToolbar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ItemsListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +254,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DualListPanel.resx">
       <DependentUpon>DualListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FuelUsageChartPanel.resx">
+      <DependentUpon>FuelUsageChartPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FuelUsageListPanel.resx">
+      <DependentUpon>FuelUsageListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FuelUsagePanel.resx">
+      <DependentUpon>FuelUsagePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FuelUsageToolbar.resx">
+      <DependentUpon>FuelUsageToolbar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ItemsListPanel.resx">
       <DependentUpon>ItemsListPanel.cs</DependentUpon>
@@ -377,12 +413,6 @@
     <None Include="Resources\UndoChangesButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SalesChartsButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SalesLedgerButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SaveChangesButton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -406,6 +436,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ListButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SchedulePresetButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChartButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

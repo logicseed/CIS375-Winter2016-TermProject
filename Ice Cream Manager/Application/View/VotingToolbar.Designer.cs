@@ -77,7 +77,7 @@
             this.votingResultsButton.FlatAppearance.BorderSize = 0;
             this.votingResultsButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
             this.votingResultsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.votingResultsButton.Image = global::IceCreamManager.Properties.Resources.SalesLedgerButton;
+            this.votingResultsButton.Image = global::IceCreamManager.Properties.Resources.ListButton;
             this.votingResultsButton.Location = new System.Drawing.Point(6, 19);
             this.votingResultsButton.Name = "votingResultsButton";
             this.votingResultsButton.Size = new System.Drawing.Size(38, 38);

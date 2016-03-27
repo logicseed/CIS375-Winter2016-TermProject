@@ -1,6 +1,6 @@
 ﻿namespace IceCreamManager.View
 {
-    partial class SalesToolbar
+    partial class FuelUsageToolbar
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.salesLedgerButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.salesChartsButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -43,7 +39,11 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.salesToolbarToolTips = new System.Windows.Forms.ToolTip(this.components);
+            this.salesLedgerButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.salesChartsButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.fuelUsageToolbarToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,73 +60,9 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(127, 316);
-            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Sales Options";
-            // 
-            // salesLedgerButton
-            // 
-            this.salesLedgerButton.AutoSize = true;
-            this.salesLedgerButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.salesLedgerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.salesLedgerButton.FlatAppearance.BorderSize = 0;
-            this.salesLedgerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
-            this.salesLedgerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.salesLedgerButton.Image = global::IceCreamManager.Properties.Resources.ListButton;
-            this.salesLedgerButton.Location = new System.Drawing.Point(6, 19);
-            this.salesLedgerButton.Name = "salesLedgerButton";
-            this.salesLedgerButton.Size = new System.Drawing.Size(38, 38);
-            this.salesLedgerButton.TabIndex = 0;
-            this.salesToolbarToolTips.SetToolTip(this.salesLedgerButton, "Sales Report");
-            this.salesLedgerButton.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::IceCreamManager.Properties.Resources.UndoChangesButton;
-            this.button2.Location = new System.Drawing.Point(50, 259);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(38, 38);
-            this.button2.TabIndex = 12;
-            this.salesToolbarToolTips.SetToolTip(this.button2, "Undo Changes");
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // salesChartsButton
-            // 
-            this.salesChartsButton.AutoSize = true;
-            this.salesChartsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.salesChartsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.salesChartsButton.FlatAppearance.BorderSize = 0;
-            this.salesChartsButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
-            this.salesChartsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.salesChartsButton.Image = global::IceCreamManager.Properties.Resources.ChartButton;
-            this.salesChartsButton.Location = new System.Drawing.Point(50, 19);
-            this.salesChartsButton.Name = "salesChartsButton";
-            this.salesChartsButton.Size = new System.Drawing.Size(38, 38);
-            this.salesChartsButton.TabIndex = 1;
-            this.salesToolbarToolTips.SetToolTip(this.salesChartsButton, "Sales Graphs");
-            this.salesChartsButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::IceCreamManager.Properties.Resources.SaveChangesButton;
-            this.button1.Location = new System.Drawing.Point(6, 259);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 38);
-            this.button1.TabIndex = 11;
-            this.salesToolbarToolTips.SetToolTip(this.button1, "Save Changes");
-            this.button1.UseVisualStyleBackColor = true;
+            this.groupBox2.Text = "Fuel Usage Options";
             // 
             // groupBox1
             // 
@@ -179,7 +115,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Driver";
+            this.label4.Text = "Truck";
             // 
             // label2
             // 
@@ -216,14 +152,78 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Route";
             // 
-            // SalesToolbar
+            // salesLedgerButton
+            // 
+            this.salesLedgerButton.AutoSize = true;
+            this.salesLedgerButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.salesLedgerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.salesLedgerButton.FlatAppearance.BorderSize = 0;
+            this.salesLedgerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
+            this.salesLedgerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.salesLedgerButton.Image = global::IceCreamManager.Properties.Resources.ListButton;
+            this.salesLedgerButton.Location = new System.Drawing.Point(6, 19);
+            this.salesLedgerButton.Name = "salesLedgerButton";
+            this.salesLedgerButton.Size = new System.Drawing.Size(38, 38);
+            this.salesLedgerButton.TabIndex = 0;
+            this.salesLedgerButton.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.Enabled = false;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::IceCreamManager.Properties.Resources.UndoChangesButton;
+            this.button2.Location = new System.Drawing.Point(50, 259);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(38, 38);
+            this.button2.TabIndex = 12;
+            this.fuelUsageToolbarToolTips.SetToolTip(this.button2, "Undo Changes");
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // salesChartsButton
+            // 
+            this.salesChartsButton.AutoSize = true;
+            this.salesChartsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.salesChartsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.salesChartsButton.FlatAppearance.BorderSize = 0;
+            this.salesChartsButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
+            this.salesChartsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.salesChartsButton.Image = global::IceCreamManager.Properties.Resources.ChartButton;
+            this.salesChartsButton.Location = new System.Drawing.Point(50, 19);
+            this.salesChartsButton.Name = "salesChartsButton";
+            this.salesChartsButton.Size = new System.Drawing.Size(38, 38);
+            this.salesChartsButton.TabIndex = 1;
+            this.salesChartsButton.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::IceCreamManager.Properties.Resources.SaveChangesButton;
+            this.button1.Location = new System.Drawing.Point(6, 259);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(38, 38);
+            this.button1.TabIndex = 11;
+            this.fuelUsageToolbarToolTips.SetToolTip(this.button1, "Save Changes");
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // FuelUsageToolbar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.groupBox2);
-            this.Name = "SalesToolbar";
+            this.Name = "FuelUsageToolbar";
             this.Size = new System.Drawing.Size(133, 322);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -250,6 +250,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolTip salesToolbarToolTips;
+        private System.Windows.Forms.ToolTip fuelUsageToolbarToolTips;
     }
 }

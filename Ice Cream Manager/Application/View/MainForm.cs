@@ -73,7 +73,8 @@ namespace IceCreamManager.View
 
         private void fuelUsageButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("fuelUsageButton");
+            switchPanel(new FuelUsagePanel());
         }
 
         private void itemsButton_Click(object sender, EventArgs e)
