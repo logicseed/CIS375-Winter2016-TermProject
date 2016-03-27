@@ -132,6 +132,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\PresetsCreateItemsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsCreateItemsPanel.Designer.cs">
+      <DependentUpon>PresetsCreateItemsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsCreateListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsCreateListPanel.Designer.cs">
+      <DependentUpon>PresetsCreateListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsCreatePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsCreatePanel.Designer.cs">
+      <DependentUpon>PresetsCreatePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsPanel.Designer.cs">
+      <DependentUpon>PresetsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsSchedulePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsSchedulePanel.Designer.cs">
+      <DependentUpon>PresetsSchedulePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PresetsToolbar.Designer.cs">
+      <DependentUpon>PresetsToolbar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RoutesListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -286,6 +322,24 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\PresetsCreateItemsPanel.resx">
+      <DependentUpon>PresetsCreateItemsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PresetsCreateListPanel.resx">
+      <DependentUpon>PresetsCreateListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PresetsCreatePanel.resx">
+      <DependentUpon>PresetsCreatePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PresetsPanel.resx">
+      <DependentUpon>PresetsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PresetsSchedulePanel.resx">
+      <DependentUpon>PresetsSchedulePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PresetsToolbar.resx">
+      <DependentUpon>PresetsToolbar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\RoutesListPanel.resx">
       <DependentUpon>RoutesListPanel.cs</DependentUpon>
     </EmbeddedResource>
