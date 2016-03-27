@@ -102,7 +102,8 @@ namespace IceCreamManager.View
 
         private void aboutButton_Click(object sender, EventArgs e)
         {
-
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
         }
 
         private void helpButton_Click(object sender, EventArgs e)
