@@ -67,7 +67,8 @@ namespace IceCreamManager.View
 
         private void driversButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("driversButton");
+            switchPanel(new DriversPanel());
         }
 
         private void fuelUsageButton_Click(object sender, EventArgs e)

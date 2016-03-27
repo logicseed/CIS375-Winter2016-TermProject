@@ -70,6 +70,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IceCreamManagerDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="View\DriversListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DriversListPanel.Designer.cs">
+      <DependentUpon>DriversListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DriversPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DriversPanel.Designer.cs">
+      <DependentUpon>DriversPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DualListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +174,12 @@
     <Compile Include="View\ZonesPanel.Designer.cs">
       <DependentUpon>ZonesPanel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\DriversListPanel.resx">
+      <DependentUpon>DriversListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DriversPanel.resx">
+      <DependentUpon>DriversPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DualListPanel.resx">
       <DependentUpon>DualListPanel.cs</DependentUpon>
     </EmbeddedResource>

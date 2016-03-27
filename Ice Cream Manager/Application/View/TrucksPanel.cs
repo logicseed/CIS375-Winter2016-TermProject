@@ -30,7 +30,6 @@ namespace IceCreamManager.View
             trucksDualListPanel.Add(trucksInventoryPanel, 2);
 
             trucksDualListPanel.Dock = DockStyle.Fill;
-            trucksToolbarPanel.Dock = DockStyle.Fill;
             trucksToolbarPanel.Add(trucksDualListPanel, 2);
         }
     }
