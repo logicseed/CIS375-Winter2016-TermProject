@@ -35,8 +35,8 @@
             // 
             // dualListPanelSplitContainer
             // 
-            this.dualListPanelSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dualListPanelSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dualListPanelSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.dualListPanelSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.dualListPanelSplitContainer.Name = "dualListPanelSplitContainer";
             this.dualListPanelSplitContainer.Size = new System.Drawing.Size(800, 600);

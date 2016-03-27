@@ -13,7 +13,9 @@ namespace IceCreamManager.View
     public partial class TrucksPanel : UserControl
     {
         SaveUndoToolbar trucksToolbar = new SaveUndoToolbar();
+        DualListPanel trucksDualListPanel = new DualListPanel();
         TrucksListPanel trucksListPanel = new TrucksListPanel();
+        TrucksInventoryPanel trucksInventoryPanel = new TrucksInventoryPanel();
 
         public TrucksPanel()
         {
@@ -21,8 +23,15 @@ namespace IceCreamManager.View
 
             trucksToolbar.Controls.Find("toolbarGroup", true)[0].Text = "Truck Options";
             trucksToolbarPanel.Add(trucksToolbar, 1);
+
             trucksListPanel.Dock = DockStyle.Fill;
-            trucksToolbarPanel.Add(trucksListPanel, 2);
+            trucksDualListPanel.Add(trucksListPanel, 1);
+            trucksInventoryPanel.Dock = DockStyle.Fill;
+            trucksDualListPanel.Add(trucksInventoryPanel, 2);
+
+            trucksDualListPanel.Dock = DockStyle.Fill;
+            trucksToolbarPanel.Dock = DockStyle.Fill;
+            trucksToolbarPanel.Add(trucksDualListPanel, 2);
         }
     }
 }

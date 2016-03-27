@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IceCreamManager</RootNamespace>
     <AssemblyName>IceCreamManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -27,9 +27,10 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -107,17 +108,17 @@
     <Compile Include="View\SalesPanel.Designer.cs">
       <DependentUpon>SalesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SalesListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\SalesListPanel.Designer.cs">
-      <DependentUpon>SalesListPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\SalesToolbar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\SalesToolbar.Designer.cs">
       <DependentUpon>SalesToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SalesListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SalesListPanel.Designer.cs">
+      <DependentUpon>SalesListPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SaveUndoToolbar.cs">
       <SubType>UserControl</SubType>
@@ -130,6 +131,12 @@
     </Compile>
     <Compile Include="View\ToolbarPanel.Designer.cs">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TrucksInventoryPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TrucksInventoryPanel.Designer.cs">
+      <DependentUpon>TrucksInventoryPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\TrucksListPanel.cs">
       <SubType>UserControl</SubType>
@@ -194,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ToolbarPanel.resx">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrucksInventoryPanel.resx">
+      <DependentUpon>TrucksInventoryPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TrucksListPanel.resx">
       <DependentUpon>TrucksListPanel.cs</DependentUpon>
