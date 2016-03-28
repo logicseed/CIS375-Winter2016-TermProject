@@ -31,15 +31,19 @@
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.salesButton = new System.Windows.Forms.ToolStripButton();
             this.batchButton = new System.Windows.Forms.ToolStripButton();
+            this.zonesSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.zonesButton = new System.Windows.Forms.ToolStripButton();
             this.routesButton = new System.Windows.Forms.ToolStripButton();
+            this.trucksSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.trucksButton = new System.Windows.Forms.ToolStripButton();
             this.driversButton = new System.Windows.Forms.ToolStripButton();
             this.fuelUsageButton = new System.Windows.Forms.ToolStripButton();
+            this.itemsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.itemsButton = new System.Windows.Forms.ToolStripButton();
             this.presetsButton = new System.Windows.Forms.ToolStripButton();
-            this.settingsButton = new System.Windows.Forms.ToolStripButton();
             this.votingButton = new System.Windows.Forms.ToolStripButton();
+            this.settingsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
+            this.settingsButton = new System.Windows.Forms.ToolStripButton();
             this.aboutButton = new System.Windows.Forms.ToolStripButton();
             this.helpButtonSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
@@ -47,10 +51,6 @@
             this.mainStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.zonesSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.trucksSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.itemsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.settingsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.mainToolStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,12 @@
             this.batchButton.Name = "batchButton";
             this.batchButton.Size = new System.Drawing.Size(52, 52);
             this.batchButton.Text = "Batch";
+            this.batchButton.Click += new System.EventHandler(this.batchButton_Click);
+            // 
+            // zonesSectionSeperator
+            // 
+            this.zonesSectionSeperator.Name = "zonesSectionSeperator";
+            this.zonesSectionSeperator.Size = new System.Drawing.Size(6, 55);
             // 
             // zonesButton
             // 
@@ -125,6 +131,11 @@
             this.routesButton.Size = new System.Drawing.Size(52, 52);
             this.routesButton.Text = "Routes";
             this.routesButton.Click += new System.EventHandler(this.routesButton_Click);
+            // 
+            // trucksSectionSeperator
+            // 
+            this.trucksSectionSeperator.Name = "trucksSectionSeperator";
+            this.trucksSectionSeperator.Size = new System.Drawing.Size(6, 55);
             // 
             // trucksButton
             // 
@@ -159,6 +170,11 @@
             this.fuelUsageButton.Text = "Fuel Usage";
             this.fuelUsageButton.Click += new System.EventHandler(this.fuelUsageButton_Click);
             // 
+            // itemsSectionSeperator
+            // 
+            this.itemsSectionSeperator.Name = "itemsSectionSeperator";
+            this.itemsSectionSeperator.Size = new System.Drawing.Size(6, 55);
+            // 
             // itemsButton
             // 
             this.itemsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -181,17 +197,6 @@
             this.presetsButton.Text = "Presets";
             this.presetsButton.Click += new System.EventHandler(this.presetsButton_Click);
             // 
-            // settingsButton
-            // 
-            this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.settingsButton.Image = global::IceCreamManager.Properties.Resources.SettingsButton;
-            this.settingsButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.settingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(52, 52);
-            this.settingsButton.Text = "Settings";
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
-            // 
             // votingButton
             // 
             this.votingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -202,6 +207,22 @@
             this.votingButton.Size = new System.Drawing.Size(52, 52);
             this.votingButton.Text = "Voting";
             this.votingButton.Click += new System.EventHandler(this.votingButton_Click);
+            // 
+            // settingsSectionSeperator
+            // 
+            this.settingsSectionSeperator.Name = "settingsSectionSeperator";
+            this.settingsSectionSeperator.Size = new System.Drawing.Size(6, 55);
+            // 
+            // settingsButton
+            // 
+            this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.settingsButton.Image = global::IceCreamManager.Properties.Resources.SettingsButton;
+            this.settingsButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.settingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(52, 52);
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // aboutButton
             // 
@@ -260,26 +281,6 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(884, 584);
             this.mainPanel.TabIndex = 2;
-            // 
-            // zonesSectionSeperator
-            // 
-            this.zonesSectionSeperator.Name = "zonesSectionSeperator";
-            this.zonesSectionSeperator.Size = new System.Drawing.Size(6, 55);
-            // 
-            // trucksSectionSeperator
-            // 
-            this.trucksSectionSeperator.Name = "trucksSectionSeperator";
-            this.trucksSectionSeperator.Size = new System.Drawing.Size(6, 55);
-            // 
-            // itemsSectionSeperator
-            // 
-            this.itemsSectionSeperator.Name = "itemsSectionSeperator";
-            this.itemsSectionSeperator.Size = new System.Drawing.Size(6, 55);
-            // 
-            // settingsSectionSeperator
-            // 
-            this.settingsSectionSeperator.Name = "settingsSectionSeperator";
-            this.settingsSectionSeperator.Size = new System.Drawing.Size(6, 55);
             // 
             // MainForm
             // 

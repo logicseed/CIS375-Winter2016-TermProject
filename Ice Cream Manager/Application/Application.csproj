@@ -76,6 +76,12 @@
     <Compile Include="View\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\BatchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\BatchPanel.Designer.cs">
+      <DependentUpon>BatchPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DriversListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -290,6 +296,9 @@
     </Compile>
     <EmbeddedResource Include="View\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\BatchPanel.resx">
+      <DependentUpon>BatchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DriversListPanel.resx">
       <DependentUpon>DriversListPanel.cs</DependentUpon>
@@ -508,6 +517,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CosmosysLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TrucksButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CitiesFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InventoryFileButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NextIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RoutesFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SalesFileButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TruckInventoryFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TruckRoutesFile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

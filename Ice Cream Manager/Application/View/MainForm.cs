@@ -110,5 +110,11 @@ namespace IceCreamManager.View
         {
 
         }
+
+        private void batchButton_Click(object sender, EventArgs e)
+        {
+            highlightToolStripButton("batchButton");
+            switchPanel(new BatchPanel());
+        }
     }
 }

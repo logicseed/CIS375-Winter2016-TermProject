@@ -130,6 +130,9 @@
   <data name="ChartButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChartButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CitiesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CitiesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CosmosysLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CosmosysLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,11 +148,17 @@
   <data name="HelpButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HelpButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="InventoryFileButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InventoryFileButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ItemsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ItemsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ListButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ListButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NextIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NextIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PresetsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PresetsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,8 +166,14 @@
   <data name="RoutesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RoutesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RoutesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RoutesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SalesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SalesFileButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SalesFileButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SaveChangesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SaveChangesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,6 +186,15 @@
   </data>
   <data name="TruckButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TruckButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TruckInventoryFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TruckInventoryFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TruckRoutesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TruckRoutesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TrucksButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TrucksButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UndoChangesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UndoChangesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
