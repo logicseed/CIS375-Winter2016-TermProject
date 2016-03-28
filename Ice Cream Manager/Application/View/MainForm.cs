@@ -91,7 +91,8 @@ namespace IceCreamManager.View
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-
+            highlightToolStripButton("settingsButton");
+            switchPanel(new SettingsPanel());
         }
 
         private void votingButton_Click(object sender, EventArgs e)

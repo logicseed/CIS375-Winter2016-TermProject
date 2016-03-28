@@ -222,6 +222,12 @@
     <Compile Include="View\SaveUndoToolbar.Designer.cs">
       <DependentUpon>SaveUndoToolbar.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SettingsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SettingsPanel.Designer.cs">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ToolbarPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -378,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SaveUndoToolbar.resx">
       <DependentUpon>SaveUndoToolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SettingsPanel.resx">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ToolbarPanel.resx">
       <DependentUpon>ToolbarPanel.cs</DependentUpon>
