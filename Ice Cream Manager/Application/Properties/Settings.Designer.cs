@@ -23,14 +23,27 @@ namespace IceCreamManager.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"C:\\Cosmosys\\Ice Cream Manager\\Application\\bin\\Debug\\IceCreamManager." +
-            "db3\"")]
-        public string IceCreamManagerConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("English")]
+        public string Language {
             get {
-                return ((string)(this["IceCreamManagerConnectionString"]));
+                return ((string)(this["Language"]));
+            }
+            set {
+                this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$")]
+        public string Currency {
+            get {
+                return ((string)(this["Currency"]));
+            }
+            set {
+                this["Currency"] = value;
             }
         }
     }

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+using IceCreamManager.View;
+
 namespace IceCreamManager
 {
     static class Program
@@ -16,7 +19,7 @@ namespace IceCreamManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View.MainForm());
+            Application.Run(new MainForm());
         }
     }
 }
