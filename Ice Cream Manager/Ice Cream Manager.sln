@@ -5,7 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F24E34D0-70E1-44D9-8DF8-B47FD40BB85F}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		..\LICENSE.md = ..\LICENSE.md
+		..\README.md = ..\README.md
 		TestDatabase.db = TestDatabase.db
 	EndProjectSection
 EndProject
