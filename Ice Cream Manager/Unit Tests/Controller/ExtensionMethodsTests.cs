@@ -16,7 +16,7 @@ namespace IceCreamManager.Controller
         {
             // Should output "YYYY-MM-DD HH:MM:SS.SSS" formatted string.
             DateTime dateTime = new DateTime(2016, 4, 3, 13, 50, 23, 42);
-            string result = dateTime.ToSQLite();
+            string result = dateTime.ToDatabase();
 
             Assert.AreEqual("2016-04-03 13:50:23.042", result, "Output didn't match expected format.");
         }
