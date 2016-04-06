@@ -6,6 +6,7 @@
 using System;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IceCreamManager.Controller;
 
 
 namespace IceCreamManager.Model
@@ -47,11 +48,11 @@ namespace IceCreamManager.Model
         public void ExecuteQuery()
         {
             string DatabaseCommand = "SELECT id FROM test_table";
-            DataTable ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(3, ResultsDataTable.Rows.Count);
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(3, ResultsTable.Rows.Count);
             DatabaseCommand = "SELECT id FROM test_table WHERE id = 2";
-            ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(1, ResultsDataTable.Rows.Count);
+            ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(1, ResultsTable.Rows.Count);
         }
 
         [TestMethod]
@@ -69,30 +70,30 @@ namespace IceCreamManager.Model
         public void IntColumnConversion()
         {
             string DatabaseCommand = "SELECT test_int FROM test_table";
-            DataTable ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(1, Convert.ToInt32(ResultsDataTable.Rows[0]["test_int"]));
-            Assert.AreEqual(2, Convert.ToInt32(ResultsDataTable.Rows[1]["test_int"]));
-            Assert.AreEqual(3, Convert.ToInt32(ResultsDataTable.Rows[2]["test_int"]));
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
+            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
+            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
         }
 
         [TestMethod]
         public void TextColumnConversion()
         {
             string DatabaseCommand = "SELECT test_text FROM test_table";
-            DataTable ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual("row one", Convert.ToString(ResultsDataTable.Rows[0]["test_text"]));
-            Assert.AreEqual("row two", Convert.ToString(ResultsDataTable.Rows[1]["test_text"]));
-            Assert.AreEqual("row three", Convert.ToString(ResultsDataTable.Rows[2]["test_text"]));
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual("row one", Convert.ToString(ResultsTable.Rows[0]["test_text"]));
+            Assert.AreEqual("row two", Convert.ToString(ResultsTable.Rows[1]["test_text"]));
+            Assert.AreEqual("row three", Convert.ToString(ResultsTable.Rows[2]["test_text"]));
         }
 
         [TestMethod]
         public void DatetimeColumnConversion()
         {
             string DatabaseCommand = "SELECT test_datetime FROM test_table";
-            DataTable ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(new DateTime(2016, 4, 3, 13, 50, 23, 42), Convert.ToDateTime(ResultsDataTable.Rows[0]["test_datetime"]));
-            Assert.AreEqual(new DateTime(2016, 4, 3, 14, 50, 23, 42), Convert.ToDateTime(ResultsDataTable.Rows[1]["test_datetime"]));
-            Assert.AreEqual(new DateTime(2016, 4, 3, 15, 50, 23, 42), Convert.ToDateTime(ResultsDataTable.Rows[2]["test_datetime"]));
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(new DateTime(2016, 4, 3, 13, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[0]["test_datetime"]));
+            Assert.AreEqual(new DateTime(2016, 4, 3, 14, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[1]["test_datetime"]));
+            Assert.AreEqual(new DateTime(2016, 4, 3, 15, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[2]["test_datetime"]));
         }
 
         [TestMethod]
@@ -121,10 +122,23 @@ namespace IceCreamManager.Model
         public void OrderByDatetimeColumn()
         {
             string DatabaseCommand = "SELECT * FROM test_table ORDER BY test_datetime DESC";
-            DataTable ResultsDataTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(3, Convert.ToInt32(ResultsDataTable.Rows[0]["test_int"]));
-            Assert.AreEqual(2, Convert.ToInt32(ResultsDataTable.Rows[1]["test_int"]));
-            Assert.AreEqual(1, Convert.ToInt32(ResultsDataTable.Rows[2]["test_int"]));
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
+            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
+            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
+        }
+
+        [TestMethod]
+        public void CastingOfDatabaseEntryToDatatypeTest()
+        {
+            string DatabaseCommand = "SELECT * FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            Assert.IsInstanceOfType(ResultsTable.Row().IntCol("test_int"), typeof(int), "Failed casting database entry to int.");
+            Assert.IsInstanceOfType(ResultsTable.Row().StringCol("test_text"), typeof(string), "Failed casting database entry to string.");
+            Assert.IsInstanceOfType(ResultsTable.Row().BoolCol("test_bool"), typeof(bool), "Failed casting database entry to bool.");
+            Assert.IsInstanceOfType(ResultsTable.Row().DateTimeCol("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
+
         }
     }
 }
