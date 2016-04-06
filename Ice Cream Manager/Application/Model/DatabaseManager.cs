@@ -289,7 +289,7 @@ namespace IceCreamManager.Model
         public bool MarkAsDeleted(string TableName, int ID)
         {
             DateTime DateDeleted = DateTime.Now;
-            string DatabaseCommand = string.Format("UPDATE {0} SET deleted = true, date_deleted = '{1}',  WHERE id = {2}", TableName, ID, DateDeleted.ToSQLite());
+            string DatabaseCommand = string.Format("UPDATE {0} SET deleted = true, date_deleted = '{1}',  WHERE id = {2}", TableName, ID, DateDeleted.ToDatabase());
             int NumberOfRowsAffectedByCommand = 0;
             bool HasBeenMarkedAsDeleted = false;
 
