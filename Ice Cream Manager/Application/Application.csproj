@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Controller\ExtensionMethods.cs" />
     <Compile Include="Model\DatabaseManager.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="View\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>

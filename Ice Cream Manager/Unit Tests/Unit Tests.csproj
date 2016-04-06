@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Controller\ExtensionMethodsTests.cs" />
     <Compile Include="Model\DatabaseManagerTests.cs" />
+    <Compile Include="Model\ItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
