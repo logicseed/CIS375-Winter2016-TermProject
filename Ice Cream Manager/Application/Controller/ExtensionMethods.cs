@@ -150,6 +150,31 @@ namespace IceCreamManager.Controller
             }
         }
 
+        public static double DoubleCol(this DataRow BaseDataRow, int Index = 0)
+        {
+            try
+            {
+                string Name = BaseDataRow.Table.Columns[Index].ColumnName;
+                return BaseDataRow.DoubleCol(Name);
+            }
+            catch (Exception)
+            {
+                throw; // Handled up the stack.
+            }
+        }
+
+        public static double DoubleCol(this DataRow BaseDataRow, string Name)
+        {
+            try
+            {
+                return Convert.ToDouble(BaseDataRow[Name]);
+            }
+            catch (Exception)
+            {
+                throw; // Handled up the stack.
+            }
+        }
+
     }
 
 }
