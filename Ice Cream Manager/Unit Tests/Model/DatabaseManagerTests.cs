@@ -6,10 +6,8 @@
 using System;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IceCreamManager.Controller;
 
-
-namespace IceCreamManager.Model
+namespace IceCreamManager
 {
     [TestClass]
     public class DatabaseManagerTests
@@ -138,7 +136,7 @@ namespace IceCreamManager.Model
             Assert.IsInstanceOfType(ResultsTable.Row().StringCol("test_text"), typeof(string), "Failed casting database entry to string.");
             Assert.IsInstanceOfType(ResultsTable.Row().BoolCol("test_bool"), typeof(bool), "Failed casting database entry to bool.");
             Assert.IsInstanceOfType(ResultsTable.Row().DateTimeCol("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
-
+            Assert.IsInstanceOfType(ResultsTable.Row().DoubleCol("test_double"), typeof(double), "Failed casting database entry to double.");
         }
     }
 }

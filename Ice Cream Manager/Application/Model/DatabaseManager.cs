@@ -7,9 +7,8 @@ using System;
 using System.IO;
 using System.Data;
 using System.Data.SQLite;
-using IceCreamManager.Controller;
 
-namespace IceCreamManager.Model
+namespace IceCreamManager
 {
     /// <summary>
     /// Manages the connection and interaction with the database.
