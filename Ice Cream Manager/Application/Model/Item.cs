@@ -1,90 +1,42 @@
-﻿using System;
-using System.Data;
-using IceCreamManager;
+﻿/// <project>IceCreamManager</project>
+/// <module>Item</module>
+/// <author>Marc King</author>
+/// <date_created>2016-04-07</date_created>
 
-namespace IceCreamManager.Model
+using System;
+using System.Data;
+
+namespace IceCreamManager
 {
-    class Item
+    public class Item
     {
         DatabaseManager Database = DatabaseManager.DatabaseReference;
-        private DateTime date_deleted;
-        private bool deleted;
-        private string description;
-        private int id;
-        private int lifetimeInDays;
+
+        private int id = 0;
         private int number;
-        private int price;
+        private string description;
+        private double price;
+        private int lifetime;
+        private bool deleted = false;
+        private bool saved = false;
+        private bool loaded = false;
 
-        public Item(int ID)
-        {
-            FillItemProperties(ID);
-
-        }
-
-        private void FillItemProperties(int ID)
+        public Item(int ID, bool LoadProperties = true)
         {
             this.ID = ID;
-            try
+            if(LoadProperties)
             {
-                string DatabaseCommand = String.Format("SELECT * FROM item WHERE id = {0}", ID);
-                DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-                Number = Convert.ToInt32(ResultsTable.Rows[0]["number"]);
-                Price = Convert.ToInt32(ResultsTable.Rows[0]["price"]);
-                Description = Convert.ToString(ResultsTable.Rows[0]["description"]);
-                LifetimeInDays = Convert.ToInt32(ResultsTable.Rows[0]["lifetime"]);
-                Deleted = Convert.ToBoolean(ResultsTable.Rows[0]["deleted"]);
-                Date_deleted = Convert.ToDateTime(ResultsTable.Rows[0]["date_deleted"]);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-
-            }
-            
-            
-        }
-
-        public DateTime Date_deleted
-        {
-            get
-            {
-                return date_deleted;
-            }
-
-            set
-            {
-                date_deleted = value;
+                LoadPropertiesFromDatabase();
+                IsLoaded = true;
             }
         }
 
-        public bool Deleted
+        public Item(int Number, string Description, double Price, int Lifetime)
         {
-            get
-            {
-                return deleted;
-            }
-
-            set
-            {
-                deleted = value;
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-
-            set
-            {
-                description = value;
-            }
+            this.Number = Number;
+            this.Description = Description;
+            this.Price = Price;
+            this.Lifetime = Lifetime;
         }
 
         public int ID
@@ -93,23 +45,13 @@ namespace IceCreamManager.Model
             {
                 return id;
             }
-
-            set
+            private set
             {
+                if (value < Requirement.MinID)
+                {
+                    throw new ArgumentOutOfRangeException("ID out of range.");
+                }
                 id = value;
-            }
-        }
-
-        public int LifetimeInDays
-        {
-            get
-            {
-                return lifetimeInDays;
-            }
-
-            set
-            {
-                lifetimeInDays = value;
             }
         }
 
@@ -122,25 +64,123 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value > 9999 || value < 0)
+                if (value < Requirement.MinNumber || value > Requirement.MaxNumber)
                 {
-                    throw new Exception();
+                    throw new ArgumentOutOfRangeException("Number out of range.");
                 }
                 number = value;
+                saved = false;
             }
         }
 
-        public int Price
+        public string Description
+        {
+            get { return description; }
+
+            set
+            {
+                if (value.Length > Requirement.MaxDescription)
+                {
+                    throw new ArgumentOutOfRangeException("Description longer than 30 characters.");
+                }
+                description = value;
+                saved = false;
+            }
+        }
+
+        public double Price
+        {
+            get { return price; }
+
+            set
+            {
+                if (value < Requirement.MinPrice || value > Requirement.MaxPrice)
+                {
+                    throw new ArgumentOutOfRangeException("Price out of range.");
+                }
+                price = value;
+                saved = false;
+            }
+        }
+
+        public int Lifetime
+        {
+            get { return lifetime; }
+
+            set
+            {
+                if (value < Requirement.MinLifetime || value > Requirement.MaxLifetime)
+                {
+                    throw new ArgumentOutOfRangeException("Lifetime out of range");
+                }
+                lifetime = value;
+                saved = false;
+            }
+        }
+
+        public bool IsDeleted
         {
             get
             {
-                return price;
+                return deleted;
             }
 
             set
             {
-                price = value;
+                deleted = value;
+                saved = false;
             }
         }
+
+        public bool IsSaved
+        {
+            get
+            {
+                return saved;
+            }
+
+            private set
+            {
+                saved = value;
+            }
+        }
+
+        public bool IsLoaded
+        {
+            get
+            {
+                return loaded;
+            }
+
+            private set
+            {
+                loaded = value;
+            }
+        }
+
+        private void LoadPropertiesFromDatabase()
+        {
+            try
+            {
+                string DatabaseCommand = String.Format("SELECT * FROM item WHERE id = {0}", ID);
+                DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+                Number = ResultsTable.Row().IntCol("number");
+                Description = ResultsTable.Row().StringCol("description");
+                Price = ResultsTable.Row().DoubleCol("price");
+                Lifetime = ResultsTable.Row().IntCol("lifetime");
+                IsDeleted = ResultsTable.Row().BoolCol("deleted");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not load item properties from database.", e);
+            }
+   
+        }
+
+
+
+        
+
     }
 }
