@@ -5,9 +5,8 @@
 
 using System;
 using System.Data;
-using IceCreamManager.Model;
 
-namespace IceCreamManager.Controller
+namespace IceCreamManager
 {
     public static class ExtensionMethods
     {

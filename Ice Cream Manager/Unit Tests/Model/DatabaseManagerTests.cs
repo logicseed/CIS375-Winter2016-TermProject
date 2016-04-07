@@ -6,10 +6,8 @@
 using System;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IceCreamManager.Controller;
 
-
-namespace IceCreamManager.Model
+namespace IceCreamManager
 {
     [TestClass]
     public class DatabaseManagerTests
