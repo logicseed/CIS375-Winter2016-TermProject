@@ -32,10 +32,10 @@
     <Setting Name="MinID" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MinLifetime" Type="System.Int32" Scope="User">
+    <Setting Name="MinLifetime" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MaxLifetime" Type="System.Int32" Scope="User">
+    <Setting Name="MaxLifetime" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">365</Value>
     </Setting>
   </Settings>

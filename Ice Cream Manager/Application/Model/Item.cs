@@ -5,31 +5,28 @@
 
 using System;
 using System.Data;
+using System.Text;
 
 namespace IceCreamManager
 {
-    public class Item
+    internal class Item : DatabaseEntity
     {
-        DatabaseManager Database = DatabaseManager.DatabaseReference;
-
-        private int id = 0;
         private int number;
         private string description;
         private double price;
         private int lifetime;
         private bool deleted = false;
-        private bool saved = false;
-        private bool loaded = false;
 
         public Item(int ID, bool LoadProperties = true)
         {
             this.ID = ID;
             if(LoadProperties)
             {
-                LoadPropertiesFromDatabase();
-                IsLoaded = true;
+                Load();
+                Database.ToString();
             }
         }
+
 
         public Item(int Number, string Description, double Price, int Lifetime)
         {
@@ -39,26 +36,12 @@ namespace IceCreamManager
             this.Lifetime = Lifetime;
         }
 
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-            private set
-            {
-                if (value < Requirement.MinID)
-                {
-                    throw new ArgumentOutOfRangeException("ID out of range.");
-                }
-                id = value;
-            }
-        }
 
         public int Number
         {
             get
             {
+                LoadIfNotLoaded();
                 return number;
             }
 
@@ -69,7 +52,31 @@ namespace IceCreamManager
                     throw new ArgumentOutOfRangeException("Number out of range.");
                 }
                 number = value;
-                saved = false;
+                IsSaved = false;
+            }
+        }
+
+        protected override string UpdateCommand
+        {
+            get
+            {
+                return String.Format("UPDATE item SET (number,description) VALUES ({0},{1}) WHERE id = {2}", number, description,ID );
+            }
+        }
+
+        protected override string CreateCommand
+        {
+            get
+            {
+                return String.Format("INSERT INTO item (number, description) VALUES ({3},{4})", "number", number, "description", description);
+            }
+        }
+
+        private void LoadIfNotLoaded()
+        {
+            if (IsLoaded == false && )
+            {
+                
             }
         }
 
@@ -84,7 +91,7 @@ namespace IceCreamManager
                     throw new ArgumentOutOfRangeException("Description longer than 30 characters.");
                 }
                 description = value;
-                saved = false;
+                IsSaved = false;
             }
         }
 
@@ -99,7 +106,7 @@ namespace IceCreamManager
                     throw new ArgumentOutOfRangeException("Price out of range.");
                 }
                 price = value;
-                saved = false;
+                IsSaved = false;
             }
         }
 
@@ -114,52 +121,15 @@ namespace IceCreamManager
                     throw new ArgumentOutOfRangeException("Lifetime out of range");
                 }
                 lifetime = value;
-                saved = false;
+                IsSaved = false;
             }
         }
 
-        public bool IsDeleted
+        override public bool Load()
         {
-            get
-            {
-                return deleted;
-            }
+            // A database entity cannot have an id of zero.
+            if (ID == 0) throw new Exception("Error loading properties of item not in database.");
 
-            set
-            {
-                deleted = value;
-                saved = false;
-            }
-        }
-
-        public bool IsSaved
-        {
-            get
-            {
-                return saved;
-            }
-
-            private set
-            {
-                saved = value;
-            }
-        }
-
-        public bool IsLoaded
-        {
-            get
-            {
-                return loaded;
-            }
-
-            private set
-            {
-                loaded = value;
-            }
-        }
-
-        private void LoadPropertiesFromDatabase()
-        {
             try
             {
                 string DatabaseCommand = String.Format("SELECT * FROM item WHERE id = {0}", ID);
@@ -175,12 +145,8 @@ namespace IceCreamManager
             {
                 throw new Exception("Could not load item properties from database.", e);
             }
-   
+            IsLoaded = true;
+            return IsLoaded;
         }
-
-
-
-        
-
     }
 }
