@@ -1,55 +1,26 @@
-﻿/// <project>IceCreamManager</project>
-/// <module>InventoryItem</module>
-/// <author>Marc King</author>
-/// <date_created>2016-04-07</date_created>
+﻿/// <project> IceCreamManager </project>
+/// <module> InventoryItem </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-07 </date_created>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IceCreamManager
+namespace IceCreamManager.Model
 {
-    class InventoryItem
+    internal class InventoryItemProperties : DatabaseEntityProperties
     {
-        DatabaseManager Database = DatabaseManager.DatabaseReference;
+        public Item ItemType;
+        public DateTime DateCreated;
+    }
 
-        int id;
-        Item itemType;
-        DateTime dateCreated;
+    internal class InventoryItem : DatabaseEntity
+    {
+        private Item itemType;
+        private DateTime dateCreated;
 
-        public InventoryItem(int ID, Item ItemType, DateTime DateCreated)
+        public InventoryItem(int ID)
         {
-            this.ID = ID;
-            this.ItemType = ItemType;
-            this.DateCreated = DateCreated;
-        }
-
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-
-        public Item ItemType
-        {
-            get
-            {
-                return itemType;
-            }
-
-            set
-            {
-                itemType = value;
-            }
+            Load(ID);
         }
 
         public DateTime DateCreated
@@ -63,6 +34,55 @@ namespace IceCreamManager
             {
                 dateCreated = value;
             }
+        }
+
+        internal Item ItemType
+        {
+            get
+            {
+                return itemType;
+            }
+
+            set
+            {
+                itemType = value;
+            }
+        }
+
+        protected override string TableName => "inventory_item";
+
+        protected override string CreateCommand =>
+            $"";
+
+        protected override string UpdateCommand =>
+            $"";
+
+        public override bool Load(int ID)
+        {
+            //this.ID = ID;
+            //DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
+
+            //if (ResultsTable.Rows.Count == 0) return false;
+
+            //int ItemTypeID = ResultsTable.Row().Col("item_id");
+            //ItemType = ItemFactory.Load(ItemTypeID);
+            //DateCreated = ResultsTable.Row().Col<DateTime>("date_created");
+
+            return true;
+        }
+
+        public override bool Fill(DatabaseEntityProperties EntityProperties)
+        {
+            InventoryItemProperties InventoryItemValues = EntityProperties as InventoryItemProperties;
+
+            ItemType = InventoryItemValues.ItemType;
+            DateCreated = InventoryItemValues.DateCreated;
+            //Number = ItemValues.Number;
+            //Description = ItemValues.Description;
+            //Price = ItemValues.Price;
+            //Lifetime = ItemValues.Lifetime;
+
+            return true;
         }
     }
 }

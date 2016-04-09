@@ -16,12 +16,6 @@ namespace IceCreamManager.Model
     {
         protected int id;
 
-        protected DatabaseEntity(int ID = 0)
-        {
-            this.ID = ID;
-            Load(ID);
-        }
-
         /// <summary>
         ///   The unique identity of the database entity. 
         /// </summary>

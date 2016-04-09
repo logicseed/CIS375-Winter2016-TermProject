@@ -1,106 +1,59 @@
-﻿/// <project>IceCreamManager</project>
-/// <module>Inventory</module>
-/// <author>Marc King</author>
-/// <date_created>2016-04-07</date_created>
+﻿/// <project> IceCreamManager </project>
+/// <module> Inventory </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-07 </date_created>
 
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IceCreamManager
+namespace IceCreamManager.Model
 {
-    class Inventory : DatabaseEntity
+    internal class Inventory : DatabaseEntity
     {
-
-        int id;
-
-        Dictionary<int, InventoryItem> items;
-        Dictionary<int, Item> itemTypes;
-
         public Inventory(int ID, bool LoadNow)
         {
             this.ID = ID;
-            if (LoadNow)
-            {
-                Load();
-            }
+            Load(ID);
         }
 
-        internal Dictionary<int, InventoryItem> Items
+        protected override string TableName
         {
             get
             {
-                return items;
+                throw new NotImplementedException();
             }
         }
 
-        public int ID
+        protected override string CreateCommand
         {
             get
             {
-                return id;
-            }
-
-            private set
-            {
-                id = value;
+                throw new NotImplementedException();
             }
         }
 
-        public bool IsSaved
+        protected override string UpdateCommand
         {
             get
             {
-                return saved;
-            }
-
-            private set
-            {
-                saved = value;
+                throw new NotImplementedException();
             }
         }
 
-        public bool IsLoaded
+        public void AddItem(int ItemID)
         {
-            get
-            {
-                return loaded;
-            }
-
-            private set
-            {
-                loaded = value;
-            }
+            throw new NotImplementedException();
         }
 
-        override public bool Load()
+        public override bool Load(int ID)
         {
             string DatabaseCommand = String.Format("SELECT id, item_id, date_created FROM inventory_item WHERE inventory_id = {0}", ID);
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
 
-            foreach (DataRow Row in ResultsTable.Rows)
-            {
-                int id = Row.IntCol("id");
-                int itemID = Row.IntCol("item_id");
-                DateTime dateCreated = Row.DateTimeCol("date_created");
-
-
-                if (itemTypes.ContainsKey(itemID) == false)
-                {
-                    itemTypes.Add(itemID, new Item(itemID, false));
-                }
-                Items.Add(id, new InventoryItem(id, itemTypes[itemID], dateCreated));
-
-            }
-            IsLoaded = true;
-
-
-            return IsLoaded;
+            return InDatabase;
         }
 
-        public void AddItem(int ItemID)
+        public override bool Fill(DatabaseEntityProperties EntityProperties)
         {
             throw new NotImplementedException();
         }

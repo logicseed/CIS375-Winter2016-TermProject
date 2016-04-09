@@ -25,6 +25,11 @@ namespace IceCreamManager.Model
         private double price;
         private int lifetime;
 
+        public Item()
+        {
+            ID = 0;
+        }
+
         public Item(int ID)
         {
             Load(ID);

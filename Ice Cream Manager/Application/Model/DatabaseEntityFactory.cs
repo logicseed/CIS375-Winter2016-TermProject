@@ -32,10 +32,13 @@ namespace IceCreamManager.Model
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public EntityType Create()
+        public EntityType Create(DatabaseEntityProperties EntityProperties)
         {
             EntityType NewEntity = new EntityType();
-            return NewEntity;
+            NewEntity.Fill(EntityProperties);
+            NewEntity.Save();
+            EntityCache.Add(typeof(EntityType).Name, NewEntity.ID, NewEntity);
+            return (EntityType)EntityCache.Get(typeof(EntityType).Name, NewEntity.ID);
         }
     }
 }

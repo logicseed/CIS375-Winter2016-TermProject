@@ -23,14 +23,13 @@ namespace IceCreamManager.Model
 
         #endregion Singleton
 
-        private static CacheItemPolicy CachePolicy;
+        private CacheItemPolicy CachePolicy = new CacheItemPolicy();
 
-        private static MemoryCache EntityCache;
+        private MemoryCache EntityCache = new MemoryCache("IceCreamManager");
 
         private DatabaseEntityCache()
         {
             CachePolicy.SlidingExpiration = new TimeSpan(Requirement.MaxCacheHours, Requirement.MaxCacheMinutes, Requirement.MaxCacheSeconds);
-            EntityCache = new MemoryCache("IceCreamManager");
         }
 
         public bool Add(string CacheName, int EntityID, object Entity)

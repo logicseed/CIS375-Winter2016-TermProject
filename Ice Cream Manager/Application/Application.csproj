@@ -77,6 +77,7 @@
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\InventoryItem.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemFactory.cs" />
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
       <AutoGen>True</AutoGen>
