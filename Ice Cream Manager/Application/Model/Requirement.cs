@@ -21,5 +21,8 @@ namespace IceCreamManager
         public static double MinPrice { get { return Properties.Requirements.Default.MinPrice; } }
         public static int MinLifetime { get { return Properties.Requirements.Default.MinLifetime; } }
         public static int MaxLifetime { get { return Properties.Requirements.Default.MaxLifetime; } }
+        public static int MaxCacheHours { get { return Properties.Requirements.Default.MaxCacheHours; } }
+        public static int MaxCacheMinutes { get { return Properties.Requirements.Default.MaxCacheMinutes; } }
+        public static int MaxCacheSeconds { get { return Properties.Requirements.Default.MaxCacheSeconds; } }
     }
 }

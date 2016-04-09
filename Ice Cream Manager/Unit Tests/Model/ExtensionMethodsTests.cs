@@ -6,7 +6,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IceCreamManager
+namespace IceCreamManager.Model
 {
     [TestClass]
     public class ExtensionMethodsTests

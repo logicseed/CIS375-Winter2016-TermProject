@@ -130,5 +130,32 @@ namespace IceCreamManager.Properties {
                 return ((int)(this["MaxLifetime"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MaxCacheHours {
+            get {
+                return ((int)(this["MaxCacheHours"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int MaxCacheMinutes {
+            get {
+                return ((int)(this["MaxCacheMinutes"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MaxCacheSeconds {
+            get {
+                return ((int)(this["MaxCacheSeconds"]));
+            }
+        }
     }
 }
