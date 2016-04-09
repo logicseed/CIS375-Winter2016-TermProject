@@ -8,7 +8,7 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    internal class Inventory : DatabaseEntity
+    public class Inventory : DatabaseEntity
     {
         public Inventory(int ID, bool LoadNow)
         {

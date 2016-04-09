@@ -23,7 +23,7 @@ namespace IceCreamManager.Model
     ///
     ///   You then have access to all the public methods through the Database object reference.
     /// </example>
-    internal sealed class DatabaseManager // Sealed as Singleton
+    public sealed class DatabaseManager // Sealed as Singleton
     {
         #region Singleton
 
@@ -239,7 +239,7 @@ namespace IceCreamManager.Model
         ///   The database command that provides the results that the data table is created from.
         /// </param>
         /// <returns> The results </returns>
-        internal DataTable DataTableFromCommand(string DatabaseCommand)
+        public DataTable DataTableFromCommand(string DatabaseCommand)
         {
             DataTable ResultsDataTable = new DataTable();
 
@@ -266,7 +266,7 @@ namespace IceCreamManager.Model
         /// <postconditions> The database will reflect the command that was executed. </postconditions>
         /// <param name="DatabaseCommand"> The database command that will be executed on the database. </param>
         /// <returns> The number of database rows affected by the database command. </returns>
-        internal int ExecuteCommand(string DatabaseCommand)
+        public int ExecuteCommand(string DatabaseCommand)
         {
             int NumberOfRowsAffectedByCommand = 0;
 
@@ -296,7 +296,7 @@ namespace IceCreamManager.Model
         /// <param name="TableName"> The name of the database table that contains the row to be marked as deleted. </param>
         /// <param name="ID"> The unique identity number of the database row to be marked as deleted. </param>
         /// <returns></returns>
-        internal bool MarkAsDeleted(string TableName, int ID)
+        public bool MarkAsDeleted(string TableName, int ID)
         {
             string DatabaseCommand = $"UPDATE {TableName} SET deleted = true WHERE id = {ID}";
 
@@ -317,7 +317,7 @@ namespace IceCreamManager.Model
         /// <preconditions> An insert must have been performed on the database. </preconditions>
         /// <postconditions> No changes are made to the state of the application. </postconditions>
         /// <returns> The identity of the last row inserted into the database. </returns>
-        internal int LastInsertID()
+        public int LastInsertID()
         {
             try
             {

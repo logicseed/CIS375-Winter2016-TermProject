@@ -9,7 +9,7 @@ using System.Data;
 namespace IceCreamManager.Model
 {
     // COMMENT: A comment needs to be created here.
-    internal class ItemProperties : DatabaseEntityProperties
+    public class ItemProperties : DatabaseEntityProperties
     {
         public int Number;
         public string Description;
@@ -18,7 +18,7 @@ namespace IceCreamManager.Model
     }
 
     // COMMENT: A comment needs to be created here.
-    internal class Item : DatabaseEntity
+    public class Item : DatabaseEntity
     {
         private int number;
         private string description;

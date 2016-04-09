@@ -5,7 +5,7 @@
 
 namespace IceCreamManager.Model
 {
-    internal class DatabaseEntityFactory<EntityType> where EntityType : DatabaseEntity, new()
+    public class DatabaseEntityFactory<EntityType> where EntityType : DatabaseEntity, new()
     {
         /// <summary>
         ///   Provides caching for database entities to improve query performance. 

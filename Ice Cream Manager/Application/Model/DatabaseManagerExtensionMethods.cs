@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace IceCreamManager.Model
 {
-    internal static class ExtensionMethods
+    public static class ExtensionMethods
     {
         /// <summary>
         ///   Generic method to get the value in a column as a datatype ReturnType. 
@@ -19,7 +19,7 @@ namespace IceCreamManager.Model
         /// <param name="Name"> The key for the column to return. </param>
         /// <returns> The value in the column as a datatype. </returns>
         /// <exception cref="InvalidCastException" />
-        internal static ReturnType Col<ReturnType>(this DataRow BaseDataRow, string Name)
+        public static ReturnType Col<ReturnType>(this DataRow BaseDataRow, string Name)
         {
             return (ReturnType)Convert.ChangeType(BaseDataRow[Name], typeof(ReturnType), CultureInfo.InvariantCulture);
         }
@@ -33,7 +33,7 @@ namespace IceCreamManager.Model
         /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
         /// <param name="Index"> The index of the column to return. </param>
         /// <returns> The value in the column as a datatype. </returns>
-        internal static ReturnType Col<ReturnType>(this DataRow BaseDataRow, int Index = 0)
+        public static ReturnType Col<ReturnType>(this DataRow BaseDataRow, int Index = 0)
         {
             string Name = BaseDataRow.Table.Columns[Index].ColumnName;
             return BaseDataRow.Col<ReturnType>(Name);
@@ -45,7 +45,7 @@ namespace IceCreamManager.Model
         /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
         /// <param name="Name"> The key for the column to return. </param>
         /// <returns> The value in the column as an integer. </returns>
-        internal static int Col(this DataRow BaseDataRow, string Name)
+        public static int Col(this DataRow BaseDataRow, string Name)
         {
             return BaseDataRow.Col<int>(Name);
         }
@@ -56,7 +56,7 @@ namespace IceCreamManager.Model
         /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
         /// <param name="Index"> The index of the column to return. </param>
         /// <returns> The value in the column as an integer. </returns>
-        internal static int Col(this DataRow BaseDataRow, int Index = 0)
+        public static int Col(this DataRow BaseDataRow, int Index = 0)
         {
             string Name = BaseDataRow.Table.Columns[Index].ColumnName;
             return BaseDataRow.Col<int>(Name);
@@ -68,7 +68,7 @@ namespace IceCreamManager.Model
         /// <param name="BaseDataTable"> The DataTable extended by this method. </param>
         /// <param name="Index"> The index of the row to return. </param>
         /// <returns> The DataRow at the specified index. </returns>
-        internal static DataRow Row(this DataTable BaseDataTable, int Index = 0)
+        public static DataRow Row(this DataTable BaseDataTable, int Index = 0)
         {
             return BaseDataTable.Rows[Index];
         }
@@ -83,7 +83,7 @@ namespace IceCreamManager.Model
         /// <preconditions> DateTime object exists. </preconditions>
         /// <postconditions> No changes made to DateTime object. </postconditions>
         /// <returns> A string with the DateTime in format expected by the database. </returns>
-        internal static string ToDatabase(this DateTime BaseDateTime)
+        public static string ToDatabase(this DateTime BaseDateTime)
         {
             try
             {

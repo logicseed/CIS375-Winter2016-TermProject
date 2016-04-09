@@ -5,7 +5,7 @@
 
 namespace IceCreamManager.Model
 {
-    internal static class ItemFactory
+    public static class ItemFactory
     {
         private static DatabaseEntityFactory<Item> DatabaseItemFactory = new DatabaseEntityFactory<Item>();
 

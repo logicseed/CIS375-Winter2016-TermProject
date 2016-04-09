@@ -10,7 +10,7 @@ namespace IceCreamManager.Model
 {
     /// <summary>
     /// </summary>
-    internal sealed class DatabaseEntityCache
+    public sealed class DatabaseEntityCache
     {
         #region Singleton
 

@@ -7,13 +7,13 @@ using System;
 
 namespace IceCreamManager.Model
 {
-    internal class InventoryItemProperties : DatabaseEntityProperties
+    public class InventoryItemProperties : DatabaseEntityProperties
     {
         public Item ItemType;
         public DateTime DateCreated;
     }
 
-    internal class InventoryItem : DatabaseEntity
+    public class InventoryItem : DatabaseEntity
     {
         private Item itemType;
         private DateTime dateCreated;
@@ -36,7 +36,7 @@ namespace IceCreamManager.Model
             }
         }
 
-        internal Item ItemType
+        public Item ItemType
         {
             get
             {

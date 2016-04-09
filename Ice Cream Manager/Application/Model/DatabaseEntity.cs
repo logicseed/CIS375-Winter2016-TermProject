@@ -12,7 +12,7 @@ namespace IceCreamManager.Model
     ///   entities and forces classes that inherit this class to provide a method for loading the entity, and properties
     ///   that contain database commands for creating, updating, or deleting the entity.
     /// </summary>
-    internal abstract class DatabaseEntity
+    public abstract class DatabaseEntity
     {
         protected int id;
 
