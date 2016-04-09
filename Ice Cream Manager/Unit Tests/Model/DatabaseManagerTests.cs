@@ -1,7 +1,7 @@
-﻿/// <project>IceCreamManager</project>
-/// <module>DatabaseManagerTests</module>
-/// <author>Marc King</author>
-/// <date_created>2016-04-03</date_created>
+﻿/// <project> IceCreamManager </project>
+/// <module> DatabaseManagerTests </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-03 </date_created>
 
 using System;
 using System.Data;
@@ -12,10 +12,10 @@ namespace IceCreamManager.Model
     [TestClass]
     public class DatabaseManagerTests
     {
-        DatabaseManager Database = DatabaseManager.Reference;
+        private DatabaseManager Database = DatabaseManager.Reference;
 
         [TestMethod]
-        public void MalformedQueryException()
+        public void DataTableFromCommand_MalformedQuery_ThrowsException()
         {
             try
             {
@@ -29,21 +29,47 @@ namespace IceCreamManager.Model
         }
 
         [TestMethod]
-        public void MalformedNonQueryException()
+        public void DataTableFromCommand_SelectDateTimeColumns_ResultsAsDateTimes()
         {
-            try
-            {
-                Database.ExecuteCommand("GARBAGENONQUERYLKSDFSDF");
-                Assert.Fail("Does not throw exception on malformed non-query.");
-            }
-            catch (Exception)
-            {
-                // Threw an exception as expected.
-            }
+            string DatabaseCommand = "SELECT test_datetime FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(new DateTime(2016, 4, 3, 13, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[0]["test_datetime"]));
+            Assert.AreEqual(new DateTime(2016, 4, 3, 14, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[1]["test_datetime"]));
+            Assert.AreEqual(new DateTime(2016, 4, 3, 15, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[2]["test_datetime"]));
         }
 
         [TestMethod]
-        public void ExecuteQuery()
+        public void DataTableFromCommand_SelectIntegerColumns_ResultsAsIntegers()
+        {
+            string DatabaseCommand = "SELECT test_int FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
+            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
+            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
+        }
+
+        [TestMethod]
+        public void DataTableFromCommand_SelectOrderedByDatetimeColumn_ResultsOrderedByDateTime()
+        {
+            string DatabaseCommand = "SELECT * FROM test_table ORDER BY test_datetime DESC";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
+            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
+            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
+        }
+
+        [TestMethod]
+        public void DataTableFromCommand_SelectStringColumns_ResultsAsStrings()
+        {
+            string DatabaseCommand = "SELECT test_text FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            Assert.AreEqual("row one", Convert.ToString(ResultsTable.Rows[0]["test_text"]));
+            Assert.AreEqual("row two", Convert.ToString(ResultsTable.Rows[1]["test_text"]));
+            Assert.AreEqual("row three", Convert.ToString(ResultsTable.Rows[2]["test_text"]));
+        }
+
+        [TestMethod]
+        public void DataTableFromCommand_SimpleQuery_ResultsFromDatabase()
         {
             string DatabaseCommand = "SELECT id FROM test_table";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
@@ -54,7 +80,30 @@ namespace IceCreamManager.Model
         }
 
         [TestMethod]
-        public void ExecuteNonQuery()
+        public void DatatypeConversionExtensions_SelectVariousDatatypes_ConvertedToProperDatatypes()
+        {
+            string DatabaseCommand = "SELECT * FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<int>("test_int"), typeof(int), "Failed casting database entry to int.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<string>("test_text"), typeof(string), "Failed casting database entry to string.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<bool>("test_bool"), typeof(bool), "Failed casting database entry to bool.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<DateTime>("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<double>("test_double"), typeof(double), "Failed casting database entry to double.");
+        }
+
+        [TestMethod]
+        public void DateTimeExtension_ConvertDateTimeToDatabase_ResultsMatchRequiredFormat()
+        {
+            // Should output "YYYY-MM-DD HH:MM:SS.SSS" formatted string.
+            DateTime dateTime = new DateTime(2016, 4, 3, 13, 50, 23, 42);
+            string result = dateTime.ToDatabase();
+
+            Assert.AreEqual("2016-04-03 13:50:23.042", result, "Output didn't match expected format.");
+        }
+
+        [TestMethod]
+        public void ExecuteCommand_CreateTableInsertThenDropTable_NoChangesToDatabase()
         {
             string DatabaseCommand = "CREATE TABLE nonquery_test (id INTEGER)";
             Assert.AreEqual(0, Database.ExecuteCommand(DatabaseCommand));
@@ -65,37 +114,7 @@ namespace IceCreamManager.Model
         }
 
         [TestMethod]
-        public void IntColumnConversion()
-        {
-            string DatabaseCommand = "SELECT test_int FROM test_table";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
-            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
-            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
-        }
-
-        [TestMethod]
-        public void TextColumnConversion()
-        {
-            string DatabaseCommand = "SELECT test_text FROM test_table";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual("row one", Convert.ToString(ResultsTable.Rows[0]["test_text"]));
-            Assert.AreEqual("row two", Convert.ToString(ResultsTable.Rows[1]["test_text"]));
-            Assert.AreEqual("row three", Convert.ToString(ResultsTable.Rows[2]["test_text"]));
-        }
-
-        [TestMethod]
-        public void DatetimeColumnConversion()
-        {
-            string DatabaseCommand = "SELECT test_datetime FROM test_table";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(new DateTime(2016, 4, 3, 13, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[0]["test_datetime"]));
-            Assert.AreEqual(new DateTime(2016, 4, 3, 14, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[1]["test_datetime"]));
-            Assert.AreEqual(new DateTime(2016, 4, 3, 15, 50, 23, 42), Convert.ToDateTime(ResultsTable.Rows[2]["test_datetime"]));
-        }
-
-        [TestMethod]
-        public void NullInNotNullColumnException()
+        public void ExecuteCommand_InsertNullIntoNotNullColumn_ThrowsException()
         {
             string DatabaseCommand = "CREATE TABLE test_null_table ( id INTEGER NOT NULL, test_null INTEGER NOT NULL)";
             Database.ExecuteCommand(DatabaseCommand);
@@ -117,39 +136,17 @@ namespace IceCreamManager.Model
         }
 
         [TestMethod]
-        public void OrderByDatetimeColumn()
+        public void ExecuteCommand_MalformedQuery_ThrowsException()
         {
-            string DatabaseCommand = "SELECT * FROM test_table ORDER BY test_datetime DESC";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-            Assert.AreEqual(3, Convert.ToInt32(ResultsTable.Rows[0]["test_int"]));
-            Assert.AreEqual(2, Convert.ToInt32(ResultsTable.Rows[1]["test_int"]));
-            Assert.AreEqual(1, Convert.ToInt32(ResultsTable.Rows[2]["test_int"]));
-        }
-
-        [TestMethod]
-        public void CastingOfDatabaseEntryToDatatypeTestOld()
-        {
-            string DatabaseCommand = "SELECT * FROM test_table";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            Assert.IsInstanceOfType(ResultsTable.Row().IntCol("test_int"), typeof(int), "Failed casting database entry to int.");
-            Assert.IsInstanceOfType(ResultsTable.Row().StringCol("test_text"), typeof(string), "Failed casting database entry to string.");
-            Assert.IsInstanceOfType(ResultsTable.Row().BoolCol("test_bool"), typeof(bool), "Failed casting database entry to bool.");
-            Assert.IsInstanceOfType(ResultsTable.Row().DateTimeCol("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
-            Assert.IsInstanceOfType(ResultsTable.Row().DoubleCol("test_double"), typeof(double), "Failed casting database entry to double.");
-        }
-
-        [TestMethod]
-        public void CastingOfDatabaseEntryToDatatypeTest()
-        {
-            string DatabaseCommand = "SELECT * FROM test_table";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            Assert.IsInstanceOfType(ResultsTable.Row().Col<int>("test_int"), typeof(int), "Failed casting database entry to int.");
-            Assert.IsInstanceOfType(ResultsTable.Row().Col<string>("test_text"), typeof(string), "Failed casting database entry to string.");
-            Assert.IsInstanceOfType(ResultsTable.Row().Col<bool>("test_bool"), typeof(bool), "Failed casting database entry to bool.");
-            Assert.IsInstanceOfType(ResultsTable.Row().Col<DateTime>("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
-            Assert.IsInstanceOfType(ResultsTable.Row().Col<double>("test_double"), typeof(double), "Failed casting database entry to double.");
+            try
+            {
+                Database.ExecuteCommand("GARBAGENONQUERYLKSDFSDF");
+                Assert.Fail("Does not throw exception on malformed non-query.");
+            }
+            catch (Exception)
+            {
+                // Threw an exception as expected.
+            }
         }
     }
 }
