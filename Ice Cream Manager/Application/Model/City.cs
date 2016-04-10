@@ -4,8 +4,6 @@
 /// <date_created> 2016-04-09 </date_created>
 
 using System.Data;
-using IceCreamManager.Controller;
-using IceCreamManager.Exceptions;
 
 namespace IceCreamManager.Model
 {
