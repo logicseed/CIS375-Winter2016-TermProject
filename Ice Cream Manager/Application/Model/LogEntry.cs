@@ -3,6 +3,7 @@
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
 
+using System;
 using System.Data;
 
 namespace IceCreamManager.Model
@@ -16,7 +17,8 @@ namespace IceCreamManager.Model
         public ActionSource Source;
         public ActionType Action;
         public Outcome Outcome;
-        public int BatchFileRow;
+        public int BatchFileLine;
+        public DateTime TimeStamp;
     }
 
     public class LogEntry : DatabaseEntity
@@ -118,15 +120,27 @@ namespace IceCreamManager.Model
             }
         }
 
-        public int BatchFileRow
+        public int BatchFileLine
         {
             get
             {
-                return LogEntryValues.BatchFileRow;
+                return LogEntryValues.BatchFileLine;
             }
             set
             {
-                LogEntryValues.BatchFileRow = value;
+                LogEntryValues.BatchFileLine = value;
+            }
+        }
+
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return LogEntryValues.TimeStamp;
+            }
+            set
+            {
+                LogEntryValues.TimeStamp = value;
             }
         }
 
@@ -134,13 +148,13 @@ namespace IceCreamManager.Model
 
         protected override string CreateCommand =>
             $"INSERT INTO {TableName} " +
-            $"(main_entity_type, main_entity_id, sub_entity_type, sub_entity_id, source, action, outcome, batch_file_row) " +
-            $"VALUES ({(int)MainEntityType},{MainEntityID},{(int)SubEntityType},{SubEntityID},{(int)Source},{(int)Action},{(int)Outcome},{BatchFileRow})";
+            $"(main_entity_type, main_entity_id, sub_entity_type, sub_entity_id, source, action, outcome, batch_file_line, timestamp) " +
+            $"VALUES ({(int)MainEntityType},{MainEntityID},{(int)SubEntityType},{SubEntityID},{(int)Source},{(int)Action},{(int)Outcome},{BatchFileLine},'{TimeStamp.ToDatabase()}')";
 
         protected override string UpdateCommand =>
             $"UPDATE {TableName} " +
-            $"SET (main_entity_type, main_entity_id, sub_entity_type, sub_entity_id, source, action, outcome, batch_file_row) " +
-            $"VALUES ({(int)MainEntityType},{MainEntityID},{(int)SubEntityType},{SubEntityID},{(int)Source},{(int)Action},{(int)Outcome},{BatchFileRow}) " +
+            $"SET (main_entity_type, main_entity_id, sub_entity_type, sub_entity_id, source, action, outcome, batch_file_line, timestamp) " +
+            $"VALUES ({(int)MainEntityType},{MainEntityID},{(int)SubEntityType},{SubEntityID},{(int)Source},{(int)Action},{(int)Outcome},{BatchFileLine},'{TimeStamp.ToDatabase()}') " +
             $"WHERE id = {ID}";
 
         public override bool Fill(DatabaseEntityProperties EntityProperties)
@@ -164,7 +178,8 @@ namespace IceCreamManager.Model
             Source = (ActionSource)ResultsTable.Row().Col("source");
             Action = (ActionType)ResultsTable.Row().Col("action");
             Outcome = (Outcome)ResultsTable.Row().Col("outcome");
-            BatchFileRow = ResultsTable.Row().Col("batch_file_row");
+            BatchFileLine = ResultsTable.Row().Col("batch_file_line");
+            TimeStamp = ResultsTable.Row().Col<DateTime>("timestamp");
             InDatabase = true;
 
             return true;
