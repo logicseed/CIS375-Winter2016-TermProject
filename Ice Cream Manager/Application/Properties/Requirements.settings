@@ -17,10 +17,10 @@
     <Setting Name="MaxDescription" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">30</Value>
     </Setting>
-    <Setting Name="MaxName" Type="System.Int32" Scope="Application">
+    <Setting Name="MaxNameLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="MaxLabel" Type="System.Int32" Scope="Application">
+    <Setting Name="MaxLabelLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="MaxItems" Type="System.Int32" Scope="Application">
@@ -46,6 +46,30 @@
     </Setting>
     <Setting Name="MaxCacheSeconds" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MinLabelLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MinNameLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MinStateLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="MaxStateLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="MinFuelCost" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxFuelCost" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">99.99</Value>
+    </Setting>
+    <Setting Name="MinHourCost" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxHourCost" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">99.99</Value>
     </Setting>
   </Settings>
 </SettingsFile>

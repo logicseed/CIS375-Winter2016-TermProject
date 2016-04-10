@@ -12,15 +12,11 @@ namespace IceCreamManager.Model
     ///   entities and forces classes that inherit this class to provide a method for loading the entity, and properties
     ///   that contain database commands for creating, updating, or deleting the entity.
     /// </summary>
-    internal abstract class DatabaseEntity
+    public abstract class DatabaseEntity
     {
-        protected int id;
+        protected int id = 0;
 
-        protected DatabaseEntity(int ID = 0)
-        {
-            this.ID = ID;
-            Load(ID);
-        }
+        public event EventHandler<IDChangedEventArgs> IDChanged;
 
         /// <summary>
         ///   The unique identity of the database entity. 
@@ -38,7 +34,9 @@ namespace IceCreamManager.Model
                 {
                     throw new ArgumentOutOfRangeException("ID out of range.");
                 }
+                int oldID = id;
                 id = value;
+                if (oldID != value) OnIDChanged(oldID, id);
             }
         }
 
@@ -158,6 +156,25 @@ namespace IceCreamManager.Model
             Database.MarkAsDeleted(TableName, ID);
             Create();
             return (ID > Requirement.MinID);
+        }
+
+        protected virtual void OnIDChanged(int OldID, int NewID)
+        {
+            IDChanged?.Invoke(this, new IDChangedEventArgs(this.GetType().Name, OldID, NewID));
+        }
+    }
+
+    public class IDChangedEventArgs : EventArgs
+    {
+        public readonly string CacheName;
+        public readonly int OldID;
+        public readonly int NewID;
+
+        public IDChangedEventArgs(string CacheName, int OldID, int NewID)
+        {
+            this.CacheName = CacheName;
+            this.OldID = OldID;
+            this.NewID = NewID;
         }
     }
 }

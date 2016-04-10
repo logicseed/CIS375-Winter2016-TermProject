@@ -10,7 +10,7 @@ namespace IceCreamManager.Model
 {
     /// <summary>
     /// </summary>
-    internal sealed class DatabaseEntityCache
+    public sealed class DatabaseEntityCache
     {
         #region Singleton
 
@@ -23,18 +23,18 @@ namespace IceCreamManager.Model
 
         #endregion Singleton
 
-        private static CacheItemPolicy CachePolicy;
+        private static CacheItemPolicy CachePolicy = new CacheItemPolicy();
 
-        private static MemoryCache EntityCache;
+        private static MemoryCache EntityCache = new MemoryCache("IceCreamManager");
 
         private DatabaseEntityCache()
         {
             CachePolicy.SlidingExpiration = new TimeSpan(Requirement.MaxCacheHours, Requirement.MaxCacheMinutes, Requirement.MaxCacheSeconds);
-            EntityCache = new MemoryCache("IceCreamManager");
         }
 
-        public bool Add(string CacheName, int EntityID, object Entity)
+        public bool Add(string CacheName, int EntityID, DatabaseEntity Entity)
         {
+            Entity.IDChanged += DatabaseEntity_IDChanged;
             return EntityCache.Add(CacheName + EntityID, Entity, CachePolicy);
         }
 
@@ -46,6 +46,15 @@ namespace IceCreamManager.Model
         public DatabaseEntity Get(string CacheName, int EntityID)
         {
             return (DatabaseEntity)EntityCache.Get(CacheName + EntityID);
+        }
+
+        private static void DatabaseEntity_IDChanged(object Sender, IDChangedEventArgs EventDetails)
+        {
+            if (EntityCache.Contains(EventDetails.CacheName + EventDetails.OldID))
+            {
+                DatabaseEntity Entity = (DatabaseEntity)EntityCache.Get(EventDetails.CacheName + EventDetails.OldID);
+                EntityCache.Add(EventDetails.CacheName + EventDetails.NewID, Entity, CachePolicy);
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace IceCreamManager.Model
     ///   An interface to provide generic passing of DatabaseEntity property values. Every class that implements the
     ///   DatabaseEntity class should provide an implementation of this interface as well.
     /// </summary>
-    internal interface DatabaseEntityProperties
+    public interface DatabaseEntityProperties
     {
     }
 }

@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Exceptions.cs" />
+    <Compile Include="Controller\Outcomes.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Controller\BatchFileProcessing.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
@@ -78,6 +82,7 @@
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\InventoryItem.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemFactory.cs" />
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
       <AutoGen>True</AutoGen>

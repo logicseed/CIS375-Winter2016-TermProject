@@ -1,47 +1,45 @@
-﻿/// <project>IceCreamManager</project>
-/// <module>Item</module>
-/// <author>Marc King</author>
-/// <date_created>2016-04-07</date_created>
+﻿/// <project> IceCreamManager </project>
+/// <module> Item </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-07 </date_created>
 
 using System;
 using System.Data;
-using System.Text;
 
-namespace IceCreamManager
+namespace IceCreamManager.Model
 {
-    internal class Item : DatabaseEntity
+    // COMMENT: A comment needs to be created here.
+    public class ItemProperties : DatabaseEntityProperties
+    {
+        public int Number;
+        public string Description;
+        public double Price;
+        public int Lifetime;
+    }
+
+    // COMMENT: A comment needs to be created here.
+    public class Item : DatabaseEntity
     {
         private int number;
         private string description;
         private double price;
         private int lifetime;
-        private bool deleted = false;
 
-        public Item(int ID, bool LoadProperties = true)
+        public Item()
         {
-            this.ID = ID;
-            if(LoadProperties)
-            {
-                Load();
-                Database.ToString();
-            }
+            ID = 0;
         }
 
-
-        public Item(int Number, string Description, double Price, int Lifetime)
+        public Item(int ID)
         {
-            this.Number = Number;
-            this.Description = Description;
-            this.Price = Price;
-            this.Lifetime = Lifetime;
+            Load(ID);
         }
 
-
+        // COMMENT: A comment needs to be created here.
         public int Number
         {
             get
             {
-                LoadIfNotLoaded();
                 return number;
             }
 
@@ -53,36 +51,17 @@ namespace IceCreamManager
                 }
                 number = value;
                 IsSaved = false;
+                DeleteOnSave = true;
             }
         }
 
-        protected override string UpdateCommand
-        {
-            get
-            {
-                return String.Format("UPDATE item SET (number,description) VALUES ({0},{1}) WHERE id = {2}", number, description,ID );
-            }
-        }
-
-        protected override string CreateCommand
-        {
-            get
-            {
-                return String.Format("INSERT INTO item (number, description) VALUES ({3},{4})", "number", number, "description", description);
-            }
-        }
-
-        private void LoadIfNotLoaded()
-        {
-            if (IsLoaded == false && )
-            {
-                
-            }
-        }
-
+        // COMMENT: A comment needs to be created here.
         public string Description
         {
-            get { return description; }
+            get
+            {
+                return description;
+            }
 
             set
             {
@@ -92,12 +71,17 @@ namespace IceCreamManager
                 }
                 description = value;
                 IsSaved = false;
+                DeleteOnSave = true;
             }
         }
 
+        // COMMENT: A comment needs to be created here.
         public double Price
         {
-            get { return price; }
+            get
+            {
+                return price;
+            }
 
             set
             {
@@ -107,12 +91,17 @@ namespace IceCreamManager
                 }
                 price = value;
                 IsSaved = false;
+                DeleteOnSave = true;
             }
         }
 
+        // COMMENT: A comment needs to be created here.
         public int Lifetime
         {
-            get { return lifetime; }
+            get
+            {
+                return lifetime;
+            }
 
             set
             {
@@ -122,31 +111,49 @@ namespace IceCreamManager
                 }
                 lifetime = value;
                 IsSaved = false;
+                DeleteOnSave = true;
             }
         }
 
-        override public bool Load()
+        // COMMENT: A comment needs to be created here.
+        protected override string TableName => "item";
+
+        // COMMENT: A comment needs to be created here.
+        protected override string UpdateCommand =>
+            $"UPDATE {TableName} SET (number,description,price,lifetime) VALUES ({Number},'{Description}',{Price},{Lifetime}) WHERE id = {ID}";
+
+        // COMMENT: A comment needs to be created here.
+        protected override string CreateCommand =>
+            $"INSERT INTO {TableName} (number,description,price,lifetime) VALUES ({Number},'{Description}',{Price},{Lifetime})";
+
+        // COMMENT: A comment needs to be created here.
+        public override bool Load(int ID)
         {
-            // A database entity cannot have an id of zero.
-            if (ID == 0) throw new Exception("Error loading properties of item not in database.");
+            this.ID = ID;
+            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
 
-            try
-            {
-                string DatabaseCommand = String.Format("SELECT * FROM item WHERE id = {0}", ID);
-                DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            if (ResultsTable.Rows.Count == 0) return false;
 
-                Number = ResultsTable.Row().IntCol("number");
-                Description = ResultsTable.Row().StringCol("description");
-                Price = ResultsTable.Row().DoubleCol("price");
-                Lifetime = ResultsTable.Row().IntCol("lifetime");
-                IsDeleted = ResultsTable.Row().BoolCol("deleted");
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not load item properties from database.", e);
-            }
-            IsLoaded = true;
-            return IsLoaded;
+            Number = ResultsTable.Row().Col("number");
+            Description = ResultsTable.Row().Col<string>("description");
+            Price = ResultsTable.Row().Col<double>("price");
+            Lifetime = ResultsTable.Row().Col("lifetime");
+            IsDeleted = ResultsTable.Row().Col<bool>("deleted");
+
+            return true;
+        }
+
+        // COMMENT: A comment needs to be created here.
+        public override bool Fill(DatabaseEntityProperties EntityProperties)
+        {
+            ItemProperties ItemValues = EntityProperties as ItemProperties;
+
+            Number = ItemValues.Number;
+            Description = ItemValues.Description;
+            Price = ItemValues.Price;
+            Lifetime = ItemValues.Lifetime;
+
+            return true;
         }
     }
 }

@@ -5,7 +5,7 @@
 
 namespace IceCreamManager.Model
 {
-    internal class DatabaseEntityFactory<EntityType> where EntityType : DatabaseEntity, new()
+    public class DatabaseEntityFactory<EntityType> where EntityType : DatabaseEntity, new()
     {
         /// <summary>
         ///   Provides caching for database entities to improve query performance. 
@@ -32,10 +32,13 @@ namespace IceCreamManager.Model
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public EntityType Create()
+        public EntityType Create(DatabaseEntityProperties EntityProperties)
         {
             EntityType NewEntity = new EntityType();
-            return NewEntity;
+            NewEntity.Fill(EntityProperties);
+            NewEntity.Save();
+            EntityCache.Add(typeof(EntityType).Name, NewEntity.ID, NewEntity);
+            return (EntityType)EntityCache.Get(typeof(EntityType).Name, NewEntity.ID);
         }
     }
 }
