@@ -84,6 +84,8 @@
     <Compile Include="Model\DatabaseEntity.cs" />
     <Compile Include="Model\DatabaseEntityFactory.cs" />
     <Compile Include="Model\DatabaseManager.cs" />
+    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\DriverFactory.cs" />
     <Compile Include="Model\EntityType.cs" />
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\InventoryItem.cs" />
