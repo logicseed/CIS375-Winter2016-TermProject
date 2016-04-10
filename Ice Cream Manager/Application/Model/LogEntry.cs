@@ -1,4 +1,9 @@
-﻿using System.Data;
+﻿/// <project> IceCreamManager </project>
+/// <module> LogEntry </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-10 </date_created>
+
+using System.Data;
 
 namespace IceCreamManager.Model
 {
@@ -16,7 +21,17 @@ namespace IceCreamManager.Model
 
     internal class LogEntry : DatabaseEntity
     {
-        private LogEntryProperties LogEntryValues;
+        private LogEntryProperties LogEntryValues = new LogEntryProperties();
+
+        public LogEntry()
+        {
+            ID = 0;
+        }
+
+        public LogEntry(int ID)
+        {
+            Load(ID);
+        }
 
         public EntityType MainEntityType
         {
@@ -130,16 +145,7 @@ namespace IceCreamManager.Model
 
         public override bool Fill(DatabaseEntityProperties EntityProperties)
         {
-            LogEntryProperties LogEntryValues = EntityProperties as LogEntryProperties;
-
-            MainEntityType = LogEntryValues.MainEntityType;
-            MainEntityID = LogEntryValues.MainEntityID;
-            SubEntityType = LogEntryValues.SubEntityType;
-            SubEntityID = LogEntryValues.SubEntityID;
-            Source = LogEntryValues.Source;
-            Action = LogEntryValues.Action;
-            Outcome = LogEntryValues.Outcome;
-            BatchFileRow = LogEntryValues.BatchFileRow;
+            LogEntryValues = (LogEntryProperties)EntityProperties;
 
             return true;
         }
