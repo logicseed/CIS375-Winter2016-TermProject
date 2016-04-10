@@ -54,6 +54,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -67,10 +68,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\BatchFileProcessing.cs" />
-    <Compile Include="Controller\ExtensionMethods.cs" />
+    <Compile Include="Model\DatabaseEntityProperties.cs" />
+    <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
+    <Compile Include="Model\DatabaseEntityCache.cs" />
+    <Compile Include="Model\DatabaseEntity.cs" />
+    <Compile Include="Model\DatabaseEntityFactory.cs" />
     <Compile Include="Model\DatabaseManager.cs" />
-    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\InventoryItem.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Requirement.cs" />
+    <Compile Include="Properties\Requirements.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Requirements.settings</DependentUpon>
+    </Compile>
     <Compile Include="View\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,6 +446,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Properties\Requirements.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Requirements.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -488,7 +504,9 @@
   <ItemGroup>
     <None Include="Resources\SaveChangesButton.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controller\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

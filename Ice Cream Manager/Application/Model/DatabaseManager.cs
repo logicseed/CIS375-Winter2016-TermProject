@@ -1,39 +1,45 @@
-﻿/// <project>IceCreamManager</project>
-/// <module>DatabaseManager</module>
-/// <author>Marc King</author>
-/// <date_created>2016-04-03</date_created>
+﻿/// <project> IceCreamManager </project>
+/// <module> DatabaseManager </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-03 </date_created>
 
 using System;
-using System.IO;
 using System.Data;
 using System.Data.SQLite;
-using IceCreamManager.Controller;
+using System.IO;
 
 namespace IceCreamManager.Model
 {
     /// <summary>
-    /// Manages the connection and interaction with the database.
+    ///   Manages the connection and interaction with the database. 
     /// </summary>
     /// <remarks>
-    /// Follows the Singleton design pattern; only one copy exists, provides own reference,
-    /// and created on first access.
+    ///   Follows the Singleton design pattern; only one copy exists, provides own reference, and created on first access.
     /// </remarks>
     /// <example>
-    /// Place the following line at the top of the class that needs database access:
-    /// 
-    /// DatabaseManager Database = DatabaseManager.DatabaseReference;
-    /// 
-    /// You then have access to all the public methods through the Database object reference.
+    ///   Place the following line at the top of the class that needs database access:
+    ///
+    ///   DatabaseManager Database = DatabaseManager.DatabaseReference;
+    ///
+    ///   You then have access to all the public methods through the Database object reference.
     /// </example>
-    public sealed class DatabaseManager // Sealed as Singleton
+    internal sealed class DatabaseManager // Sealed as Singleton
     {
+        #region Singleton
+
         private static readonly DatabaseManager SingletonInstance = new DatabaseManager();
-        public static DatabaseManager DatabaseReference  { get { return SingletonInstance; } }
+
+        /// <summary>
+        ///   Reference to the DatabaseManager Singleton instance. 
+        /// </summary>
+        public static DatabaseManager Reference { get { return SingletonInstance; } }
+
+        #endregion Singleton
 
         private SQLiteConnection DatabaseConnection;
         private SQLiteDataReader DataReaderConnection;
         private SQLiteCommand DatabaseCommandExecuter;
-        
+
         private static string DatabaseFile;
         private static string DatabaseFileAccessDetails;
 
@@ -49,10 +55,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Generated the database file access based on the environment.
+        ///   Generated the database file access based on the environment. 
         /// </summary>
-        /// <preconditions>None</preconditions>
-        /// <postconditions>None</postconditions>
+        /// <preconditions> None </preconditions>
+        /// <postconditions> None </postconditions>
         private void GenerateDatabaseFileAccessDetails()
         {
 #if DEBUG   // Development
@@ -64,10 +70,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Ensures the existence of the database.
+        ///   Ensures the existence of the database. 
         /// </summary>
-        /// <preconditions>The database file path must be writable.</preconditions>
-        /// <postconditions>The database file was created if it didn't exist.</postconditions>
+        /// <preconditions> The database file path must be writable. </preconditions>
+        /// <postconditions> The database file was created if it didn't exist. </postconditions>
         private static void EnsureDatabaseExistence()
         {
             try
@@ -84,10 +90,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Establishes a connection to the database.
+        ///   Establishes a connection to the database. 
         /// </summary>
-        /// <preconditions>The database file must exist.</preconditions>
-        /// <postconditions>The connection to the database has been established.</postconditions>
+        /// <preconditions> The database file must exist. </preconditions>
+        /// <postconditions> The connection to the database has been established. </postconditions>
         private void EstablishConnectionToDatabase()
         {
             try
@@ -101,10 +107,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Opens the connection to the database.
+        ///   Opens the connection to the database. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The connection to the database will accept database commands.</postconditions>
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> The connection to the database will accept database commands. </postconditions>
         private void OpenConnectionToDatabase()
         {
             try
@@ -121,10 +127,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Closes the connection to the database.
+        ///   Closes the connection to the database. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The connection to the database will not accept database commands.</postconditions>
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> The connection to the database will not accept database commands. </postconditions>
         private void CloseConnectionToDatabase()
         {
             try
@@ -141,10 +147,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Creates an executer of database commands.
+        ///   Creates an executer of database commands. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The database command executer is ready to accept commands.</postconditions>
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> The database command executer is ready to accept commands. </postconditions>
         private void CreateDatabaseCommandExecuter()
         {
             try
@@ -158,11 +164,15 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Provides the database command executer with the database command to be executed.
+        ///   Provides the database command executer with the database command to be executed. 
         /// </summary>
-        /// <preconditions>The database command executer must be ready to accept database commands.</preconditions>
-        /// <postconditions>The database command executer is ready to execute the provided database command.</postconditions>
-        /// <param name="DatabaseCommandToExecute">The database command to be executed by the database command executer.</param>
+        /// <preconditions> The database command executer must be ready to accept database commands. </preconditions>
+        /// <postconditions>
+        ///   The database command executer is ready to execute the provided database command.
+        /// </postconditions>
+        /// <param name="DatabaseCommandToExecute">
+        ///   The database command to be executed by the database command executer.
+        /// </param>
         private void ProvideExecuterCommandToExecute(string DatabaseCommandToExecute)
         {
             try
@@ -176,12 +186,13 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Opens a data reader connection to the database based on the database command to execute.
+        ///   Opens a data reader connection to the database based on the database command to execute. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The data reader connnection based on the database command to execute 
-        /// will be open for reading rows of data.</postconditions>
-        /// <param name="DatabaseCommand">The database command the data reader connection will be based upon.</param>
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions>
+        ///   The data reader connection based on the database command to execute will be open for reading rows of data.
+        /// </postconditions>
+        /// <param name="DatabaseCommand"> The database command the data reader connection will be based upon. </param>
         private void OpenDataReaderConnectionBasedOnDatabaseCommand(string DatabaseCommand)
         {
             try
@@ -199,10 +210,10 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Closes the current data reader connection to the database.
+        ///   Closes the current data reader connection to the database. 
         /// </summary>
-        /// <preconditions>A data reader connection to the database must exist.</preconditions>
-        /// <postconditions>The current data reader connection to the database is closed.</postconditions>
+        /// <preconditions> A data reader connection to the database must exist. </preconditions>
+        /// <postconditions> The current data reader connection to the database is closed. </postconditions>
         private void CloseDataReaderConnection()
         {
             try
@@ -220,14 +231,15 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Creates a data table containing results from the database based on the database command.
+        ///   Creates a data table containing results from the database based on the database command. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>No changes are made to the database.</postconditions>
-        /// <param name="DatabaseCommand">The database command that provides the results that the data table
-        /// is created from.</param>
-        /// <returns>The results </returns>
-        public DataTable DataTableFromCommand(string DatabaseCommand)
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> No changes are made to the database. </postconditions>
+        /// <param name="DatabaseCommand">
+        ///   The database command that provides the results that the data table is created from.
+        /// </param>
+        /// <returns> The results </returns>
+        internal DataTable DataTableFromCommand(string DatabaseCommand)
         {
             DataTable ResultsDataTable = new DataTable();
 
@@ -248,14 +260,13 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        /// Executes a database command on the database.
+        ///   Executes a database command on the database. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The database will reflect the command that was executed.</postconditions>
-        /// <param name="DatabaseCommand">The database command that will be executed on the
-        /// database.</param>
-        /// <returns>The number of database rows affected by the database command.</returns>
-        public int ExecuteCommand(string DatabaseCommand)
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> The database will reflect the command that was executed. </postconditions>
+        /// <param name="DatabaseCommand"> The database command that will be executed on the database. </param>
+        /// <returns> The number of database rows affected by the database command. </returns>
+        internal int ExecuteCommand(string DatabaseCommand)
         {
             int NumberOfRowsAffectedByCommand = 0;
 
@@ -277,40 +288,45 @@ namespace IceCreamManager.Model
             return NumberOfRowsAffectedByCommand;
         }
 
-
         /// <summary>
-        /// Marks a row in a database table as deleted.
+        ///   Marks a row in a database table as deleted. 
         /// </summary>
-        /// <preconditions>The connection to the database file must be established.</preconditions>
-        /// <postconditions>The specified database row is marked as deleted.</postconditions>
-        /// <param name="TableName">The name of the database table that contains the row to be marked as deleted.</param>
-        /// <param name="ID">The unique identity number of the database row to be marked as deleted.</param>
+        /// <preconditions> The connection to the database file must be established. </preconditions>
+        /// <postconditions> The specified database row is marked as deleted. </postconditions>
+        /// <param name="TableName"> The name of the database table that contains the row to be marked as deleted. </param>
+        /// <param name="ID"> The unique identity number of the database row to be marked as deleted. </param>
         /// <returns></returns>
-        public bool MarkAsDeleted(string TableName, int ID)
+        internal bool MarkAsDeleted(string TableName, int ID)
         {
-            DateTime DateDeleted = DateTime.Now;
-            string DatabaseCommand = string.Format("UPDATE {0} SET deleted = true, date_deleted = '{1}',  WHERE id = {2}", TableName, ID, DateDeleted.ToDatabase());
-            int NumberOfRowsAffectedByCommand = 0;
-            bool HasBeenMarkedAsDeleted = false;
+            string DatabaseCommand = $"UPDATE {TableName} SET deleted = true WHERE id = {ID}";
 
             try
             {
-                NumberOfRowsAffectedByCommand = ExecuteCommand(DatabaseCommand);
+                if (ExecuteCommand(DatabaseCommand) > 0) return true;
+                else return false;
             }
             catch (Exception e)
             {
                 throw new Exception("Error marking a database row as deleted.", e);
             }
-
-
-            if (NumberOfRowsAffectedByCommand > 0)
-            {
-                HasBeenMarkedAsDeleted = true;
-            }
-
-            return HasBeenMarkedAsDeleted;
         }
 
+        /// <summary>
+        ///   Provides the identity of the last row inserted into the database. 
+        /// </summary>
+        /// <preconditions> An insert must have been performed on the database. </preconditions>
+        /// <postconditions> No changes are made to the state of the application. </postconditions>
+        /// <returns> The identity of the last row inserted into the database. </returns>
+        internal int LastInsertID()
+        {
+            try
+            {
+                return DataTableFromCommand("SELECT last_insert_rowid()").Row().Col();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error getting row id of last insert.", e);
+            }
+        }
     }
-
 }

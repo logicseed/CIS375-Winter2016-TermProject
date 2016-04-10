@@ -6,15 +6,13 @@
 using System;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IceCreamManager.Controller;
-
 
 namespace IceCreamManager.Model
 {
     [TestClass]
     public class DatabaseManagerTests
     {
-        DatabaseManager Database = DatabaseManager.DatabaseReference;
+        DatabaseManager Database = DatabaseManager.Reference;
 
         [TestMethod]
         public void MalformedQueryException()
@@ -129,7 +127,7 @@ namespace IceCreamManager.Model
         }
 
         [TestMethod]
-        public void CastingOfDatabaseEntryToDatatypeTest()
+        public void CastingOfDatabaseEntryToDatatypeTestOld()
         {
             string DatabaseCommand = "SELECT * FROM test_table";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
@@ -139,6 +137,19 @@ namespace IceCreamManager.Model
             Assert.IsInstanceOfType(ResultsTable.Row().BoolCol("test_bool"), typeof(bool), "Failed casting database entry to bool.");
             Assert.IsInstanceOfType(ResultsTable.Row().DateTimeCol("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
             Assert.IsInstanceOfType(ResultsTable.Row().DoubleCol("test_double"), typeof(double), "Failed casting database entry to double.");
+        }
+
+        [TestMethod]
+        public void CastingOfDatabaseEntryToDatatypeTest()
+        {
+            string DatabaseCommand = "SELECT * FROM test_table";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<int>("test_int"), typeof(int), "Failed casting database entry to int.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<string>("test_text"), typeof(string), "Failed casting database entry to string.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<bool>("test_bool"), typeof(bool), "Failed casting database entry to bool.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<DateTime>("test_datetime"), typeof(DateTime), "Failed casting database entry to DateTime.");
+            Assert.IsInstanceOfType(ResultsTable.Row().Col<double>("test_double"), typeof(double), "Failed casting database entry to double.");
         }
     }
 }
