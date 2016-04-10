@@ -70,8 +70,11 @@
   <ItemGroup>
     <Compile Include="Controller\Exceptions.cs" />
     <Compile Include="Controller\Outcomes.cs" />
+    <Compile Include="Model\BatchFileType.cs" />
+    <Compile Include="Model\BatchHistoryEntry.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\CityFactory.cs" />
+    <Compile Include="Model\BatchHistory.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />

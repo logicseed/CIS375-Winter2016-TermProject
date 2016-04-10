@@ -21,7 +21,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   The unique identity of the database entity. 
         /// </summary>
-        public int ID
+        public virtual int ID
         {
             get
             {
