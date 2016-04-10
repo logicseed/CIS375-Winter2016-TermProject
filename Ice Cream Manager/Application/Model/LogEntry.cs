@@ -19,7 +19,7 @@ namespace IceCreamManager.Model
         public int BatchFileRow;
     }
 
-    internal class LogEntry : DatabaseEntity
+    public class LogEntry : DatabaseEntity
     {
         private LogEntryProperties LogEntryValues = new LogEntryProperties();
 
