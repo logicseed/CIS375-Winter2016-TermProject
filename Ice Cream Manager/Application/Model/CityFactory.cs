@@ -17,6 +17,11 @@ namespace IceCreamManager.Model
             return DatabaseCityFactory.Load(ID);
         }
 
+        /// <summary>
+        ///   Creates a new city, until City.Save() is called the new city only exists in the cache. 
+        /// </summary>
+        /// <param name="EntityProperties"></param>
+        /// <returns></returns>
         public static City Create(CityProperties EntityProperties)
         {
             string DatabaseCommand = $"SELECT id FROM city WHERE label = '{EntityProperties.Label}' AND name = '{EntityProperties.Name}' AND state = '{EntityProperties.State}'";
