@@ -93,7 +93,7 @@ namespace IceCreamManager.Model
         /// <returns></returns>
         abstract public bool Fill(DatabaseEntityProperties EntityProperties);
 
-        public bool Save()
+        public virtual bool Save()
         {
             // If an object is loaded then it must exist in the database.
             if (InDatabase && DeleteOnSave)

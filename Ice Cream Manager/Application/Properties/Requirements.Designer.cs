@@ -247,5 +247,17 @@ namespace IceCreamManager.Properties {
                 this["MaxHourCost"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MaxRouteCities {
+            get {
+                return ((int)(this["MaxRouteCities"]));
+            }
+            set {
+                this["MaxRouteCities"] = value;
+            }
+        }
     }
 }

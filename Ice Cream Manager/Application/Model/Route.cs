@@ -29,6 +29,36 @@ namespace IceCreamManager.Model
             Load(ID);
         }
 
+        public int Number
+        {
+            get
+            {
+                return RouteValues.Number;
+            }
+
+            set
+            {
+                if (value < Requirement.MinNumber) throw new RouteNumberInvalidException(Outcome.ValueTooSmall);
+                else if (value > Requirement.MaxNumber) throw new RouteNumberInvalidException(Outcome.ValueTooLarge);
+                RouteValues.Number = value;
+                DeleteOnSave = true;
+            }
+        }
+
+        public Dictionary<int, City> RouteCities
+        {
+            get
+            {
+                return RouteValues.RouteCities;
+            }
+
+            protected set
+            {
+                RouteValues.RouteCities = value;
+                DeleteOnSave = true;
+            }
+        }
+
         protected override string TableName => "route";
 
         protected override string UpdateCommand =>
@@ -49,15 +79,74 @@ namespace IceCreamManager.Model
             this.ID = ID;
             DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
 
-            //if (ResultsTable.Rows.Count == 0) return false;
+            if (ResultsTable.Rows.Count == 0) return false;
 
-            //Label = ResultsTable.Row().Col<string>("label");
-            //Name = ResultsTable.Row().Col<string>("name");
-            //State = ResultsTable.Row().Col<string>("state");
-            //FuelCost = ResultsTable.Row().Col<double>("fuel_cost");
-            //HourCost = ResultsTable.Row().Col<double>("hour_cost");
+            Number = ResultsTable.Row().Col("number");
+            IsDeleted = ResultsTable.Row().Col<bool>("deleted");
+
+            // Load Cities
+            ResultsTable = Database.DataTableFromCommand($"SELECT city_id FROM route_city WHERE route_id = {ID}");
+
+            foreach (DataRow Row in ResultsTable.Rows)
+            {
+                int CityID = Row.Col("id");
+                RouteCities.Add(CityID, CityFactory.Load(CityID));
+            }
 
             return true;
+        }
+
+        public bool AddCity(City NewCity)
+        {
+            if (RouteCities.Count == 10) throw new RouteCityCountException(Outcome.TooManyCities);
+            RouteCities.Add(NewCity.ID, NewCity);
+            DeleteOnSave = true;
+            return true;
+        }
+
+        public override bool Save()
+        {
+            SaveCities();
+            // Save all route_cities
+
+            if (InDatabase && DeleteOnSave)
+            {
+                Delete();
+            }
+            else if (InDatabase && !DeleteOnSave)
+            {
+                Update();
+            }
+            else if (!InDatabase)
+            {
+                Create();
+            }
+
+            return InDatabase;
+        }
+
+        private void SaveCities()
+        {
+            foreach (KeyValuePair<int, City> CityToSave in RouteCities)
+            {
+                CityToSave.Value.Save();
+            }
+        }
+
+        private void SaveRouteCities()
+        {
+            foreach (KeyValuePair<int, City> CityInRoute in RouteCities)
+            {
+                DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM route_city WHERE route_id = {ID} AND city_id = {CityInRoute.Key}");
+                if (ResultsTable.Rows.Count == 0)
+                {
+                    Database.ExecuteCommand($"INSERT INTO route_city (route_id,city_id) VALUES ({ID},{CityInRoute.Key}");
+                }
+                else if (ResultsTable.Row().Col<bool>("deleted"))
+                {
+                    Database.ExecuteCommand($"UPDATE route_city SET (deleted) VALUES (0) WHERE id = {ResultsTable.Row().Col("id")}");
+                }
+            }
         }
     }
 }

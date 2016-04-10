@@ -6,7 +6,7 @@
 using System;
 using IceCreamManager.Controller;
 
-namespace IceCreamManager.Exceptions
+namespace IceCreamManager
 {
     [Serializable]
     public class ExceptionWithOutcome : Exception
@@ -157,7 +157,6 @@ namespace IceCreamManager.Exceptions
     /// <summary>
     ///   The provided hour cost does not match requirements. 
     /// </summary>
-
     [Serializable]
     public class CityHourCostInvalidException : ExceptionWithOutcome
     {
@@ -185,4 +184,66 @@ namespace IceCreamManager.Exceptions
     }
 
     #endregion City Property Exceptions
+
+    #region Route Property Exceptions
+
+    /// <summary>
+    ///   Trying to add too many cities. 
+    /// </summary>
+    [Serializable]
+    public class RouteCityCountException : ExceptionWithOutcome
+    {
+        public RouteCityCountException()
+        {
+        }
+
+        public RouteCityCountException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public RouteCityCountException(string message) : base(message)
+        {
+        }
+
+        public RouteCityCountException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected RouteCityCountException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    /// <summary>
+    ///   The provided number does not match requirements. 
+    /// </summary>
+    [Serializable]
+    public class RouteNumberInvalidException : ExceptionWithOutcome
+    {
+        public RouteNumberInvalidException()
+        {
+        }
+
+        public RouteNumberInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public RouteNumberInvalidException(string message) : base(message)
+        {
+        }
+
+        public RouteNumberInvalidException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected RouteNumberInvalidException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Route Property Exceptions
 }

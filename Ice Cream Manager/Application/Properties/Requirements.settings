@@ -71,5 +71,8 @@
     <Setting Name="MaxHourCost" Type="System.Double" Scope="User">
       <Value Profile="(Default)">99.99</Value>
     </Setting>
+    <Setting Name="MaxRouteCities" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
