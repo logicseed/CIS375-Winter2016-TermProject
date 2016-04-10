@@ -6,7 +6,7 @@
     <ProjectGuid>{12D93C56-0AB9-4B9D-8BA6-C9D6D8BF0276}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IceCreamManager</RootNamespace>
+    <RootNamespace>IceCreamManager.UnitTests</RootNamespace>
     <AssemblyName>Testing</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,11 +63,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controller\ExtensionMethodsTests.cs" />
     <Compile Include="Model\DatabaseManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controller\" />
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
