@@ -69,7 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Exceptions.cs" />
+    <Compile Include="Controller\Logger.cs" />
     <Compile Include="Controller\Outcomes.cs" />
+    <Compile Include="Model\ActionSource.cs" />
+    <Compile Include="Model\ActionType.cs" />
     <Compile Include="Model\BatchFileType.cs" />
     <Compile Include="Model\BatchHistoryEntry.cs" />
     <Compile Include="Model\City.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Model\InventoryItem.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemFactory.cs" />
+    <Compile Include="Model\LogEntry.cs" />
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
