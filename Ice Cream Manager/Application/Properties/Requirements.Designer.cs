@@ -71,18 +71,18 @@ namespace IceCreamManager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int MaxName {
+        public int MaxNameLength {
             get {
-                return ((int)(this["MaxName"]));
+                return ((int)(this["MaxNameLength"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int MaxLabel {
+        public int MaxLabelLength {
             get {
-                return ((int)(this["MaxLabel"]));
+                return ((int)(this["MaxLabelLength"]));
             }
         }
         
@@ -155,6 +155,108 @@ namespace IceCreamManager.Properties {
         public int MaxCacheSeconds {
             get {
                 return ((int)(this["MaxCacheSeconds"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int MinLabelLength {
+            get {
+                return ((int)(this["MinLabelLength"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int MinNameLength {
+            get {
+                return ((int)(this["MinNameLength"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int MinStateLength {
+            get {
+                return ((int)(this["MinStateLength"]));
+            }
+            set {
+                this["MinStateLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int MaxStateLength {
+            get {
+                return ((int)(this["MaxStateLength"]));
+            }
+            set {
+                this["MaxStateLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MinFuelCost {
+            get {
+                return ((double)(this["MinFuelCost"]));
+            }
+            set {
+                this["MinFuelCost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("99.99")]
+        public double MaxFuelCost {
+            get {
+                return ((double)(this["MaxFuelCost"]));
+            }
+            set {
+                this["MaxFuelCost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MinHourCost {
+            get {
+                return ((double)(this["MinHourCost"]));
+            }
+            set {
+                this["MinHourCost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("99.99")]
+        public double MaxHourCost {
+            get {
+                return ((double)(this["MaxHourCost"]));
+            }
+            set {
+                this["MaxHourCost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MaxRouteCities {
+            get {
+                return ((int)(this["MaxRouteCities"]));
+            }
+            set {
+                this["MaxRouteCities"] = value;
             }
         }
     }

@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Exceptions.cs" />
+    <Compile Include="Controller\Outcomes.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
@@ -79,6 +83,7 @@
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemFactory.cs" />
     <Compile Include="Model\Requirement.cs" />
+    <Compile Include="Model\Route.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -505,9 +510,7 @@
   <ItemGroup>
     <None Include="Resources\SaveChangesButton.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
