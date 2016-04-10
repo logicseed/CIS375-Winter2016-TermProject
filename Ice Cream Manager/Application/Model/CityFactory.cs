@@ -10,6 +10,7 @@ namespace IceCreamManager.Model
     public static class CityFactory
     {
         private static DatabaseEntityFactory<City> DatabaseCityFactory = new DatabaseEntityFactory<City>();
+        private static DatabaseManager Database = DatabaseManager.Reference;
 
         public static City Load(int ID)
         {
@@ -18,7 +19,6 @@ namespace IceCreamManager.Model
 
         public static City Create(CityProperties EntityProperties)
         {
-            DatabaseManager Database = DatabaseManager.Reference;
             string DatabaseCommand = $"SELECT id FROM city WHERE label = '{EntityProperties.Label}' AND name = '{EntityProperties.Name}' AND state = '{EntityProperties.State}'";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
 
@@ -29,6 +29,24 @@ namespace IceCreamManager.Model
             }
 
             return DatabaseCityFactory.Create(EntityProperties);
+        }
+
+        /// <summary>
+        ///   Marks all the current cities as deleted in the database. 
+        /// </summary>
+        /// <returns> Whether or not there were any cities to mark as deleted. </returns>
+        public static bool DeleteAll()
+        {
+            string DatabaseCommand = "SELECT id FROM city WHERE deleted = false";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            foreach (DataRow Row in ResultsTable.Rows)
+            {
+                Database.MarkAsDeleted("city", Row.Col("id"));
+            }
+
+            if (ResultsTable.Rows.Count > 0) return true;
+            else return false;
         }
     }
 }
