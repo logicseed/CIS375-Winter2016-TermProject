@@ -8,22 +8,23 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    // COMMENT: A comment needs to be created here.
+    // COMMENT: This file needs comments.
     public class ItemProperties : DatabaseEntityProperties
     {
         public int Number;
         public string Description;
         public double Price;
         public int Lifetime;
+        public int Quantity;
     }
 
-    // COMMENT: A comment needs to be created here.
     public class Item : DatabaseEntity
     {
         private int number;
         private string description;
         private double price;
         private int lifetime;
+        private int quantity;
 
         public Item()
         {
@@ -35,7 +36,6 @@ namespace IceCreamManager.Model
             Load(ID);
         }
 
-        // COMMENT: A comment needs to be created here.
         public int Number
         {
             get
@@ -55,7 +55,6 @@ namespace IceCreamManager.Model
             }
         }
 
-        // COMMENT: A comment needs to be created here.
         public string Description
         {
             get
@@ -75,7 +74,6 @@ namespace IceCreamManager.Model
             }
         }
 
-        // COMMENT: A comment needs to be created here.
         public double Price
         {
             get
@@ -95,7 +93,6 @@ namespace IceCreamManager.Model
             }
         }
 
-        // COMMENT: A comment needs to be created here.
         public int Lifetime
         {
             get
@@ -115,18 +112,29 @@ namespace IceCreamManager.Model
             }
         }
 
-        // COMMENT: A comment needs to be created here.
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+            set
+            {
+                if (value < Requirement.MinNumber || value > Requirement.MaxLifetime)
+                {
+                    throw new ArgumentOutOfRangeException("Quantity out of range.");
+                }
+            }
+        }
+
         protected override string TableName => "item";
 
-        // COMMENT: A comment needs to be created here.
         protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (number,description,price,lifetime) VALUES ({Number},'{Description}',{Price},{Lifetime}) WHERE id = {ID}";
+            $"UPDATE {TableName} SET (number,description,price,lifetime,quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity}) WHERE id = {ID}";
 
-        // COMMENT: A comment needs to be created here.
         protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (number,description,price,lifetime) VALUES ({Number},'{Description}',{Price},{Lifetime})";
+            $"INSERT INTO {TableName} (number,description,price,lifetime,quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity})";
 
-        // COMMENT: A comment needs to be created here.
         public override bool Load(int ID)
         {
             this.ID = ID;
@@ -138,12 +146,12 @@ namespace IceCreamManager.Model
             Description = ResultsTable.Row().Col<string>("description");
             Price = ResultsTable.Row().Col<double>("price");
             Lifetime = ResultsTable.Row().Col("lifetime");
+            Quantity = ResultsTable.Row().Col("quantity");
             IsDeleted = ResultsTable.Row().Col<bool>("deleted");
 
             return true;
         }
 
-        // COMMENT: A comment needs to be created here.
         public override bool Fill(DatabaseEntityProperties EntityProperties)
         {
             ItemProperties ItemValues = EntityProperties as ItemProperties;
@@ -152,6 +160,7 @@ namespace IceCreamManager.Model
             Description = ItemValues.Description;
             Price = ItemValues.Price;
             Lifetime = ItemValues.Lifetime;
+            Quantity = ItemValues.Quantity;
 
             return true;
         }
