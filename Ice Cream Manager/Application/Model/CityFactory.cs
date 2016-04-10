@@ -16,6 +16,7 @@ namespace IceCreamManager.Model
 
         public static City Create(CityProperties EntityProperties)
         {
+            // TODO: This needs to handle searching the database for the same propertires before truly creating a new city.
             return DatabaseCityFactory.Create(EntityProperties);
         }
     }

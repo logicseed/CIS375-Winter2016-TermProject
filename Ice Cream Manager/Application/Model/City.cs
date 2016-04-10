@@ -193,25 +193,5 @@ namespace IceCreamManager.Model
 
             return true;
         }
-
-        public override bool Save()
-        {
-            // If an object is loaded then it must exist in the database.
-            if (InDatabase && DeleteOnSave)
-            {
-                Delete();
-            }
-            else if (InDatabase && !DeleteOnSave)
-            {
-                Update();
-            }
-            else if (!InDatabase)
-            {
-                // BUG: Check to see if the label exists, if so don't create again, just use old one.
-                Create();
-            }
-
-            return InDatabase;
-        }
     }
 }
