@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CustomExceptions.cs" />
+    <Compile Include="Model\City.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
@@ -505,9 +507,7 @@
   <ItemGroup>
     <None Include="Resources\SaveChangesButton.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
