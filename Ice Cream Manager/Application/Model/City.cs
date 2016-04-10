@@ -21,11 +21,7 @@ namespace IceCreamManager.Model
 
     public class City : DatabaseEntity
     {
-        private string label;
-        private string name;
-        private string state;
-        private double fuelCost;
-        private double hourCost;
+        private CityProperties CityValues = new CityProperties();
 
         public City()
         {
@@ -41,7 +37,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return label;
+                return CityValues.Label;
             }
 
             set
@@ -55,7 +51,7 @@ namespace IceCreamManager.Model
                     throw new CityLabelInvalidException(Outcome.ValueTooLarge);
                 }
 
-                label = value;
+                CityValues.Label = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -65,7 +61,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return name;
+                return CityValues.Name;
             }
 
             set
@@ -79,7 +75,7 @@ namespace IceCreamManager.Model
                     throw new CityNameInvalidException(Outcome.ValueTooLarge);
                 }
 
-                name = value;
+                CityValues.Name = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -89,7 +85,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return state;
+                return CityValues.State;
             }
 
             set
@@ -103,7 +99,7 @@ namespace IceCreamManager.Model
                     throw new CityStateInvalidException(Outcome.ValueTooLarge);
                 }
 
-                state = value;
+                CityValues.State = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -113,7 +109,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return fuelCost;
+                return CityValues.FuelCost;
             }
 
             set
@@ -127,7 +123,7 @@ namespace IceCreamManager.Model
                     throw new CityFuelCostInvalidException(Outcome.ValueTooLarge);
                 }
 
-                fuelCost = value;
+                CityValues.FuelCost = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -137,7 +133,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return hourCost;
+                return CityValues.HourCost;
             }
 
             set
@@ -151,7 +147,7 @@ namespace IceCreamManager.Model
                     throw new CityFuelCostInvalidException(Outcome.ValueTooLarge);
                 }
 
-                hourCost = value;
+                CityValues.HourCost = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -183,13 +179,7 @@ namespace IceCreamManager.Model
 
         public override bool Fill(DatabaseEntityProperties EntityProperties)
         {
-            CityProperties CityValues = EntityProperties as CityProperties;
-
-            Label = CityValues.Label;
-            Name = CityValues.Name;
-            State = CityValues.State;
-            FuelCost = CityValues.FuelCost;
-            HourCost = CityValues.HourCost;
+            CityValues = (CityProperties)EntityProperties;
 
             return true;
         }
