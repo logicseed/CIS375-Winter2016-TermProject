@@ -3,6 +3,8 @@
 /// <author> Marc King </author>
 /// <date_created> 2016-04-09 </date_created>
 
+using System.Data;
+
 namespace IceCreamManager.Model
 {
     public static class CityFactory
@@ -16,7 +18,16 @@ namespace IceCreamManager.Model
 
         public static City Create(CityProperties EntityProperties)
         {
-            // TODO: This needs to handle searching the database for the same propertires before truly creating a new city.
+            DatabaseManager Database = DatabaseManager.Reference;
+            string DatabaseCommand = $"SELECT id FROM city WHERE label = '{EntityProperties.Label}' AND name = '{EntityProperties.Name}' AND state = '{EntityProperties.State}'";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            // If the city has the same properties as a previous city then we load that city instead of creating a new one.
+            if (ResultsTable.Rows.Count > 0)
+            {
+                return DatabaseCityFactory.Load(ResultsTable.Row().Col("id"));
+            }
+
             return DatabaseCityFactory.Create(EntityProperties);
         }
     }
