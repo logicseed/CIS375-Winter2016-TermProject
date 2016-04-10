@@ -4,19 +4,53 @@
 /// <date_created> 2016-04-09 </date_created>
 
 using System;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.Exceptions
 {
+    [Serializable]
+    public class ExceptionWithOutcome : Exception
+    {
+        public ExceptionWithOutcome()
+        {
+        }
+
+        public ExceptionWithOutcome(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ExceptionWithOutcome(string message) : base(message)
+        {
+        }
+
+        public ExceptionWithOutcome(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ExceptionWithOutcome(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+
+        protected Outcome Outcome { get; set; }
+    }
+
     #region City Property Exceptions
 
     /// <summary>
     ///   The provided city label does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityLabelInvalidException : Exception
+    public class CityLabelInvalidException : ExceptionWithOutcome
     {
         public CityLabelInvalidException()
         {
+        }
+
+        public CityLabelInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
         }
 
         public CityLabelInvalidException(string message) : base(message)
@@ -37,10 +71,15 @@ namespace IceCreamManager.Exceptions
     ///   The provided city name does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityNameInvalidException : Exception
+    public class CityNameInvalidException : ExceptionWithOutcome
     {
         public CityNameInvalidException()
         {
+        }
+
+        public CityNameInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
         }
 
         public CityNameInvalidException(string message) : base(message)
@@ -61,10 +100,15 @@ namespace IceCreamManager.Exceptions
     ///   The provided state does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityStateInvalidException : Exception
+    public class CityStateInvalidException : ExceptionWithOutcome
     {
         public CityStateInvalidException()
         {
+        }
+
+        public CityStateInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
         }
 
         public CityStateInvalidException(string message) : base(message)
@@ -85,10 +129,15 @@ namespace IceCreamManager.Exceptions
     ///   The provided fuel cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityFuelCostInvalidException : Exception
+    public class CityFuelCostInvalidException : ExceptionWithOutcome
     {
         public CityFuelCostInvalidException()
         {
+        }
+
+        public CityFuelCostInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
         }
 
         public CityFuelCostInvalidException(string message) : base(message)
@@ -108,11 +157,17 @@ namespace IceCreamManager.Exceptions
     /// <summary>
     ///   The provided hour cost does not match requirements. 
     /// </summary>
+
     [Serializable]
-    public class CityHourCostInvalidException : Exception
+    public class CityHourCostInvalidException : ExceptionWithOutcome
     {
         public CityHourCostInvalidException()
         {
+        }
+
+        public CityHourCostInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
         }
 
         public CityHourCostInvalidException(string message) : base(message)
