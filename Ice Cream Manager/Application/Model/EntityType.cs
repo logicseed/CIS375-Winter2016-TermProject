@@ -7,6 +7,7 @@ namespace IceCreamManager.Model
 {
     public enum EntityType
     {
+        None,
         City,
         Route,
         Truck,
