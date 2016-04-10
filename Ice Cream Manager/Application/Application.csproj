@@ -67,8 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BatchFileProcessing.cs" />
     <Compile Include="Controller\ExtensionMethods.cs" />
     <Compile Include="Model\DatabaseManager.cs" />
+    <Compile Include="Model\Driver.cs" />
     <Compile Include="View\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>

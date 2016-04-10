@@ -64,6 +64,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controller\ExtensionMethodsTests.cs" />
+    <Compile Include="Controller\DriverTests.cs" />
+    <Compile Include="Controller\BatchFileProcessingTests.cs" />
     <Compile Include="Model\DatabaseManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
