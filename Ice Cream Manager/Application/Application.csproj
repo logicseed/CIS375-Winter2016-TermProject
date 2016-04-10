@@ -68,8 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CustomExceptions.cs" />
+    <Compile Include="Controller\Exceptions.cs" />
+    <Compile Include="Controller\Outcomes.cs" />
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
