@@ -95,5 +95,10 @@ namespace IceCreamManager.Model
                 throw; // Handled up the stack.
             }
         }
+
+        public static int ToDatabase(this bool BaseBoolean)
+        {
+            return Convert.ToInt32(BaseBoolean);
+        }
     }
 }

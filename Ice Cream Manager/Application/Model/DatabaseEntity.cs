@@ -128,6 +128,7 @@ namespace IceCreamManager.Model
         /// <returns> Whether or not the values of the entity were updated in the database. </returns>
         protected bool Update()
         {
+            if (UpdateCommand == "") return true;
             return (Database.ExecuteCommand(UpdateCommand) > 0);
         }
 

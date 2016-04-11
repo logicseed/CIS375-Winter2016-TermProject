@@ -15,7 +15,7 @@ namespace IceCreamManager.Model
         public Dictionary<int, City> RouteCities;
     }
 
-    internal class Route : DatabaseEntity
+    public class Route : DatabaseEntity
     {
         private RouteProperties RouteValues = new RouteProperties();
 
@@ -107,7 +107,7 @@ namespace IceCreamManager.Model
         public override bool Save()
         {
             SaveCities();
-            // Save all route_cities
+            SaveRouteCities();
 
             if (InDatabase && DeleteOnSave)
             {
@@ -138,6 +138,7 @@ namespace IceCreamManager.Model
             foreach (KeyValuePair<int, City> CityInRoute in RouteCities)
             {
                 DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM route_city WHERE route_id = {ID} AND city_id = {CityInRoute.Key}");
+
                 if (ResultsTable.Rows.Count == 0)
                 {
                     Database.ExecuteCommand($"INSERT INTO route_city (route_id,city_id) VALUES ({ID},{CityInRoute.Key}");
