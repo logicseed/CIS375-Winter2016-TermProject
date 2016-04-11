@@ -379,4 +379,60 @@ namespace IceCreamManager
     }
 
     #endregion Item Property Exceptions
+
+    #region BatchHistory Exceptions
+
+    [Serializable]
+    public class BatchHistorySequenceException : ExceptionWithOutcome
+    {
+        public BatchHistorySequenceException()
+        {
+        }
+
+        public BatchHistorySequenceException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public BatchHistorySequenceException(string message) : base(message)
+        {
+        }
+
+        public BatchHistorySequenceException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected BatchHistorySequenceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class BatchHistoryDateUpdatedException : ExceptionWithOutcome
+    {
+        public BatchHistoryDateUpdatedException()
+        {
+        }
+
+        public BatchHistoryDateUpdatedException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public BatchHistoryDateUpdatedException(string message) : base(message)
+        {
+        }
+
+        public BatchHistoryDateUpdatedException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected BatchHistoryDateUpdatedException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion BatchHistory Exceptions
 }

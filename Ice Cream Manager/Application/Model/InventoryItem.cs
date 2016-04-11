@@ -8,16 +8,26 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
+    /// <summary>
+    ///   Contains the properties of an InventoryItem. 
+    /// </summary>
+    /// <remarks>
+    ///   A class was chosen over struct because of how struct will be boxed when passing as the implemented type.
+    /// </remarks>
     public class InventoryItemProperties : DatabaseEntityProperties
     {
+        public int ItemID;
         public Item ItemType;
         public int InventoryID;
-        public DateTime DateCreated;
     }
 
+    /// <summary>
+    ///   An instance of an Item that exists within a trucks inventory and tracks its expiration. 
+    /// </summary>
     public class InventoryItem : DatabaseEntity
     {
         private InventoryItemProperties InventoryItemValues = new InventoryItemProperties();
+        private DateTime dateCreated;
 
         public InventoryItem()
         {
@@ -29,19 +39,25 @@ namespace IceCreamManager.Model
             Load(ID);
         }
 
+        /// <summary>
+        ///   Date the InventoryItem was created; used for tracking expiration. 
+        /// </summary>
         public DateTime DateCreated
         {
             get
             {
-                return InventoryItemValues.DateCreated;
+                return dateCreated;
             }
 
-            set
+            protected set
             {
-                InventoryItemValues.DateCreated = value;
+                dateCreated = value;
             }
         }
 
+        /// <summary>
+        ///   The Item stereotype of which this InventoryItem is an instance. 
+        /// </summary>
         public Item ItemType
         {
             get
@@ -49,44 +65,65 @@ namespace IceCreamManager.Model
                 return InventoryItemValues.ItemType;
             }
 
-            set
+            protected set
             {
                 InventoryItemValues.ItemType = value;
             }
         }
 
-        public int InventoryID
+        /// <summary>
+        ///   The identity of the Item stereotype of which this InventoryItem is an instance. 
+        /// </summary>
+        public int ItemID
+        {
+            get
+            {
+                return InventoryItemValues.ItemID;
+            }
+
+            protected set
+            {
+                InventoryItemValues.ItemID = value;
+            }
+        }
+
+        /// <summary>
+        ///   The truck on which this InventoryItem is carried. 
+        /// </summary>
+        public int TruckID
         {
             get
             {
                 return InventoryItemValues.InventoryID;
             }
 
-            set
+            protected set
             {
                 InventoryItemValues.InventoryID = value;
             }
         }
 
-        protected override string TableName => "inventory_item";
+        protected override string TableName => "InventoryItem";
 
         protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (item_id,inventory_id,date_created) VALUES ({ItemType.ID},{InventoryID},'{DateCreated.ToDatabase()}')";
+            $"INSERT INTO {TableName} (ItemID,TruckID,DateCreated) VALUES ({ItemID},{TruckID},'{DateTime.Now.ToDatabase()}')";
 
         protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (item_id,inventory_id,date_created,deleted) VALUES ({ItemType.ID},{InventoryID},'{DateCreated.ToDatabase()}',{IsDeleted.ToDatabase()})";
+            $"UPDATE {TableName} SET IsDeleted = {IsDeleted.ToDatabase()} WHERE ID = {ID}";
 
         public override bool Load(int ID)
         {
             this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
+            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE ID = {ID}");
 
             if (ResultsTable.Rows.Count == 0) return false;
 
-            int ItemTypeID = ResultsTable.Row().Col("item_id");
-            ItemType = ItemFactory.Load(ItemTypeID);
-            InventoryID = ResultsTable.Row().Col("inventory_id");
-            DateCreated = ResultsTable.Row().Col<DateTime>("date_created");
+            ItemID = ResultsTable.Row().Col("ItemID");
+            ItemType = ItemFactory.Load(ItemID);
+            TruckID = ResultsTable.Row().Col("TruckID");
+            DateCreated = ResultsTable.Row().Col<DateTime>("DateCreated");
+            InDatabase = true;
+            IsSaved = true;
 
             return true;
         }

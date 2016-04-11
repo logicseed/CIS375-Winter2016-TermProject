@@ -24,5 +24,10 @@ namespace IceCreamManager
 
         // Route outcomes
         TooManyCities = 300,
+
+        // Batch Processor outcomes
+        NotNextSequence = 500,
+
+        DateEarlierThanPreviousFile = 501,
     }
 }

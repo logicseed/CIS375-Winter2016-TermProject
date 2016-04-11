@@ -12,30 +12,30 @@ namespace IceCreamManager
     {
         private static DatabaseEntityFactory<LogEntry> LogEntryFactory = new DatabaseEntityFactory<LogEntry>();
 
-        public static bool Log(LogEntryProperties LogEntryValues)
+        public static bool Log(LogEntryProperties logEntryValues)
         {
-            LogEntryValues.TimeStamp = DateTime.Now;
-            LogEntryFactory.Create(LogEntryValues);
+            logEntryValues.TimeStamp = DateTime.Now;
+            LogEntryFactory.Create(logEntryValues);
             return true;
         }
 
-        public static bool Log(EntityType EntityType, int EntityID, ActionSource Source, ActionType Action, Outcome Outcome, int BatchFileLine)
+        public static bool Log(EntityType entityType, int entityID, ActionSource source, ActionType action, Outcome outcome, int batchFileLine)
         {
-            return Log(EntityType, EntityID, EntityType.None, 0, Source, Action, Outcome, BatchFileLine);
+            return Log(entityType, entityID, EntityType.None, 0, source, action, outcome, batchFileLine);
         }
 
-        public static bool Log(EntityType MainEntityType, int MainEntityID, EntityType SubEntityType, int SubEntityID, ActionSource Source, ActionType Action, Outcome Outcome, int BatchFileLine)
+        public static bool Log(EntityType mainEntityType, int mainEntityID, EntityType subEntityType, int subEntityID, ActionSource source, ActionType action, Outcome outcome, int batchFileLine)
         {
             LogEntryProperties LogEntryValues = new LogEntryProperties();
 
-            LogEntryValues.MainEntityType = MainEntityType;
-            LogEntryValues.MainEntityID = MainEntityID;
-            LogEntryValues.SubEntityType = SubEntityType;
-            LogEntryValues.SubEntityID = SubEntityID;
-            LogEntryValues.Source = Source;
-            LogEntryValues.Action = Action;
-            LogEntryValues.Outcome = Outcome;
-            LogEntryValues.BatchFileLine = BatchFileLine;
+            LogEntryValues.MainEntityType = mainEntityType;
+            LogEntryValues.MainEntityID = mainEntityID;
+            LogEntryValues.SubEntityType = subEntityType;
+            LogEntryValues.SubEntityID = subEntityID;
+            LogEntryValues.Source = source;
+            LogEntryValues.Action = action;
+            LogEntryValues.Outcome = outcome;
+            LogEntryValues.BatchFileLine = batchFileLine;
 
             return Log(LogEntryValues);
         }

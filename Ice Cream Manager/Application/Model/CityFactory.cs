@@ -12,28 +12,28 @@ namespace IceCreamManager.Model
         private static DatabaseEntityFactory<City> DatabaseCityFactory = new DatabaseEntityFactory<City>();
         private static DatabaseManager Database = DatabaseManager.Reference;
 
-        public static City Load(int ID)
+        public static City Load(int id)
         {
-            return DatabaseCityFactory.Load(ID);
+            return DatabaseCityFactory.Load(id);
         }
 
         /// <summary>
         ///   Creates a new city, until City.Save() is called the new city only exists in the cache. 
         /// </summary>
-        /// <param name="EntityProperties"></param>
+        /// <param name="entityProperties"></param>
         /// <returns></returns>
-        public static City Create(CityProperties EntityProperties)
+        public static City Create(CityProperties entityProperties)
         {
-            string DatabaseCommand = $"SELECT id FROM city WHERE label = '{EntityProperties.Label}' AND name = '{EntityProperties.Name}' AND state = '{EntityProperties.State}'";
+            string DatabaseCommand = $"SELECT ID FROM City WHERE Label = '{entityProperties.Label}' AND Name = '{entityProperties.Name}' AND State = '{entityProperties.State}'";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
 
             // If the city has the same properties as a previous city then we load that city instead of creating a new one.
             if (ResultsTable.Rows.Count > 0)
             {
-                return DatabaseCityFactory.Load(ResultsTable.Row().Col("id"));
+                return DatabaseCityFactory.Load(ResultsTable.Row().Col("ID"));
             }
 
-            return DatabaseCityFactory.Create(EntityProperties);
+            return DatabaseCityFactory.Create(entityProperties);
         }
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace IceCreamManager.Model
         /// <returns> Whether or not there were any cities to mark as deleted. </returns>
         public static bool DeleteAll()
         {
-            string DatabaseCommand = "SELECT id FROM city WHERE deleted = false";
+            string DatabaseCommand = "SELECT ID FROM City WHERE IsDeleted = 0";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
 
             foreach (DataRow Row in ResultsTable.Rows)
             {
-                Database.MarkAsDeleted("city", Row.Col("id"));
+                Database.MarkAsDeleted("City", Row.Col("ID"));
             }
 
             if (ResultsTable.Rows.Count > 0) return true;

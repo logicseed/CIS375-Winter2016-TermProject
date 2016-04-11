@@ -12,37 +12,51 @@ namespace IceCreamManager.Model
         private static DatabaseEntityFactory<BatchHistoryEntry> DatabaseBatchHistoryFactory = new DatabaseEntityFactory<BatchHistoryEntry>();
         private static DatabaseManager Database = DatabaseManager.Reference;
 
-        public static int GetSequence(BatchFileType FileType)
+        public static int GetSequence(BatchFileType fileType)
         {
-            BatchHistoryEntry BatchEntry = Load((int)FileType);
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
             return BatchEntry.SequenceNumber;
         }
 
-        public static bool SetSequence(BatchFileType FileType, int SequenceNumber)
+        public static bool SetSequence(BatchFileType fileType, int sequenceNumber)
         {
-            BatchHistoryEntry BatchEntry = Load((int)FileType);
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
 
-            BatchEntry.SequenceNumber = SequenceNumber;
+            BatchEntry.SequenceNumber = sequenceNumber;
             return BatchEntry.Save();
         }
 
-        public static DateTime GetDateUpdated(BatchFileType FileType)
+        public static bool IsValidSequence(BatchFileType fileType, int sequenceNumber)
         {
-            BatchHistoryEntry BatchEntry = Load((int)FileType);
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
+
+            return BatchEntry.IsNextSequenceNumber(sequenceNumber);
+        }
+
+        public static DateTime GetDateUpdated(BatchFileType fileType)
+        {
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
             return BatchEntry.DateUpdated;
         }
 
-        public static bool SetDateUpdated(BatchFileType FileType, DateTime DateUpdated)
+        public static bool SetDateUpdated(BatchFileType fileType, DateTime dateUpdated)
         {
-            BatchHistoryEntry BatchEntry = Load((int)FileType);
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
 
-            BatchEntry.DateUpdated = DateUpdated;
+            BatchEntry.DateUpdated = dateUpdated;
             return BatchEntry.Save();
         }
 
-        private static BatchHistoryEntry Load(int ID)
+        public static bool IsValidDateUpdated(BatchFileType fileType, DateTime dateUpdated)
         {
-            return DatabaseBatchHistoryFactory.Load(ID);
+            BatchHistoryEntry BatchEntry = Load((int)fileType);
+
+            return BatchEntry.IsValidDateUpdated(dateUpdated);
+        }
+
+        private static BatchHistoryEntry Load(int id)
+        {
+            return DatabaseBatchHistoryFactory.Load(id);
         }
     }
 }

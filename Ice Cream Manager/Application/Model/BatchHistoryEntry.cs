@@ -11,8 +11,9 @@ namespace IceCreamManager.Model
     public class BatchHistoryEntry : DatabaseEntity
     {
         // ID is BatchFileType
-        private int sequenceNumber;
+        private string fileType;
 
+        private int sequenceNumber;
         private DateTime dateUpdated;
 
         public int SequenceNumber
@@ -24,8 +25,7 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value < Requirement.MinNumber || value > Requirement.MaxNumber)
-                    throw new ArgumentOutOfRangeException();
+                if (!IsNextSequenceNumber(value)) throw new BatchHistorySequenceException(Outcome.NotNextSequence);
 
                 sequenceNumber = value;
             }
@@ -40,19 +40,39 @@ namespace IceCreamManager.Model
 
             set
             {
+                if (value.CompareTo(dateUpdated) < 0) throw new BatchHistoryDateUpdatedException(Outcome.DateEarlierThanPreviousFile);
                 dateUpdated = value;
             }
         }
 
         protected override string TableName
-                            => "batch_history";
+                            => "BatchHistory";
 
         protected override string CreateCommand
-            => ""; // New batch file types types should not be created through code.
+            => "";
 
         protected override string UpdateCommand
-            => $"UPDATE {TableName} SET (number,date_updated) VALUES ({SequenceNumber},'{DateUpdated.ToDatabase()}') WHERE id = {ID}";
+            => $"UPDATE {TableName} SET DateUpdated = {DateUpdated.ToDatabase()} WHERE id = {ID}";
 
+        public bool IsNextSequenceNumber(int newSequenceNumber)
+        {
+            int nextSequenceNumber;
+
+            if (sequenceNumber == 9999) nextSequenceNumber = 1;
+            else nextSequenceNumber = sequenceNumber++;
+
+            if (newSequenceNumber == nextSequenceNumber) return true;
+            return false;
+        }
+
+        public bool IsValidDateUpdated(DateTime newDateUpdated)
+        {
+            int dateIsBefore = -1;
+            if (newDateUpdated.CompareTo(DateUpdated) == dateIsBefore) return false;
+            return true;
+        }
+
+        // New batch file types types should not be created through code.
         public override bool Fill(DatabaseEntityProperties EntityProperties)
         {
             // New batch file types should not be created through code.
@@ -66,8 +86,10 @@ namespace IceCreamManager.Model
 
             if (ResultsTable.Rows.Count == 0) return false;
 
-            SequenceNumber = ResultsTable.Row().Col("number");
-            DateUpdated = ResultsTable.Row().Col<DateTime>("date_updated");
+            SequenceNumber = ResultsTable.Row().Col("Number");
+            DateUpdated = ResultsTable.Row().Col<DateTime>("DateUpdated");
+            InDatabase = true;
+            IsSaved = true;
 
             return true;
         }

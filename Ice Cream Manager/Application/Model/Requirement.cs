@@ -9,30 +9,17 @@ namespace IceCreamManager
     {
         // Common requirements
 
-        public static int MinNumber { get { return Properties.Requirements.Default.MinNumber; } }
-        public static int MaxNumber { get { return Properties.Requirements.Default.MaxNumber; } }
-        public static int MaxMaxDeafultItems { get { return Properties.Requirements.Default.MaxDefaultItems; } }
-        public static int MaxItems { get { return Properties.Requirements.Default.MaxItems; } }
-        public static int MinLabelLength { get { return Properties.Requirements.Default.MaxLabelLength; } }
-        public static int MaxLabelLength { get { return Properties.Requirements.Default.MaxLabelLength; } }
-        public static int MinNameLength { get { return Properties.Requirements.Default.MinNameLength; } }
-        public static int MaxNameLength { get { return Properties.Requirements.Default.MaxNameLength; } }
-        public static int MinStateLength { get { return Properties.Requirements.Default.MinStateLength; } }
-        public static int MaxStateLength { get { return Properties.Requirements.Default.MaxStateLength; } }
-        public static double MinFuelCost { get { return Properties.Requirements.Default.MinFuelCost; } }
-        public static double MaxFuelCost { get { return Properties.Requirements.Default.MaxFuelCost; } }
-        public static double MinHourCost { get { return Properties.Requirements.Default.MinHourCost; } }
-        public static double MaxHourCost { get { return Properties.Requirements.Default.MaxHourCost; } }
-        public static double MaxPrice { get { return Properties.Requirements.Default.MaxPrice; } }
-        public static double MinPrice { get { return Properties.Requirements.Default.MinPrice; } }
-        public static int MinLifetime { get { return Properties.Requirements.Default.MinItemLifetime; } }
-        public static int MaxLifetime { get { return Properties.Requirements.Default.MaxItemLifetime; } }
-        public static int MaxCacheHours { get { return Properties.Requirements.Default.MaxCacheHours; } }
-        public static int MaxCacheMinutes { get { return Properties.Requirements.Default.MaxCacheMinutes; } }
-        public static int MaxCacheSeconds { get { return Properties.Requirements.Default.MaxCacheSeconds; } }
-        public static int MaxRouteCities { get { return Properties.Requirements.Default.MaxRouteCities; } }
+        public static int MaxCacheHours => Properties.Requirements.Default.MaxCacheHours;
 
-        public static int MinID => Properties.Requirements.Default.MinID;
+        public static int MaxCacheMinutes => Properties.Requirements.Default.MaxCacheMinutes;
+
+        public static int MaxCacheSeconds => Properties.Requirements.Default.MaxCacheSeconds;
+
+        // Item requirements
+
+        public static int MaxInventoryItems => Properties.Requirements.Default.MaxInventoryItems;
+
+        public static int MaxInventoryDefaultItems => Properties.Requirements.Default.MaxInventoryDefaultItems;
 
         public static int MinItemNumber => Properties.Requirements.Default.MinItemNumber;
 
@@ -53,5 +40,26 @@ namespace IceCreamManager
         public static int MinItemQuantity => Properties.Requirements.Default.MinItemQuantity;
 
         public static int MaxItemQuantity => Properties.Requirements.Default.MaxItemQuantity;
+
+        // City requirements
+        public static int MinCityLabelLength => Properties.Requirements.Default.MinCityLabelLength;
+
+        public static int MaxCityLabelLength => Properties.Requirements.Default.MaxCityLabelLength;
+
+        public static int MinCityNameLength => Properties.Requirements.Default.MinCityNameLength;
+
+        public static int MaxCityNameLength => Properties.Requirements.Default.MaxCityNameLength;
+
+        public static int MinCityStateLength => Properties.Requirements.Default.MinCityStateLength;
+
+        public static int MaxCityStateLength => Properties.Requirements.Default.MaxCityStateLength;
+
+        public static double MinCityHours => Properties.Requirements.Default.MinCityHours;
+
+        public static double MaxCityHours => Properties.Requirements.Default.MaxCityHours;
+
+        public static double MinCityMiles => Properties.Requirements.Default.MinCityMiles;
+
+        public static double MaxCityMiles => Properties.Requirements.Default.MaxCityMiles;
     }
 }

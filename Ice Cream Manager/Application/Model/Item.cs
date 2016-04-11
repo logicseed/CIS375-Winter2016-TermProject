@@ -7,8 +7,6 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    // COMMENT: This file needs comments.
-
     /// <summary>
     ///   Contains the properties of an Item. 
     /// </summary>
