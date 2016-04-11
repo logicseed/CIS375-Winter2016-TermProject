@@ -70,6 +70,8 @@ namespace IceCreamManager.Model
             DatabaseFileAccessDetails = String.Format("Data Source={0};Version=3;", DatabaseFile);
         }
 
+        // TODO: Make custom exceptions for all the exceptions this class can raise.
+
         /// <summary>
         ///   Ensures the existence of the database. 
         /// </summary>
@@ -171,14 +173,14 @@ namespace IceCreamManager.Model
         /// <postconditions>
         ///   The database command executer is ready to execute the provided database command.
         /// </postconditions>
-        /// <param name="DatabaseCommandToExecute">
+        /// <param name="databaseCommandToExecute">
         ///   The database command to be executed by the database command executer.
         /// </param>
-        private void ProvideExecuterCommandToExecute(string DatabaseCommandToExecute)
+        private void ProvideExecuterCommandToExecute(string databaseCommandToExecute)
         {
             try
             {
-                DatabaseCommandExecuter.CommandText = DatabaseCommandToExecute;
+                DatabaseCommandExecuter.CommandText = databaseCommandToExecute;
             }
             catch (Exception e)
             {
@@ -193,14 +195,14 @@ namespace IceCreamManager.Model
         /// <postconditions>
         ///   The data reader connection based on the database command to execute will be open for reading rows of data.
         /// </postconditions>
-        /// <param name="DatabaseCommand"> The database command the data reader connection will be based upon. </param>
-        private void OpenDataReaderConnectionBasedOnDatabaseCommand(string DatabaseCommand)
+        /// <param name="databaseCommand"> The database command the data reader connection will be based upon. </param>
+        private void OpenDataReaderConnectionBasedOnDatabaseCommand(string databaseCommand)
         {
             try
             {
                 OpenConnectionToDatabase();
 
-                ProvideExecuterCommandToExecute(DatabaseCommand);
+                ProvideExecuterCommandToExecute(databaseCommand);
 
                 DataReaderConnection = DatabaseCommandExecuter.ExecuteReader();
             }
@@ -236,17 +238,17 @@ namespace IceCreamManager.Model
         /// </summary>
         /// <preconditions> The connection to the database file must be established. </preconditions>
         /// <postconditions> No changes are made to the database. </postconditions>
-        /// <param name="DatabaseCommand">
+        /// <param name="databaseCommand">
         ///   The database command that provides the results that the data table is created from.
         /// </param>
-        /// <returns> The results </returns>
-        public DataTable DataTableFromCommand(string DatabaseCommand)
+        /// <returns> The results of the database query. </returns>
+        public DataTable DataTableFromCommand(string databaseCommand)
         {
             DataTable ResultsDataTable = new DataTable();
 
             try
             {
-                OpenDataReaderConnectionBasedOnDatabaseCommand(DatabaseCommand);
+                OpenDataReaderConnectionBasedOnDatabaseCommand(databaseCommand);
 
                 ResultsDataTable.Load(DataReaderConnection);
 
@@ -305,12 +307,12 @@ namespace IceCreamManager.Model
         /// </summary>
         /// <preconditions> The connection to the database file must be established. </preconditions>
         /// <postconditions> The specified database row is marked as deleted. </postconditions>
-        /// <param name="TableName"> The name of the database table that contains the row to be marked as deleted. </param>
-        /// <param name="ID"> The unique identity number of the database row to be marked as deleted. </param>
-        /// <returns></returns>
-        public bool MarkAsDeleted(string TableName, int ID)
+        /// <param name="tableName"> The name of the database table that contains the row to be marked as deleted. </param>
+        /// <param name="id"> The unique identity number of the database row to be marked as deleted. </param>
+        /// <returns> Whether or not the database row was marked as deleted. </returns>
+        public bool MarkAsDeleted(string tableName, int id)
         {
-            string DatabaseCommand = $"UPDATE {TableName} SET IsDeleted = 1 WHERE id = {ID}";
+            string DatabaseCommand = $"UPDATE {tableName} SET IsDeleted = 1 WHERE id = {id}";
 
             try
             {
@@ -322,23 +324,5 @@ namespace IceCreamManager.Model
                 throw new Exception("Error marking a database row as deleted.", e);
             }
         }
-
-        ///// <summary>
-        /////   Provides the identity of the last row inserted into the database.
-        ///// </summary>
-        ///// <preconditions> An insert must have been performed on the database. </preconditions>
-        ///// <postconditions> No changes are made to the state of the application. </postconditions>
-        ///// <returns> The identity of the last row inserted into the database. </returns>
-        //public int LastInsertID()
-        //{
-        //    try
-        //    {
-        //        return DataTableFromCommand("SELECT last_insert_rowid()").Row().Col();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Error getting row id of last insert.", e);
-        //    }
-        //}
     }
 }

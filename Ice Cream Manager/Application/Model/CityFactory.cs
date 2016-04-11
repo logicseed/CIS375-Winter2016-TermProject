@@ -7,11 +7,19 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
+    /// <summary>
+    ///   Provides an interface for the creation and loading of cities. 
+    /// </summary>
     public static class CityFactory
     {
         private static DatabaseEntityFactory<City> DatabaseCityFactory = new DatabaseEntityFactory<City>();
         private static DatabaseManager Database = DatabaseManager.Reference;
 
+        /// <summary>
+        ///   Loads a city from the database and adds it to the cache. 
+        /// </summary>
+        /// <param name="id"> The unique identity of the city. </param>
+        /// <returns> A reference to the city in memory. </returns>
         public static City Load(int id)
         {
             return DatabaseCityFactory.Load(id);

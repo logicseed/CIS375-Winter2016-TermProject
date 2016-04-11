@@ -61,5 +61,17 @@ namespace IceCreamManager
         public static double MinCityMiles => Properties.Requirements.Default.MinCityMiles;
 
         public static double MaxCityMiles => Properties.Requirements.Default.MaxCityMiles;
+
+        public static int MinDriverNumber => Properties.Requirements.Default.MinDriverNumber;
+
+        public static int MaxDriverNumber => Properties.Requirements.Default.MaxDriverNumber;
+
+        public static int MinDriverNameLength => Properties.Requirements.Default.MinDriverNameLength;
+
+        public static int MaxDriverNameLength => Properties.Requirements.Default.MaxDriverNameLength; // BUG: Check to make sure this is right.
+
+        public static double MinDriverHourlyRate => Properties.Requirements.Default.MinDriverHourlyRate;
+
+        public static double MaxDriverHourlyRate => Properties.Requirements.Default.MaxDriverHourlyRate;
     }
 }

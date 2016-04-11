@@ -80,5 +80,23 @@
     <Setting Name="MaxItemQuantity" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">9999</Value>
     </Setting>
+    <Setting Name="MinDriverNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxDriverNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="MinDriverNameLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxDriverNameLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="MinDriverHourlyRate" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxDriverHourlyRate" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">99.99</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

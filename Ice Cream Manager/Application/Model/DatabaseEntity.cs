@@ -30,8 +30,6 @@ namespace IceCreamManager.Model
 
             protected set
             {
-                if (value < Requirement.MinID) throw new ArgumentOutOfRangeException("ID out of range.");
-
                 int oldID = id;
                 id = value;
                 if (oldID != value) OnIDChanged(oldID, id);
@@ -86,25 +84,29 @@ namespace IceCreamManager.Model
         abstract public bool Load(int ID);
 
         /// <summary>
+        ///   Fills an entity with values from a class that implements DatabaseEntityProperties. 
         /// </summary>
-        /// <param name="EntityProperties"></param>
-        /// <returns></returns>
-        abstract public bool Fill(DatabaseEntityProperties EntityProperties);
+        /// <param name="entityProperties"></param>
+        /// <returns> Whether or not the entity's values were filled successfully. </returns>
+        abstract public bool Fill(DatabaseEntityProperties entityProperties);
 
+        /// <summary>
+        ///   Saves any changes made to the entity into the database. 
+        /// </summary>
+        /// <returns> Whether or not the save process was successful. </returns>
         public virtual bool Save()
         {
-            // If an object is loaded then it must exist in the database.
             if (InDatabase && DeleteOnSave)
             {
-                Delete();
+                Delete(); // Changes that result in deletion
             }
             else if (InDatabase && !DeleteOnSave)
             {
-                Update();
+                Update(); // Changes that don't result in deletion
             }
             else if (!InDatabase)
             {
-                Create();
+                Create(); // New entity
             }
 
             return InDatabase;
@@ -131,7 +133,8 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        ///   Creates a copy of the entity in the database. 
+        ///   Creates a new copy of the entity in the database. Used with new entities and with entities that had changed
+        ///   that resulted in deletion.
         /// </summary>
         /// <returns> Whether or not the entity was created in the database. </returns>
         protected bool Create()
@@ -149,31 +152,43 @@ namespace IceCreamManager.Model
             return InDatabase;
         }
 
+        /// <summary>
+        ///   Creates a new copy of the entity in the database and marks the old copy as deleted. 
+        /// </summary>
+        /// <returns> Whether or not the deletion process was successful. </returns>
         protected bool Delete()
         {
             InDatabase = false;
             Database.MarkAsDeleted(TableName, ID);
-            Create();
-            return (ID > Requirement.MinID);
+            return Create();
         }
 
-        protected virtual void OnIDChanged(int OldID, int NewID)
+        /// <summary>
+        ///   An event that is triggered when an entity's ID changes. This event is subscribed to by the cache to allow
+        ///   it to update its reference to that entity.
+        /// </summary>
+        /// <param name="oldID"></param>
+        /// <param name="newID"></param>
+        protected virtual void OnIDChanged(int oldID, int newID)
         {
-            IDChanged?.Invoke(this, new IDChangedEventArgs(this.GetType().Name, OldID, NewID));
+            IDChanged?.Invoke(this, new IDChangedEventArgs(this.GetType().Name, oldID, newID));
         }
     }
 
+    /// <summary>
+    ///   A collection of values sent with the OnIDChanged event to provide the details of the change. 
+    /// </summary>
     public class IDChangedEventArgs : EventArgs
     {
         public readonly string CacheName;
         public readonly int OldID;
         public readonly int NewID;
 
-        public IDChangedEventArgs(string CacheName, int OldID, int NewID)
+        public IDChangedEventArgs(string cacheName, int oldID, int newID)
         {
-            this.CacheName = CacheName;
-            this.OldID = OldID;
-            this.NewID = NewID;
+            this.CacheName = cacheName;
+            this.OldID = oldID;
+            this.NewID = newID;
         }
     }
 }

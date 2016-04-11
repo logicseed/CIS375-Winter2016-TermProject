@@ -435,4 +435,86 @@ namespace IceCreamManager
     }
 
     #endregion BatchHistory Exceptions
+
+    #region Driver Exceptions
+
+    [Serializable]
+    public class DriverNumberException : ExceptionWithOutcome
+    {
+        public DriverNumberException()
+        {
+        }
+
+        public DriverNumberException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverNumberException(string message) : base(message)
+        {
+        }
+
+        public DriverNumberException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverNumberException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class DriverNameException : ExceptionWithOutcome
+    {
+        public DriverNameException()
+        {
+        }
+
+        public DriverNameException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverNameException(string message) : base(message)
+        {
+        }
+
+        public DriverNameException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverNameException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class DriverHourlyRateException : ExceptionWithOutcome
+    {
+        public DriverHourlyRateException()
+        {
+        }
+
+        public DriverHourlyRateException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverHourlyRateException(string message) : base(message)
+        {
+        }
+
+        public DriverHourlyRateException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverHourlyRateException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Driver Exceptions
 }

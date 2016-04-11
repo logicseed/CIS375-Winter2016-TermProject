@@ -15,13 +15,13 @@ namespace IceCreamManager.Model
         ///   Generic method to get the value in a column as a datatype ReturnType. 
         /// </summary>
         /// <typeparam name="ReturnType"> The datatype to return. </typeparam>
-        /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
-        /// <param name="Name"> The key for the column to return. </param>
+        /// <param name="dataRow"> The DataRow extended by this method. </param>
+        /// <param name="name"> The key for the column to return. </param>
         /// <returns> The value in the column as a datatype. </returns>
         /// <exception cref="InvalidCastException" />
-        public static ReturnType Col<ReturnType>(this DataRow BaseDataRow, string Name)
+        public static ReturnType Col<ReturnType>(this DataRow dataRow, string name)
         {
-            return (ReturnType)Convert.ChangeType(BaseDataRow[Name], typeof(ReturnType), CultureInfo.InvariantCulture);
+            return (ReturnType)Convert.ChangeType(dataRow[name], typeof(ReturnType), CultureInfo.InvariantCulture);
         }
 
         // IDEA: Test task something.
@@ -30,47 +30,47 @@ namespace IceCreamManager.Model
         ///   Generic method to get the value in a column as a datatype ReturnType. 
         /// </summary>
         /// <typeparam name="ReturnType"> The datatype to return. </typeparam>
-        /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
-        /// <param name="Index"> The index of the column to return. </param>
+        /// <param name="dataRow"> The DataRow extended by this method. </param>
+        /// <param name="index"> The index of the column to return. </param>
         /// <returns> The value in the column as a datatype. </returns>
-        public static ReturnType Col<ReturnType>(this DataRow BaseDataRow, int Index = 0)
+        public static ReturnType Col<ReturnType>(this DataRow dataRow, int index = 0)
         {
-            string Name = BaseDataRow.Table.Columns[Index].ColumnName;
-            return BaseDataRow.Col<ReturnType>(Name);
+            string Name = dataRow.Table.Columns[index].ColumnName;
+            return dataRow.Col<ReturnType>(Name);
         }
 
         /// <summary>
         ///   Gets the value in a column as an integer. 
         /// </summary>
-        /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
-        /// <param name="Name"> The key for the column to return. </param>
+        /// <param name="dataRow"> The DataRow extended by this method. </param>
+        /// <param name="name"> The key for the column to return. </param>
         /// <returns> The value in the column as an integer. </returns>
-        public static int Col(this DataRow BaseDataRow, string Name)
+        public static int Col(this DataRow dataRow, string name)
         {
-            return BaseDataRow.Col<int>(Name);
+            return dataRow.Col<int>(name);
         }
 
         /// <summary>
         ///   Gets the value in a column as an integer. 
         /// </summary>
-        /// <param name="BaseDataRow"> The DataRow extended by this method. </param>
-        /// <param name="Index"> The index of the column to return. </param>
+        /// <param name="dataRow"> The DataRow extended by this method. </param>
+        /// <param name="index"> The index of the column to return. </param>
         /// <returns> The value in the column as an integer. </returns>
-        public static int Col(this DataRow BaseDataRow, int Index = 0)
+        public static int Col(this DataRow dataRow, int index = 0)
         {
-            string Name = BaseDataRow.Table.Columns[Index].ColumnName;
-            return BaseDataRow.Col<int>(Name);
+            string Name = dataRow.Table.Columns[index].ColumnName;
+            return dataRow.Col<int>(Name);
         }
 
         /// <summary>
         ///   Retrieves a DataRow from a DataTable by index; defaults to the first row. 
         /// </summary>
-        /// <param name="BaseDataTable"> The DataTable extended by this method. </param>
-        /// <param name="Index"> The index of the row to return. </param>
+        /// <param name="dataTable"> The DataTable extended by this method. </param>
+        /// <param name="index"> The index of the row to return. </param>
         /// <returns> The DataRow at the specified index. </returns>
-        public static DataRow Row(this DataTable BaseDataTable, int Index = 0)
+        public static DataRow Row(this DataTable dataTable, int index = 0)
         {
-            return BaseDataTable.Rows[Index];
+            return dataTable.Rows[index];
         }
 
         /// <summary>
@@ -83,12 +83,12 @@ namespace IceCreamManager.Model
         /// <preconditions> DateTime object exists. </preconditions>
         /// <postconditions> No changes made to DateTime object. </postconditions>
         /// <returns> A string with the DateTime in format expected by the database. </returns>
-        public static string ToDatabase(this DateTime BaseDateTime)
+        public static string ToDatabase(this DateTime dateTime)
         {
             try
             {
                 string DateTimeFormatForDatabase = "yyyy-MM-dd HH:mm:ss.fff";
-                return BaseDateTime.ToString(DateTimeFormatForDatabase);
+                return dateTime.ToString(DateTimeFormatForDatabase);
             }
             catch (Exception)
             {
@@ -96,9 +96,9 @@ namespace IceCreamManager.Model
             }
         }
 
-        public static int ToDatabase(this bool BaseBoolean)
+        public static int ToDatabase(this bool boolean)
         {
-            return Convert.ToInt32(BaseBoolean);
+            return Convert.ToInt32(boolean);
         }
     }
 }
