@@ -5,7 +5,18 @@
 
 namespace IceCreamManager.Model
 {
-    public class TruckFactory
+    public static class TruckFactory
     {
+        private static DatabaseEntityFactory<Truck> DatabaseTruckFactory = new DatabaseEntityFactory<Truck>();
+
+        public static Truck Load(int ID)
+        {
+            return DatabaseTruckFactory.Load(ID);
+        }
+
+        public static Truck Create(TruckProperties EntityProperties)
+        {
+            return DatabaseTruckFactory.Create(EntityProperties);
+        }
     }
 }
