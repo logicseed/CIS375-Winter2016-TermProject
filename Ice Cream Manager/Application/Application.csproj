@@ -94,6 +94,7 @@
     <Compile Include="Model\LogEntry.cs" />
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Model\Route.cs" />
+    <Compile Include="Model\RouteFactory.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
