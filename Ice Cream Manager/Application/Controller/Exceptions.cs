@@ -128,26 +128,26 @@ namespace IceCreamManager
     ///   The provided fuel cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityFuelCostInvalidException : ExceptionWithOutcome
+    public class CityMilesInvalidException : ExceptionWithOutcome
     {
-        public CityFuelCostInvalidException()
+        public CityMilesInvalidException()
         {
         }
 
-        public CityFuelCostInvalidException(Outcome ExceptionOutcome)
+        public CityMilesInvalidException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityFuelCostInvalidException(string message) : base(message)
+        public CityMilesInvalidException(string message) : base(message)
         {
         }
 
-        public CityFuelCostInvalidException(string message, Exception inner) : base(message, inner)
+        public CityMilesInvalidException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityFuelCostInvalidException(
+        protected CityMilesInvalidException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -157,26 +157,26 @@ namespace IceCreamManager
     ///   The provided hour cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityHourCostInvalidException : ExceptionWithOutcome
+    public class CityHoursInvalidException : ExceptionWithOutcome
     {
-        public CityHourCostInvalidException()
+        public CityHoursInvalidException()
         {
         }
 
-        public CityHourCostInvalidException(Outcome ExceptionOutcome)
+        public CityHoursInvalidException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityHourCostInvalidException(string message) : base(message)
+        public CityHoursInvalidException(string message) : base(message)
         {
         }
 
-        public CityHourCostInvalidException(string message, Exception inner) : base(message, inner)
+        public CityHoursInvalidException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityHourCostInvalidException(
+        protected CityHoursInvalidException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }

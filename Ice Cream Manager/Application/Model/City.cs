@@ -13,8 +13,8 @@ namespace IceCreamManager.Model
         public string Label;
         public string Name;
         public string State;
-        public double FuelCost;
-        public double HourCost;
+        public double Miles;
+        public double Hours;
     }
 
     public class City : DatabaseEntity
@@ -103,49 +103,49 @@ namespace IceCreamManager.Model
             }
         }
 
-        public double FuelCost
+        public double Miles
         {
             get
             {
-                return CityValues.FuelCost;
+                return CityValues.Miles;
             }
 
             set
             {
-                if (value < Requirement.MinStateLength)
+                if (value < Requirement.MinPrice)
                 {
-                    throw new CityFuelCostInvalidException(Outcome.ValueTooSmall);
+                    throw new CityMilesInvalidException(Outcome.ValueTooSmall);
                 }
-                else if (value > Requirement.MaxStateLength)
+                else if (value > Requirement.MaxPrice)
                 {
-                    throw new CityFuelCostInvalidException(Outcome.ValueTooLarge);
+                    throw new CityMilesInvalidException(Outcome.ValueTooLarge);
                 }
 
-                CityValues.FuelCost = value;
+                CityValues.Miles = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
         }
 
-        public double HourCost
+        public double Hours
         {
             get
             {
-                return CityValues.HourCost;
+                return CityValues.Hours;
             }
 
             set
             {
-                if (value < Requirement.MinStateLength)
+                if (value < Requirement.MinPrice)
                 {
-                    throw new CityFuelCostInvalidException(Outcome.ValueTooSmall);
+                    throw new CityHoursInvalidException(Outcome.ValueTooSmall);
                 }
-                else if (value > Requirement.MaxStateLength)
+                else if (value > Requirement.MaxPrice)
                 {
-                    throw new CityFuelCostInvalidException(Outcome.ValueTooLarge);
+                    throw new CityHoursInvalidException(Outcome.ValueTooLarge);
                 }
 
-                CityValues.HourCost = value;
+                CityValues.Hours = value;
                 IsSaved = false;
                 DeleteOnSave = true;
             }
@@ -154,10 +154,10 @@ namespace IceCreamManager.Model
         protected override string TableName => "city";
 
         protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (label,name,state,fuel_cost,hour_cost) VALUES ({Label},'{Name}',{State},{FuelCost},{HourCost}) WHERE id = {ID}";
+            $"UPDATE {TableName} SET (label,name,state,miles,hours) VALUES ({Label},'{Name}',{State},{Miles},{Hours}) WHERE id = {ID}";
 
         protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (label,name,state,fuel_cost,hour_cost) VALUES ({Label},'{Name}',{State},{FuelCost},{HourCost})";
+            $"INSERT INTO {TableName} (label,name,state,miles,hours) VALUES ({Label},'{Name}',{State},{Miles},{Hours})";
 
         public override bool Load(int ID)
         {
@@ -169,8 +169,8 @@ namespace IceCreamManager.Model
             Label = ResultsTable.Row().Col<string>("label");
             Name = ResultsTable.Row().Col<string>("name");
             State = ResultsTable.Row().Col<string>("state");
-            FuelCost = ResultsTable.Row().Col<double>("fuel_cost");
-            HourCost = ResultsTable.Row().Col<double>("hour_cost");
+            Miles = ResultsTable.Row().Col<double>("miles");
+            Hours = ResultsTable.Row().Col<double>("hours");
 
             return true;
         }
