@@ -3,7 +3,6 @@
 /// <author> Marc King </author>
 /// <date_created> 2016-04-07 </date_created>
 
-using System;
 using System.Data;
 
 namespace IceCreamManager.Model
@@ -47,7 +46,7 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        ///   User provided number to distinguish the item. 
+        ///   User provided number to distinguish the item. Changing this value marks an item to be deleted. 
         /// </summary>
         public int Number
         {
@@ -58,10 +57,9 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value < Requirement.MinNumber || value > Requirement.MaxNumber)
-                {
-                    throw new ArgumentOutOfRangeException("Number out of range.");
-                }
+                if (value < Requirement.MinItemNumber) throw new ItemNumberException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxItemNumber) throw new ItemNumberException(Outcome.ValueTooLarge);
+
                 number = value;
                 IsSaved = false;
                 DeleteOnSave = true;
@@ -69,7 +67,7 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        ///   User provided description of the item. 
+        ///   User provided description of the item. Changing this value marks an item to be deleted. 
         /// </summary>
         public string Description
         {
@@ -80,10 +78,9 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value.Length > Requirement.MaxDescription)
-                {
-                    throw new ArgumentOutOfRangeException("Description longer than 30 characters.");
-                }
+                if (value.Length < Requirement.MinItemDescriptionLength) throw new ItemDescriptionException(Outcome.ValueTooSmall);
+                if (value.Length > Requirement.MaxItemDescriptionLength) throw new ItemDescriptionException(Outcome.ValueTooLarge);
+
                 description = value;
                 IsSaved = false;
                 DeleteOnSave = true;
@@ -91,7 +88,7 @@ namespace IceCreamManager.Model
         }
 
         /// <summary>
-        ///   The price of the item used in calculating sales and waste. 
+        ///   The price of the item used in calculating sales and waste. Changing this value marks an item to be deleted. 
         /// </summary>
         public double Price
         {
@@ -102,10 +99,9 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value < Requirement.MinPrice || value > Requirement.MaxPrice)
-                {
-                    throw new ArgumentOutOfRangeException("Price out of range.");
-                }
+                if (value < Requirement.MinItemPrice) throw new ItemPriceException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxItemPrice) throw new ItemPriceException(Outcome.ValueTooLarge);
+
                 price = value;
                 IsSaved = false;
                 DeleteOnSave = true;
@@ -114,7 +110,7 @@ namespace IceCreamManager.Model
 
         /// <summary>
         ///   How many days an item will last after being created. An item is considered to have been created when it is
-        ///   placed on a truck.
+        ///   placed on a truck. Changing this value marks an item to be deleted.
         /// </summary>
         public int Lifetime
         {
@@ -125,10 +121,9 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value < Requirement.MinLifetime || value > Requirement.MaxLifetime)
-                {
-                    throw new ArgumentOutOfRangeException("Lifetime out of range");
-                }
+                if (value < Requirement.MinItemLifetime) throw new ItemLifetimeException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxItemLifetime) throw new ItemLifetimeException(Outcome.ValueTooLarge);
+
                 lifetime = value;
                 IsSaved = false;
                 DeleteOnSave = true;
@@ -146,15 +141,16 @@ namespace IceCreamManager.Model
             }
             set
             {
-                if (value < Requirement.MinNumber || value > Requirement.MaxLifetime)
-                {
-                    throw new ArgumentOutOfRangeException("Quantity out of range.");
-                }
+                if (value < Requirement.MinItemQuantity) throw new ItemQuantityException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxItemQuantity) throw new ItemQuantityException(Outcome.ValueTooLarge);
+
+                quantity = value;
+                IsSaved = false;
             }
         }
 
         /// <summary>
-        ///   The naem of the database table that stores items. 
+        ///   The name of the database table that stores items. 
         /// </summary>
         protected override string TableName => "item";
 
