@@ -245,4 +245,138 @@ namespace IceCreamManager
     }
 
     #endregion Route Property Exceptions
+
+    #region Item Property Exceptions
+
+    [Serializable]
+    public class ItemNumberException : ExceptionWithOutcome
+    {
+        public ItemNumberException()
+        {
+        }
+
+        public ItemNumberException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemNumberException(string message) : base(message)
+        {
+        }
+
+        public ItemNumberException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemNumberException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemDescriptionException : ExceptionWithOutcome
+    {
+        public ItemDescriptionException()
+        {
+        }
+
+        public ItemDescriptionException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemDescriptionException(string message) : base(message)
+        {
+        }
+
+        public ItemDescriptionException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemDescriptionException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemPriceException : ExceptionWithOutcome
+    {
+        public ItemPriceException()
+        {
+        }
+
+        public ItemPriceException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemPriceException(string message) : base(message)
+        {
+        }
+
+        public ItemPriceException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemPriceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemLifetimeException : ExceptionWithOutcome
+    {
+        public ItemLifetimeException()
+        {
+        }
+
+        public ItemLifetimeException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemLifetimeException(string message) : base(message)
+        {
+        }
+
+        public ItemLifetimeException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemLifetimeException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemQuantityException : ExceptionWithOutcome
+    {
+        public ItemQuantityException()
+        {
+        }
+
+        public ItemQuantityException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemQuantityException(string message) : base(message)
+        {
+        }
+
+        public ItemQuantityException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemQuantityException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Item Property Exceptions
 }

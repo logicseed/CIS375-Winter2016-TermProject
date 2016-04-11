@@ -30,10 +30,8 @@ namespace IceCreamManager.Model
 
             protected set
             {
-                if (value < Requirement.MinID)
-                {
-                    throw new ArgumentOutOfRangeException("ID out of range.");
-                }
+                if (value < Requirement.MinID) throw new ArgumentOutOfRangeException("ID out of range.");
+
                 int oldID = id;
                 id = value;
                 if (oldID != value) OnIDChanged(oldID, id);
@@ -142,7 +140,7 @@ namespace IceCreamManager.Model
             {
                 if (Database.ExecuteCommand(CreateCommand) > 0)
                 {
-                    ID = Database.LastInsertID();
+                    ID = Database.LastInsertID;
                     InDatabase = true;
                     IsSaved = true;
                     DeleteOnSave = false;

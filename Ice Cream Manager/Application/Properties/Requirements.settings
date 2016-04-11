@@ -14,9 +14,6 @@
     <Setting Name="MinPrice" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MaxDescription" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">30</Value>
-    </Setting>
     <Setting Name="MaxNameLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">20</Value>
     </Setting>
@@ -32,10 +29,10 @@
     <Setting Name="MinID" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MinLifetime" Type="System.Int32" Scope="Application">
+    <Setting Name="MinItemLifetime" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MaxLifetime" Type="System.Int32" Scope="Application">
+    <Setting Name="MaxItemLifetime" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">365</Value>
     </Setting>
     <Setting Name="MaxCacheHours" Type="System.Int32" Scope="Application">
@@ -53,26 +50,50 @@
     <Setting Name="MinNameLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MinStateLength" Type="System.Int32" Scope="User">
+    <Setting Name="MinStateLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="MaxStateLength" Type="System.Int32" Scope="User">
+    <Setting Name="MaxStateLength" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="MinFuelCost" Type="System.Double" Scope="User">
+    <Setting Name="MinFuelCost" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MaxFuelCost" Type="System.Double" Scope="User">
+    <Setting Name="MaxFuelCost" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">99.99</Value>
     </Setting>
-    <Setting Name="MinHourCost" Type="System.Double" Scope="User">
+    <Setting Name="MinHourCost" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MaxHourCost" Type="System.Double" Scope="User">
+    <Setting Name="MaxHourCost" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">99.99</Value>
     </Setting>
-    <Setting Name="MaxRouteCities" Type="System.Int32" Scope="User">
+    <Setting Name="MaxRouteCities" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MinItemNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxItemNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="MinItemPrice" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxItemPrice" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">99.99</Value>
+    </Setting>
+    <Setting Name="MinItemDescriptionLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxItemDescriptionLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="MinItemQuantity" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxItemQuantity" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
     </Setting>
   </Settings>
 </SettingsFile>
