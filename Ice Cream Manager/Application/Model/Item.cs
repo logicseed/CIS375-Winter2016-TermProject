@@ -152,19 +152,19 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   The name of the database table that stores items. 
         /// </summary>
-        protected override string TableName => "item";
+        protected override string TableName => "Item";
 
         /// <summary>
         ///   The SQL command used to update an item in the database with this object's properties. 
         /// </summary>
         protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (number,description,price,lifetime,quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity}) WHERE id = {ID}";
+            $"UPDATE {TableName} SET (Number,Description,Price,Lifetime,Quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity}) WHERE id = {ID}";
 
         /// <summary>
         ///   The SQL command used to create an item in the database with this object's properties. 
         /// </summary>
         protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (number,description,price,lifetime,quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity})";
+            $"INSERT INTO {TableName} (Number,Description,Price,Lifetime,Quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity})";
 
         /// <summary>
         ///   Load an item from the database based on the provided identity. 
@@ -174,16 +174,18 @@ namespace IceCreamManager.Model
         public override bool Load(int ID)
         {
             this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
+            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE ID = {ID}");
 
             if (ResultsTable.Rows.Count == 0) return false;
 
-            Number = ResultsTable.Row().Col("number");
-            Description = ResultsTable.Row().Col<string>("description");
-            Price = ResultsTable.Row().Col<double>("price");
-            Lifetime = ResultsTable.Row().Col("lifetime");
-            Quantity = ResultsTable.Row().Col("quantity");
-            IsDeleted = ResultsTable.Row().Col<bool>("deleted");
+            Number = ResultsTable.Row().Col("Number");
+            Description = ResultsTable.Row().Col<string>("Description");
+            Price = ResultsTable.Row().Col<double>("Price");
+            Lifetime = ResultsTable.Row().Col("Lifetime");
+            Quantity = ResultsTable.Row().Col("Quantity");
+            IsDeleted = ResultsTable.Row().Col<bool>("IsDeleted");
+            InDatabase = true;
+            IsSaved = true;
 
             return true;
         }

@@ -39,6 +39,7 @@ namespace IceCreamManager.Model
         private SQLiteConnection DatabaseConnection;
         private SQLiteDataReader DataReaderConnection;
         private SQLiteCommand DatabaseCommandExecuter;
+        public int LastInsertID = 0;
 
         private static string DatabaseFile;
         private static string DatabaseFileAccessDetails;
@@ -278,6 +279,17 @@ namespace IceCreamManager.Model
 
                 NumberOfRowsAffectedByCommand = DatabaseCommandExecuter.ExecuteNonQuery();
 
+                // Get last insert row id
+                ProvideExecuterCommandToExecute("SELECT last_insert_rowid()");
+
+                DataReaderConnection = DatabaseCommandExecuter.ExecuteReader();
+
+                DataTable ResultsTable = new DataTable();
+
+                ResultsTable.Load(DataReaderConnection);
+
+                LastInsertID = ResultsTable.Row().Col();
+
                 CloseConnectionToDatabase();
             }
             catch (Exception e)
@@ -298,7 +310,7 @@ namespace IceCreamManager.Model
         /// <returns></returns>
         public bool MarkAsDeleted(string TableName, int ID)
         {
-            string DatabaseCommand = $"UPDATE {TableName} SET deleted = true WHERE id = {ID}";
+            string DatabaseCommand = $"UPDATE {TableName} SET IsDeleted = 1 WHERE id = {ID}";
 
             try
             {
@@ -311,22 +323,22 @@ namespace IceCreamManager.Model
             }
         }
 
-        /// <summary>
-        ///   Provides the identity of the last row inserted into the database. 
-        /// </summary>
-        /// <preconditions> An insert must have been performed on the database. </preconditions>
-        /// <postconditions> No changes are made to the state of the application. </postconditions>
-        /// <returns> The identity of the last row inserted into the database. </returns>
-        public int LastInsertID()
-        {
-            try
-            {
-                return DataTableFromCommand("SELECT last_insert_rowid()").Row().Col();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error getting row id of last insert.", e);
-            }
-        }
+        ///// <summary>
+        /////   Provides the identity of the last row inserted into the database.
+        ///// </summary>
+        ///// <preconditions> An insert must have been performed on the database. </preconditions>
+        ///// <postconditions> No changes are made to the state of the application. </postconditions>
+        ///// <returns> The identity of the last row inserted into the database. </returns>
+        //public int LastInsertID()
+        //{
+        //    try
+        //    {
+        //        return DataTableFromCommand("SELECT last_insert_rowid()").Row().Col();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception("Error getting row id of last insert.", e);
+        //    }
+        //}
     }
 }
