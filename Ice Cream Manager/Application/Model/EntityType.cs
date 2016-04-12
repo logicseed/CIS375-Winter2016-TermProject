@@ -5,6 +5,9 @@
 
 namespace IceCreamManager.Model
 {
+    /// <summary>
+    ///   Represents an entity type in the log entries. 
+    /// </summary>
     public enum EntityType
     {
         None,

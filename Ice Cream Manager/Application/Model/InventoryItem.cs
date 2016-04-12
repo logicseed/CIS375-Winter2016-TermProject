@@ -18,7 +18,7 @@ namespace IceCreamManager.Model
     {
         public int ItemID;
         public Item ItemType;
-        public int InventoryID;
+        public int TruckID;
     }
 
     /// <summary>
@@ -94,12 +94,12 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return InventoryItemValues.InventoryID;
+                return InventoryItemValues.TruckID;
             }
 
-            protected set
+            set
             {
-                InventoryItemValues.InventoryID = value;
+                InventoryItemValues.TruckID = value;
             }
         }
 
