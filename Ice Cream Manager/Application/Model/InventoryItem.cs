@@ -9,34 +9,23 @@ using System.Data;
 namespace IceCreamManager.Model
 {
     /// <summary>
-    ///   Contains the properties of an InventoryItem. 
-    /// </summary>
-    /// <remarks>
-    ///   A class was chosen over struct because of how struct will be boxed when passing as the implemented type.
-    /// </remarks>
-    public class InventoryItemProperties : DatabaseEntityProperties
-    {
-        public int ItemID;
-        public Item ItemType;
-        public int TruckID;
-    }
-
-    /// <summary>
     ///   An instance of an Item that exists within a trucks inventory and tracks its expiration. 
     /// </summary>
     public class InventoryItem : DatabaseEntity
     {
-        private InventoryItemProperties InventoryItemValues = new InventoryItemProperties();
+        private InventoryItemFactory inventoryItemFactory = InventoryItemFactory.Reference;
+
+        private int itemID = 0;
+        private int truckID = 0;
         private DateTime dateCreated;
+
+        private Item item;
+        private Truck truck;
 
         public InventoryItem()
         {
             ID = 0;
-        }
-
-        public InventoryItem(int ID)
-        {
-            Load(ID);
+            dateCreated = DateTime.Now;
         }
 
         /// <summary>
@@ -49,7 +38,7 @@ namespace IceCreamManager.Model
                 return dateCreated;
             }
 
-            protected set
+            set
             {
                 dateCreated = value;
             }
@@ -58,16 +47,12 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   The Item stereotype of which this InventoryItem is an instance. 
         /// </summary>
-        public Item ItemType
+        public Item Item
         {
             get
             {
-                return InventoryItemValues.ItemType;
-            }
-
-            protected set
-            {
-                InventoryItemValues.ItemType = value;
+                if (item == null && itemID != 0) item = inventoryItemFactory.LoadItem(itemID);
+                return item;
             }
         }
 
@@ -78,12 +63,13 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return InventoryItemValues.ItemID;
+                return itemID;
             }
 
-            protected set
+            set
             {
-                InventoryItemValues.ItemID = value;
+                // BUG: Check items existence before changing.
+                itemID = value;
             }
         }
 
@@ -94,51 +80,26 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return InventoryItemValues.TruckID;
+                return truckID;
             }
 
             set
             {
-                InventoryItemValues.TruckID = value;
+                // BUG: Check trucks existence before changing.
+                truckID = value;
             }
         }
 
-        protected override string TableName => "InventoryItem";
-
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (ItemID,TruckID,DateCreated) VALUES ({ItemID},{TruckID},'{DateTime.Now.ToDatabase()}')";
-
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET IsDeleted = {IsDeleted.ToDatabase()} WHERE ID = {ID}";
-
-        public override bool Load(int ID)
+        /// <summary>
+        ///   The Truck to which this InventoryItem belongs. 
+        /// </summary>
+        public Truck Truck
         {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE ID = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            ItemID = ResultsTable.Row().Col("ItemID");
-            ItemType = ItemFactory.Load(ItemID);
-            TruckID = ResultsTable.Row().Col("TruckID");
-            DateCreated = ResultsTable.Row().Col<DateTime>("DateCreated");
-            InDatabase = true;
-            IsSaved = true;
-
-            return true;
-        }
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            InventoryItemValues = (InventoryItemProperties)EntityProperties;
-
-            return true;
-        }
-
-        public bool RemoveFromInventory()
-        {
-            IsDeleted = true;
-            return Save();
+            get
+            {
+                if (truck == null && truckID != 0) truck = inventoryItemFactory.LoadTruck(truckID);
+                return truck;
+            }
         }
     }
 }

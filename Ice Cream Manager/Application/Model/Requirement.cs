@@ -62,6 +62,8 @@ namespace IceCreamManager
 
         public static double MaxCityMiles => Properties.Requirements.Default.MaxCityMiles;
 
+        // Driver requirements
+
         public static int MinDriverNumber => Properties.Requirements.Default.MinDriverNumber;
 
         public static int MaxDriverNumber => Properties.Requirements.Default.MaxDriverNumber;
@@ -73,5 +75,23 @@ namespace IceCreamManager
         public static double MinDriverHourlyRate => Properties.Requirements.Default.MinDriverHourlyRate;
 
         public static double MaxDriverHourlyRate => Properties.Requirements.Default.MaxDriverHourlyRate;
+
+        // Route requirements
+
+        public static int MinRouteNumber => Properties.Requirements.Default.MinRouteNumber;
+
+        public static int MaxRouteNumber => Properties.Requirements.Default.MaxRouteNumber;
+
+        // Truck requirements
+
+
+        public static int MinTruckNumber => Properties.Requirements.Default.MinTruckNumber;
+
+        public static int MaxTruckNumber => Properties.Requirements.Default.MaxTruckNumber;
+
+        public static double MinTruckFuelRate => Properties.Requirements.Default.MinTruckFuelRate;
+
+        public static double MaxTruckFuelRate => Properties.Requirements.Default.MaxTruckFuelRate;
+
     }
 }

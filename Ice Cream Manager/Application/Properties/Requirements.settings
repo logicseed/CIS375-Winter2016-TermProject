@@ -98,5 +98,23 @@
     <Setting Name="MaxDriverHourlyRate" Type="System.Double" Scope="Application">
       <Value Profile="(Default)">99.99</Value>
     </Setting>
+    <Setting Name="MaxRouteNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="MinRouteNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MinTruckNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxTruckNumber" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="MinTruckFuelRate" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxTruckFuelRate" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">99.99</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

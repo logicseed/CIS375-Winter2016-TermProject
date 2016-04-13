@@ -8,33 +8,17 @@ using System.Data;
 namespace IceCreamManager.Model
 {
     /// <summary>
-    ///   Contains the properties of an Driver. 
-    /// </summary>
-    /// <remarks>
-    ///   A class was chosen over struct because of how struct will be boxed when passing as the implemented type.
-    /// </remarks>
-    public class DriverProperties : DatabaseEntityProperties
-    {
-        public int Number;
-        public string Name;
-        public double HourlyRate;
-    }
-
-    /// <summary>
     ///   Represents the driver of an ice cream truck. 
     /// </summary>
     public class Driver : DatabaseEntity
     {
-        private DriverProperties DriverValues = new DriverProperties();
+        private int number;
+        private string name;
+        private double hourlyRate;
 
         public Driver()
         {
             ID = 0;
-        }
-
-        public Driver(int id)
-        {
-            Load(id);
         }
 
         /// <summary>
@@ -44,7 +28,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return DriverValues.Number;
+                return number;
             }
 
             set
@@ -52,9 +36,9 @@ namespace IceCreamManager.Model
                 if (value < Requirement.MinDriverNumber) throw new DriverNumberException(Outcome.ValueTooSmall);
                 if (value > Requirement.MaxDriverNumber) throw new DriverNumberException(Outcome.ValueTooLarge);
 
-                DriverValues.Number = value;
+                number = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -65,7 +49,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return DriverValues.Name;
+                return name;
             }
 
             set
@@ -73,9 +57,9 @@ namespace IceCreamManager.Model
                 if (value.Length < Requirement.MinDriverNameLength) throw new DriverNameException(Outcome.ValueTooSmall);
                 if (value.Length > Requirement.MaxDriverNameLength) throw new DriverNameException(Outcome.ValueTooLarge);
 
-                DriverValues.Name = value;
+                name = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -86,7 +70,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                return DriverValues.HourlyRate;
+                return hourlyRate;
             }
 
             set
@@ -94,59 +78,10 @@ namespace IceCreamManager.Model
                 if (value < Requirement.MinDriverHourlyRate) throw new DriverHourlyRateException(Outcome.ValueTooSmall);
                 if (value > Requirement.MaxDriverHourlyRate) throw new DriverHourlyRateException(Outcome.ValueTooLarge);
 
-                DriverValues.HourlyRate = value;
+                hourlyRate = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
-        }
-
-        /// <summary>
-        ///   The SQL command used to create a driver in the database with this object's properties. 
-        /// </summary>
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (Number,Name,HourlyRate) VALUES ({Number},'{Name}',{HourlyRate})";
-
-        /// <summary>
-        ///   The name of the database table that stores drivers. 
-        /// </summary>
-        protected override string TableName => "Driver";
-
-        /// <summary>
-        ///   The SQL command used to update a driver in the database with this object's properties. 
-        /// </summary>
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (Number,Name,HourlyRate) VALUES ({Number},'{Name}',{HourlyRate})";
-
-        /// <summary>
-        ///   Fills this driver's properties with values. 
-        /// </summary>
-        /// <param name="entityProperties"> A DatabaseEntityProperties object with the values to use. </param>
-        /// <returns> Whether or not the driver was successfully filled with the values. </returns>
-        public override bool Fill(DatabaseEntityProperties entityProperties)
-        {
-            DriverValues = (DriverProperties)entityProperties;
-
-            return true;
-        }
-
-        /// <summary>
-        ///   Load a driver from the database based on the provided identity. 
-        /// </summary>
-        /// <param name="id"> The unique driver identity. </param>
-        /// <returns> Whether or not the driver was successfully loaded. </returns>
-        public override bool Load(int id
-            )
-        {
-            this.ID = id;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {id}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            Number = ResultsTable.Row().Col("number");
-            Name = ResultsTable.Row().Col<string>("name");
-            HourlyRate = ResultsTable.Row().Col<double>("hourly_rate");
-
-            return true;
         }
     }
 }

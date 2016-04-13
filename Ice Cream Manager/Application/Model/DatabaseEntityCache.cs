@@ -41,10 +41,25 @@ namespace IceCreamManager.Model
         /// <param name="entityID"> The unique identity of the entity to be added to the cache. </param>
         /// <param name="entity"> The reference to the entity in memory. </param>
         /// <returns> Whether or not the entity was successfully added to the cache. </returns>
-        public bool Add(string cacheName, int entityID, DatabaseEntity entity)
+        public bool Add(string cacheName, DatabaseEntity entity)
         {
-            entity.IDChanged += DatabaseEntity_IDChanged;
-            return EntityCache.Add(cacheName + entityID, entity, CachePolicy);
+            return EntityCache.Add(cacheName + entity.ID, entity, CachePolicy);
+        }
+
+        /// <summary>
+        /// Removes an entity from a specific memory cache. The cache is named for the class that implements DatabaseEntity.
+        /// </summary>
+        /// <param name="cacheName">The name of the cache. </param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool Remove(string cacheName, DatabaseEntity entity)
+        {
+            if (Contains(cacheName, entity.ID))
+            {
+                EntityCache.Remove(cacheName + entity.ID);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -67,21 +82,6 @@ namespace IceCreamManager.Model
         public DatabaseEntity Get(string cacheName, int entityID)
         {
             return (DatabaseEntity)EntityCache.Get(cacheName + entityID);
-        }
-
-        /// <summary>
-        ///   Handles the OnChangedID event that a DatabaseEntity can invoke. Updates the cache's references to match the
-        ///   changed identity.
-        /// </summary>
-        /// <param name="sender"> The entity that invoked the event. </param>
-        /// <param name="eventDetails"> Details on the identity change. </param>
-        private static void DatabaseEntity_IDChanged(object sender, IDChangedEventArgs eventDetails)
-        {
-            if (EntityCache.Contains(eventDetails.CacheName + eventDetails.OldID))
-            {
-                DatabaseEntity Entity = (DatabaseEntity)EntityCache.Get(eventDetails.CacheName + eventDetails.OldID);
-                EntityCache.Add(eventDetails.CacheName + eventDetails.NewID, Entity, CachePolicy);
-            }
         }
     }
 }

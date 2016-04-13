@@ -75,10 +75,10 @@
     <Compile Include="Model\ActionType.cs" />
     <Compile Include="Model\BatchFileType.cs" />
     <Compile Include="Model\BatchHistoryEntry.cs" />
+    <Compile Include="Model\BatchHistoryEntryFactory.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Model\BatchHistory.cs" />
-    <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
     <Compile Include="Model\DatabaseEntity.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemFactory.cs" />
     <Compile Include="Model\LogEntry.cs" />
+    <Compile Include="Model\LogEntryFactory.cs" />
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\RouteFactory.cs" />

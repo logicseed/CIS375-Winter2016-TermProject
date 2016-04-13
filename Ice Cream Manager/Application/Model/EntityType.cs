@@ -21,5 +21,6 @@ namespace IceCreamManager.Model
         Poll,
         Sale,
         Driver,
+        BatchFile,
     }
 }
