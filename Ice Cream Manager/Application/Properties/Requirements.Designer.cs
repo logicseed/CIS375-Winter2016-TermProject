@@ -247,5 +247,14 @@ namespace IceCreamManager.Properties {
                 this["MaxHourCost"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int ZeroFillNumberLength {
+            get {
+                return ((int)(this["ZeroFillNumberLength"]));
+            }
+        }
     }
 }

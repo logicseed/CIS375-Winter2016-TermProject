@@ -71,5 +71,8 @@
     <Setting Name="MaxHourCost" Type="System.Double" Scope="User">
       <Value Profile="(Default)">99.99</Value>
     </Setting>
+    <Setting Name="ZeroFillNumberLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

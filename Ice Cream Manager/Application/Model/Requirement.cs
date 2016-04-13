@@ -31,5 +31,6 @@ namespace IceCreamManager
         public static int MaxCacheHours { get { return Properties.Requirements.Default.MaxCacheHours; } }
         public static int MaxCacheMinutes { get { return Properties.Requirements.Default.MaxCacheMinutes; } }
         public static int MaxCacheSeconds { get { return Properties.Requirements.Default.MaxCacheSeconds; } }
+        public static int ZeroFillNumberLength { get { return Properties.Requirements.Default.ZeroFillNumberLength; } }
     }
 }

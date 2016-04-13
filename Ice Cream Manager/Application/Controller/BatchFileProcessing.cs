@@ -7,12 +7,30 @@ using IceCreamManager.Model;
 
 namespace IceCreamManager.Controller
 {
-
-    class BatchFileProcessing : DatabaseEntity
+    class BatchFileProcessing
     {
-        private string fileLine;
-        private int countedRecords;
-        private char trim = ' ';
+        public string fileLine;
+        public int countedRecords;
+        public char trim = ' ';
+        public string extractedData;
+
+        public bool ZeroFillNumberCheck(string FileNumber)
+        {
+            //Does it create a valid number
+            FileNumber.Trim(trim);
+            if (FileNumber.Length == Requirement.ZeroFillNumberLength)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    class HeaderFooter : BatchFileProcessing
+    {
+        string[] recordTypes = new string[] { "IR", "TR", "SR", "T " };
+        int sequenceNumber;
+        int trailerNumber;
+        DateTime date;
 
         public bool ProcessHeaderFooter(string FilePath)
         {
@@ -20,23 +38,14 @@ namespace IceCreamManager.Controller
             /// Checks the header and footer of input files. Takes the header and extracts data by columns, counts the number
             /// of records in the file, and then extracts data from footer and compares the counted number of records.       
             /// </summary>
-            /// <param name="FilePath">Pathing the input file</param>
+            /// <param name="FilePath">Pathing to the input file</param>
             /// <returns>
             /// Returns true if the header and footer pass all if statements
             /// Returns false if at any point it does not pass an if statement
             /// </returns>
 
-            string extractedData;
-            string[] recordTypes = new string[] { "IR", "TR", "SR", "T " };
-            int sequenceNumber;
-            int trailerNumber;
-            DateTime date;
-
             try
             {
-                string DatabaseCommand = $"SELECT * FROM batch_file WHERE id = {ID}";
-                DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
                 StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
 
@@ -110,35 +119,46 @@ namespace IceCreamManager.Controller
                 return false;
             }
         }
+    }
 
-        public void ProcessCityUpload(string FilePath)
+    class CityUpload : BatchFileProcessing
+    {
+
+        string cityLabel;
+        string cityName;
+        string state;
+        double hours;
+        double miles;
+
+        /// <summary>
+        /// Processes City file, Rejects line if information is invalid.
+        /// </summary>
+        /// <param name="FilePath">Pathing to the input file</param>
+        public void ProcessCityFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD 
                 |------city label----||------city name-----||state|
                 T #ROWS
             */
-            string cityLabel;
-            string cityName;
-            string state;
-
+           
             try
             {
                 StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
 
-                while (file.EndOfStream != false && fileLine.Substring(0, 2) != "T ")
+                while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
                 {
                     fileLine = file.ReadLine();
 
-                    cityLabel = fileLine.Substring(0, 20);
-                    fileLine = fileLine.Remove(0, 20);
+                    cityLabel = fileLine.Substring(0, Requirement.MaxLabelLength);
+                    fileLine = fileLine.Remove(0, Requirement.MaxLabelLength);
 
-                    cityName = fileLine.Substring(0, 20);
-                    fileLine = fileLine.Remove(0, 20);
+                    cityName = fileLine.Substring(0, Requirement.MaxLabelLength);
+                    fileLine = fileLine.Remove(0, Requirement.MaxLabelLength);
 
-                    state = fileLine.Substring(0, 2);
-                    fileLine = fileLine.Remove(0, 2);
+                    state = fileLine.Substring(0, Requirement.MaxStateLength);
+                    fileLine = fileLine.Remove(0, Requirement.MaxStateLength);
 
                     if (fileLine == null)
                     {
@@ -160,19 +180,114 @@ namespace IceCreamManager.Controller
             }
         }
 
-        public void ProcessRouteUpload(string FilePath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessCityFileExtension(string FilePath)
+        {
+            /*
+                HD SEQ#      YYYY-MM-DD
+                |------city label----||Hours||Miles|
+            */
+            
+            try
+            {
+                StreamReader file = new StreamReader(FilePath);
+                fileLine = file.ReadLine();
+
+                while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
+                {
+                    fileLine = file.ReadLine();
+
+                    cityLabel = fileLine.Substring(0, Requirement.MaxLabelLength);
+                    if (cityLabel != null)  //If city label exists in DB
+                    {
+                        fileLine = fileLine.Remove(0, Requirement.MaxLabelLength);
+                        extractedData = fileLine.Substring(0, 4);
+                        if (ZeroFillNumberCheck(extractedData))
+                        {
+                            hours = Convert.ToDouble(extractedData);
+                            hours = hours / 100;
+                            fileLine = fileLine.Remove(0, 4);
+
+                            extractedData = fileLine.Substring(0, 4);
+                            if (ZeroFillNumberCheck(extractedData))
+                            {
+                                miles = Convert.ToDouble(extractedData);
+                                miles = miles / 100;
+                                fileLine = fileLine.Remove(0, 4);
+
+                                if (fileLine == null)
+                                {
+                                    cityLabel.TrimEnd(trim);
+                                    file.Close();
+                                    //Apply all data
+                                }
+                                else
+                                {
+                                    //Reject line
+                                }
+                            }
+                            else
+                            {
+                                //Reject line
+                            }
+                           
+                        }
+                        else
+                        {
+                            //Rejct line
+                        }
+                    }
+                    else
+                    {
+                        //Reject line
+                    }
+                }     
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+    }
+
+    class RouteUpload : BatchFileProcessing
+    {
+        string actionCode;
+        int routeNumber;
+        string[] cityLabel = new string[10];
+
+        public void ExtractCityLabels()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                extractedData = fileLine.Substring(0, 20);
+                extractedData.TrimEnd(trim);
+                if (extractedData) //Does this city label exist in the DB
+                {
+                    cityLabel[i] = extractedData;
+                }
+                else
+                {
+                    Array.Clear(cityLabel, 0, 10);
+                    //Reject line
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessRouteFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD    
                 |action code||Route Number||-----city label-----|*10
                 T #ROWS
             */
-            string DatabaseCommand = $"SELECT * FROM city WHERE id = {ID}";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            string actionCode;
-            int routeNumber;
-            string[] cityLabel = new string[10];
 
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
@@ -187,59 +302,168 @@ namespace IceCreamManager.Controller
                 routeNumber = Convert.ToInt32(fileLine.Substring(0, 4));
                 fileLine = fileLine.Remove(0, 4);
 
-                if (actionCode == "A")
+                if (routeNumber)  //Does this routeNumber exist in the DB
                 {
-                   
-                }
-                else if (actionCode == "C")
-                {
-
-                }
-                else if (actionCode == "D")
-                {
-                    if (fileLine == null)
+                    if (actionCode == "C")
                     {
-                        //Delete route
+                        //Erase contents of routeNumber
+                        ExtractCityLabels();
+                        //Apply cityLabls
                     }
-                    else
+                    else if (actionCode == "D")
                     {
-                        //Reject line
-                        throw new Exception();
+                        if (fileLine == null)
+                        {
+                            //Delete route
+                        }
+                        else
+                        {
+                            //Reject line
+                        }
                     }
-                }
-
-                if (fileLine == null)
-                {
-                    //Apply all data
-
                 }
                 else
                 {
-                    //Reject line
+                    if (actionCode == "A")
+                    {
+                        ExtractCityLabels();
+                        //Apply cityLabels
+                    }
                 }
             }
             file.Close();
         }
+    }
 
-        public void ProcessTruckUpload(string FilePath)
+    class TruckUpload:BatchFileProcessing
+    {
+        int truckNumber;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessTruckFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD 
                 |Truck Number|
                 T #ROWS
             */
+
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+
+            while (file.EndOfStream != false)
+            {
+                fileLine = file.ReadLine();
+                truckNumber = Convert.ToInt32(fileLine.Substring(0, 4));
+                fileLine.Remove(0, 4);
+
+                if (fileLine == null)
+                {
+                    //Apply data
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
         }
 
-        public void ProcessTruckRouteUpload(string FilePath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessTruckFuelFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD 
-                |Truck Number||Route Number|
+                |Truck Number||Fuel Rate|
                 T #ROWS
             */
         }
 
-        public void ProcessIceCreamTruck(string FilePath)
+    }
+
+    class DriverUpload : BatchFileProcessing
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessDriverFile(string FilePath)
+        {
+            /*
+                HD SEQ#      YYYY-MM-DD 
+                |Driver Number||Driver Name||Hourly Rate|
+                T #ROWS
+            */
+            }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessTruckDriverFile(string FilePath)
+        {
+             /*
+                HD SEQ#      YYYY-MM-DD 
+                |Truck Number||Driver Number|
+                T #ROWS
+             */
+            }
+        }
+
+    class TruckRouteUpload : BatchFileProcessing
+    {
+        int truckNumber;
+        int routeNumber;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessTruckRouteFile(string FilePath)
+        {
+                /*
+                    HD SEQ#      YYYY-MM-DD 
+                    |Truck Number||Route Number|
+                    T #ROWS
+                */
+
+                StreamReader file = new StreamReader(FilePath);
+                fileLine = file.ReadLine();
+
+                while (file.EndOfStream != false)
+                {
+                    fileLine = file.ReadLine();
+
+                    truckNumber = Convert.ToInt32(fileLine.Substring(0, 4));
+                    fileLine = fileLine.Remove(0, 4);
+
+                    routeNumber = Convert.ToInt32(fileLine.Substring(0, 4));
+                    fileLine = fileLine.Remove(0, 4);
+
+                    if (fileLine == null)
+                    {
+                        //Check if truck and route exist
+                            //Apply data if they both exist
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+        }
+    }
+
+    class IceCreamTruckUpload:BatchFileProcessing
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessIceCreamTruckFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD 
@@ -249,8 +473,15 @@ namespace IceCreamManager.Controller
                 T #ROWS IN FILE
             */
         }
+    }
 
-        public void ProcessIceCreamTruckSales(string FilePath)
+    class IceCreamTruckSalesUpload : BatchFileProcessing
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessIceCreamTruckSalesFile(string FilePath)
         {
             /*
                 HD SEQ#      YYYY-MM-DD 
@@ -260,85 +491,82 @@ namespace IceCreamManager.Controller
                 T #ROWS IN FILE
             */
         }
-
-        public void ProcessInventoryUpdate(string FilePath)
-        {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Item Number||Warehouse Quantity||Price||Description|
-                T #ROWS IN FILE
-            */
-        }
-
-        public void ProcessPoll(string FilePath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessPollFile(string FilePath)
         {
             /*
                 HD SEQ#		YYYY-MM-DD
-                |Poll number||item number|
+                |Poll number|
+                |item number||Vote|
                 T #ROWS IN FILE
             */
         }
+    }
 
-        public void ProcessDriver(string FilePath)
+    class InventoryUpdateUpload : BatchFileProcessing
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessInventoryUpdateFile(string FilePath)
         {
-            /*
-                HD SEQ#		YYYY-MM-DD
-                |Driver Number||Driver Name|
-                T #ROWS IN FILE
-            */
-        }
+                /*
+                    HD SEQ#      YYYY-MM-DD 
+                    |Item Number||Warehouse Quantity||Price||Description|
+                    T #ROWS IN FILE
+                */
 
-        public void ProcessInventoryUpdateExtension(string FilePath)
+                int itemNumber;
+                int warehouseQuantity;
+                double price;
+                string description;
+
+                StreamReader file = new StreamReader(FilePath);
+                fileLine = file.ReadLine();
+
+                while (file.EndOfStream != false)
+                {
+                    fileLine = file.ReadLine();
+
+                    itemNumber = Convert.ToInt32(fileLine.Substring(0, 4));
+                    fileLine = fileLine.Remove(0, 5);
+
+                    warehouseQuantity = Convert.ToInt32(fileLine.Substring(0, 6));
+                    fileLine = fileLine.Remove(0, 7);
+
+                    price = Convert.ToDouble(fileLine.Substring(0, 4));
+                    price = price / 100;
+                    fileLine = fileLine.Remove(0, 5);
+
+                    description = fileLine.Substring(0, Requirement.MaxDescription);
+                    fileLine = fileLine.Remove(0, Requirement.MaxDescription);
+
+                    if (fileLine == null)
+                    {
+                        //Check if item exists
+                        //Apply data if they both exist
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessInventoryUpdateExtensionFile(string FilePath)
         {
             /*      
                 HD SEQ#		YYYY-MM-DD
                 |Item number||Item freshness|
                 T #ROWS IN FILE
             */
-        }
-
-        public void ProcessCityUploadExtension(string FilePath)
-        {
-            /*
-                HD SEQ#		YYYY-MM-DD
-                |City label||Fuel usage||hourly cost|
-            */
-        }
-
-
-
-        protected override string TableName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        protected override string CreateCommand
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        protected override string UpdateCommand
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override bool Load(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            throw new NotImplementedException();
         }
     }
 }
