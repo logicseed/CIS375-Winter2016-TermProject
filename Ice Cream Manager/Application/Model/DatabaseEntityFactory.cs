@@ -120,6 +120,49 @@ namespace IceCreamManager.Model
             if (ResultsTable.Rows.Count > 0) return true;
             return false;
         }
-        
+
+
+        #region Factory Network
+
+        // All factories know how to ask all the other factories for an entity
+
+        public City LoadCity(int cityID)
+        {
+            CityFactory cityFactory = CityFactory.Reference;
+            return cityFactory.Load(cityID);
+        }
+
+        public Driver LoadDriver(int driverID)
+        {
+            DriverFactory driverFactory = DriverFactory.Reference;
+            return driverFactory.Load(driverID);
+        }
+
+        public InventoryItem LoadInventoryItem(int inventoryItemID)
+        {
+            InventoryItemFactory inventoryItemFactory = InventoryItemFactory.Reference;
+            return inventoryItemFactory.Load(inventoryItemID);
+        }
+
+        public Item LoadItem(int itemID)
+        {
+            ItemFactory itemFactory = ItemFactory.Reference;
+            return itemFactory.Load(itemID);
+        }
+
+        public Route LoadRoute(int routeID)
+        {
+            RouteFactory routeFactory = RouteFactory.Reference;
+            return routeFactory.Load(routeID);
+        }
+
+        public Truck LoadTruck(int truckID)
+        {
+            TruckFactory truckFactory = TruckFactory.Reference;
+            return truckFactory.Load(truckID);
+        }
+
+        #endregion
+
     }
 }
