@@ -5,7 +5,9 @@
 
 using System;
 
-namespace IceCreamManager.Model
+using IceCreamManager.Model;
+
+namespace IceCreamManager
 {
     public static class BatchHistory
     {

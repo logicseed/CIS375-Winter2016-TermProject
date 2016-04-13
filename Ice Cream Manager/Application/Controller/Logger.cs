@@ -6,7 +6,7 @@
 using System;
 using IceCreamManager.Model;
 
-namespace IceCreamManager
+namespace IceCreamManager.Controller
 {
     public static class Logger
     {
