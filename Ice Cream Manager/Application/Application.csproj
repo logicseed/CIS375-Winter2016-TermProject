@@ -98,6 +98,8 @@
     <Compile Include="Model\Requirement.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\RouteFactory.cs" />
+    <Compile Include="Model\SalaryCost.cs" />
+    <Compile Include="Model\SalaryCostFactory.cs" />
     <Compile Include="Model\Sale.cs" />
     <Compile Include="Model\SaleFactory.cs" />
     <Compile Include="Model\Truck.cs" />

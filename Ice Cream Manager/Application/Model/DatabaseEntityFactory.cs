@@ -77,16 +77,25 @@ namespace IceCreamManager.Model
         protected bool Update(DatabaseEntityType entity)
         {
             string DatabaseCommand = $"UPDATE {TableName} SET {DatabaseQueryColumnValuePairs(entity)} WHERE ID = {entity.ID}";
-            if (Database.ExecuteCommand(DatabaseCommand) > 0) return true;
+            if (Database.ExecuteCommand(DatabaseCommand) > 0)
+            {
+                entity.InDatabase = true;
+                entity.IsSaved = true;
+                return true;
+            }
             return false;
         }
 
         protected bool Create(DatabaseEntityType entity)
         {
+            // TODO: Make this search for existing entities with the same values to reduce db clutter.
             string DatabaseCommand = $"INSERT INTO {TableName} ({DatabaseQueryColumns()}) VALUES ({DatabaseQueryValues(entity)})";
             if (Database.ExecuteCommand(DatabaseCommand) > 0)
             {
                 entity.ID = Database.LastInsertID;
+                entity.InDatabase = true;
+                entity.IsSaved = true;
+                EntityCache.Add(TableName, entity);
                 return true;
             }
             return false;
