@@ -113,7 +113,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (route == null) route = saleFactory.LoadRoute(truckID);
+                if (route == null) route = saleFactory.LoadRoute(routeID);
                 return route;
             }
         }
