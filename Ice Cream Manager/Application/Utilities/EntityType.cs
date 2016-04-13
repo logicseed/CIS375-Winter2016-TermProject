@@ -3,8 +3,11 @@
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
 
-namespace IceCreamManager.Model
+namespace IceCreamManager
 {
+    /// <summary>
+    ///   Represents an entity type in the log entries. 
+    /// </summary>
     public enum EntityType
     {
         None,
@@ -18,5 +21,6 @@ namespace IceCreamManager.Model
         Poll,
         Sale,
         Driver,
+        BatchFile,
     }
 }

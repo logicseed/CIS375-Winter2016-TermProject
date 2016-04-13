@@ -3,55 +3,49 @@
 /// <author> Marc King </author>
 /// <date_created> 2016-04-09 </date_created>
 
+using System;
 using System.Data;
 
 namespace IceCreamManager.Model
 {
-    public static class CityFactory
+    /// <summary>
+    ///   Provides an interface for the creation and loading of cities. 
+    /// </summary>
+    public class CityFactory : DatabaseEntityFactory<City>
     {
-        private static DatabaseEntityFactory<City> DatabaseCityFactory = new DatabaseEntityFactory<City>();
-        private static DatabaseManager Database = DatabaseManager.Reference;
+        #region Singleton
+        private static readonly CityFactory SingletonInstance = new CityFactory();
+        public static CityFactory Reference { get { return SingletonInstance; } }
+        private CityFactory() { }
+        #endregion Singleton
 
-        public static City Load(int ID)
+        protected override string DatabaseQueryColumns()
+            => "Label,Name,State,Miles,Hours,IsDeleted";
+
+        protected override string DatabaseQueryColumnValuePairs(City city)
+            => $"Label = '{city.Label}',Name = '{city.Name}',State = '{city.State}',Miles = {city.Miles},Hours = {city.Hours},IsDeleted = {city.IsDeleted.ToDatabase()}";
+
+        protected override string DatabaseQueryValues(City city)
+            => $"'{city.Label}','{city.Name}','{city.State}',{city.Miles},{city.Hours},{city.IsDeleted.ToDatabase()}";
+
+        protected override City MapDataRowToProperties(DataRow row)
         {
-            return DatabaseCityFactory.Load(ID);
+            City city = new City();
+
+            city.ID = row.Col("ID");
+            city.Label = row.Col<string>("Label");
+            city.Name = row.Col<string>("Name");
+            city.State = row.Col<string>("State");
+            city.Miles = row.Col<double>("Miles");
+            city.Hours = row.Col<double>("Hours");
+            city.IsDeleted = row.Col<bool>("IsDeleted");
+            city.InDatabase = true;
+            city.IsSaved = true;
+
+            return city;
         }
 
-        /// <summary>
-        ///   Creates a new city, until City.Save() is called the new city only exists in the cache. 
-        /// </summary>
-        /// <param name="EntityProperties"></param>
-        /// <returns></returns>
-        public static City Create(CityProperties EntityProperties)
-        {
-            string DatabaseCommand = $"SELECT id FROM city WHERE label = '{EntityProperties.Label}' AND name = '{EntityProperties.Name}' AND state = '{EntityProperties.State}'";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+        //public bool DeleteAll()
 
-            // If the city has the same properties as a previous city then we load that city instead of creating a new one.
-            if (ResultsTable.Rows.Count > 0)
-            {
-                return DatabaseCityFactory.Load(ResultsTable.Row().Col("id"));
-            }
-
-            return DatabaseCityFactory.Create(EntityProperties);
-        }
-
-        /// <summary>
-        ///   Marks all the current cities as deleted in the database. 
-        /// </summary>
-        /// <returns> Whether or not there were any cities to mark as deleted. </returns>
-        public static bool DeleteAll()
-        {
-            string DatabaseCommand = "SELECT id FROM city WHERE deleted = false";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            foreach (DataRow Row in ResultsTable.Rows)
-            {
-                Database.MarkAsDeleted("city", Row.Col("id"));
-            }
-
-            if (ResultsTable.Rows.Count > 0) return true;
-            else return false;
-        }
     }
 }

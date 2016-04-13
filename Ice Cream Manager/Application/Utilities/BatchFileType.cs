@@ -3,7 +3,7 @@
 /// <author> Marc King and Rodney Lewis </author>
 /// <date_created> 2016-04-10 </date_created>
 
-namespace IceCreamManager.Model
+namespace IceCreamManager
 {
     /// <summary>
     ///   The type of batch file. 

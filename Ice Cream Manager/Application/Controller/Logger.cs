@@ -6,38 +6,61 @@
 using System;
 using IceCreamManager.Model;
 
-namespace IceCreamManager
+namespace IceCreamManager.Controller
 {
     public static class Logger
     {
-        private static DatabaseEntityFactory<LogEntry> LogEntryFactory = new DatabaseEntityFactory<LogEntry>();
+        private static LogEntryFactory logEntryFactory = LogEntryFactory.Reference;
 
-        public static bool Log(LogEntryProperties LogEntryValues)
+        public static bool Log(EntityType mainEntityType, int mainEntityID, EntityType subEntityType, int subEntityID, ActionSource source, ActionType action, Outcome outcome, int batchFileLine)
         {
-            LogEntryValues.TimeStamp = DateTime.Now;
-            LogEntryFactory.Create(LogEntryValues);
-            return true;
+            LogEntry logEntry = logEntryFactory.New();
+
+            logEntry.MainEntityType = mainEntityType;
+            logEntry.MainEntityID = mainEntityID;
+            logEntry.SubEntityType = subEntityType;
+            logEntry.SubEntityID = subEntityID;
+            logEntry.Source = source;
+            logEntry.Action = action;
+            logEntry.Outcome = outcome;
+            logEntry.BatchFileLine = batchFileLine;
+
+            return logEntry.Save();
         }
 
-        public static bool Log(EntityType EntityType, int EntityID, ActionSource Source, ActionType Action, Outcome Outcome, int BatchFileLine)
+        public static bool Log(EntityType mainEntityType, int mainEntityID, EntityType subEntityType, int subEntityID, ActionSource source, ActionType action, Outcome outcome)
         {
-            return Log(EntityType, EntityID, EntityType.None, 0, Source, Action, Outcome, BatchFileLine);
+            return Log(mainEntityType, mainEntityID, subEntityType, subEntityID, source, action, outcome, 0);
         }
 
-        public static bool Log(EntityType MainEntityType, int MainEntityID, EntityType SubEntityType, int SubEntityID, ActionSource Source, ActionType Action, Outcome Outcome, int BatchFileLine)
+        public static bool Log(EntityType entityType, int entityID, ActionSource source, ActionType action, Outcome outcome, int batchFileLine)
         {
-            LogEntryProperties LogEntryValues = new LogEntryProperties();
+            return Log(entityType, entityID, EntityType.None, 0, source, action, outcome, batchFileLine);
+        }
 
-            LogEntryValues.MainEntityType = MainEntityType;
-            LogEntryValues.MainEntityID = MainEntityID;
-            LogEntryValues.SubEntityType = SubEntityType;
-            LogEntryValues.SubEntityID = SubEntityID;
-            LogEntryValues.Source = Source;
-            LogEntryValues.Action = Action;
-            LogEntryValues.Outcome = Outcome;
-            LogEntryValues.BatchFileLine = BatchFileLine;
+        public static bool Log(EntityType entityType, int entityID, ActionSource source, ActionType action, Outcome outcome)
+        {
+            return Log(entityType, entityID, EntityType.None, 0, source, action, outcome, 0);
+        }
 
-            return Log(LogEntryValues);
+        public static bool LogBatch(EntityType mainEntityType, int mainEntityID, EntityType subEntityType, int subEntityID, ActionType action, Outcome outcome, int batchFileLine)
+        {
+            return Log(mainEntityType, mainEntityID, subEntityType, subEntityID, ActionSource.BatchFile, action, outcome, batchFileLine);
+        }
+
+        public static bool LogBatch(EntityType entityType, int entityID, ActionType action, Outcome outcome, int batchFileLine)
+        {
+            return Log(entityType, entityID, EntityType.None, 0, ActionSource.BatchFile, action, outcome, batchFileLine);
+        }
+
+        public static bool LogBatch(EntityType entityType, int entityID, ActionType action, Outcome outcome)
+        {
+            return Log(entityType, entityID, EntityType.None, 0, ActionSource.BatchFile, action, outcome, 0);
+        }
+
+        public static bool LogBatch(BatchFileType batchFileType, ActionType action, Outcome outcome)
+        {
+            return Log(EntityType.BatchFile, (int)batchFileType, EntityType.None, 0, ActionSource.BatchFile, action, outcome, 0);
         }
     }
 }
