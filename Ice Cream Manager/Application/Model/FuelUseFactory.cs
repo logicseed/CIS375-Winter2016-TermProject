@@ -23,11 +23,11 @@ namespace IceCreamManager.Model
         protected override string DatabaseQueryColumns()
             => "RouteID,TruckID,DateUsed";
 
-        protected override string DatabaseQueryColumnValuePairs(FuelUse entity)
-            => $"RouteID = {entity.RouteID},TruckID = {entity.TruckID},DateUsed = '{entity.DateUsed.ToDatabase()}'";
+        protected override string DatabaseQueryColumnValuePairs(FuelUse fuelUse)
+            => $"RouteID = {fuelUse.RouteID},TruckID = {fuelUse.TruckID},DateUsed = '{fuelUse.DateUsed.ToDatabase()}'";
 
-        protected override string DatabaseQueryValues(FuelUse entity)
-            => $"{entity.RouteID},{entity.TruckID},'{entity.DateUsed.ToDatabase()}'";
+        protected override string DatabaseQueryValues(FuelUse fuelUse)
+            => $"{fuelUse.RouteID},{fuelUse.TruckID},'{fuelUse.DateUsed.ToDatabase()}'";
 
         protected override FuelUse MapDataRowToProperties(DataRow row)
         {

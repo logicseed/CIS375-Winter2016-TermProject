@@ -93,6 +93,8 @@
     <Compile Include="Model\InventoryItemFactory.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemFactory.cs" />
+    <Compile Include="Model\ItemWaste.cs" />
+    <Compile Include="Model\ItemWasteFactory.cs" />
     <Compile Include="Model\LogEntry.cs" />
     <Compile Include="Model\LogEntryFactory.cs" />
     <Compile Include="Model\Requirement.cs" />
