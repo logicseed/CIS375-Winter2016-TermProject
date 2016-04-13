@@ -4,9 +4,8 @@
 /// <date_created> 2016-04-09 </date_created>
 
 using System;
-using IceCreamManager.Controller;
 
-namespace IceCreamManager.Exceptions
+namespace IceCreamManager
 {
     [Serializable]
     public class ExceptionWithOutcome : Exception
@@ -129,26 +128,26 @@ namespace IceCreamManager.Exceptions
     ///   The provided fuel cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityFuelCostInvalidException : ExceptionWithOutcome
+    public class CityMilesInvalidException : ExceptionWithOutcome
     {
-        public CityFuelCostInvalidException()
+        public CityMilesInvalidException()
         {
         }
 
-        public CityFuelCostInvalidException(Outcome ExceptionOutcome)
+        public CityMilesInvalidException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityFuelCostInvalidException(string message) : base(message)
+        public CityMilesInvalidException(string message) : base(message)
         {
         }
 
-        public CityFuelCostInvalidException(string message, Exception inner) : base(message, inner)
+        public CityMilesInvalidException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityFuelCostInvalidException(
+        protected CityMilesInvalidException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -157,32 +156,227 @@ namespace IceCreamManager.Exceptions
     /// <summary>
     ///   The provided hour cost does not match requirements. 
     /// </summary>
-
     [Serializable]
-    public class CityHourCostInvalidException : ExceptionWithOutcome
+    public class CityHoursInvalidException : ExceptionWithOutcome
     {
-        public CityHourCostInvalidException()
+        public CityHoursInvalidException()
         {
         }
 
-        public CityHourCostInvalidException(Outcome ExceptionOutcome)
+        public CityHoursInvalidException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityHourCostInvalidException(string message) : base(message)
+        public CityHoursInvalidException(string message) : base(message)
         {
         }
 
-        public CityHourCostInvalidException(string message, Exception inner) : base(message, inner)
+        public CityHoursInvalidException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityHourCostInvalidException(
+        protected CityHoursInvalidException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
     }
 
     #endregion City Property Exceptions
+
+    #region Route Property Exceptions
+
+    /// <summary>
+    ///   Trying to add too many cities. 
+    /// </summary>
+    [Serializable]
+    public class RouteCityCountException : ExceptionWithOutcome
+    {
+        public RouteCityCountException()
+        {
+        }
+
+        public RouteCityCountException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public RouteCityCountException(string message) : base(message)
+        {
+        }
+
+        public RouteCityCountException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected RouteCityCountException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    /// <summary>
+    ///   The provided number does not match requirements. 
+    /// </summary>
+    [Serializable]
+    public class RouteNumberInvalidException : ExceptionWithOutcome
+    {
+        public RouteNumberInvalidException()
+        {
+        }
+
+        public RouteNumberInvalidException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public RouteNumberInvalidException(string message) : base(message)
+        {
+        }
+
+        public RouteNumberInvalidException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected RouteNumberInvalidException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Route Property Exceptions
+
+    #region Item Property Exceptions
+
+    [Serializable]
+    public class ItemNumberException : ExceptionWithOutcome
+    {
+        public ItemNumberException()
+        {
+        }
+
+        public ItemNumberException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemNumberException(string message) : base(message)
+        {
+        }
+
+        public ItemNumberException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemNumberException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemDescriptionException : ExceptionWithOutcome
+    {
+        public ItemDescriptionException()
+        {
+        }
+
+        public ItemDescriptionException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemDescriptionException(string message) : base(message)
+        {
+        }
+
+        public ItemDescriptionException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemDescriptionException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemPriceException : ExceptionWithOutcome
+    {
+        public ItemPriceException()
+        {
+        }
+
+        public ItemPriceException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemPriceException(string message) : base(message)
+        {
+        }
+
+        public ItemPriceException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemPriceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemLifetimeException : ExceptionWithOutcome
+    {
+        public ItemLifetimeException()
+        {
+        }
+
+        public ItemLifetimeException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemLifetimeException(string message) : base(message)
+        {
+        }
+
+        public ItemLifetimeException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemLifetimeException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class ItemQuantityException : ExceptionWithOutcome
+    {
+        public ItemQuantityException()
+        {
+        }
+
+        public ItemQuantityException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public ItemQuantityException(string message) : base(message)
+        {
+        }
+
+        public ItemQuantityException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected ItemQuantityException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Item Property Exceptions
 }

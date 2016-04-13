@@ -66,6 +66,7 @@
     <Compile Include="Controller\BatchFileProcessingTests.cs" />
     <Compile Include="Model\ExtensionMethodsTests.cs" />
     <Compile Include="Model\DatabaseManagerTests.cs" />
+    <Compile Include="Model\ItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

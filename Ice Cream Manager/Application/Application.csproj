@@ -69,21 +69,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Exceptions.cs" />
+    <Compile Include="Controller\Logger.cs" />
     <Compile Include="Controller\Outcomes.cs" />
+    <Compile Include="Model\ActionSource.cs" />
+    <Compile Include="Model\ActionType.cs" />
+    <Compile Include="Model\BatchFileType.cs" />
+    <Compile Include="Model\BatchHistoryEntry.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Controller\BatchFileProcessing.cs" />
+    <Compile Include="Model\BatchHistory.cs" />
     <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
     <Compile Include="Model\DatabaseEntity.cs" />
     <Compile Include="Model\DatabaseEntityFactory.cs" />
     <Compile Include="Model\DatabaseManager.cs" />
+    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\DriverFactory.cs" />
+    <Compile Include="Model\EntityType.cs" />
     <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\InventoryFactory.cs" />
     <Compile Include="Model\InventoryItem.cs" />
+    <Compile Include="Model\InventoryItemFactory.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ItemFactory.cs" />
+    <Compile Include="Model\LogEntry.cs" />
     <Compile Include="Model\Requirement.cs" />
+    <Compile Include="Model\Route.cs" />
+    <Compile Include="Model\RouteFactory.cs" />
+    <Compile Include="Model\Truck.cs" />
+    <Compile Include="Model\TruckFactory.cs" />
     <Compile Include="Properties\Requirements.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

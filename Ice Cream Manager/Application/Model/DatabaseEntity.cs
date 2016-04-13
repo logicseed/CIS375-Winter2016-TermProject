@@ -21,7 +21,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   The unique identity of the database entity. 
         /// </summary>
-        public int ID
+        public virtual int ID
         {
             get
             {
@@ -30,10 +30,8 @@ namespace IceCreamManager.Model
 
             protected set
             {
-                if (value < Requirement.MinID)
-                {
-                    throw new ArgumentOutOfRangeException("ID out of range.");
-                }
+                if (value < Requirement.MinID) throw new ArgumentOutOfRangeException("ID out of range.");
+
                 int oldID = id;
                 id = value;
                 if (oldID != value) OnIDChanged(oldID, id);
@@ -93,7 +91,7 @@ namespace IceCreamManager.Model
         /// <returns></returns>
         abstract public bool Fill(DatabaseEntityProperties EntityProperties);
 
-        public bool Save()
+        public virtual bool Save()
         {
             // If an object is loaded then it must exist in the database.
             if (InDatabase && DeleteOnSave)
@@ -128,6 +126,7 @@ namespace IceCreamManager.Model
         /// <returns> Whether or not the values of the entity were updated in the database. </returns>
         protected bool Update()
         {
+            if (UpdateCommand == "") return true;
             return (Database.ExecuteCommand(UpdateCommand) > 0);
         }
 
@@ -141,7 +140,7 @@ namespace IceCreamManager.Model
             {
                 if (Database.ExecuteCommand(CreateCommand) > 0)
                 {
-                    ID = Database.LastInsertID();
+                    ID = Database.LastInsertID;
                     InDatabase = true;
                     IsSaved = true;
                     DeleteOnSave = false;
