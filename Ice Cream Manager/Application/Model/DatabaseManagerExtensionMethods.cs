@@ -24,7 +24,12 @@ namespace IceCreamManager.Model
             return (ReturnType)Convert.ChangeType(dataRow[name], typeof(ReturnType), CultureInfo.InvariantCulture);
         }
 
-        // IDEA: Test task something.
+        public static DateTime ColDateTime(this DataRow dataRow, string name) 
+        {
+            DateTime convertedDateTime = new DateTime();
+            DateTime.TryParse(dataRow[name].ToString(), out convertedDateTime);
+            return convertedDateTime;
+        }
 
         /// <summary>
         ///   Generic method to get the value in a column as a datatype ReturnType. 

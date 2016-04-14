@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IceCreamManager.Model
 {
-    class SalaryCostFactory : DatabaseEntityFactory<SalaryCost>
+    public class SalaryCostFactory : DatabaseEntityFactory<SalaryCost>
     {
         #region Singleton
         private static readonly SalaryCostFactory SingletonInstance = new SalaryCostFactory();

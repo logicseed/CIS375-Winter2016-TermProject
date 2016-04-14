@@ -45,7 +45,38 @@ namespace IceCreamManager.Model
             return city;
         }
 
-        //public bool DeleteAll()
+        public bool DeleteAll()
+        {
+            string DatabaseCommand = $"UPDATE {TableName} SET IsDeleted = 1 WHERE IsDeleted = 0";
 
+            if (Database.ExecuteCommand(DatabaseCommand) > 0) return true;
+            else return false;
+        }
+
+        public bool Exists(string cityLabel, bool isDeleted)
+        {
+            string DatabaseCommand = $"SELECT 1 FROM {TableName} WHERE Label = '{cityLabel}' AND IsDeleted = {isDeleted.ToDatabase()}";
+
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            if (ResultsTable.Rows.Count == 0) return true;
+            else return false;
+        }
+
+        public bool Exists(string cityLabel)
+        {
+            return Exists(cityLabel, false);
+        }
+
+        public int GetCityID(string cityLabel)
+        {
+            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE Label = '{cityLabel}' AND IsDeleted = 0";
+
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            if (ResultsTable.Rows.Count == 0) return 0;
+
+            return ResultsTable.Row().Col("ID");
+        }
     }
 }

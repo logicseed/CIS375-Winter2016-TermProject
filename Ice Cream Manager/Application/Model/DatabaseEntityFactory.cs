@@ -7,24 +7,26 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    abstract public class DatabaseEntityFactory<DatabaseEntityType> 
+    abstract public class DatabaseEntityFactory<DatabaseEntityType>
         where DatabaseEntityType : DatabaseEntity, new()
     {
-        protected static DatabaseManager Database = DatabaseManager.Reference;
-        protected static DatabaseEntityCache EntityCache = DatabaseEntityCache.Reference;
-
-        
+        #region Public Constructors
 
         public DatabaseEntityFactory()
         {
-
         }
 
-        public DatabaseEntityType New()
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public bool Exists(int id)
         {
-            DatabaseEntityType entity = new DatabaseEntityType();
-            SubscribeToEntityEvents(entity);
-            return new DatabaseEntityType();
+            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE ID = {id}";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            if (ResultsTable.Rows.Count > 0) return true;
+            return false;
         }
 
         public DatabaseEntityType Load(int id)
@@ -32,7 +34,7 @@ namespace IceCreamManager.Model
             DatabaseEntityType entity = new DatabaseEntityType();
             entity.ID = id;
             Load(entity);
-            SubscribeToEntityEvents(entity);
+            //SubscribeToEntityEvents(entity);
             return entity;
         }
 
@@ -44,47 +46,29 @@ namespace IceCreamManager.Model
             return true;
         }
 
-        private void SubscribeToEntityEvents(DatabaseEntityType entity)
+        public DatabaseEntityType New()
         {
-            entity.OnSaveImmediately += DatabaseEntityProperties_SaveImmediately;
-            entity.OnUndoImmediately += DatabaseEntityProperties_UndoImmediately;
+            DatabaseEntityType entity = new DatabaseEntityType();
+            SubscribeToEntityEvents(entity);
+            return new DatabaseEntityType();
         }
 
-        protected virtual bool Save(DatabaseEntityType entity)
-        {
-            if (entity.InDatabase && entity.ReplaceOnSave)
-            {
-                return Replace(entity); // Changes that result in deletion
-            }
-            else if (entity.InDatabase && !entity.ReplaceOnSave)
-            {
-                return Update(entity); // Changes that don't result in deletion
-            }
-            else if (!entity.InDatabase)
-            {
-                return Create(entity); // New entity
-            }
-            return false;
-        }
+        #endregion Public Methods
 
-        protected bool Replace(DatabaseEntityType entity)
-        {
-            EntityCache.Remove(TableName, entity);
-            Database.MarkAsDeleted(TableName, entity.ID);
-            return Create(entity);
-        }
+        #region Protected Fields
 
-        protected bool Update(DatabaseEntityType entity)
-        {
-            string DatabaseCommand = $"UPDATE {TableName} SET {DatabaseQueryColumnValuePairs(entity)} WHERE ID = {entity.ID}";
-            if (Database.ExecuteCommand(DatabaseCommand) > 0)
-            {
-                entity.InDatabase = true;
-                entity.IsSaved = true;
-                return true;
-            }
-            return false;
-        }
+        protected static DatabaseManager Database = DatabaseManager.Reference;
+        protected static DatabaseEntityCache EntityCache = DatabaseEntityCache.Reference;
+
+        #endregion Protected Fields
+
+        #region Protected Properties
+
+        protected virtual string TableName => typeof(DatabaseEntityType).Name;
+
+        #endregion Protected Properties
+
+        #region Protected Methods
 
         protected bool Create(DatabaseEntityType entity)
         {
@@ -101,15 +85,53 @@ namespace IceCreamManager.Model
             return false;
         }
 
-        
-
-        protected virtual string TableName => typeof(DatabaseEntityType).Name;
         abstract protected string DatabaseQueryColumns();
-        abstract protected string DatabaseQueryValues(DatabaseEntityType entity);
 
         abstract protected string DatabaseQueryColumnValuePairs(DatabaseEntityType entity);
 
+        abstract protected string DatabaseQueryValues(DatabaseEntityType entity);
+
         abstract protected DatabaseEntityType MapDataRowToProperties(DataRow row);
+
+        protected bool Replace(DatabaseEntityType entity)
+        {
+            EntityCache.Remove(TableName, entity);
+            Database.MarkAsDeleted(TableName, entity.ID);
+            return Create(entity);
+        }
+
+        public virtual bool Save(DatabaseEntityType entity)
+        {
+            if (entity.InDatabase && entity.ReplaceOnSave)
+            {
+                return Replace(entity); // Changes that result in deletion
+            }
+            else if (entity.InDatabase && !entity.ReplaceOnSave)
+            {
+                return Update(entity); // Changes that don't result in deletion
+            }
+            else if (!entity.InDatabase)
+            {
+                return Create(entity); // New entity
+            }
+            return false;
+        }
+
+        protected bool Update(DatabaseEntityType entity)
+        {
+            string DatabaseCommand = $"UPDATE {TableName} SET {DatabaseQueryColumnValuePairs(entity)} WHERE ID = {entity.ID}";
+            if (Database.ExecuteCommand(DatabaseCommand) > 0)
+            {
+                entity.InDatabase = true;
+                entity.IsSaved = true;
+                return true;
+            }
+            return false;
+        }
+
+        #endregion Protected Methods
+
+        #region Private Methods
 
         private void DatabaseEntityProperties_SaveImmediately(DatabaseEntity entity)
         {
@@ -121,15 +143,13 @@ namespace IceCreamManager.Model
             Load((DatabaseEntityType)entity);
         }
 
-        public bool Exists(int id)
+        private void SubscribeToEntityEvents(DatabaseEntityType entity)
         {
-            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE ID = {id}";
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            if (ResultsTable.Rows.Count > 0) return true;
-            return false;
+            entity.OnSaveImmediately += DatabaseEntityProperties_SaveImmediately;
+            entity.OnUndoImmediately += DatabaseEntityProperties_UndoImmediately;
         }
 
+        #endregion Private Methods
 
         #region Factory Network
 
@@ -171,7 +191,6 @@ namespace IceCreamManager.Model
             return truckFactory.Load(truckID);
         }
 
-        #endregion
-
+        #endregion Factory Network
     }
 }

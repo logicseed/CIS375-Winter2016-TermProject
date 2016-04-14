@@ -7,7 +7,7 @@ using System;
 
 namespace IceCreamManager.Model
 {
-    class SalaryCost : DatabaseEntity
+    public class SalaryCost : DatabaseEntity
     {
         SalaryCostFactory salaryCostFactory = SalaryCostFactory.Reference;
 
