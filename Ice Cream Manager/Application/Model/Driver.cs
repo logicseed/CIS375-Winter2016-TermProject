@@ -7,93 +7,81 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    public class DriverProperties : DatabaseEntityProperties
-    {
-        public int Number;
-        public string Name;
-        public double HourlyRate;
-    }
-
+    /// <summary>
+    ///   Represents the driver of an ice cream truck. 
+    /// </summary>
     public class Driver : DatabaseEntity
     {
-        private DriverProperties DriverValues = new DriverProperties();
+        private int number;
+        private string name;
+        private double hourlyRate;
 
         public Driver()
         {
             ID = 0;
         }
 
-        public Driver(int ID)
-        {
-            Load(ID);
-        }
-
+        /// <summary>
+        ///   User provided number to distinguish the driver. Changing this value marks an item to be deleted. 
+        /// </summary>
         public int Number
         {
             get
             {
-                return DriverValues.Number;
+                return number;
             }
 
             set
             {
-                DriverValues.Number = value;
+                if (value < Requirement.MinDriverNumber) throw new DriverNumberException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxDriverNumber) throw new DriverNumberException(Outcome.ValueTooLarge);
+
+                number = value;
+                IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   User provided name to distinguish the driver. Changing this value marks an item to be deleted. 
+        /// </summary>
         public string Name
         {
             get
             {
-                return DriverValues.Name;
+                return name;
             }
 
             set
             {
-                DriverValues.Name = value;
+                if (value.Length < Requirement.MinDriverNameLength) throw new DriverNameException(Outcome.ValueTooSmall);
+                if (value.Length > Requirement.MaxDriverNameLength) throw new DriverNameException(Outcome.ValueTooLarge);
+
+                name = value;
+                IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   The amount of currency a driver is paid per hour. Changing this value marks an item to be deleted. 
+        /// </summary>
         public double HourlyRate
         {
             get
             {
-                return DriverValues.HourlyRate;
+                return hourlyRate;
             }
 
             set
             {
-                DriverValues.HourlyRate = value;
+                if (value < Requirement.MinDriverHourlyRate) throw new DriverHourlyRateException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxDriverHourlyRate) throw new DriverHourlyRateException(Outcome.ValueTooLarge);
+
+                hourlyRate = value;
+                IsSaved = false;
+                ReplaceOnSave = true;
             }
-        }
-
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (number,name,hourly_rate) VALUES ({Number},'{Name}',{HourlyRate})";
-
-        protected override string TableName => "driver";
-
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (number,name,hourly_rate) VALUES ({Number},'{Name}',{HourlyRate})";
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            DriverValues = (DriverProperties)EntityProperties;
-
-            return true;
-        }
-
-        public override bool Load(int ID)
-        {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            Number = ResultsTable.Row().Col("number");
-            Name = ResultsTable.Row().Col<string>("name");
-            HourlyRate = ResultsTable.Row().Col<double>("hourly_rate");
-
-            return true;
         }
     }
 }

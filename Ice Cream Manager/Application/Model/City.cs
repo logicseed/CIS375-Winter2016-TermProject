@@ -7,179 +7,125 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    // TODO: File needs comments.
-    public class CityProperties : DatabaseEntityProperties
-    {
-        public string Label;
-        public string Name;
-        public string State;
-        public double Miles;
-        public double Hours;
-    }
-
+    /// <summary>
+    ///   Represents a zone of a city that can be part of a route. 
+    /// </summary>
     public class City : DatabaseEntity
     {
-        private CityProperties CityValues = new CityProperties();
+        private string label;
+        private string name;
+        private string state;
+        private double miles;
+        private double hours;
 
         public City()
         {
             ID = 0;
         }
 
-        public City(int ID)
-        {
-            Load(ID);
-        }
-
+        /// <summary>
+        ///   User provided label to distinguish the zone. Changing this value marks a city to be deleted. 
+        /// </summary>
         public string Label
         {
             get
             {
-                return CityValues.Label;
+                return label;
             }
 
             set
             {
-                if (value.Length < Requirement.MinLabelLength)
-                {
-                    throw new CityLabelInvalidException(Outcome.ValueTooSmall);
-                }
-                else if (value.Length > Requirement.MaxLabelLength)
-                {
-                    throw new CityLabelInvalidException(Outcome.ValueTooLarge);
-                }
+                if (value.Length < Requirement.MinCityLabelLength) throw new CityLabelException(Outcome.ValueTooSmall);
+                if (value.Length > Requirement.MaxCityLabelLength) throw new CityLabelException(Outcome.ValueTooLarge);
 
-                CityValues.Label = value;
+                label = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   Name of the city the zone belongs to. Changing this value marks a city to be deleted. 
+        /// </summary>
         public string Name
         {
             get
             {
-                return CityValues.Name;
+                return name;
             }
 
             set
             {
-                if (value.Length < Requirement.MinNameLength)
-                {
-                    throw new CityNameInvalidException(Outcome.ValueTooSmall);
-                }
-                else if (value.Length > Requirement.MaxNameLength)
-                {
-                    throw new CityNameInvalidException(Outcome.ValueTooLarge);
-                }
+                if (value.Length < Requirement.MinCityNameLength) throw new CityNameException(Outcome.ValueTooSmall);
+                if (value.Length > Requirement.MaxCityNameLength) throw new CityNameException(Outcome.ValueTooLarge);
 
-                CityValues.Name = value;
+                name = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   Name of the state the zone belongs to. Changing this value marks a city to be deleted. 
+        /// </summary>
         public string State
         {
             get
             {
-                return CityValues.State;
+                return state;
             }
 
             set
             {
-                if (value.Length < Requirement.MinStateLength)
-                {
-                    throw new CityStateInvalidException(Outcome.ValueTooSmall);
-                }
-                else if (value.Length > Requirement.MaxStateLength)
-                {
-                    throw new CityStateInvalidException(Outcome.ValueTooLarge);
-                }
+                if (value.Length < Requirement.MinCityStateLength) throw new CityStateException(Outcome.ValueTooSmall);
+                if (value.Length > Requirement.MaxCityStateLength) throw new CityStateException(Outcome.ValueTooLarge);
 
-                CityValues.State = value;
+                state = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   Number of miles required to service the zone. Changing this value marks a city to be deleted. 
+        /// </summary>
         public double Miles
         {
             get
             {
-                return CityValues.Miles;
+                return miles;
             }
 
             set
             {
-                if (value < Requirement.MinPrice)
-                {
-                    throw new CityMilesInvalidException(Outcome.ValueTooSmall);
-                }
-                else if (value > Requirement.MaxPrice)
-                {
-                    throw new CityMilesInvalidException(Outcome.ValueTooLarge);
-                }
+                if (value < Requirement.MinCityMiles) throw new CityMilesException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxCityMiles) throw new CityMilesException(Outcome.ValueTooLarge);
 
-                CityValues.Miles = value;
+                miles = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   Number of hours required to service the zone. Changing this value marks a city to be deleted. 
+        /// </summary>
         public double Hours
         {
             get
             {
-                return CityValues.Hours;
+                return hours;
             }
 
             set
             {
-                if (value < Requirement.MinPrice)
-                {
-                    throw new CityHoursInvalidException(Outcome.ValueTooSmall);
-                }
-                else if (value > Requirement.MaxPrice)
-                {
-                    throw new CityHoursInvalidException(Outcome.ValueTooLarge);
-                }
+                if (value < Requirement.MinCityHours) throw new CityHoursException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxCityHours) throw new CityHoursException(Outcome.ValueTooLarge);
 
-                CityValues.Hours = value;
+                hours = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
-        }
-
-        protected override string TableName => "city";
-
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (label,name,state,miles,hours) VALUES ({Label},'{Name}',{State},{Miles},{Hours}) WHERE id = {ID}";
-
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (label,name,state,miles,hours) VALUES ({Label},'{Name}',{State},{Miles},{Hours})";
-
-        public override bool Load(int ID)
-        {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            Label = ResultsTable.Row().Col<string>("label");
-            Name = ResultsTable.Row().Col<string>("name");
-            State = ResultsTable.Row().Col<string>("state");
-            Miles = ResultsTable.Row().Col<double>("miles");
-            Hours = ResultsTable.Row().Col<double>("hours");
-
-            return true;
-        }
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            CityValues = (CityProperties)EntityProperties;
-
-            return true;
         }
     }
 }

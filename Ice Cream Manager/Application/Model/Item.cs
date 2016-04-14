@@ -7,28 +7,12 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    // COMMENT: This file needs comments.
-
-    /// <summary>
-    ///   Contains the properties of an Item. 
-    /// </summary>
-    /// <remarks>
-    ///   A class was chosen over struct because of how struct will be boxed when passing as the implemented type.
-    /// </remarks>
-    public class ItemProperties : DatabaseEntityProperties
-    {
-        public int Number;
-        public string Description;
-        public double Price;
-        public int Lifetime;
-        public int Quantity;
-    }
-
     /// <summary>
     ///   Represents a type of ice cream sold by ice cream trucks. 
     /// </summary>
     public class Item : DatabaseEntity
     {
+        
         private int number;
         private string description;
         private double price;
@@ -38,11 +22,6 @@ namespace IceCreamManager.Model
         public Item()
         {
             ID = 0;
-        }
-
-        public Item(int ID)
-        {
-            Load(ID);
         }
 
         /// <summary>
@@ -62,7 +41,7 @@ namespace IceCreamManager.Model
 
                 number = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -83,7 +62,7 @@ namespace IceCreamManager.Model
 
                 description = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -104,7 +83,7 @@ namespace IceCreamManager.Model
 
                 price = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -126,7 +105,7 @@ namespace IceCreamManager.Model
 
                 lifetime = value;
                 IsSaved = false;
-                DeleteOnSave = true;
+                ReplaceOnSave = true;
             }
         }
 
@@ -147,65 +126,6 @@ namespace IceCreamManager.Model
                 quantity = value;
                 IsSaved = false;
             }
-        }
-
-        /// <summary>
-        ///   The name of the database table that stores items. 
-        /// </summary>
-        protected override string TableName => "Item";
-
-        /// <summary>
-        ///   The SQL command used to update an item in the database with this object's properties. 
-        /// </summary>
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (Number,Description,Price,Lifetime,Quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity}) WHERE id = {ID}";
-
-        /// <summary>
-        ///   The SQL command used to create an item in the database with this object's properties. 
-        /// </summary>
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (Number,Description,Price,Lifetime,Quantity) VALUES ({Number},'{Description}',{Price},{Lifetime},{Quantity})";
-
-        /// <summary>
-        ///   Load an item from the database based on the provided identity. 
-        /// </summary>
-        /// <param name="ID"> The unique item identity. </param>
-        /// <returns> Whether or not the item was successfully loaded. </returns>
-        public override bool Load(int ID)
-        {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE ID = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            Number = ResultsTable.Row().Col("Number");
-            Description = ResultsTable.Row().Col<string>("Description");
-            Price = ResultsTable.Row().Col<double>("Price");
-            Lifetime = ResultsTable.Row().Col("Lifetime");
-            Quantity = ResultsTable.Row().Col("Quantity");
-            IsDeleted = ResultsTable.Row().Col<bool>("IsDeleted");
-            InDatabase = true;
-            IsSaved = true;
-
-            return true;
-        }
-
-        /// <summary>
-        ///   Fills this item's properties with values. 
-        /// </summary>
-        /// <param name="EntityProperties"> A DatabaseEntityProperties object with the values to use. </param>
-        /// <returns> Whether or not the item was successfully filled with the values. </returns>
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            ItemProperties ItemValues = EntityProperties as ItemProperties;
-
-            Number = ItemValues.Number;
-            Description = ItemValues.Description;
-            Price = ItemValues.Price;
-            Lifetime = ItemValues.Lifetime;
-            Quantity = ItemValues.Quantity;
-
-            return true;
         }
     }
 }

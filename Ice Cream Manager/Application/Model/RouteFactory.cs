@@ -1,22 +1,47 @@
-﻿/// <project> IceCreamManager </project>
+﻿
+using System;
+using System.Collections.Generic;
+/// <project> IceCreamManager </project>
 /// <module> RouteFactory </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
+using System.Data;
 
 namespace IceCreamManager.Model
 {
-    public static class RouteFactory
+    public class RouteFactory : DatabaseEntityFactory<Route>
     {
-        private static DatabaseEntityFactory<Route> DatabaseRouteFactory = new DatabaseEntityFactory<Route>();
+        #region Singleton
+        private static readonly RouteFactory SingletonInstance = new RouteFactory();
+        public static RouteFactory Reference { get { return SingletonInstance; } }
+        private RouteFactory() { }
+        #endregion Singleton
 
-        public static Route Load(int ID)
+        protected override string DatabaseQueryColumns()
+            => "Number,IsDeleted";
+
+        protected override string DatabaseQueryValues(Route route)
+            => $"{route.Number},{route.IsDeleted.ToDatabase()}";
+
+        protected override string DatabaseQueryColumnValuePairs(Route route)
+            => $"{route.Number},{route.IsDeleted.ToDatabase()}";
+
+        protected override Route MapDataRowToProperties(DataRow row)
         {
-            return DatabaseRouteFactory.Load(ID);
+            Route route = new Route();
+
+            route.ID = row.Col("ID");
+            route.Number = row.Col("Number");
+            route.IsDeleted = row.Col<bool>("IsDeleted");
+            route.InDatabase = true;
+            route.IsSaved = true;
+
+            return route;
         }
 
-        public static Route Create(RouteProperties EntityProperties)
+        public List<City> LoadCityList(int routeID)
         {
-            return DatabaseRouteFactory.Create(EntityProperties);
+            throw new NotImplementedException();
         }
     }
 }

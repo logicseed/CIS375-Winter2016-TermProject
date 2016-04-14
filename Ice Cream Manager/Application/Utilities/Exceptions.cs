@@ -41,26 +41,26 @@ namespace IceCreamManager
     ///   The provided city label does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityLabelInvalidException : ExceptionWithOutcome
+    public class CityLabelException : ExceptionWithOutcome
     {
-        public CityLabelInvalidException()
+        public CityLabelException()
         {
         }
 
-        public CityLabelInvalidException(Outcome ExceptionOutcome)
+        public CityLabelException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityLabelInvalidException(string message) : base(message)
+        public CityLabelException(string message) : base(message)
         {
         }
 
-        public CityLabelInvalidException(string message, Exception inner) : base(message, inner)
+        public CityLabelException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityLabelInvalidException(
+        protected CityLabelException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -70,26 +70,26 @@ namespace IceCreamManager
     ///   The provided city name does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityNameInvalidException : ExceptionWithOutcome
+    public class CityNameException : ExceptionWithOutcome
     {
-        public CityNameInvalidException()
+        public CityNameException()
         {
         }
 
-        public CityNameInvalidException(Outcome ExceptionOutcome)
+        public CityNameException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityNameInvalidException(string message) : base(message)
+        public CityNameException(string message) : base(message)
         {
         }
 
-        public CityNameInvalidException(string message, Exception inner) : base(message, inner)
+        public CityNameException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityNameInvalidException(
+        protected CityNameException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -99,26 +99,26 @@ namespace IceCreamManager
     ///   The provided state does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityStateInvalidException : ExceptionWithOutcome
+    public class CityStateException : ExceptionWithOutcome
     {
-        public CityStateInvalidException()
+        public CityStateException()
         {
         }
 
-        public CityStateInvalidException(Outcome ExceptionOutcome)
+        public CityStateException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityStateInvalidException(string message) : base(message)
+        public CityStateException(string message) : base(message)
         {
         }
 
-        public CityStateInvalidException(string message, Exception inner) : base(message, inner)
+        public CityStateException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityStateInvalidException(
+        protected CityStateException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -128,26 +128,26 @@ namespace IceCreamManager
     ///   The provided fuel cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityMilesInvalidException : ExceptionWithOutcome
+    public class CityMilesException : ExceptionWithOutcome
     {
-        public CityMilesInvalidException()
+        public CityMilesException()
         {
         }
 
-        public CityMilesInvalidException(Outcome ExceptionOutcome)
+        public CityMilesException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityMilesInvalidException(string message) : base(message)
+        public CityMilesException(string message) : base(message)
         {
         }
 
-        public CityMilesInvalidException(string message, Exception inner) : base(message, inner)
+        public CityMilesException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityMilesInvalidException(
+        protected CityMilesException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -157,26 +157,26 @@ namespace IceCreamManager
     ///   The provided hour cost does not match requirements. 
     /// </summary>
     [Serializable]
-    public class CityHoursInvalidException : ExceptionWithOutcome
+    public class CityHoursException : ExceptionWithOutcome
     {
-        public CityHoursInvalidException()
+        public CityHoursException()
         {
         }
 
-        public CityHoursInvalidException(Outcome ExceptionOutcome)
+        public CityHoursException(Outcome ExceptionOutcome)
         {
             Outcome = ExceptionOutcome;
         }
 
-        public CityHoursInvalidException(string message) : base(message)
+        public CityHoursException(string message) : base(message)
         {
         }
 
-        public CityHoursInvalidException(string message, Exception inner) : base(message, inner)
+        public CityHoursException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected CityHoursInvalidException(
+        protected CityHoursException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
@@ -185,6 +185,20 @@ namespace IceCreamManager
     #endregion City Property Exceptions
 
     #region Route Property Exceptions
+
+
+    [Serializable]
+    public class RouteExistenceException : ExceptionWithOutcome
+    {
+        public RouteExistenceException() { }
+        public RouteExistenceException(Outcome ExceptionOutcome) { Outcome = ExceptionOutcome; }
+        public RouteExistenceException(string message) : base(message) { }
+        public RouteExistenceException(string message, Exception inner) : base(message, inner) { }
+        protected RouteExistenceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
 
     /// <summary>
     ///   Trying to add too many cities. 
@@ -379,4 +393,189 @@ namespace IceCreamManager
     }
 
     #endregion Item Property Exceptions
+
+    #region BatchHistory Exceptions
+
+    [Serializable]
+    public class BatchHistorySequenceException : ExceptionWithOutcome
+    {
+        public BatchHistorySequenceException()
+        {
+        }
+
+        public BatchHistorySequenceException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public BatchHistorySequenceException(string message) : base(message)
+        {
+        }
+
+        public BatchHistorySequenceException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected BatchHistorySequenceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class BatchHistoryDateUpdatedException : ExceptionWithOutcome
+    {
+        public BatchHistoryDateUpdatedException()
+        {
+        }
+
+        public BatchHistoryDateUpdatedException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public BatchHistoryDateUpdatedException(string message) : base(message)
+        {
+        }
+
+        public BatchHistoryDateUpdatedException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected BatchHistoryDateUpdatedException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion BatchHistory Exceptions
+
+    #region Driver Exceptions
+
+    [Serializable]
+    public class DriverNumberException : ExceptionWithOutcome
+    {
+        public DriverNumberException()
+        {
+        }
+
+        public DriverNumberException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverNumberException(string message) : base(message)
+        {
+        }
+
+        public DriverNumberException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverNumberException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class DriverNameException : ExceptionWithOutcome
+    {
+        public DriverNameException()
+        {
+        }
+
+        public DriverNameException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverNameException(string message) : base(message)
+        {
+        }
+
+        public DriverNameException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverNameException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    [Serializable]
+    public class DriverHourlyRateException : ExceptionWithOutcome
+    {
+        public DriverHourlyRateException()
+        {
+        }
+
+        public DriverHourlyRateException(Outcome ExceptionOutcome)
+        {
+            Outcome = ExceptionOutcome;
+        }
+
+        public DriverHourlyRateException(string message) : base(message)
+        {
+        }
+
+        public DriverHourlyRateException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected DriverHourlyRateException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+    #endregion Driver Exceptions
+
+    #region TruckExceptions
+
+
+    [Serializable]
+    public class TruckNumberException : ExceptionWithOutcome
+    {
+        public TruckNumberException() { }
+        public TruckNumberException(Outcome ExceptionOutcome) { Outcome = ExceptionOutcome; }
+        public TruckNumberException(string message) : base(message) { }
+        public TruckNumberException(string message, Exception inner) : base(message, inner) { }
+        protected TruckNumberException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+
+    [Serializable]
+    public class TruckFuelRateException : ExceptionWithOutcome
+    {
+        public TruckFuelRateException() { }
+        public TruckFuelRateException(Outcome ExceptionOutcome) { Outcome = ExceptionOutcome; }
+        public TruckFuelRateException(string message) : base(message) { }
+        public TruckFuelRateException(string message, Exception inner) : base(message, inner) { }
+        protected TruckFuelRateException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+
+    [Serializable]
+    public class TruckInventoryCountException : ExceptionWithOutcome
+    {
+        public TruckInventoryCountException() { }
+        public TruckInventoryCountException(Outcome ExceptionOutcome) { Outcome = ExceptionOutcome; }
+        public TruckInventoryCountException(string message) : base(message) { }
+        public TruckInventoryCountException(string message, Exception inner) : base(message, inner) { }
+        protected TruckInventoryCountException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
+    }
+
+
+    #endregion
 }

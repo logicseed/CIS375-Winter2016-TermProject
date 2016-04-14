@@ -1,185 +1,146 @@
-﻿/// <project> IceCreamManager </project>
+﻿
+using System;
+/// <project> IceCreamManager </project>
 /// <module> Truck </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
+using System.Collections.Generic;
 using System.Data;
 
 namespace IceCreamManager.Model
 {
-    public class TruckProperties : DatabaseEntityProperties
-    {
-        public int Number;
-        public double FuelRate;
-        public Inventory Inventory;
-        public Route Route;
-        public Driver Driver;
-    }
-
+    /// <summary>
+    ///   Represents a complete ice cream truck with inventory, driver, and route. 
+    /// </summary>
     public class Truck : DatabaseEntity
     {
-        private TruckProperties TruckValues = new TruckProperties();
+        private TruckFactory truckFactory = TruckFactory.Reference;
 
+        private int number;
+        private int routeID = 0;
+        private int driverID = 0;
+        private double fuelRate;
+
+        private List<InventoryItem> inventory = null;
+        private Route route = null;
+        private Driver driver = null;
+
+        /// <summary>
+        ///   User provided number to distinguish the Truck. Changing this value marks a truck to be deleted. 
+        /// </summary>
         public int Number
         {
             get
             {
-                return TruckValues.Number;
+                return number;
             }
 
             set
             {
-                TruckValues.Number = value;
-                DeleteOnSave = true;
+                if (value < Requirement.MinTruckNumber) throw new TruckNumberException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxTruckNumber) throw new TruckNumberException(Outcome.ValueTooLarge);
+                number = value;
+                IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
+        /// <summary>
+        ///   The amount of currency this Truck spends on fuel per mile. Changing this value marks a truck to be deleted. 
+        /// </summary>
         public double FuelRate
         {
             get
             {
-                return TruckValues.FuelRate;
+                return fuelRate;
             }
 
             set
             {
-                TruckValues.FuelRate = value;
-                DeleteOnSave = true;
+                if (value < Requirement.MinTruckFuelRate) throw new TruckFuelRateException(Outcome.ValueTooSmall);
+                if (value > Requirement.MaxTruckFuelRate) throw new TruckFuelRateException(Outcome.ValueTooLarge);
+                fuelRate = value;
+                IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
-        public Inventory Inventory
+        /// <summary>
+        ///   A collection of InventoryItems that represent this Truck's inventory. 
+        /// </summary>
+        public List<InventoryItem> Inventory
         {
             get
             {
-                return TruckValues.Inventory;
+                if (inventory == null) inventory = truckFactory.LoadInventoryList(ID);
+                return inventory;
             }
 
+            protected set
+            { }
+        }
+
+        /// <summary>
+        ///   The unique identity of the Route assigned to this Truck. 
+        /// </summary>
+        public int RouteID
+        {
+            get
+            {
+                return routeID;
+            }
             set
             {
-                TruckValues.Inventory = value;
+                routeID = value;
+                IsSaved = false;
             }
         }
 
+        /// <summary>
+        ///   A reference to this truck's Route in memory. 
+        /// </summary>
         public Route Route
         {
             get
             {
-                return TruckValues.Route;
+                if (route == null) route = truckFactory.LoadTruckRoute(routeID);
+                return route;
             }
 
+            protected set
+            { }
+        }
+
+        /// <summary>
+        ///   The unique identity of the Driver assigned to this truck. 
+        /// </summary>
+        public int DriverID
+        {
+            get
+            {
+                return driverID;
+            }
             set
             {
-                TruckValues.Route = value;
+                driverID = value;
+                IsSaved = false;
             }
         }
 
+        /// <summary>
+        ///   A reference to this truck's Driver in memory. 
+        /// </summary>
         public Driver Driver
         {
             get
             {
-                return TruckValues.Driver;
+                if (driver == null) driver = truckFactory.LoadTruckDriver(driverID);
+                return driver;
             }
-
             set
-            {
-                TruckValues.Driver = value;
-            }
+            { }
         }
 
-        protected override string CreateCommand =>
-            $"INSERT INTO {TableName} (number,fuel_rate,inventory_id) VALUES ({Number},{FuelRate},{Inventory.ID})";
-
-        protected override string TableName => "truck";
-
-        protected override string UpdateCommand =>
-            $"UPDATE {TableName} SET (number,fuel_rate,inventory_id) VALUES ({Number},{FuelRate},{Inventory.ID})";
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
-        {
-            TruckValues = (TruckProperties)EntityProperties;
-
-            return true;
-        }
-
-        public override bool Load(int ID)
-        {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            Number = ResultsTable.Row().Col("number");
-            FuelRate = ResultsTable.Row().Col<double>("fuel_rate");
-            IsDeleted = ResultsTable.Row().Col<bool>("deleted");
-
-            Inventory = InventoryFactory.Load(ResultsTable.Row().Col("inventory_id"));
-
-            // Load route
-            ResultsTable = Database.DataTableFromCommand($"SELECT route_id FROM truck_route WHERE truck_id = {ID} AND deleted = 0");
-            if (ResultsTable.Rows.Count != 0)
-            {
-                Route = RouteFactory.Load(ResultsTable.Row().Col("route_id"));
-            }
-
-            // Load driver
-            ResultsTable = Database.DataTableFromCommand($"SELECT driver_id FROM truck_driver WHERE truck_id = {ID} AND deleted = 0");
-            if (ResultsTable.Rows.Count != 0)
-            {
-                Driver = DriverFactory.Load(ResultsTable.Row().Col("driver_id"));
-            }
-
-            return true;
-        }
-
-        public override bool Save()
-        {
-            if (InDatabase && DeleteOnSave)
-            {
-                Delete();
-            }
-            else if (InDatabase && !DeleteOnSave)
-            {
-                Update();
-            }
-            else if (!InDatabase)
-            {
-                Create();
-            }
-
-            SaveRoute();
-            SaveDriver();
-
-            return InDatabase;
-        }
-
-        private void SaveRoute()
-        {
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM truck_route WHERE truck_id = {ID} AND route_id = {Route.ID}");
-
-            if (ResultsTable.Rows.Count == 0)
-            {
-                Database.ExecuteCommand($"INSERT INTO truck_route (truck_id,route_id) VALUES ({ID},{Route.ID})");
-            }
-            else if (ResultsTable.Row().Col<bool>("deleted"))
-            {
-                int DeletedTruckRouteID = ResultsTable.Row().Col("id");
-                Database.ExecuteCommand($"UPDATE truck_route SET (deleted) VALUES (0) WHERE id = {DeletedTruckRouteID}");
-            }
-        }
-
-        private void SaveDriver()
-        {
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM truck_driver WHERE truck_id = {ID} AND driver_id = {Driver.ID}");
-
-            if (ResultsTable.Rows.Count == 0)
-            {
-                Database.ExecuteCommand($"INSERT INTO truck_driver (truck_id,driver_id) VALUES ({ID},{Driver.ID})");
-            }
-            else if (ResultsTable.Row().Col<bool>("deleted"))
-            {
-                int DeletedTruckDriverID = ResultsTable.Row().Col("id");
-                Database.ExecuteCommand($"UPDATE truck_driver SET (deleted) VALUES (0) WHERE id = {DeletedTruckDriverID}");
-            }
-        }
+        
     }
 }

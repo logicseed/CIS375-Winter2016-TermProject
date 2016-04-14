@@ -4,15 +4,12 @@
 /// <date_created> 2016-04-10 </date_created>
 
 using System;
-using System.Data;
 
 namespace IceCreamManager.Model
 {
     public class BatchHistoryEntry : DatabaseEntity
     {
-        // ID is BatchFileType
         private int sequenceNumber;
-
         private DateTime dateUpdated;
 
         public int SequenceNumber
@@ -24,10 +21,9 @@ namespace IceCreamManager.Model
 
             set
             {
-                if (value < Requirement.MinNumber || value > Requirement.MaxNumber)
-                    throw new ArgumentOutOfRangeException();
-
+                if (!IsNextSequenceNumber(value)) throw new BatchHistorySequenceException(Outcome.NotNextSequence);
                 sequenceNumber = value;
+                IsSaved = false;
             }
         }
 
@@ -40,35 +36,35 @@ namespace IceCreamManager.Model
 
             set
             {
+                if (value.CompareTo(dateUpdated) < 0) throw new BatchHistoryDateUpdatedException(Outcome.DateEarlierThanPreviousFile);
                 dateUpdated = value;
+                IsSaved = false;
             }
         }
 
-        protected override string TableName
-                            => "batch_history";
-
-        protected override string CreateCommand
-            => ""; // New batch file types types should not be created through code.
-
-        protected override string UpdateCommand
-            => $"UPDATE {TableName} SET (number,date_updated) VALUES ({SequenceNumber},'{DateUpdated.ToDatabase()}') WHERE id = {ID}";
-
-        public override bool Fill(DatabaseEntityProperties EntityProperties)
+        public BatchFileType FileType
         {
-            // New batch file types should not be created through code.
+            get
+            {
+                return (BatchFileType)ID;
+            }
+        }
+
+        public bool IsNextSequenceNumber(int newSequenceNumber)
+        {
+            int nextSequenceNumber;
+
+            if (sequenceNumber == 9999) nextSequenceNumber = 1;
+            else nextSequenceNumber = sequenceNumber++;
+
+            if (newSequenceNumber == nextSequenceNumber) return true;
             return false;
         }
 
-        public override bool Load(int ID)
+        public bool IsValidDateUpdated(DateTime newDateUpdated)
         {
-            this.ID = ID;
-            DataTable ResultsTable = Database.DataTableFromCommand($"SELECT * FROM {TableName} WHERE id = {ID}");
-
-            if (ResultsTable.Rows.Count == 0) return false;
-
-            SequenceNumber = ResultsTable.Row().Col("number");
-            DateUpdated = ResultsTable.Row().Col<DateTime>("date_updated");
-
+            int dateIsBefore = -1;
+            if (newDateUpdated.Date.CompareTo(DateUpdated.Date) == dateIsBefore) return false;
             return true;
         }
     }

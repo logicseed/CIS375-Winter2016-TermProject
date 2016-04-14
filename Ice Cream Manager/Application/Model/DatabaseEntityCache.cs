@@ -9,6 +9,8 @@ using System.Runtime.Caching;
 namespace IceCreamManager.Model
 {
     /// <summary>
+    ///   Manages the memory cache that stores database entities. This is used to reduce the need for database queries
+    ///   for objects that have recently been queried.
     /// </summary>
     public sealed class DatabaseEntityCache
     {
@@ -32,29 +34,54 @@ namespace IceCreamManager.Model
             CachePolicy.SlidingExpiration = new TimeSpan(Requirement.MaxCacheHours, Requirement.MaxCacheMinutes, Requirement.MaxCacheSeconds);
         }
 
-        public bool Add(string CacheName, int EntityID, DatabaseEntity Entity)
+        /// <summary>
+        ///   Adds an entity to a specific memory cache. 
+        /// </summary>
+        /// <param name="cacheName"> The name of the cache. The cache is named for the class that implements DatabaseEntity. </param>
+        /// <param name="entityID"> The unique identity of the entity to be added to the cache. </param>
+        /// <param name="entity"> The reference to the entity in memory. </param>
+        /// <returns> Whether or not the entity was successfully added to the cache. </returns>
+        public bool Add(string cacheName, DatabaseEntity entity)
         {
-            Entity.IDChanged += DatabaseEntity_IDChanged;
-            return EntityCache.Add(CacheName + EntityID, Entity, CachePolicy);
+            return EntityCache.Add(cacheName + entity.ID, entity, CachePolicy);
         }
 
-        public bool Contains(string CacheName, int EntityID)
+        /// <summary>
+        /// Removes an entity from a specific memory cache. The cache is named for the class that implements DatabaseEntity.
+        /// </summary>
+        /// <param name="cacheName">The name of the cache. </param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool Remove(string cacheName, DatabaseEntity entity)
         {
-            return EntityCache.Contains(CacheName + EntityID);
-        }
-
-        public DatabaseEntity Get(string CacheName, int EntityID)
-        {
-            return (DatabaseEntity)EntityCache.Get(CacheName + EntityID);
-        }
-
-        private static void DatabaseEntity_IDChanged(object Sender, IDChangedEventArgs EventDetails)
-        {
-            if (EntityCache.Contains(EventDetails.CacheName + EventDetails.OldID))
+            if (Contains(cacheName, entity.ID))
             {
-                DatabaseEntity Entity = (DatabaseEntity)EntityCache.Get(EventDetails.CacheName + EventDetails.OldID);
-                EntityCache.Add(EventDetails.CacheName + EventDetails.NewID, Entity, CachePolicy);
+                EntityCache.Remove(cacheName + entity.ID);
+                return true;
             }
+            return false;
+        }
+
+        /// <summary>
+        ///   Determines if a specific memory cache contains an entity. 
+        /// </summary>
+        /// <param name="cacheName"> The name of the cache. The cache is named for the class that implements DatabaseEntity. </param>
+        /// <param name="entityID"> The unique identity of the entity to be checked. </param>
+        /// <returns> Whether or not the specified memory cache contains the specified entity. </returns>
+        public bool Contains(string cacheName, int entityID)
+        {
+            return EntityCache.Contains(cacheName + entityID);
+        }
+
+        /// <summary>
+        ///   Gets a reference to an entity stored in the cache. 
+        /// </summary>
+        /// <param name="cacheName"> The name of the cache. The cache is named for the class that implements DatabaseEntity. </param>
+        /// <param name="entityID"> The unique identity of the entity to get. </param>
+        /// <returns> A reference to the requested entity. </returns>
+        public DatabaseEntity Get(string cacheName, int entityID)
+        {
+            return (DatabaseEntity)EntityCache.Get(cacheName + entityID);
         }
     }
 }
