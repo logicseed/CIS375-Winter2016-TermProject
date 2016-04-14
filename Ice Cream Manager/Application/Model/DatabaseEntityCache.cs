@@ -17,22 +17,30 @@ namespace IceCreamManager.Model
         #region Singleton
 
         private static readonly DatabaseEntityCache SingletonInstance = new DatabaseEntityCache();
-
-        /// <summary>
-        ///   Reference to the DatabaseEntityCache Singleton instance. 
-        /// </summary>
         public static DatabaseEntityCache Reference { get { return SingletonInstance; } }
 
         #endregion Singleton
 
-        private static CacheItemPolicy CachePolicy = new CacheItemPolicy();
-
-        private static MemoryCache EntityCache = new MemoryCache("IceCreamManager");
+        #region Private Constructors
 
         private DatabaseEntityCache()
         {
+            EntityCache = new MemoryCache("IceCreamManager");
+            CachePolicy = new CacheItemPolicy();
             CachePolicy.SlidingExpiration = new TimeSpan(Requirement.MaxCacheHours, Requirement.MaxCacheMinutes, Requirement.MaxCacheSeconds);
         }
+
+        #endregion Private Constructors
+
+        #region Private Fields
+
+        private static CacheItemPolicy CachePolicy;
+
+        private static MemoryCache EntityCache;
+
+        #endregion Private Fields
+
+        #region Public Methods
 
         /// <summary>
         ///   Adds an entity to a specific memory cache. 
@@ -44,22 +52,6 @@ namespace IceCreamManager.Model
         public bool Add(string cacheName, DatabaseEntity entity)
         {
             return EntityCache.Add(cacheName + entity.ID, entity, CachePolicy);
-        }
-
-        /// <summary>
-        /// Removes an entity from a specific memory cache. The cache is named for the class that implements DatabaseEntity.
-        /// </summary>
-        /// <param name="cacheName">The name of the cache. </param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public bool Remove(string cacheName, DatabaseEntity entity)
-        {
-            if (Contains(cacheName, entity.ID))
-            {
-                EntityCache.Remove(cacheName + entity.ID);
-                return true;
-            }
-            return false;
         }
 
         /// <summary>
@@ -83,5 +75,23 @@ namespace IceCreamManager.Model
         {
             return (DatabaseEntity)EntityCache.Get(cacheName + entityID);
         }
+
+        /// <summary>
+        ///   Removes an entity from a specific memory cache. The cache is named for the class that implements DatabaseEntity. 
+        /// </summary>
+        /// <param name="cacheName"> The name of the cache. </param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool Remove(string cacheName, DatabaseEntity entity)
+        {
+            if (Contains(cacheName, entity.ID))
+            {
+                EntityCache.Remove(cacheName + entity.ID);
+                return true;
+            }
+            return false;
+        }
+
+        #endregion Public Methods
     }
 }

@@ -3,7 +3,7 @@ using System.Data;
 
 namespace IceCreamManager.Model
 {
-    class BatchHistoryEntryFactory : DatabaseEntityFactory<BatchHistoryEntry>
+    public class BatchHistoryEntryFactory : DatabaseEntityFactory<BatchHistoryEntry>
     {
         #region Singleton
         private static readonly BatchHistoryEntryFactory SingletonInstance = new BatchHistoryEntryFactory();
