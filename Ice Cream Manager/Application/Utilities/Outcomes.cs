@@ -27,7 +27,8 @@ namespace IceCreamManager
 
         // Batch Processor outcomes
         NotNextSequence = 500,
-
         DateEarlierThanPreviousFile = 501,
+        FileRejected = 502,
+        LineRejected = 503,
     }
 }

@@ -79,8 +79,6 @@
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\CityFactory.cs" />
     <Compile Include="Controller\BatchFileProcessing.cs" />
-    <Compile Include="Model\BatchHistory.cs" />
-    <Compile Include="Model\DatabaseEntityProperties.cs" />
     <Compile Include="Controller\BatchHistory.cs" />
     <Compile Include="Model\DatabaseManagerExtensionMethods.cs" />
     <Compile Include="Model\DatabaseEntityCache.cs" />
