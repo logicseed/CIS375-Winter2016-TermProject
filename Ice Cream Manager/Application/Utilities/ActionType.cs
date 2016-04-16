@@ -14,5 +14,9 @@ namespace IceCreamManager
         LoadFile,
         AddCity,
         AddTruck,
+        AddFuelToTruck,
+        DeleteRoute,
+        AddRoute,
+        ChangeRoute,
     }
 }

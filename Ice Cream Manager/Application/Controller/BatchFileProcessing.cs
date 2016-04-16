@@ -1,15 +1,13 @@
-﻿
+﻿///<Author>Rodney Lewis</Author>
 using IceCreamManager.Model;
-///<Author>Rodney Lewis</Author>
 using System;
 using System.IO;
 
 namespace IceCreamManager.Controller
 {
-    public class BatchFileProcessing
+    class BatchFileProcessing
     {
         public string fileLine;
-        public int countedRecords = 0;
         public int countedLines = 0;
         public char trim = ' ';
         public string extractedData;
@@ -25,7 +23,7 @@ namespace IceCreamManager.Controller
         }
     }
 
-    public class HeaderFooter : BatchFileProcessing
+    class HeaderFooter : BatchFileProcessing
     {
         string[] recordTypes = new string[] { "IR", "TR", "SR", "T " };
         int sequenceNumber;
@@ -125,6 +123,7 @@ namespace IceCreamManager.Controller
 
     class CityUpload : BatchFileProcessing
     {
+        CityFactory cityAction = CityFactory.Reference;
 
         string cityLabel;
         string cityName;
@@ -134,143 +133,144 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// Processes City file, Rejects line if information is invalid.
+        /// 
+        ///HD SEQ#      YYYY-MM-DD 
+        ///|------city label----||------city name-----||state|
+        ///T #ROWS
+        ///     
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessCityFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |------city label----||------city name-----||state|
-                T #ROWS
-            */
-
-            try
+            cityAction.DeleteAll();
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
+            while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
-
-                while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
-                {
-                    fileLine = file.ReadLine();
                     
-                    cityLabel = fileLine.Substring(0, Requirement.MaxCityLabelLength);
-                    fileLine = fileLine.Remove(0, Requirement.MaxCityLabelLength);
+                cityLabel = fileLine.Substring(0, Requirement.MaxCityLabelLength);
+                fileLine = fileLine.Remove(0, Requirement.MaxCityLabelLength);
 
-                    cityName = fileLine.Substring(0, Requirement.MaxCityNameLength);
-                    fileLine = fileLine.Remove(0, Requirement.MaxCityNameLength);
+                cityName = fileLine.Substring(0, Requirement.MaxCityNameLength);
+                fileLine = fileLine.Remove(0, Requirement.MaxCityNameLength);
 
-                    state = fileLine.Substring(0, Requirement.MaxCityStateLength);
-                    fileLine = fileLine.Remove(0, Requirement.MaxCityStateLength);
+                state = fileLine.Substring(0, Requirement.MaxCityStateLength);
+                fileLine = fileLine.Remove(0, Requirement.MaxCityStateLength);
 
-                    if (fileLine == null)
-                    {
-                        cityLabel.TrimEnd(trim);
-                        cityName.TrimEnd(trim);
-
-                        City newCity = new City();
-                        newCity.Label = cityLabel;
-                        newCity.Name = cityName;
-                        newCity.State = state;
-                        newCity.Save();
-                        //Apply all data
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                        //Reject line
-                    }
+                if (fileLine == null)
+                {
+                    cityLabel.TrimEnd(trim);
+                    cityName.TrimEnd(trim);
+                    ApplyNewCityData();
                 }
+                else
+                {
+                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.AddCity, Outcome.LineRejected, countedLines);
+                }
+            }
                 file.Close();
-            }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.AddCity, Outcome.LineRejected, countedLines);
-            }
+        }
+
+        private void ApplyNewCityData()
+        {
+            City newCity = new City();
+            newCity.Label = cityLabel;
+            newCity.Name = cityName;
+            newCity.State = state;
+            newCity.Save();
+            //Apply all data
         }
 
         /// <summary>
         /// 
+        ///HD SEQ#      YYYY-MM-DD
+        ///|------city label----||Hours||Miles|
+        ///T ROWS
+        ///
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessCityFileExtension(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD
-                |------city label----||Hours||Miles|
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
 
-            try
+            while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
 
-                while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
+                cityLabel = fileLine.Substring(0, Requirement.MaxCityLabelLength);
+                if (cityAction.Exists(cityLabel))
                 {
-                    fileLine = file.ReadLine();
-
-                    cityLabel = fileLine.Substring(0, Requirement.MaxCityLabelLength);
-                    if (cityLabel)  //If city label exists in DB
+                    fileLine = fileLine.Remove(0, Requirement.MaxCityLabelLength);
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                    if (ZeroFillNumberCheck(extractedData))
                     {
-                        fileLine = fileLine.Remove(0, Requirement.MaxCityLabelLength);
-                        extractedData = fileLine.Substring(0, 4);
+                        hours = Convert.ToDouble(extractedData);
+                        hours = hours / 100;
+                        fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
                         if (ZeroFillNumberCheck(extractedData))
                         {
-                            hours = Convert.ToDouble(extractedData);
-                            hours = hours / 100;
-                            fileLine = fileLine.Remove(0, 4);
+                            miles = Convert.ToDouble(extractedData);
+                            miles = miles / 100;
+                            fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                            extractedData = fileLine.Substring(0, 4);
-                            if (ZeroFillNumberCheck(extractedData))
+                            if (fileLine == null)
                             {
-                                miles = Convert.ToDouble(extractedData);
-                                miles = miles / 100;
-                                fileLine = fileLine.Remove(0, 4);
-
-                                if (fileLine == null)
-                                {
-                                    //HOW DO I SEARCH FOR CITY LABELS
-                                    cityLabel.TrimEnd(trim);
-                                    file.Close();
-                                    //Apply all data
-                                }
-                                else
-                                {
-                                    //Reject line
-                                    throw new NotImplementedException();
-                                }
+                                cityLabel.TrimEnd(trim);
+                                ApplyCityHoursMiles();
                             }
                             else
                             {
                                 //Reject line
-                                throw new NotImplementedException();
+                                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.LineRejected, countedLines);
                             }
-
                         }
                         else
                         {
                             //Rejct line
-                            throw new NotImplementedException();
+                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.LineRejected, countedLines);
                         }
+
                     }
                     else
                     {
-                        //Reject line
-                        throw new NotImplementedException();
+                        //Rejct line
+                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
+
                     }
                 }
-            }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
+                else
+                {
+                    //Reject line
+                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
+
+                }
             }
         }
 
+        private void ApplyCityHoursMiles()
+        {
+            City cityProperties = new City();
+            int id = cityAction.GetCityID(cityLabel);
+            cityProperties = cityAction.Load(id);
+            cityProperties.Hours = hours;
+            cityProperties.Miles = miles;
+            cityProperties.Save();
+            //Apply all data
+        }
     }
 
     class RouteUpload : BatchFileProcessing
     {
+        RouteFactory routeAction = RouteFactory.Reference;
+        CityFactory cityAction = CityFactory.Reference;
         string actionCode;
         int routeNumber;
         string[] cityLabel = new string[10];
@@ -281,29 +281,27 @@ namespace IceCreamManager.Controller
             {
                 extractedData = fileLine.Substring(0, 20);
                 extractedData.TrimEnd(trim);
-                if (cityProperties.Exists(extractedData)) //Does this city label exist in the DB
+                if (cityAction.Exists(extractedData)) //Does this city label exist in the DB
                 {
                     cityLabel[i] = extractedData;
                 }
                 else
                 {
                     Array.Clear(cityLabel, 0, 10);
-                    //Reject line
+                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
                 }
             }
         }
         /// <summary>
         /// 
+        ///HD SEQ#      YYYY-MM-DD    
+        ///|action code||Route Number||-----city label-----|*10
+        ///T #ROWS
+        ///
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessRouteFile(string FilePath)
-        {
-            /*
-                HD SEQ#      YYYY-MM-DD    
-                |action code||Route Number||-----city label-----|*10
-                T #ROWS
-            */
-            RouteFactory routeProperties = RouteFactory.Reference;
+        {    
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
             countedLines++;
@@ -318,15 +316,20 @@ namespace IceCreamManager.Controller
                 routeNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
                 fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                if (routeNumber) //Does this routeNumber exist in the DB
+                if (routeAction.Exists()) //Does this routeNumber exist in the DB
                 {
                     if (actionCode == "C")
                     {
                         //Erase contents of routeNumber
                         ExtractCityLabels();
-                        
-
-                        //Apply cityLabls
+                        if (fileLine == null)
+                        {
+                            //Apply cityLabels
+                        }
+                        else
+                        {
+                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.ChangeRoute, Outcome.FileRejected, countedLines);
+                        }
                     }
                     else if (actionCode == "D")
                     {
@@ -336,8 +339,13 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
+                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.DeleteRoute, Outcome.FileRejected, countedLines);
                             //Reject line
                         }
+                    }
+                    else
+                    {
+                        //Log for incorrect Action code
                     }
                 }
                 else
@@ -345,9 +353,21 @@ namespace IceCreamManager.Controller
                     if (actionCode == "A")
                     {
                         ExtractCityLabels();
+                        if(fileLine == null)
+                        {
+
+                        }
+                        else
+                        {
+                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.AddRoute, Outcome.FileRejected, countedLines);
+                        }
                         Route newRoute = new Route();
-                        newRoute.RouteCities.Clear();
+                        //Add routes to new city
                         //Apply cityLabels
+                    }
+                    else
+                    {
+                        //Log for incorrect Action code
                     }
                 }
             }
@@ -359,120 +379,103 @@ namespace IceCreamManager.Controller
     {
         int truckNumber;
         double fuelRate;
+
         /// <summary>
+        /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// |Truck Number|
+        /// T #ROWS
         /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessTruckFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Truck Number|
-                T #ROWS
-            */
 
-            try
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
+
+            while (file.EndOfStream != false)
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
-
-                while (file.EndOfStream != false)
+                if (ZeroFillNumberCheck(fileLine))
                 {
-                    fileLine = file.ReadLine();
-                    countedLines++;
-                    if (ZeroFillNumberCheck(fileLine))
-                    {
-                        truckNumber = Convert.ToInt32(fileLine.Substring(0, 4));
-                        fileLine.Remove(0, 4);
+                    truckNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                    fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                        if (fileLine == null)
-                        {
-                            Truck newTruck = new Truck();
-                            newTruck.Number = truckNumber;
-                            newTruck.Save();
-                            //Apply data
-                        }
-                        else
-                        {
-                            throw new NotImplementedException();
-                        }
+                    if (fileLine == null)
+                    {
+                        Truck newTruck = new Truck();
+                        newTruck.Number = truckNumber;
+                        newTruck.Save();
+                        //Apply data
                     }
                     else
                     {
-
+                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
                     }
-
                 }
-            }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                else
+                {
+                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                }
             }
         }
 
+
         /// <summary>
         /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// |Truck Number||Fuel Rate|
+        /// T #ROWS
+        ///
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessTruckFuelFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Truck Number||Fuel Rate|
-                T #ROWS
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
 
-            try
+            while (file.EndOfStream != false)
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
 
-                while (file.EndOfStream != false)
+                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                if (ZeroFillNumberCheck(extractedData))
                 {
-                    fileLine = file.ReadLine();
-                    countedLines++;
+                    truckNumber = Convert.ToInt32(extractedData);
+                    fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
 
-                    extractedData = fileLine.Substring(0, 4);
+                    //Does this truck exist in the DB?
                     if (ZeroFillNumberCheck(extractedData))
                     {
-                        truckNumber = Convert.ToInt32(extractedData);
-                        fileLine.Remove(0, 4);
-
-                        extractedData = fileLine.Substring(0, 4);
-                        if (ZeroFillNumberCheck(extractedData))
+                        fuelRate = Convert.ToDouble(extractedData);
+                        fuelRate = fuelRate / 100;
+                        fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                        if (fileLine == null)
                         {
-                            fuelRate = Convert.ToDouble(extractedData);
-                            fuelRate = fuelRate / 100;
-                            fileLine.Remove(0, 4);
-                            if (fileLine == null)
-                            {
-                                //Apply data
-                            }
-                            else
-                            {
-                                throw new NotImplementedException();
-                            }
+                            //Apply data
                         }
                         else
                         {
-                            throw new NotImplementedException();
-                        } 
+                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
+                        }
                     }
                     else
                     {
-                        throw new NotImplementedException();
+                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
                     }
                 }
+                else
+                {
+                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
+                }
             }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
-            }
-
         }
-
     }
 
     class DriverUpload : BatchFileProcessing
@@ -484,133 +487,119 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// |Driver Number||Driver Name||Hourly Rate|
+        /// T #ROWS
+        /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessDriverFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Driver Number||Driver Name||Hourly Rate|
-                T #ROWS
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
 
-            try
+            while (file.EndOfStream != false)
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
 
-                while (file.EndOfStream != false)
+                extractedData = fileLine.Substring(0, Requirement.MaxDriverNumber);
+                if (ZeroFillNumberCheck(extractedData))
                 {
-                    fileLine = file.ReadLine();
-                    countedLines++;
+                    driverNumber = Convert.ToInt32(extractedData);
+                    fileLine.Remove(0, Requirement.MaxDriverNumber);
 
-                    extractedData = fileLine.Substring(0, Requirement.MaxDriverNumber);
+                    driverName = fileLine.Substring(0, Requirement.MaxDriverNameLength);
+                    fileLine.Remove(0, Requirement.MaxDriverNameLength);
+
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
                     if (ZeroFillNumberCheck(extractedData))
                     {
-                        driverNumber = Convert.ToInt32(extractedData);
-                        fileLine.Remove(0, Requirement.MaxDriverNumber);
-
-                        driverName = fileLine.Substring(0, Requirement.MaxDriverNameLength);
-                        fileLine.Remove(0, Requirement.MaxDriverNameLength);
-
-                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
-                        if (ZeroFillNumberCheck(extractedData))
+                        hourlyRate = Convert.ToDouble(extractedData);
+                        hourlyRate = hourlyRate / 100;
+                        fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                        if (fileLine == null)
                         {
-                            hourlyRate = Convert.ToDouble(extractedData);
-                            hourlyRate = hourlyRate / 100;
-                            fileLine.Remove(0, Requirement.ZeroFillNumberLength);
-                            if (fileLine == null)
-                            {
-                                Driver newDriver = new Driver();
-                                newDriver.Number = driverNumber;
-                                newDriver.Name = driverName;
-                                newDriver.HourlyRate = hourlyRate;
-                                //Apply data
-                            }
-                            else
-                            {
-                                throw new NotImplementedException();
-                            }
+                            ApplyDriverData();
+                            //Apply data
                         }
                         else
                         {
-                            throw new NotImplementedException();
+                            //Log
                         }
                     }
                     else
                     {
-                        throw new NotImplementedException();
+                        //Log
                     }
                 }
-            }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                else
+                {
+                    //Log
+                }
             }
         }
 
+        private void ApplyDriverData()
+        {
+            Driver newDriver = new Driver();
+            newDriver.Number = driverNumber;
+            newDriver.Name = driverName;
+            newDriver.HourlyRate = hourlyRate;
+        }
+
         /// <summary>
+        /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// |Truck Number||Driver Number|
+        /// T #ROWS
         /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessTruckDriverFile(string FilePath)
         {
-            /*
-               HD SEQ#      YYYY-MM-DD 
-               |Truck Number||Driver Number|
-               T #ROWS
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
 
-            try
+            while (file.EndOfStream != false)
             {
-                StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
 
-                while (file.EndOfStream != false)
+                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                if (ZeroFillNumberCheck(extractedData))
                 {
-                    fileLine = file.ReadLine();
-                    countedLines++;
+                    //If truck exists
+                    truckNumber = Convert.ToInt32(extractedData);
+                    fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
                     extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
                     if (ZeroFillNumberCheck(extractedData))
                     {
-                        //If truck exists
-                        truckNumber = Convert.ToInt32(extractedData);
+                        //If driver exists
+                        driverNumber = Convert.ToInt32(extractedData);
                         fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
-                        if (ZeroFillNumberCheck(extractedData))
+                        if (fileLine == null)
                         {
-                            //If driver exists
-                            driverNumber = Convert.ToInt32(extractedData);
-                            fileLine.Remove(0, Requirement.ZeroFillNumberLength);
-                            
-                            if (fileLine == null)
-                            {
-                                //
-                                //Apply data
-                            }
-                            else
-                            {
-                                throw new NotImplementedException();
-                            }
+                            //Apply data
                         }
                         else
                         {
-                            throw new NotImplementedException();
+                            //Log
                         }
                     }
                     else
                     {
-                        throw new NotImplementedException();
+                        //Log
                     }
                 }
-            }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                else
+                {
+                    //Log
+                }
             }
         }
     }
@@ -622,18 +611,193 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// |Truck Number||Route Number|
+        /// T #ROWS
+        /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessTruckRouteFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Truck Number||Route Number|
-                T #ROWS
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
 
-            try
+            while (file.EndOfStream != false)
             {
+                fileLine = file.ReadLine();
+                countedLines++;
+
+                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                if (ZeroFillNumberCheck(extractedData))
+                {
+                    truckNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                    //if truck exists
+                    fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                    if (ZeroFillNumberCheck(extractedData))
+                    {
+                        routeNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                        //if route exists
+                        fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                        if (fileLine == null)
+                        {
+                            //Check if truck and route exist
+                            //Apply data if they both exist
+                        }
+                        else
+                        {
+                            //Log
+                        }
+                    }
+                    else
+                    {
+                        //Log
+                    }
+                }
+                else
+                {
+                    //Log
+                }
+            }
+        }
+    }
+
+    class IceCreamTruckUpload : BatchFileProcessing
+    {
+        int countedRecords = 0;
+        int fileRecord;
+        int itemNumber;
+        int adjustmentQuantity;
+
+        /// <summary>
+        /// 
+        /// HD SEQ#      YYYY-MM-DD 
+        /// TR|Truck Number|
+        /// |Item Number||Adjustment Quantity|
+        /// IR #ROWS FOR TRUCK
+        /// T #ROWS IN FILE
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        public void ProcessIceCreamTruckFile(string FilePath)
+        {
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
+
+            while (file.EndOfStream != false)
+            {
+                fileLine = file.ReadLine();
+                countedLines++;
+                extractedData = fileLine.Substring(0, 2);
+                if (extractedData == "TR")
+                {
+                    fileLine = file.ReadLine();
+                    countedLines++;
+                    countedRecords++;
+                    while (fileLine.Substring(0, 2) != "IR")
+                    {
+                        countedRecords++;
+                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                        if (ZeroFillNumberCheck(extractedData))
+                        {
+                            itemNumber = Convert.ToInt32(extractedData);
+                            fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                            extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+
+                            if (ZeroFillNumberCheck(extractedData))
+                            {
+                                adjustmentQuantity = Convert.ToInt32(extractedData);
+                                fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                                if (fileLine == null)
+                                {
+                                    if (itemNumber)
+                                    {
+                                        //Change item quantity
+                                        if ((adjustmentQuantity + itemQuantity) > 0)
+                                        {
+                                            //Create change record
+                                        }
+                                        else
+                                        {
+                                            //Log
+                                            //Reject line
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (adjustmentQuantity > 0)
+                                        {
+                                            //Create new item
+                                            //Create change record
+                                        }
+                                        else
+                                        {
+                                            //Log
+                                            //Reejct line
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //Log
+                                    //Rejct line
+                                }
+                            }
+                        }
+                        fileLine = file.ReadLine();
+                    }
+                    fileLine.Remove(0, 2);
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                    if (ZeroFillNumberCheck(extractedData))
+                    {
+                        fileRecord = Convert.ToInt32(extractedData);
+                        fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                        if (fileRecord == countedRecords)
+                        {
+                            //Apply all data
+                        }
+                        else
+                        {
+                            //Log
+                            //Reject set of records
+                        }
+                    }
+                    else
+                    {
+                        //Log
+                        //Reject set of records
+                    }
+                }
+
+            }
+        }
+    }
+
+    class IceCreamTruckSalesUpload : BatchFileProcessing
+    {
+            int countedRecords = 0;
+            int fileRecord;
+            int itemNumber;
+            int newQuantity;
+
+            /// <summary>
+            /// 
+            ///  HD SEQ#      YYYY-MM-DD 
+            /// TR|Truck Number|
+            /// |Item Number||Final Quantity|
+            /// SR #ROWS FOR TRUCK
+            ///  T #ROWS IN FILE
+            ///        
+            /// </summary>
+            /// <param name="FilePath"></param>
+        public void ProcessIceCreamTruckSalesFile(string FilePath)
+        {
                 StreamReader file = new StreamReader(FilePath);
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -641,118 +805,125 @@ namespace IceCreamManager.Controller
                 while (file.EndOfStream != false)
                 {
                     fileLine = file.ReadLine();
-
-                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
-                    if (ZeroFillNumberCheck(extractedData))
+                    countedLines++;
+                    extractedData = fileLine.Substring(0, 2);
+                    if (extractedData == "TR")
                     {
-                        truckNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
-                        //if truck exists
-                        fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                        fileLine = file.ReadLine();
+                        countedLines++;
+                        countedRecords++;
+                        while (fileLine.Substring(0, 2) != "SR")
+                        {
+                            countedRecords++;
+                            extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                            if (ZeroFillNumberCheck(extractedData))
+                            {
+                                itemNumber = Convert.ToInt32(extractedData);
+                                fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
 
+                                if (ZeroFillNumberCheck(extractedData))
+                                {
+                                    newQuantity = Convert.ToInt32(extractedData);
+                                    fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                                    if (fileLine == null)
+                                    {
+                                        if (itemNumber)
+                                        {
+                                            //Change item quantity
+                                            if (newQuantity > itemQuantity)
+                                            {
+                                                //Create change record
+                                            }
+                                            else
+                                            {
+                                                //Log
+                                                //Reject line
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (adjustmentQuantity > 0)
+                                            {
+                                                //Create new item
+                                                //Create change record
+                                            }
+                                            else
+                                            {
+                                                //Log
+                                                //Reejct line
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Log
+                                        //Rejct line
+                                    }
+                                }
+                            }
+                            fileLine = file.ReadLine();
+                        }
+                        fileLine.Remove(0, 2);
                         extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
                         if (ZeroFillNumberCheck(extractedData))
                         {
-                            routeNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
-                            //if route exists
-                            fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                            fileRecord = Convert.ToInt32(extractedData);
+                            fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                            if (fileLine == null)
+                            if (fileRecord == countedRecords)
                             {
-                                //Check if truck and route exist
-                                //Apply data if they both exist
+                                //Apply all data
                             }
                             else
                             {
-                                throw new NotImplementedException();
+                                //Log
+                                //Reject set of records
                             }
                         }
                         else
                         {
-                            throw new NotImplementedException();
+                            //Log
+                            //Reject set of records
                         }
                     }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
+
                 }
             }
-            catch (Exception)
-            {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckRoute), ActionSource.BatchFile, ActionType.AddTruckToRoute, Outcome.LineRejected, countedLines);
-
-            }
-        }
-    }
-
-    class IceCreamTruckUpload : BatchFileProcessing
-    {
         /// <summary>
         /// 
-        /// </summary>
-        /// <param name="FilePath"></param>
-        public void ProcessIceCreamTruckFile(string FilePath)
-        {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                TR|Truck Number|
-                |Item Number||Adjustment Quantity|
-                IR #ROWS FOR TRUCK
-                T #ROWS IN FILE
-            */
-        }
-    }
-
-    class IceCreamTruckSalesUpload : BatchFileProcessing
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="FilePath"></param>
-        public void ProcessIceCreamTruckSalesFile(string FilePath)
-        {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                TR|Truck Number|
-                |Item Number||Final Quantity|
-                SR #ROWS FOR TRUCK
-                T #ROWS IN FILE
-            */
-        }
-        /// <summary>
+        /// HD SEQ#		YYYY-MM-DD
+        /// |Poll number|
+        /// |item number||Vote|
+        /// T #ROWS IN FILE
         /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessPollFile(string FilePath)
         {
-            /*
-                HD SEQ#		YYYY-MM-DD
-                |Poll number|
-                |item number||Vote|
-                T #ROWS IN FILE
-            */
+            //TODO: Implement after more information
         }
     }
 
     class InventoryUpdateUpload : BatchFileProcessing
     {
+        int itemNumber;
+        int warehouseQuantity;
+        int itemFreshness; 
+        double price;
+        string description;
+
         /// <summary>
         /// 
+        ///  HD SEQ#      YYYY-MM-DD 
+        ///  |Item Number||Warehouse Quantity||Price||Description|
+        ///  T #ROWS IN FILE
+        ///  
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessInventoryUpdateFile(string FilePath)
         {
-            /*
-                HD SEQ#      YYYY-MM-DD 
-                |Item Number||Warehouse Quantity||Price||Description|
-                T #ROWS IN FILE
-            */
-
-            int itemNumber;
-            int warehouseQuantity;
-            double price;
-            string description;
-
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
 
@@ -760,41 +931,96 @@ namespace IceCreamManager.Controller
             {
                 fileLine = file.ReadLine();
 
-                itemNumber = Convert.ToInt32(fileLine.Substring(0, 4));
-                fileLine = fileLine.Remove(0, 5);
-
-                warehouseQuantity = Convert.ToInt32(fileLine.Substring(0, 6));
-                fileLine = fileLine.Remove(0, 7);
-
-                price = Convert.ToDouble(fileLine.Substring(0, 4));
-                price = price / 100;
-                fileLine = fileLine.Remove(0, 5);
-
-                description = fileLine.Substring(0, Requirement.MaxDescription);
-                fileLine = fileLine.Remove(0, Requirement.MaxDescription);
-
-                if (fileLine == null)
+                itemNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                if (itemNumber) //If it it exists in the DB
                 {
-                    //Check if item exists
-                    //Apply data if they both exist
+                    warehouseQuantity = Convert.ToInt32(fileLine.Substring(0, 6));
+                    fileLine = fileLine.Remove(0, 6);
+
+                    price = Convert.ToDouble(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                    price = price / 100;
+                    fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                    description = fileLine.Substring(0, Requirement.MaxItemDescriptionLength);
+                    fileLine = fileLine.Remove(0, Requirement.MaxItemDescriptionLength);
+
+                    if (fileLine == null)
+                    {
+                        if(price != 0)
+                        {
+
+                        }
+
+                        if(description != null)
+                        {
+
+                        }
+                        if(warehouseQuantity != 0)
+                        {
+
+                        }
+                        else
+                        {
+                            //Log
+                        }
+                        //Check if item exists
+                        //Apply data if they both exist
+                    }
+                    else
+                    {
+                        //Log
+                    }
                 }
                 else
                 {
-                    throw new Exception();
+
                 }
             }
         }
         /// <summary>
         /// 
+        /// HD SEQ#		YYYY-MM-DD
+        /// |Item number||Item freshness|
+        /// T #ROWS IN FILE
+        /// 
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessInventoryUpdateExtensionFile(string FilePath)
         {
-            /*      
-                HD SEQ#		YYYY-MM-DD
-                |Item number||Item freshness|
-                T #ROWS IN FILE
-            */
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
+
+            while (file.EndOfStream != false)
+            {
+                fileLine = file.ReadLine();
+                countedLines++;
+
+                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                if (ZeroFillNumberCheck(extractedData))
+                {
+                    itemNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
+                    //if truck exists
+                    fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                    //extractedData = itemfreshness, think it will only be a 3 digit number;
+                        if (fileLine == null)
+                        {
+                            //Check if truck and route exist
+                            //Apply data if they both exist
+                        }
+                        else
+                        {
+                            //Log
+                        }
+                    }
+                    else
+                    {
+                        //Log
+                    }
+            }
         }
     }
 }
