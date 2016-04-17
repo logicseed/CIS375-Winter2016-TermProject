@@ -1,4 +1,33 @@
-Test=This can be anything.
+# Main screen
+
+Revenue = Revenue
+Trucks = Trucks
+Items = Items
+Drivers = Drivers
+Routes = Routes
+Cities = Cities
+Processing = Processing
+Settings = Settings
+ViewLog = View Log
+About = About
+
+
+# Generic editor phrases
+Save = Save
+Discard = Discard
+
+# Settings editor phrases
+SettingsEditor = Settings Editor
+Language = Language
+Currency = Currency
+
+
+
+
+
+CityEditor=City Editor
+# Unit test strings
+Test = This could be anything.
 Test2    = English test 2
 Test3 = English test 3
 Test4 = English test 4

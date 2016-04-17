@@ -69,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\LanguageParser.cs" />
+    <Compile Include="Model\LanguageManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Exceptions.cs" />
     <Compile Include="Controller\Logger.cs" />
     <Compile Include="Utilities\Outcomes.cs" />
@@ -118,127 +124,25 @@
     <Compile Include="View\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\BatchPanel.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="View\AbstractEditor.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\BatchPanel.Designer.cs">
-      <DependentUpon>BatchPanel.cs</DependentUpon>
+    <Compile Include="View\AbstractEditor.Designer.cs">
+      <DependentUpon>AbstractEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DriversListPanel.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="View\CityEditor.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\DriversListPanel.Designer.cs">
-      <DependentUpon>DriversListPanel.cs</DependentUpon>
+    <Compile Include="View\CityEditor.Designer.cs">
+      <DependentUpon>CityEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DriversPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\DriversPanel.Designer.cs">
-      <DependentUpon>DriversPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\DualListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\DualListPanel.Designer.cs">
-      <DependentUpon>DualListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FuelUsageChartPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\FuelUsageChartPanel.Designer.cs">
-      <DependentUpon>FuelUsageChartPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FuelUsageListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\FuelUsageListPanel.Designer.cs">
-      <DependentUpon>FuelUsageListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FuelUsagePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\FuelUsagePanel.Designer.cs">
-      <DependentUpon>FuelUsagePanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FuelUsageToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\FuelUsageToolbar.Designer.cs">
-      <DependentUpon>FuelUsageToolbar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ItemsListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ItemsListPanel.Designer.cs">
-      <DependentUpon>ItemsListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ItemsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ItemsPanel.Designer.cs">
-      <DependentUpon>ItemsPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ItemToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ItemToolbar.Designer.cs">
-      <DependentUpon>ItemToolbar.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\PresetsCreateItemsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsCreateItemsPanel.Designer.cs">
-      <DependentUpon>PresetsCreateItemsPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PresetsCreateListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsCreateListPanel.Designer.cs">
-      <DependentUpon>PresetsCreateListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PresetsCreatePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsCreatePanel.Designer.cs">
-      <DependentUpon>PresetsCreatePanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PresetsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsPanel.Designer.cs">
-      <DependentUpon>PresetsPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PresetsSchedulePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsSchedulePanel.Designer.cs">
-      <DependentUpon>PresetsSchedulePanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PresetsToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\PresetsToolbar.Designer.cs">
-      <DependentUpon>PresetsToolbar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\RoutesListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\RoutesListPanel.Designer.cs">
-      <DependentUpon>RoutesListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\RoutesPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\RoutesPanel.Designer.cs">
-      <DependentUpon>RoutesPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SalesChartPanel.cs">
       <SubType>UserControl</SubType>
@@ -246,234 +150,52 @@
     <Compile Include="View\SalesChartPanel.Designer.cs">
       <DependentUpon>SalesChartPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SalesPanel.cs">
+    <Compile Include="View\EntityListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\SalesPanel.Designer.cs">
-      <DependentUpon>SalesPanel.cs</DependentUpon>
+    <Compile Include="View\EntityListPanel.Designer.cs">
+      <DependentUpon>EntityListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SalesToolbar.cs">
+    <Compile Include="View\SaveCancelDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\SalesToolbar.Designer.cs">
-      <DependentUpon>SalesToolbar.cs</DependentUpon>
+    <Compile Include="View\SaveCancelDialog.Designer.cs">
+      <DependentUpon>SaveCancelDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SalesListPanel.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="View\SettingsEditor.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\SalesListPanel.Designer.cs">
-      <DependentUpon>SalesListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SaveUndoToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\SaveUndoToolbar.Designer.cs">
-      <DependentUpon>SaveUndoToolbar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\SettingsPanel.Designer.cs">
-      <DependentUpon>SettingsPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ToolbarPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ToolbarPanel.Designer.cs">
-      <DependentUpon>ToolbarPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\TrucksInventoryPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\TrucksInventoryPanel.Designer.cs">
-      <DependentUpon>TrucksInventoryPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\TrucksListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\TrucksListPanel.Designer.cs">
-      <DependentUpon>TrucksListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\TrucksPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\TrucksPanel.Designer.cs">
-      <DependentUpon>TrucksPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingCreateItemsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingCreateItemsPanel.Designer.cs">
-      <DependentUpon>VotingCreateItemsPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingCreateListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingCreateListPanel.Designer.cs">
-      <DependentUpon>VotingCreateListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingCreatePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingCreatePanel.Designer.cs">
-      <DependentUpon>VotingCreatePanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingPanel.Designer.cs">
-      <DependentUpon>VotingPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingResultsListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingResultsListPanel.Designer.cs">
-      <DependentUpon>VotingResultsListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VotingToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\VotingToolbar.Designer.cs">
-      <DependentUpon>VotingToolbar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ZonesListPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ZonesListPanel.Designer.cs">
-      <DependentUpon>ZonesListPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\ZonesPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ZonesPanel.Designer.cs">
-      <DependentUpon>ZonesPanel.cs</DependentUpon>
+    <Compile Include="View\SettingsEditor.Designer.cs">
+      <DependentUpon>SettingsEditor.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="View\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\BatchPanel.resx">
-      <DependentUpon>BatchPanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\AbstractEditor.resx">
+      <DependentUpon>AbstractEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DriversListPanel.resx">
-      <DependentUpon>DriversListPanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\CityEditor.resx">
+      <DependentUpon>CityEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DriversPanel.resx">
-      <DependentUpon>DriversPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\DualListPanel.resx">
-      <DependentUpon>DualListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FuelUsageChartPanel.resx">
-      <DependentUpon>FuelUsageChartPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FuelUsageListPanel.resx">
-      <DependentUpon>FuelUsageListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FuelUsagePanel.resx">
-      <DependentUpon>FuelUsagePanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FuelUsageToolbar.resx">
-      <DependentUpon>FuelUsageToolbar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ItemsListPanel.resx">
-      <DependentUpon>ItemsListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ItemsPanel.resx">
-      <DependentUpon>ItemsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ItemToolbar.resx">
-      <DependentUpon>ItemToolbar.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="View\PresetsCreateItemsPanel.resx">
-      <DependentUpon>PresetsCreateItemsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\PresetsCreateListPanel.resx">
-      <DependentUpon>PresetsCreateListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\PresetsCreatePanel.resx">
-      <DependentUpon>PresetsCreatePanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\PresetsPanel.resx">
-      <DependentUpon>PresetsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\PresetsSchedulePanel.resx">
-      <DependentUpon>PresetsSchedulePanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\PresetsToolbar.resx">
-      <DependentUpon>PresetsToolbar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\RoutesListPanel.resx">
-      <DependentUpon>RoutesListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\RoutesPanel.resx">
-      <DependentUpon>RoutesPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\SalesChartPanel.resx">
       <DependentUpon>SalesChartPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SalesPanel.resx">
-      <DependentUpon>SalesPanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\EntityListPanel.resx">
+      <DependentUpon>EntityListPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SalesListPanel.resx">
-      <DependentUpon>SalesListPanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\SaveCancelDialog.resx">
+      <DependentUpon>SaveCancelDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SalesToolbar.resx">
-      <DependentUpon>SalesToolbar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SaveUndoToolbar.resx">
-      <DependentUpon>SaveUndoToolbar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SettingsPanel.resx">
-      <DependentUpon>SettingsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ToolbarPanel.resx">
-      <DependentUpon>ToolbarPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TrucksInventoryPanel.resx">
-      <DependentUpon>TrucksInventoryPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TrucksListPanel.resx">
-      <DependentUpon>TrucksListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TrucksPanel.resx">
-      <DependentUpon>TrucksPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingCreateItemsPanel.resx">
-      <DependentUpon>VotingCreateItemsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingCreateListPanel.resx">
-      <DependentUpon>VotingCreateListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingCreatePanel.resx">
-      <DependentUpon>VotingCreatePanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingPanel.resx">
-      <DependentUpon>VotingPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingResultsListPanel.resx">
-      <DependentUpon>VotingResultsListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VotingToolbar.resx">
-      <DependentUpon>VotingToolbar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ZonesListPanel.resx">
-      <DependentUpon>ZonesListPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ZonesPanel.resx">
-      <DependentUpon>ZonesPanel.cs</DependentUpon>
+    <EmbeddedResource Include="View\SettingsEditor.resx">
+      <DependentUpon>SettingsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -495,54 +217,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ItemsButton.png" />
+    <None Include="Resources\Trucks.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PresetsButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RoutesButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SalesButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SettingsButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TruckButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\VotingButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ZonesButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AboutButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BatchButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DriversButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ErrorButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FuelButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HelpButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\UndoChangesButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SaveChangesButton.png" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
@@ -556,31 +232,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ListButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SchedulePresetButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ChartButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CosmosysLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TrucksButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CitiesFile.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\InventoryFileButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NextIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RoutesFile.png" />
@@ -593,6 +248,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TruckRoutesFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cities.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeveloperOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Drivers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Progress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Routes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Revenue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\About.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -117,68 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="About" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\About.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cities" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cities.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CitiesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CitiesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CosmosysLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CosmosysLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DeveloperOptions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeveloperOptions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Drivers" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Drivers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Items" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Items.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Log" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Log.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Progress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Progress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Revenue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Revenue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Routes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Routes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RoutesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RoutesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SalesFileButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SalesFileButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TruckInventoryFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TruckInventoryFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TruckRoutesFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TruckRoutesFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Trucks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Trucks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAA
+        AAD///8B////Af///wH///8B////Af///wELCwsDGBgYcRQUFLkAAABb////Af///wH///8B////Af//
+        /wH///8B////Af///wH///8B////Af///wEJCQkpJCQkwVZWVv1lZWX/NDQ09wYGBp8AAAAZ////Af//
+        /wH///8B////Af///wH///8B////AQEBAQUVFRWFPj4+8WdnZ/9qamr/a2tr/3d3d/9VVVX/Gxsb3QAA
+        AGH///8B////Af///wH///8B////AQkJCTsiIiLRVFRU/3BwcP9qamr/Wlpa/01NTf9nZ2f/goKC/3R0
+        dP86Ojr5BwcHqwAAAB////8B////ARAQEH0zMzP5aWlp/3V1df9oaGj/W1tb/09PT/82Njb/SEhI/2Rk
+        ZP+Dg4P/i4uL/15eXv8eHh7hAAAAT////wEzMzP3c3Nz/3d3d/9lZWX/WVlZ/1FRUf9FRUX/HR0d/y0t
+        Lf9ISEj/YWFh/39/f/+ampr/c3Nz/w8PD7H///8BNzc3/XV1df9mZmb/WVlZ/05OTv9ERET/ODg4/woK
+        Cv8MDAz/LCws/0ZGRv9dXV3/gYGB/3p6ev8VFRW3////AS0tLftlZWX/W1tb/05OTv9BQUH/ODg4/zk5
+        Of8qKir/CQkJ/woKCv8pKSn/RERE/2NjY/9nZ2f/FBQUtf///wElJSX7W1tb/01NTf89PT3/Pj4+/0dH
+        R/9MTEz/UFBQ/0VFRf8eHh7/CwsL/yMjI/9HR0f/WFhY/xYWFrX///8BHh4e+0lJSf9CQkL/UFBQ/1xc
+        XP9gYGD/YGBg/2FhYf9lZWX/Y2Nj/0NDQ/8bGxv/ICAg/0ZGRv8WFha1////ARYWFv1fX1//gYGB/5GR
+        kf+Ghob/e3t7/3V1df91dXX/dXV1/3l5ef9+fn7/bW1t/0JCQv8+Pj7/FhYWt////wEFBQXdV1dX/62t
+        rf+7u7v/r6+v/6ampv+dnZ3/lJSU/42Njf+Li4v/kZGR/5ubm/+Hh4f/SkpK/QsLC2v///8BAAAAGQEB
+        AbE6Ojr9m5ub/8/Pz//MzMz/w8PD/8DAwP/BwcH/xMTE/6ysrP90dHT/QUFB5x0dHV3///8B////Af//
+        /wH///8BAAAAWRcXF+d3d3f/1NTU/+fn5//k5OT/4eHh/6ampv9PT0/7Hx8fpxYWFhf///8B////Af//
+        /wH///8B////Af///wEAAAATAgICo0JCQv3AwMD/3t7e/3Fxcf8aGhrbCgoKS////wH///8B////Af//
+        /wH///8B////Af///wH///8B////Af///wEAAABPJCQk4Tk5OfUCAgKTAwMDC////wH///8B////Af//
+        /wH///8BAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        //8AAP//AAD//w==
+</value>
   </data>
 </root>
