@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace IceCreamManager.UnitTests.Model
 {
     [TestClass]
-    public class ItemTests
+    public class TestsItem
     {
         private DatabaseManager Database = DatabaseManager.Reference;
 

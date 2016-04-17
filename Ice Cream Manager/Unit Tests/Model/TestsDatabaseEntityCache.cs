@@ -9,7 +9,7 @@ using IceCreamManager.Model;
 namespace IceCreamManager.UnitTests.Model
 {
     [TestClass]
-    public class DatabaseEntityCacheTests
+    public class TestsDatabaseEntityCache
     {
         private DatabaseEntityCache TestEntityCache = DatabaseEntityCache.Reference;
 

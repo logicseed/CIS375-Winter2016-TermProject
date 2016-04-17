@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <project> IceCreamManager </project>
 /// <module> Route </module>
@@ -47,6 +48,15 @@ namespace IceCreamManager.Model
                 return routeCities;
             }
         }
-        
+
+        public void AddCity(object v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int LastCityAddedID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

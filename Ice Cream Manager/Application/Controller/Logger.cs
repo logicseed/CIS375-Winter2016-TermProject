@@ -62,5 +62,7 @@ namespace IceCreamManager.Controller
         {
             return Log(EntityType.BatchFile, (int)batchFileType, EntityType.None, 0, ActionSource.BatchFile, action, outcome, 0);
         }
+
+        
     }
 }

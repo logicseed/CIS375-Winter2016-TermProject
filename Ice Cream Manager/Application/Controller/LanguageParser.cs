@@ -13,52 +13,126 @@ namespace IceCreamManager.Controller
     {
         #region Singleton
 
-        private static readonly LanguageParser SingletonInstance = new LanguageParser();
-
-        /// <summary>
-        ///   Reference to the DatabaseManager Singleton instance. 
-        /// </summary>
         public static LanguageParser Reference { get { return SingletonInstance; } }
+
+        private static readonly LanguageParser SingletonInstance = new LanguageParser();
 
         #endregion Singleton
 
-        private Dictionary<string, string> EnglishStrings;
+        #region Public Properties
+
+        /// <summary>
+        /// Provides access to read and temporarily change the user selected language. Immediately
+        /// parses the language file for the language this property was set.
+        /// </summary>
+        public string SelectedLangauge
+        {
+            get
+            {
+                return Properties.Settings.Default.Language;
+            }
+            set
+            {
+                Properties.Settings.Default.Language = value;
+                if (value != FallbackLanguage)
+                {
+                    FallbackOnly = false;
+                    ParseUserLanguageFile();
+                }
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Indexers
+
+        /// <summary>
+        /// Provides indexer access to values through their keys.
+        /// </summary>
+        /// <param name="key">Language phrase code.</param>
+        /// <returns>Localized language phrase value.</returns>
+        public string this[string key]
+        {
+            get
+            {
+                if (FallbackOnly || Properties.Settings.Default.Language == FallbackLanguage)
+                {
+                    if (FallbackStrings.ContainsKey(key)) return FallbackStrings[key];
+                }
+                else
+                {
+                    if (UserLanguageStrings.ContainsKey(key)) return UserLanguageStrings[key];
+                    // Last chance English fall-back.
+                    if (FallbackStrings.ContainsKey(key)) return FallbackStrings[key];
+                }
+                return ""; // Fail gracefully
+            }
+        }
+
+        #endregion Public Indexers
+
+        #region Private Fields
+
+        // Simplifies first conditional to return the default phrase.
+        private bool FallbackOnly = false;
+
+        // Language strings in key-value pairs
+        private Dictionary<string, string> FallbackStrings;
+
         private Dictionary<string, string> UserLanguageStrings;
 
-        private string EnglishFile => "../../../English.lang";
-        private string UserLanguageFile => $"../../../{Properties.Settings.Default.Language}.lang";
+        #endregion Private Fields
 
-        private bool EnglishOnly = false;
+        #region Private Constructors
 
         private LanguageParser() // Private as Singleton
         {
-            ParseEnglishFile();
+            ParseFallbackLanguageFile();
 
-            if (Properties.Settings.Default.Language == "English") EnglishOnly = true;
+            if (Properties.Settings.Default.Language == FallbackLanguage) FallbackOnly = true;
             else ParseUserLanguageFile();
         }
 
-        private void ParseEnglishFile()
-        {
-            EnglishStrings = ParseLanguageFile(EnglishFile);
+        #endregion Private Constructors
 
-            if (EnglishStrings == null) throw new Exception("English language file error.");
+        #region Private Properties
+
+        // Language file locations
+        private string FallbackLanguageFile => $"../../../{FallbackLanguage}.lang";
+
+        private string FallbackLanguage => "English";
+        private string UserLanguageFile => $"../../../{Properties.Settings.Default.Language}.lang";
+        #endregion Private Properties
+
+        #region Private Methods
+
+        private void ParseFallbackLanguageFile()
+        {
+            FallbackStrings = ParseLanguageFile(FallbackLanguageFile);
+
+            if (FallbackStrings == null) throw new Exception("Fall-back language file error.");
         }
 
         private void ParseUserLanguageFile()
         {
             UserLanguageStrings = ParseLanguageFile(UserLanguageFile);
 
-            if (UserLanguageStrings == null) EnglishOnly = true;
+            if (UserLanguageStrings == null) FallbackOnly = true; // Fail gracefully
         }
 
-        private Dictionary<string,string> ParseLanguageFile(string FileURI)
+        /// <summary>
+        ///   Creates a Dictionary of phrase key and phrase value from a file. File has format "Key=Value" per line,
+        ///   extra spaces are trimmed.
+        /// </summary>
+        /// <param name="fileURI"> Location of file. </param>
+        /// <returns> Strings as key-value pairs. </returns>
+        private Dictionary<string, string> ParseLanguageFile(string fileURI)
         {
-            if (!File.Exists(FileURI)) return null;
+            if (!File.Exists(fileURI)) return null;
 
             var ParsedStrings = new Dictionary<string, string>();
 
-            string[] LanguageKeyValuePairs = File.ReadAllLines(FileURI);
+            string[] LanguageKeyValuePairs = File.ReadAllLines(fileURI);
 
             foreach (string KeyValuePair in LanguageKeyValuePairs)
             {
@@ -74,39 +148,6 @@ namespace IceCreamManager.Controller
 
             return ParsedStrings;
         }
-
-        public string this[string key]
-        {
-            get
-            {
-                if(EnglishOnly || Properties.Settings.Default.Language == "English")
-                {
-                    if (EnglishStrings.ContainsKey(key)) return EnglishStrings[key];
-                }
-                else
-                {
-                    if (UserLanguageStrings.ContainsKey(key)) return UserLanguageStrings[key];
-                    if (EnglishStrings.ContainsKey(key)) return EnglishStrings[key];
-                }
-                return "BAD LANGUAGE CODE";
-            }
-        }
-
-        public string SelectedLangauge
-        {
-            get
-            {
-                return Properties.Settings.Default.Language;
-            }
-            set
-            {
-                Properties.Settings.Default.Language = value;
-                if (value != "English")
-                {
-                    EnglishOnly = false;
-                    ParseUserLanguageFile();
-                }
-            }
-        }
+        #endregion Private Methods
     }
 }

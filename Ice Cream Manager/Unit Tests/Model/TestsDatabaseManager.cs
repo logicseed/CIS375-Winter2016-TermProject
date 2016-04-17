@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace IceCreamManager.UnitTests.Model
 {
     [TestClass]
-    public class DatabaseManagerTests
+    public class TestsDatabaseManager
     {
         private DatabaseManager Database = DatabaseManager.Reference;
 

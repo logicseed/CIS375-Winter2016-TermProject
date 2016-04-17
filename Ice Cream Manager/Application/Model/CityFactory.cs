@@ -78,5 +78,10 @@ namespace IceCreamManager.Model
 
             return ResultsTable.Row().Col("ID");
         }
+
+        public City Load(string cityLabel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

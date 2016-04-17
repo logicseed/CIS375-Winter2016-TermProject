@@ -43,5 +43,10 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        public Route LoadByNumber(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

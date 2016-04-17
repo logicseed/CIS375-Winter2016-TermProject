@@ -32,7 +32,7 @@ namespace IceCreamManager
           System.Runtime.Serialization.StreamingContext context) : base(info, context)
         { }
 
-        protected Outcome Outcome { get; set; }
+        public Outcome Outcome { get; set; }
     }
 
     #region City Property Exceptions

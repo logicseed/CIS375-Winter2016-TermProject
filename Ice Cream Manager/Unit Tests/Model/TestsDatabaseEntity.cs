@@ -20,7 +20,7 @@ namespace IceCreamManager.UnitTests.Model
     }
 
     [TestClass]
-    public class DatabaseEntityTests
+    public class TestsDatabaseEntity
     {
         [TestMethod]
         public void TestMethod1()

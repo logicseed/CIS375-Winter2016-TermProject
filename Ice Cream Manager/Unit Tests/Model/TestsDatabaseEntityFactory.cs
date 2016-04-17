@@ -47,7 +47,7 @@ namespace IceCreamManager.UnitTests.Model
 
 
     [TestClass]
-    public class DatabaseEntityFactoryTests
+    public class TestsDatabaseEntityFactory
     {
         TestDatabaseEntityFactory TestFactory = TestDatabaseEntityFactory.Reference;
 
@@ -85,19 +85,20 @@ namespace IceCreamManager.UnitTests.Model
             Assert.IsTrue(test.TestDateTime.CompareTo(testDate) == 0, "TestDateTime not set correctly.");
 
             Assert.IsTrue(TestFactory.Save(test), "Save() did not return true on saving new entity.");
-            Assert.IsTrue(test.TestInteger == 42, "TestInteger not set correctly.");
-            Assert.IsTrue(test.TestDouble == 4.2, "TestDouble not set correctly.");
-            Assert.IsTrue(test.TestBoolean, "TestBoolean not set correctly.");
-            Assert.IsTrue(test.TestString == "ATLTUAE", "TestString not set correctly.");
-            Assert.IsTrue(test.TestDateTime.CompareTo(testDate) == 0, "TestDateTime not set correctly.");
-
             Assert.IsTrue(test.InDatabase, "InDatabase not set to true after saving new entity.");
             Assert.IsTrue(test.IsSaved, "IsSaved not set to true after saving new entity.");
             Assert.IsTrue(test.ID > 0, "ID not set after saving new entity.");
-            Assert.IsTrue(test.TestInteger == 42);
-
 
             TestDatabaseEntity testRef = TestFactory.Load(test.ID);
+
+
+            //Assert.AreSame(test, testRef, "Same object reference not returned when loading the saved entity.");
+
+
+                
+
+
+            
         }
     }
 }
