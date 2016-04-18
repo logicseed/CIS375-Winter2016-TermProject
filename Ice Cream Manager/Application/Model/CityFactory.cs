@@ -19,6 +19,8 @@ namespace IceCreamManager.Model
         private CityFactory() { }
         #endregion Singleton
 
+        protected override string TableName => "City";
+
         protected override string DatabaseQueryColumns()
             => "Label,Name,State,Miles,Hours,IsDeleted";
 
@@ -83,5 +85,37 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        public override DataTable GetDataTable(bool includeDeleted)
+        {
+            var TableFromDatabase = GetAllDataTable(includeDeleted);
+            var TableToReturn = new DataTable();
+
+            TableToReturn.Columns.Add(new DataColumn("ID", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Label", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("Name", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("State", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("Miles", typeof(double)));
+            TableToReturn.Columns.Add(new DataColumn("Hours", typeof(double)));
+            TableToReturn.Columns.Add(new DataColumn("IsDeleted", typeof(bool)));
+
+            foreach (DataRow Row in TableFromDatabase.Rows)
+            {
+                DataRow RowToReturn = TableToReturn.NewRow();
+
+                RowToReturn["ID"] = Row.Col("ID");
+                RowToReturn["Label"] = Row.Col<string>("Label");
+                RowToReturn["Name"] = Row.Col<string>("Name");
+                RowToReturn["State"] = Row.Col<string>("State");
+                RowToReturn["Miles"] = Row.Col<double>("Miles");
+                RowToReturn["Hours"] = Row.Col<double>("Hours");
+                RowToReturn["IsDeleted"] = Row.Col<bool>("IsDeleted");
+
+                TableToReturn.Rows.Add(RowToReturn);
+            }
+
+            return TableToReturn;
+        }
+
     }
 }

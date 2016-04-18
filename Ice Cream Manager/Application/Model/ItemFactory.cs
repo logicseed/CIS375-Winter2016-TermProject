@@ -84,26 +84,6 @@ namespace IceCreamManager.Model
             return TableToReturn;
         }
 
-        public bool Delete(int itemID)
-        {
-            return Database.MarkAsDeleted(TableName, itemID);
-        }
-
-        public List<Item> GetList(bool includeDeleted = false)
-        {
-            var Items = new List<Item>();
-            var DatabaseCommand = $"SELECT * FROM {TableName}";
-            if (!includeDeleted) DatabaseCommand += " WHERE IsDeleted = 0";
-            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            foreach (DataRow Row in ResultsTable.Rows)
-            {
-                Items.Add(MapDataRowToProperties(Row));
-            }
-
-            return Items;
-        }
-
         public new Item LoadItem(int ID)
         {
             var DatabaseCommand = $"SELECT * FROM Item WHERE ID = {ID}";

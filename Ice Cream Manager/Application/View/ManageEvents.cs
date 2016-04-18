@@ -31,6 +31,12 @@ namespace IceCreamManager.View
             OnChangedItemList?.Invoke(null, null);
         }
 
+        public event EventHandler OnChangedCityList;
+        public void ChangedCityList()
+        {
+            OnChangedCityList?.Invoke(null, null);
+        }
+
         public event EventHandler<EventID> OnEditItem;
         public void EditItem(int itemID)
         {

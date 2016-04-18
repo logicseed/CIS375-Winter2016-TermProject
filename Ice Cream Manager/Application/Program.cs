@@ -17,7 +17,7 @@ namespace IceCreamManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MainForm.Reference);
+            Application.Run(new MainForm());
         }
     }
 }

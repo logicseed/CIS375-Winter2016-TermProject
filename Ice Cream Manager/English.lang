@@ -29,7 +29,14 @@ ShowDeleted = Show Deleted
 Deleted = Deleted
 
 # Column headers
+ItemEditor = Item Editor
+CityEditor = City Editor
 
+Label = Label
+State = State
+Name = Name
+Miles = Miles
+Hours = Hours
 Number = Number
 Description = Description
 Price = Price
@@ -37,7 +44,7 @@ Quantity = Quantity
 Lifetime = Lifetime
 WarehouseQuantity = Warehouse Quantity
 
-CityEditor=City Editor
+
 # Unit test strings
 Test = This could be anything.
 Test2    = English test 2

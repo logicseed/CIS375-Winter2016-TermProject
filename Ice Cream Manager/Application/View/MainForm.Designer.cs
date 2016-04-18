@@ -45,7 +45,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.TrucksTab = new System.Windows.Forms.TabPage();
             this.ItemsTab = new System.Windows.Forms.TabPage();
-            this.LayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.ItemLayoutTable = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveItemButton = new System.Windows.Forms.Button();
             this.ShowDeletedItems = new System.Windows.Forms.CheckBox();
             this.ItemGridView = new System.Windows.Forms.DataGridView();
@@ -54,6 +54,12 @@
             this.DriversTab = new System.Windows.Forms.TabPage();
             this.RoutesTab = new System.Windows.Forms.TabPage();
             this.CitiesTab = new System.Windows.Forms.TabPage();
+            this.CityLayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.RemoveCityButton = new System.Windows.Forms.Button();
+            this.ShowDeletedCities = new System.Windows.Forms.CheckBox();
+            this.CityGridView = new System.Windows.Forms.DataGridView();
+            this.AddCityButton = new System.Windows.Forms.Button();
+            this.EditCityButton = new System.Windows.Forms.Button();
             this.ButtonIcons = new System.Windows.Forms.ImageList(this.components);
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -70,8 +76,11 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.ItemsTab.SuspendLayout();
-            this.LayoutTable.SuspendLayout();
+            this.ItemLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).BeginInit();
+            this.CitiesTab.SuspendLayout();
+            this.CityLayoutTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CityGridView)).BeginInit();
             this.StatusBar.SuspendLayout();
             this.ExtraButtonsLayout.SuspendLayout();
             this.MainFormLayout.SuspendLayout();
@@ -213,7 +222,7 @@
             // 
             // ItemsTab
             // 
-            this.ItemsTab.Controls.Add(this.LayoutTable);
+            this.ItemsTab.Controls.Add(this.ItemLayoutTable);
             this.ItemsTab.ImageIndex = 2;
             this.ItemsTab.Location = new System.Drawing.Point(4, 33);
             this.ItemsTab.Name = "ItemsTab";
@@ -223,26 +232,26 @@
             this.ItemsTab.Text = "!Items";
             this.ItemsTab.UseVisualStyleBackColor = true;
             // 
-            // LayoutTable
+            // ItemLayoutTable
             // 
-            this.LayoutTable.ColumnCount = 4;
-            this.LayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.LayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.LayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.LayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.LayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
-            this.LayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
-            this.LayoutTable.Controls.Add(this.ItemGridView, 0, 1);
-            this.LayoutTable.Controls.Add(this.AddItemButton, 0, 0);
-            this.LayoutTable.Controls.Add(this.EditItemButton, 1, 0);
-            this.LayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutTable.Location = new System.Drawing.Point(3, 3);
-            this.LayoutTable.Name = "LayoutTable";
-            this.LayoutTable.RowCount = 2;
-            this.LayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.LayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutTable.Size = new System.Drawing.Size(829, 563);
-            this.LayoutTable.TabIndex = 1;
+            this.ItemLayoutTable.ColumnCount = 4;
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
+            this.ItemLayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
+            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
+            this.ItemLayoutTable.Controls.Add(this.AddItemButton, 0, 0);
+            this.ItemLayoutTable.Controls.Add(this.EditItemButton, 1, 0);
+            this.ItemLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemLayoutTable.Location = new System.Drawing.Point(3, 3);
+            this.ItemLayoutTable.Name = "ItemLayoutTable";
+            this.ItemLayoutTable.RowCount = 2;
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ItemLayoutTable.Size = new System.Drawing.Size(829, 563);
+            this.ItemLayoutTable.TabIndex = 1;
             // 
             // RemoveItemButton
             // 
@@ -276,8 +285,9 @@
             // 
             this.ItemGridView.AllowUserToAddRows = false;
             this.ItemGridView.AllowUserToDeleteRows = false;
+            this.ItemGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LayoutTable.SetColumnSpan(this.ItemGridView, 4);
+            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
             this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemGridView.Location = new System.Drawing.Point(3, 38);
             this.ItemGridView.MultiSelect = false;
@@ -339,6 +349,7 @@
             // 
             // CitiesTab
             // 
+            this.CitiesTab.Controls.Add(this.CityLayoutTable);
             this.CitiesTab.ImageIndex = 0;
             this.CitiesTab.Location = new System.Drawing.Point(4, 33);
             this.CitiesTab.Name = "CitiesTab";
@@ -347,6 +358,99 @@
             this.CitiesTab.TabIndex = 5;
             this.CitiesTab.Text = "!Cities";
             this.CitiesTab.UseVisualStyleBackColor = true;
+            // 
+            // CityLayoutTable
+            // 
+            this.CityLayoutTable.ColumnCount = 4;
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.Controls.Add(this.RemoveCityButton, 2, 0);
+            this.CityLayoutTable.Controls.Add(this.ShowDeletedCities, 3, 0);
+            this.CityLayoutTable.Controls.Add(this.CityGridView, 0, 1);
+            this.CityLayoutTable.Controls.Add(this.AddCityButton, 0, 0);
+            this.CityLayoutTable.Controls.Add(this.EditCityButton, 1, 0);
+            this.CityLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CityLayoutTable.Location = new System.Drawing.Point(3, 3);
+            this.CityLayoutTable.Name = "CityLayoutTable";
+            this.CityLayoutTable.RowCount = 2;
+            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.CityLayoutTable.Size = new System.Drawing.Size(829, 563);
+            this.CityLayoutTable.TabIndex = 2;
+            // 
+            // RemoveCityButton
+            // 
+            this.RemoveCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveCityButton.AutoSize = true;
+            this.RemoveCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveCityButton.Location = new System.Drawing.Point(165, 3);
+            this.RemoveCityButton.Name = "RemoveCityButton";
+            this.RemoveCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.RemoveCityButton.Size = new System.Drawing.Size(75, 29);
+            this.RemoveCityButton.TabIndex = 2;
+            this.RemoveCityButton.Text = "!Remove";
+            this.RemoveCityButton.UseVisualStyleBackColor = true;
+            this.RemoveCityButton.Click += new System.EventHandler(this.RemoveCityButton_Click);
+            // 
+            // ShowDeletedCities
+            // 
+            this.ShowDeletedCities.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedCities.AutoSize = true;
+            this.ShowDeletedCities.Checked = true;
+            this.ShowDeletedCities.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowDeletedCities.Location = new System.Drawing.Point(246, 9);
+            this.ShowDeletedCities.Name = "ShowDeletedCities";
+            this.ShowDeletedCities.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedCities.TabIndex = 3;
+            this.ShowDeletedCities.Text = "!Show Deleted";
+            this.ShowDeletedCities.UseVisualStyleBackColor = true;
+            this.ShowDeletedCities.CheckedChanged += new System.EventHandler(this.RefreshCityTable);
+            // 
+            // CityGridView
+            // 
+            this.CityGridView.AllowUserToAddRows = false;
+            this.CityGridView.AllowUserToDeleteRows = false;
+            this.CityGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.CityGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CityLayoutTable.SetColumnSpan(this.CityGridView, 4);
+            this.CityGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CityGridView.Location = new System.Drawing.Point(3, 38);
+            this.CityGridView.MultiSelect = false;
+            this.CityGridView.Name = "CityGridView";
+            this.CityGridView.ReadOnly = true;
+            this.CityGridView.RowHeadersVisible = false;
+            this.CityGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CityGridView.Size = new System.Drawing.Size(823, 522);
+            this.CityGridView.TabIndex = 4;
+            // 
+            // AddCityButton
+            // 
+            this.AddCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddCityButton.AutoSize = true;
+            this.AddCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddCityButton.Location = new System.Drawing.Point(3, 3);
+            this.AddCityButton.Name = "AddCityButton";
+            this.AddCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.AddCityButton.Size = new System.Drawing.Size(75, 29);
+            this.AddCityButton.TabIndex = 1;
+            this.AddCityButton.Text = "!Add";
+            this.AddCityButton.UseVisualStyleBackColor = true;
+            this.AddCityButton.Click += new System.EventHandler(this.AddCityButton_Click);
+            // 
+            // EditCityButton
+            // 
+            this.EditCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditCityButton.AutoSize = true;
+            this.EditCityButton.Location = new System.Drawing.Point(84, 3);
+            this.EditCityButton.Name = "EditCityButton";
+            this.EditCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.EditCityButton.Size = new System.Drawing.Size(75, 29);
+            this.EditCityButton.TabIndex = 0;
+            this.EditCityButton.Text = "!Edit";
+            this.EditCityButton.UseVisualStyleBackColor = true;
+            this.EditCityButton.Click += new System.EventHandler(this.EditCityButton_Click);
             // 
             // ButtonIcons
             // 
@@ -479,9 +583,13 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ItemsTab.ResumeLayout(false);
-            this.LayoutTable.ResumeLayout(false);
-            this.LayoutTable.PerformLayout();
+            this.ItemLayoutTable.ResumeLayout(false);
+            this.ItemLayoutTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).EndInit();
+            this.CitiesTab.ResumeLayout(false);
+            this.CityLayoutTable.ResumeLayout(false);
+            this.CityLayoutTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CityGridView)).EndInit();
             this.StatusBar.ResumeLayout(false);
             this.StatusBar.PerformLayout();
             this.ExtraButtonsLayout.ResumeLayout(false);
@@ -519,11 +627,17 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TableLayoutPanel MainFormLayout;
-        private System.Windows.Forms.TableLayoutPanel LayoutTable;
+        private System.Windows.Forms.TableLayoutPanel ItemLayoutTable;
         protected System.Windows.Forms.Button RemoveItemButton;
         protected System.Windows.Forms.CheckBox ShowDeletedItems;
         public System.Windows.Forms.DataGridView ItemGridView;
         protected System.Windows.Forms.Button AddItemButton;
         protected System.Windows.Forms.Button EditItemButton;
+        private System.Windows.Forms.TableLayoutPanel CityLayoutTable;
+        protected System.Windows.Forms.Button RemoveCityButton;
+        protected System.Windows.Forms.CheckBox ShowDeletedCities;
+        public System.Windows.Forms.DataGridView CityGridView;
+        protected System.Windows.Forms.Button AddCityButton;
+        protected System.Windows.Forms.Button EditCityButton;
     }
 }

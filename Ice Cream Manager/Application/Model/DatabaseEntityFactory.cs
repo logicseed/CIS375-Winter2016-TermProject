@@ -20,6 +20,11 @@ namespace IceCreamManager.Model
 
         #region Public Methods
 
+        public bool Delete(int entityID)
+        {
+            return Database.MarkAsDeleted(TableName, entityID);
+        }
+
         public bool Exists(int id)
         {
             string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE ID = {id}";

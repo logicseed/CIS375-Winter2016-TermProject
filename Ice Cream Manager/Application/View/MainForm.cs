@@ -15,17 +15,9 @@ namespace IceCreamManager.View
 {
     public partial class MainForm : Form
     {
-        #region Singleton
-        private static readonly MainForm SingletonInstance = new MainForm();
-        public static MainForm Reference { get { return SingletonInstance; } }
-        //private MainForm() { }
-        #endregion Singleton
-
-
-
         LanguageManager Language = LanguageManager.Reference;
 
-        private MainForm()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -33,8 +25,10 @@ namespace IceCreamManager.View
             LocalizeForm(null, null);
             Language.OnChangedLanguage += LocalizeForm;
             Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
+            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
 
-            RefreshItemTable(null, null);
+            RefreshItemTable();
+            RefreshCityTable();
             //ViewItems(null,null);
             //SetupItemList();
         }
@@ -56,10 +50,15 @@ namespace IceCreamManager.View
         {
             ItemGridView.DataSource = Factory.Item.GetDataTable(ShowDeletedItems.Checked);
             SetLocalizedItemStrings();
-            ItemGridView.Refresh();
         }
 
-        
+        public void RefreshCityTable(object sender, EventArgs e)
+        {
+            CityGridView.DataSource = Factory.City.GetDataTable(ShowDeletedCities.Checked);
+            SetLocalizedCityStrings();
+        }
+
+
 
         private void EditItemButton_Click(object sender, EventArgs e)
         {
@@ -81,5 +80,25 @@ namespace IceCreamManager.View
         }
 
         public void RefreshItemTable() { RefreshItemTable(null, null); }
+        public void RefreshCityTable() { RefreshCityTable(null, null); }
+
+        private void AddCityButton_Click(object sender, EventArgs e)
+        {
+            var cityEditor = new CityEditor();
+            cityEditor.ShowDialog();
+        }
+
+        private void EditCityButton_Click(object sender, EventArgs e)
+        {
+            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
+            var cityEditor = new CityEditor(CityID);
+            cityEditor.ShowDialog();
+        }
+
+        private void RemoveCityButton_Click(object sender, EventArgs e)
+        {
+            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
+            if (Factory.City.Delete(CityID)) RefreshCityTable();
+        }
     }
 }
