@@ -17,6 +17,8 @@ namespace IceCreamManager.Model
         private RouteFactory() { }
         #endregion Singleton
 
+        protected override string TableName => "Route";
+
         protected override string DatabaseQueryColumns()
             => "Number,IsDeleted";
 
@@ -47,6 +49,40 @@ namespace IceCreamManager.Model
         public Route LoadByNumber(int v)
         {
             throw new NotImplementedException();
+        }
+
+        public override DataTable GetDataTable(bool includeDeleted)
+        {
+            var TableFromDatabase = GetAllDataTable(includeDeleted);
+            var TableToReturn = new DataTable();
+
+            TableToReturn.Columns.Add(new DataColumn("ID", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Number", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Cities", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("IsDeleted", typeof(bool)));
+
+            foreach (DataRow Row in TableFromDatabase.Rows)
+            {
+                DataRow RowToReturn = TableToReturn.NewRow();
+
+                RowToReturn["ID"] = Row.Col("ID");
+                RowToReturn["Number"] = Row.Col("Number");
+
+                string CitiesColumn = "";
+                foreach (City city in  Factory.City.GetCityList(Row.Col("ID")))
+                {
+                    CitiesColumn += city.Label + ", ";
+                }
+                if (CitiesColumn.Length > 0) CitiesColumn = CitiesColumn.Substring(0, CitiesColumn.Length - 2);
+                RowToReturn["Cities"] = CitiesColumn;
+                RowToReturn["IsDeleted"] = Row.Col<bool>("IsDeleted");
+
+
+
+                TableToReturn.Rows.Add(RowToReturn);
+            }
+
+            return TableToReturn;
         }
     }
 }

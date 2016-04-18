@@ -16,6 +16,7 @@ namespace IceCreamManager.View
     public partial class MainForm : Form
     {
         LanguageManager Language = LanguageManager.Reference;
+        LogViewer LogView = new LogViewer();
 
         public MainForm()
         {
@@ -29,6 +30,7 @@ namespace IceCreamManager.View
 
             RefreshItemTable();
             RefreshCityTable();
+            RefreshRouteTable();
             //ViewItems(null,null);
             //SetupItemList();
         }
@@ -82,6 +84,14 @@ namespace IceCreamManager.View
         public void RefreshItemTable() { RefreshItemTable(null, null); }
         public void RefreshCityTable() { RefreshCityTable(null, null); }
 
+        public void RefreshRouteTable() { RefreshRouteTable(null, null); }
+
+        private void RefreshRouteTable(object sender, EventArgs e)
+        {
+            RouteGridView.DataSource = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
+            SetLocalizedRouteStrings();
+        }
+
         private void AddCityButton_Click(object sender, EventArgs e)
         {
             var cityEditor = new CityEditor();
@@ -99,6 +109,18 @@ namespace IceCreamManager.View
         {
             int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
             if (Factory.City.Delete(CityID)) RefreshCityTable();
+        }
+
+        private void AddRouteButton_Click(object sender, EventArgs e)
+        {
+            var routeEditor = new RouteEditor();
+            routeEditor.ShowDialog();
+        }
+
+        private void LogButton_Click(object sender, EventArgs e)
+        {
+            LogView.Show();
+            LogView.Select();
         }
     }
 }

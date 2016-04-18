@@ -151,6 +151,12 @@
     <Compile Include="View\ItemListPanel.Designer.cs">
       <DependentUpon>ItemListPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\LogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LogViewer.Designer.cs">
+      <DependentUpon>LogViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ManageEvents.cs" />
+    <Compile Include="View\RouteEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RouteEditor.Designer.cs">
+      <DependentUpon>RouteEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SalesChartPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -208,8 +220,14 @@
     <EmbeddedResource Include="View\ItemEditor.resx">
       <DependentUpon>ItemEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\LogViewer.resx">
+      <DependentUpon>LogViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RouteEditor.resx">
+      <DependentUpon>RouteEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SalesChartPanel.resx">
       <DependentUpon>SalesChartPanel.cs</DependentUpon>

@@ -63,13 +63,19 @@
             this.ButtonIcons = new System.Windows.Forms.ImageList(this.components);
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ExtraButtonsLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
+            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.RoutesLayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.RemoveRouteButton = new System.Windows.Forms.Button();
+            this.ShowDeletedRoutes = new System.Windows.Forms.CheckBox();
+            this.RouteGridView = new System.Windows.Forms.DataGridView();
+            this.AddRouteButton = new System.Windows.Forms.Button();
+            this.EditRouteButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.LogButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
-            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
-            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabs.SuspendLayout();
             this.RevenueTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -78,12 +84,15 @@
             this.ItemsTab.SuspendLayout();
             this.ItemLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).BeginInit();
+            this.RoutesTab.SuspendLayout();
             this.CitiesTab.SuspendLayout();
             this.CityLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CityGridView)).BeginInit();
             this.StatusBar.SuspendLayout();
             this.ExtraButtonsLayout.SuspendLayout();
             this.MainFormLayout.SuspendLayout();
+            this.RoutesLayoutTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabs
@@ -338,6 +347,7 @@
             // 
             // RoutesTab
             // 
+            this.RoutesTab.Controls.Add(this.RoutesLayoutTable);
             this.RoutesTab.ImageIndex = 4;
             this.RoutesTab.Location = new System.Drawing.Point(4, 33);
             this.RoutesTab.Name = "RoutesTab";
@@ -478,14 +488,6 @@
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(300, 19);
             // 
-            // StatusLabel
-            // 
-            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
-            this.StatusLabel.Text = "!Processing...";
-            // 
             // ExtraButtonsLayout
             // 
             this.ExtraButtonsLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -504,6 +506,113 @@
             this.ExtraButtonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ExtraButtonsLayout.Size = new System.Drawing.Size(90, 22);
             this.ExtraButtonsLayout.TabIndex = 8;
+            // 
+            // MainFormLayout
+            // 
+            this.MainFormLayout.ColumnCount = 1;
+            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
+            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
+            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
+            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainFormLayout.Name = "MainFormLayout";
+            this.MainFormLayout.RowCount = 2;
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.MainFormLayout.Size = new System.Drawing.Size(843, 631);
+            this.MainFormLayout.TabIndex = 10;
+            // 
+            // RoutesLayoutTable
+            // 
+            this.RoutesLayoutTable.ColumnCount = 4;
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.Controls.Add(this.RemoveRouteButton, 2, 0);
+            this.RoutesLayoutTable.Controls.Add(this.ShowDeletedRoutes, 3, 0);
+            this.RoutesLayoutTable.Controls.Add(this.RouteGridView, 0, 1);
+            this.RoutesLayoutTable.Controls.Add(this.AddRouteButton, 0, 0);
+            this.RoutesLayoutTable.Controls.Add(this.EditRouteButton, 1, 0);
+            this.RoutesLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoutesLayoutTable.Location = new System.Drawing.Point(3, 3);
+            this.RoutesLayoutTable.Name = "RoutesLayoutTable";
+            this.RoutesLayoutTable.RowCount = 2;
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RoutesLayoutTable.Size = new System.Drawing.Size(829, 563);
+            this.RoutesLayoutTable.TabIndex = 2;
+            // 
+            // RemoveRouteButton
+            // 
+            this.RemoveRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveRouteButton.AutoSize = true;
+            this.RemoveRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveRouteButton.Location = new System.Drawing.Point(165, 3);
+            this.RemoveRouteButton.Name = "RemoveRouteButton";
+            this.RemoveRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.RemoveRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.RemoveRouteButton.TabIndex = 2;
+            this.RemoveRouteButton.Text = "!Remove";
+            this.RemoveRouteButton.UseVisualStyleBackColor = true;
+            // 
+            // ShowDeletedRoutes
+            // 
+            this.ShowDeletedRoutes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedRoutes.AutoSize = true;
+            this.ShowDeletedRoutes.Checked = true;
+            this.ShowDeletedRoutes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowDeletedRoutes.Location = new System.Drawing.Point(246, 9);
+            this.ShowDeletedRoutes.Name = "ShowDeletedRoutes";
+            this.ShowDeletedRoutes.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedRoutes.TabIndex = 3;
+            this.ShowDeletedRoutes.Text = "!Show Deleted";
+            this.ShowDeletedRoutes.UseVisualStyleBackColor = true;
+            this.ShowDeletedRoutes.CheckedChanged += new System.EventHandler(this.RefreshRouteTable);
+            // 
+            // RouteGridView
+            // 
+            this.RouteGridView.AllowUserToAddRows = false;
+            this.RouteGridView.AllowUserToDeleteRows = false;
+            this.RouteGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.RouteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RoutesLayoutTable.SetColumnSpan(this.RouteGridView, 4);
+            this.RouteGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RouteGridView.Location = new System.Drawing.Point(3, 38);
+            this.RouteGridView.MultiSelect = false;
+            this.RouteGridView.Name = "RouteGridView";
+            this.RouteGridView.ReadOnly = true;
+            this.RouteGridView.RowHeadersVisible = false;
+            this.RouteGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RouteGridView.Size = new System.Drawing.Size(823, 522);
+            this.RouteGridView.TabIndex = 4;
+            // 
+            // AddRouteButton
+            // 
+            this.AddRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddRouteButton.AutoSize = true;
+            this.AddRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddRouteButton.Location = new System.Drawing.Point(3, 3);
+            this.AddRouteButton.Name = "AddRouteButton";
+            this.AddRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.AddRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.AddRouteButton.TabIndex = 1;
+            this.AddRouteButton.Text = "!Add";
+            this.AddRouteButton.UseVisualStyleBackColor = true;
+            this.AddRouteButton.Click += new System.EventHandler(this.AddRouteButton_Click);
+            // 
+            // EditRouteButton
+            // 
+            this.EditRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditRouteButton.AutoSize = true;
+            this.EditRouteButton.Location = new System.Drawing.Point(84, 3);
+            this.EditRouteButton.Name = "EditRouteButton";
+            this.EditRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.EditRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.EditRouteButton.TabIndex = 0;
+            this.EditRouteButton.Text = "!Edit";
+            this.EditRouteButton.UseVisualStyleBackColor = true;
             // 
             // SettingsButton
             // 
@@ -534,6 +643,7 @@
             this.LogButton.TabIndex = 8;
             this.MainToolTips.SetToolTip(this.LogButton, "!View Log");
             this.LogButton.UseVisualStyleBackColor = true;
+            this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
             // 
             // AboutButton
             // 
@@ -550,21 +660,13 @@
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
-            // MainFormLayout
+            // StatusLabel
             // 
-            this.MainFormLayout.ColumnCount = 1;
-            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
-            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
-            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.MainFormLayout.Name = "MainFormLayout";
-            this.MainFormLayout.RowCount = 2;
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainFormLayout.Size = new System.Drawing.Size(843, 631);
-            this.MainFormLayout.TabIndex = 10;
+            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
+            this.StatusLabel.Text = "!Processing...";
             // 
             // MainForm
             // 
@@ -586,6 +688,7 @@
             this.ItemLayoutTable.ResumeLayout(false);
             this.ItemLayoutTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).EndInit();
+            this.RoutesTab.ResumeLayout(false);
             this.CitiesTab.ResumeLayout(false);
             this.CityLayoutTable.ResumeLayout(false);
             this.CityLayoutTable.PerformLayout();
@@ -595,6 +698,9 @@
             this.ExtraButtonsLayout.ResumeLayout(false);
             this.MainFormLayout.ResumeLayout(false);
             this.MainFormLayout.PerformLayout();
+            this.RoutesLayoutTable.ResumeLayout(false);
+            this.RoutesLayoutTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -639,5 +745,11 @@
         public System.Windows.Forms.DataGridView CityGridView;
         protected System.Windows.Forms.Button AddCityButton;
         protected System.Windows.Forms.Button EditCityButton;
+        private System.Windows.Forms.TableLayoutPanel RoutesLayoutTable;
+        protected System.Windows.Forms.Button RemoveRouteButton;
+        protected System.Windows.Forms.CheckBox ShowDeletedRoutes;
+        public System.Windows.Forms.DataGridView RouteGridView;
+        protected System.Windows.Forms.Button AddRouteButton;
+        protected System.Windows.Forms.Button EditRouteButton;
     }
 }

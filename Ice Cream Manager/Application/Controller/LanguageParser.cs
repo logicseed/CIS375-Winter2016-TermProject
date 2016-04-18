@@ -18,7 +18,7 @@ namespace IceCreamManager.Controller
         /// </summary>
         /// <param name="fileURI"> Location of file. </param>
         /// <returns> Strings as key-value pairs. </returns>
-        public Dictionary<string, string> ParseLanguageFile(string fileURI)
+        public Dictionary<string, string> ParseLanguageFile(string fileURI, bool languageNameOnly = false)
         {
             if (!File.Exists(fileURI)) return null;
 
@@ -28,15 +28,26 @@ namespace IceCreamManager.Controller
 
             foreach (string KeyValuePair in LanguageKeyValuePairs)
             {
-                if (KeyValuePair.StartsWith("#")) continue; // Ignore comment lines
-                if (KeyValuePair.Trim().Length == 0) continue; // Ignore blank lines
+                var Line = KeyValuePair.Trim();
+                if (Line.StartsWith("#")) continue; // Ignore comment lines
+                if (Line.Length == 0) continue; // Ignore blank lines
 
-                int Index = KeyValuePair.IndexOf("=");
+                var Index = KeyValuePair.IndexOf('=', 1);
+                if (Index < 1) continue; // Ignore invalid assignments
 
-                if (Index > 0)
+                var Key = Line.Substring(0, Index).Trim();
+                var Value = Line.Substring(Index + 1).Trim();
+
+                if(languageNameOnly)
                 {
-                    var Key = KeyValuePair.Substring(0, Index).Trim();
-                    var Value = KeyValuePair.Substring(Index + 1).Trim();
+                    if (Key == "@Language")
+                    {
+                        ParsedStrings.Add(Key.TrimStart('@'), Value);
+                        break;
+                    }
+                }
+                else
+                {
                     if (!ParsedStrings.ContainsKey(Key)) ParsedStrings.Add(Key, Value);
                 }
             }
@@ -44,23 +55,33 @@ namespace IceCreamManager.Controller
             return ParsedStrings;
         }
 
+
+
+        
+        #endregion Public Methods
+
         /// <summary>
         ///   Builds an array of strings contains the names of languages for which there exists a [LanguageName].lang
         ///   file in the application directory.
         /// </summary>
         /// <returns> Array of language names. </returns>
-        public string[] GetValidLanguages(string FilesLocation, string FilesExtension)
+        public string[] GetValidLanguageFiles(string filesLocation, string filesExtension)
         {
-            string[] ValidLanguages = Directory.GetFiles(FilesLocation, $"*{FilesExtension}");
+            string[] ValidLanguageFiles = Directory.GetFiles(filesLocation, $"*{filesExtension}");
 
             // Strip off paths
-            for (int i = 0; i < ValidLanguages.Length; i++)
+            for (int i = 0; i < ValidLanguageFiles.Length; i++)
             {
-                ValidLanguages[i] = Path.GetFileNameWithoutExtension(ValidLanguages[i]);
+                ValidLanguageFiles[i] = Path.GetFileNameWithoutExtension(ValidLanguageFiles[i]);
             }
 
-            return ValidLanguages;
+            return ValidLanguageFiles;
         }
-        #endregion Public Methods
+
+
+
+
+
+
     }
 }

@@ -282,6 +282,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CityEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "!City Editor";
             this.FormLayout.ResumeLayout(false);
             this.FormLayout.PerformLayout();

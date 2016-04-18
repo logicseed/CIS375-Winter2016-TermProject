@@ -25,6 +25,15 @@ namespace IceCreamManager.Model
             return Database.MarkAsDeleted(TableName, entityID);
         }
 
+        public decimal NextNumber()
+        {
+            var DatabaseCommand = $"SELECT Max(Number) FROM {TableName} WHERE IsDeleted = 0";
+            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            return ResultsTable.Row().Col() + 1;
+        }
+
+
         public bool Exists(int id)
         {
             string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE ID = {id}";

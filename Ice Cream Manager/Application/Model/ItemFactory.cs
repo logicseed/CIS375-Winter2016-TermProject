@@ -19,13 +19,7 @@ namespace IceCreamManager.Model
 
         protected override string TableName => "Item";
 
-        public decimal NextNumber()
-        {
-            var DatabaseCommand = $"SELECT Max(Number) FROM {TableName} WHERE IsDeleted = 0";
-            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-
-            return ResultsTable.Row().Col() + 1;
-        }
+        
 
         protected override string DatabaseQueryColumns()
             => "Number,Description,Price,Lifetime,Quantity,IsDeleted";

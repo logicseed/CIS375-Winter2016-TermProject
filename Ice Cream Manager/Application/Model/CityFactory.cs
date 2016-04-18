@@ -4,6 +4,7 @@
 /// <date_created> 2016-04-09 </date_created>
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace IceCreamManager.Model
@@ -117,5 +118,18 @@ namespace IceCreamManager.Model
             return TableToReturn;
         }
 
+        public List<City> GetCityList(int routeID)
+        {
+            var Cities = new List<City>();
+            var DatabaseCommand = $"SELECT * FROM {TableName} INNER JOIN RouteCity ON RouteCity.CityID = {TableName}.ID WHERE RouteCity.RouteID = {routeID} ORDER BY {TableName}.Label";
+            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+
+            foreach (DataRow Row in ResultsTable.Rows)
+            {
+                Cities.Add(MapDataRowToProperties(Row));
+            }
+
+            return Cities;
+        }
     }
 }
