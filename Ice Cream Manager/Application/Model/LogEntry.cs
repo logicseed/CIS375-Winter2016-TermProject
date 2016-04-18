@@ -131,6 +131,10 @@ namespace IceCreamManager.Model
                 dateLogged = value;
             }
         }
-        
+
+        public override bool Save()
+        {
+            return LogEntryFactory.Reference.Save(this);
+        }
     }
 }

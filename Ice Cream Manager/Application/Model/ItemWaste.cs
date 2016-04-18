@@ -105,5 +105,10 @@ namespace IceCreamManager.Model
                 return route;
             }
         }
+
+        public override bool Save()
+        {
+            return ItemWasteFactory.Reference.Save(this);
+        }
     }
 }

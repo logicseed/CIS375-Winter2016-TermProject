@@ -126,5 +126,10 @@ namespace IceCreamManager.Model
                 return driver;
             }
         }
+
+        public override bool Save()
+        {
+            return SaleFactory.Reference.Save(this);
+        }
     }
 }

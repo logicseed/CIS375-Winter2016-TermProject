@@ -77,5 +77,9 @@ namespace IceCreamManager.Model
             }
         }
 
+        public override bool Save()
+        {
+            return FuelUseFactory.Reference.Save(this);
+        }
     }
 }

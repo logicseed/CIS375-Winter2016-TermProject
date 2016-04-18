@@ -21,9 +21,21 @@ SettingsEditor = Settings Editor
 Language = Language
 Currency = Currency
 
+# Entity list phrases
+Add = Add
+Edit = Edit
+Remove = Remove
+ShowDeleted = Show Deleted
+Deleted = Deleted
 
+# Column headers
 
-
+Number = Number
+Description = Description
+Price = Price
+Quantity = Quantity
+Lifetime = Lifetime
+WarehouseQuantity = Warehouse Quantity
 
 CityEditor=City Editor
 # Unit test strings

@@ -67,5 +67,10 @@ namespace IceCreamManager.Model
             if (newDateUpdated.Date.CompareTo(DateUpdated.Date) == dateIsBefore) return false;
             return true;
         }
+
+        public override bool Save()
+        {
+            return BatchHistoryEntryFactory.Reference.Save(this);
+        }
     }
 }

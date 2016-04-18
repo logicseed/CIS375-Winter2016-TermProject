@@ -83,5 +83,10 @@ namespace IceCreamManager.Model
                 ReplaceOnSave = true;
             }
         }
+
+        public override bool Save()
+        {
+            return Factory.Driver.Save(this);
+        }
     }
 }

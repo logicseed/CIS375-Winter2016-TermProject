@@ -76,5 +76,10 @@ namespace IceCreamManager.Model
                 return driver;
             }
         }
+
+        public override bool Save()
+        {
+            return SalaryCostFactory.Reference.Save(this);
+        }
     }
 }

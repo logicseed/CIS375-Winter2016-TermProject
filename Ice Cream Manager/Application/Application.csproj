@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\LanguageParser.cs" />
+    <Compile Include="Model\Factory.cs" />
     <Compile Include="Model\LanguageManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -138,12 +139,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ItemEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ItemEditor.Designer.cs">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ItemListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ItemListPanel.Designer.cs">
+      <DependentUpon>ItemListPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MainForm.Language.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ManageEvents.cs" />
     <Compile Include="View\SalesChartPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +185,12 @@
     <Compile Include="View\SettingsEditor.Designer.cs">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +204,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ItemEditor.resx">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -196,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsEditor.resx">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

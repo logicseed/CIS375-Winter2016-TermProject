@@ -15,30 +15,30 @@ namespace IceCreamManager.View
 {
     public partial class MainForm : Form
     {
+        #region Singleton
+        private static readonly MainForm SingletonInstance = new MainForm();
+        public static MainForm Reference { get { return SingletonInstance; } }
+        //private MainForm() { }
+        #endregion Singleton
+
+
+
         LanguageManager Language = LanguageManager.Reference;
 
-        public MainForm()
+        private MainForm()
         {
             InitializeComponent();
 
+            
             LocalizeForm(null, null);
             Language.OnChangedLanguage += LocalizeForm;
-        }
+            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
 
-        private void LocalizeForm(object sender, EventArgs e)
-        {
-            Text = "Ice Cream Manager"; // not localized
-            RevenueTab.Text = Language["Revenue"];
-            TrucksTab.Text = Language["Trucks"];
-            ItemsTab.Text = Language["Items"];
-            DriversTab.Text = Language["Drivers"];
-            RoutesTab.Text = Language["Routes"];
-            CitiesTab.Text = Language["Cities"];
-            StatusLabel.Text = Language["Processing"] + "...";
-            MainToolTips.SetToolTip(SettingsButton, Language["Settings"]);
-            MainToolTips.SetToolTip(LogButton, Language["View Log"]);
-            MainToolTips.SetToolTip(AboutButton, Language["About"]);
+            RefreshItemTable(null, null);
+            //ViewItems(null,null);
+            //SetupItemList();
         }
+        
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
@@ -51,5 +51,35 @@ namespace IceCreamManager.View
             var settingsEditor = new SettingsEditor();
             settingsEditor.ShowDialog();
         }
+
+        public void RefreshItemTable(object sender, EventArgs e)
+        {
+            ItemGridView.DataSource = Factory.Item.GetDataTable(ShowDeletedItems.Checked);
+            SetLocalizedItemStrings();
+            ItemGridView.Refresh();
+        }
+
+        
+
+        private void EditItemButton_Click(object sender, EventArgs e)
+        {
+            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            var itemEditor = new ItemEditor(ItemID);
+            itemEditor.ShowDialog();
+        }
+
+        private void AddItemButton_Click(object sender, EventArgs e)
+        {
+            var itemEditor = new ItemEditor();
+            itemEditor.ShowDialog();
+        }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            if (Factory.Item.Delete(ItemID)) RefreshItemTable();
+        }
+
+        public void RefreshItemTable() { RefreshItemTable(null, null); }
     }
 }

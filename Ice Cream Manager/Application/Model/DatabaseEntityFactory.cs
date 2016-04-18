@@ -31,19 +31,28 @@ namespace IceCreamManager.Model
 
         public DatabaseEntityType Load(int id)
         {
-            DatabaseEntityType entity = new DatabaseEntityType();
-            entity.ID = id;
-            Load(entity);
-            //SubscribeToEntityEvents(entity);
-            return entity;
+            string DatabaseCommand = $"SELECT * FROM {TableName} WHERE ID = {id}";
+            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            return MapDataRowToProperties(ResultsTable.Rows[0]);
         }
 
         public bool Load(DatabaseEntityType entity)
         {
             string DatabaseCommand = $"SELECT * FROM {TableName} WHERE ID = {entity.ID}";
             DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
-            entity = MapDataRowToProperties(ResultsTable.Row());
+            entity = MapDataRowToProperties(ResultsTable.Rows[0]);
             return true;
+        }
+
+        protected DataTable GetAllDataTable(bool includeDeleted = true)
+        {
+            string DatabaseCommand = $"SELECT * FROM {TableName}";
+            if (!includeDeleted) DatabaseCommand += " WHERE IsDeleted = 0";
+            return Database.DataTableFromCommand(DatabaseCommand);
+        }
+        public virtual DataTable GetDataTable(bool includeDeleted = true)
+        {
+            return GetAllDataTable(includeDeleted);
         }
 
         public DatabaseEntityType New()

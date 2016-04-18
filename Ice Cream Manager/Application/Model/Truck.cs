@@ -141,6 +141,9 @@ namespace IceCreamManager.Model
             { }
         }
 
-        
+        public override bool Save()
+        {
+            return Factory.Truck.Save(this);
+        }
     }
 }

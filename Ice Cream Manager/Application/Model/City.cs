@@ -1,8 +1,9 @@
-﻿/// <project> IceCreamManager </project>
+﻿
+using System;
+/// <project> IceCreamManager </project>
 /// <module> City </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-09 </date_created>
-
 using System.Data;
 
 namespace IceCreamManager.Model
@@ -126,6 +127,11 @@ namespace IceCreamManager.Model
                 IsSaved = false;
                 ReplaceOnSave = true;
             }
+        }
+
+        public override bool Save()
+        {
+            return Factory.City.Save(this);
         }
     }
 }

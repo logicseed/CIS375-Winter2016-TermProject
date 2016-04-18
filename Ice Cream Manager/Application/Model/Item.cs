@@ -127,5 +127,10 @@ namespace IceCreamManager.Model
                 IsSaved = false;
             }
         }
+
+        public override bool Save()
+        {
+            return Factory.Item.Save(this);
+        }
     }
 }

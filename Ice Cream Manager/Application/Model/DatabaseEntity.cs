@@ -57,34 +57,16 @@ namespace IceCreamManager.Model
         #endregion Public Properties
 
         #region Public Methods
+        public abstract bool Save();
 
-        public bool Save()
-        {
-            return SaveImmediately();
-        }
-
-        public bool Undo()
-        {
-            return UndoImmediately();
-        }
 
         #endregion Public Methods
 
         #region Protected Methods
 
-        protected bool SaveImmediately()
-        {
-            if (OnSaveImmediately == null) return false;
-            OnSaveImmediately(this);
-            return true;
-        }
 
-        protected bool UndoImmediately()
-        {
-            if (OnUndoImmediately == null) return false;
-            OnUndoImmediately(this);
-            return true;
-        }
+
+
 
         #endregion Protected Methods
     }

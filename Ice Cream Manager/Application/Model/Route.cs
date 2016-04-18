@@ -58,5 +58,10 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        public override bool Save()
+        {
+            return Factory.Route.Save(this);
+        }
     }
 }
