@@ -42,5 +42,10 @@ namespace IceCreamManager.Model
 
             return driver;
         }
+
+        protected override string SaveLogString(Driver driver)
+        {
+            return $"Driver {driver.Number} - {driver.Name} who is paid {driver.HourlyRate} per hour.";
+        }
     }
 }

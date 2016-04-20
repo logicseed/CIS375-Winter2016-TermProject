@@ -35,24 +35,29 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.RevenueTab = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.RevenueTabs = new System.Windows.Forms.TabControl();
+            this.OverallRevenueTab = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.SalesTab = new System.Windows.Forms.TabPage();
+            this.ItemWasteTab = new System.Windows.Forms.TabPage();
+            this.SalaryCostTab = new System.Windows.Forms.TabPage();
+            this.FuelUsageTab = new System.Windows.Forms.TabPage();
             this.TrucksTab = new System.Windows.Forms.TabPage();
             this.ItemsTab = new System.Windows.Forms.TabPage();
             this.ItemLayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.ItemGridView = new System.Windows.Forms.DataGridView();
             this.RemoveItemButton = new System.Windows.Forms.Button();
             this.ShowDeletedItems = new System.Windows.Forms.CheckBox();
-            this.ItemGridView = new System.Windows.Forms.DataGridView();
             this.AddItemButton = new System.Windows.Forms.Button();
             this.EditItemButton = new System.Windows.Forms.Button();
             this.DriversTab = new System.Windows.Forms.TabPage();
             this.RoutesTab = new System.Windows.Forms.TabPage();
+            this.RoutesLayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.RemoveRouteButton = new System.Windows.Forms.Button();
+            this.ShowDeletedRoutes = new System.Windows.Forms.CheckBox();
+            this.RouteGridView = new System.Windows.Forms.DataGridView();
+            this.AddRouteButton = new System.Windows.Forms.Button();
+            this.EditRouteButton = new System.Windows.Forms.Button();
             this.CitiesTab = new System.Windows.Forms.TabPage();
             this.CityLayoutTable = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveCityButton = new System.Windows.Forms.Button();
@@ -60,39 +65,34 @@
             this.CityGridView = new System.Windows.Forms.DataGridView();
             this.AddCityButton = new System.Windows.Forms.Button();
             this.EditCityButton = new System.Windows.Forms.Button();
+            this.BatchTab = new System.Windows.Forms.TabPage();
             this.ButtonIcons = new System.Windows.Forms.ImageList(this.components);
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ExtraButtonsLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
-            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.RoutesLayoutTable = new System.Windows.Forms.TableLayoutPanel();
-            this.RemoveRouteButton = new System.Windows.Forms.Button();
-            this.ShowDeletedRoutes = new System.Windows.Forms.CheckBox();
-            this.RouteGridView = new System.Windows.Forms.DataGridView();
-            this.AddRouteButton = new System.Windows.Forms.Button();
-            this.EditRouteButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.LogButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
+            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainTabs.SuspendLayout();
             this.RevenueTab.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.RevenueTabs.SuspendLayout();
+            this.OverallRevenueTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.ItemsTab.SuspendLayout();
             this.ItemLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).BeginInit();
             this.RoutesTab.SuspendLayout();
+            this.RoutesLayoutTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).BeginInit();
             this.CitiesTab.SuspendLayout();
             this.CityLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CityGridView)).BeginInit();
             this.StatusBar.SuspendLayout();
             this.ExtraButtonsLayout.SuspendLayout();
             this.MainFormLayout.SuspendLayout();
-            this.RoutesLayoutTable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabs
@@ -103,6 +103,7 @@
             this.MainTabs.Controls.Add(this.DriversTab);
             this.MainTabs.Controls.Add(this.RoutesTab);
             this.MainTabs.Controls.Add(this.CitiesTab);
+            this.MainTabs.Controls.Add(this.BatchTab);
             this.MainTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabs.ImageList = this.ButtonIcons;
             this.MainTabs.Location = new System.Drawing.Point(0, 0);
@@ -110,46 +111,45 @@
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.Padding = new System.Drawing.Point(8, 8);
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(843, 606);
+            this.MainTabs.Size = new System.Drawing.Size(784, 486);
             this.MainTabs.TabIndex = 0;
             // 
             // RevenueTab
             // 
-            this.RevenueTab.Controls.Add(this.tabControl1);
+            this.RevenueTab.Controls.Add(this.RevenueTabs);
             this.RevenueTab.ImageIndex = 3;
             this.RevenueTab.Location = new System.Drawing.Point(4, 33);
             this.RevenueTab.Name = "RevenueTab";
             this.RevenueTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RevenueTab.Size = new System.Drawing.Size(835, 569);
+            this.RevenueTab.Size = new System.Drawing.Size(776, 449);
             this.RevenueTab.TabIndex = 0;
             this.RevenueTab.Text = "!Revenue";
             this.RevenueTab.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // RevenueTabs
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(829, 563);
-            this.tabControl1.TabIndex = 0;
+            this.RevenueTabs.Controls.Add(this.OverallRevenueTab);
+            this.RevenueTabs.Controls.Add(this.SalesTab);
+            this.RevenueTabs.Controls.Add(this.ItemWasteTab);
+            this.RevenueTabs.Controls.Add(this.SalaryCostTab);
+            this.RevenueTabs.Controls.Add(this.FuelUsageTab);
+            this.RevenueTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RevenueTabs.Location = new System.Drawing.Point(3, 3);
+            this.RevenueTabs.Name = "RevenueTabs";
+            this.RevenueTabs.SelectedIndex = 0;
+            this.RevenueTabs.Size = new System.Drawing.Size(770, 443);
+            this.RevenueTabs.TabIndex = 0;
             // 
-            // tabPage1
+            // OverallRevenueTab
             // 
-            this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(821, 537);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.OverallRevenueTab.Controls.Add(this.chart1);
+            this.OverallRevenueTab.Location = new System.Drawing.Point(4, 22);
+            this.OverallRevenueTab.Name = "OverallRevenueTab";
+            this.OverallRevenueTab.Padding = new System.Windows.Forms.Padding(3);
+            this.OverallRevenueTab.Size = new System.Drawing.Size(762, 417);
+            this.OverallRevenueTab.TabIndex = 0;
+            this.OverallRevenueTab.Text = "!Overall";
+            this.OverallRevenueTab.UseVisualStyleBackColor = true;
             // 
             // chart1
             // 
@@ -164,59 +164,49 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(815, 531);
+            this.chart1.Size = new System.Drawing.Size(756, 411);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // tabPage2
+            // SalesTab
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(821, 537);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.SalesTab.Location = new System.Drawing.Point(4, 22);
+            this.SalesTab.Name = "SalesTab";
+            this.SalesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SalesTab.Size = new System.Drawing.Size(762, 417);
+            this.SalesTab.TabIndex = 1;
+            this.SalesTab.Text = "!Sales";
+            this.SalesTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // ItemWasteTab
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(821, 537);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.ItemWasteTab.Location = new System.Drawing.Point(4, 22);
+            this.ItemWasteTab.Name = "ItemWasteTab";
+            this.ItemWasteTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ItemWasteTab.Size = new System.Drawing.Size(762, 417);
+            this.ItemWasteTab.TabIndex = 2;
+            this.ItemWasteTab.Text = "!Item Waste";
+            this.ItemWasteTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // SalaryCostTab
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(821, 537);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.SalaryCostTab.Location = new System.Drawing.Point(4, 22);
+            this.SalaryCostTab.Name = "SalaryCostTab";
+            this.SalaryCostTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SalaryCostTab.Size = new System.Drawing.Size(762, 417);
+            this.SalaryCostTab.TabIndex = 3;
+            this.SalaryCostTab.Text = "!Salary Cost";
+            this.SalaryCostTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // FuelUsageTab
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(821, 537);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(821, 537);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.FuelUsageTab.Location = new System.Drawing.Point(4, 22);
+            this.FuelUsageTab.Name = "FuelUsageTab";
+            this.FuelUsageTab.Padding = new System.Windows.Forms.Padding(3);
+            this.FuelUsageTab.Size = new System.Drawing.Size(762, 417);
+            this.FuelUsageTab.TabIndex = 4;
+            this.FuelUsageTab.Text = "!Fuel Usage";
+            this.FuelUsageTab.UseVisualStyleBackColor = true;
             // 
             // TrucksTab
             // 
@@ -224,7 +214,7 @@
             this.TrucksTab.Location = new System.Drawing.Point(4, 33);
             this.TrucksTab.Name = "TrucksTab";
             this.TrucksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TrucksTab.Size = new System.Drawing.Size(835, 569);
+            this.TrucksTab.Size = new System.Drawing.Size(776, 449);
             this.TrucksTab.TabIndex = 1;
             this.TrucksTab.Text = "!Trucks";
             this.TrucksTab.UseVisualStyleBackColor = true;
@@ -236,7 +226,7 @@
             this.ItemsTab.Location = new System.Drawing.Point(4, 33);
             this.ItemsTab.Name = "ItemsTab";
             this.ItemsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ItemsTab.Size = new System.Drawing.Size(835, 569);
+            this.ItemsTab.Size = new System.Drawing.Size(776, 449);
             this.ItemsTab.TabIndex = 2;
             this.ItemsTab.Text = "!Items";
             this.ItemsTab.UseVisualStyleBackColor = true;
@@ -248,9 +238,9 @@
             this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
             this.ItemLayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
             this.ItemLayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
-            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
             this.ItemLayoutTable.Controls.Add(this.AddItemButton, 0, 0);
             this.ItemLayoutTable.Controls.Add(this.EditItemButton, 1, 0);
             this.ItemLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -259,8 +249,24 @@
             this.ItemLayoutTable.RowCount = 2;
             this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ItemLayoutTable.Size = new System.Drawing.Size(829, 563);
+            this.ItemLayoutTable.Size = new System.Drawing.Size(770, 443);
             this.ItemLayoutTable.TabIndex = 1;
+            // 
+            // ItemGridView
+            // 
+            this.ItemGridView.AllowUserToAddRows = false;
+            this.ItemGridView.AllowUserToDeleteRows = false;
+            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
+            this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemGridView.Location = new System.Drawing.Point(3, 38);
+            this.ItemGridView.MultiSelect = false;
+            this.ItemGridView.Name = "ItemGridView";
+            this.ItemGridView.ReadOnly = true;
+            this.ItemGridView.RowHeadersVisible = false;
+            this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemGridView.Size = new System.Drawing.Size(764, 402);
+            this.ItemGridView.TabIndex = 5;
             // 
             // RemoveItemButton
             // 
@@ -280,8 +286,6 @@
             // 
             this.ShowDeletedItems.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ShowDeletedItems.AutoSize = true;
-            this.ShowDeletedItems.Checked = true;
-            this.ShowDeletedItems.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowDeletedItems.Location = new System.Drawing.Point(246, 9);
             this.ShowDeletedItems.Name = "ShowDeletedItems";
             this.ShowDeletedItems.Size = new System.Drawing.Size(96, 17);
@@ -289,23 +293,6 @@
             this.ShowDeletedItems.Text = "!Show Deleted";
             this.ShowDeletedItems.UseVisualStyleBackColor = true;
             this.ShowDeletedItems.CheckedChanged += new System.EventHandler(this.RefreshItemTable);
-            // 
-            // ItemGridView
-            // 
-            this.ItemGridView.AllowUserToAddRows = false;
-            this.ItemGridView.AllowUserToDeleteRows = false;
-            this.ItemGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
-            this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemGridView.Location = new System.Drawing.Point(3, 38);
-            this.ItemGridView.MultiSelect = false;
-            this.ItemGridView.Name = "ItemGridView";
-            this.ItemGridView.ReadOnly = true;
-            this.ItemGridView.RowHeadersVisible = false;
-            this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemGridView.Size = new System.Drawing.Size(823, 522);
-            this.ItemGridView.TabIndex = 4;
             // 
             // AddItemButton
             // 
@@ -340,7 +327,7 @@
             this.DriversTab.Location = new System.Drawing.Point(4, 33);
             this.DriversTab.Name = "DriversTab";
             this.DriversTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DriversTab.Size = new System.Drawing.Size(835, 569);
+            this.DriversTab.Size = new System.Drawing.Size(776, 449);
             this.DriversTab.TabIndex = 3;
             this.DriversTab.Text = "!Drivers";
             this.DriversTab.UseVisualStyleBackColor = true;
@@ -352,10 +339,100 @@
             this.RoutesTab.Location = new System.Drawing.Point(4, 33);
             this.RoutesTab.Name = "RoutesTab";
             this.RoutesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RoutesTab.Size = new System.Drawing.Size(835, 569);
+            this.RoutesTab.Size = new System.Drawing.Size(776, 449);
             this.RoutesTab.TabIndex = 4;
             this.RoutesTab.Text = "!Routes";
             this.RoutesTab.UseVisualStyleBackColor = true;
+            // 
+            // RoutesLayoutTable
+            // 
+            this.RoutesLayoutTable.ColumnCount = 4;
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.Controls.Add(this.RemoveRouteButton, 2, 0);
+            this.RoutesLayoutTable.Controls.Add(this.ShowDeletedRoutes, 3, 0);
+            this.RoutesLayoutTable.Controls.Add(this.RouteGridView, 0, 1);
+            this.RoutesLayoutTable.Controls.Add(this.AddRouteButton, 0, 0);
+            this.RoutesLayoutTable.Controls.Add(this.EditRouteButton, 1, 0);
+            this.RoutesLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoutesLayoutTable.Location = new System.Drawing.Point(3, 3);
+            this.RoutesLayoutTable.Name = "RoutesLayoutTable";
+            this.RoutesLayoutTable.RowCount = 2;
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RoutesLayoutTable.Size = new System.Drawing.Size(770, 443);
+            this.RoutesLayoutTable.TabIndex = 2;
+            // 
+            // RemoveRouteButton
+            // 
+            this.RemoveRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveRouteButton.AutoSize = true;
+            this.RemoveRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveRouteButton.Location = new System.Drawing.Point(165, 3);
+            this.RemoveRouteButton.Name = "RemoveRouteButton";
+            this.RemoveRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.RemoveRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.RemoveRouteButton.TabIndex = 2;
+            this.RemoveRouteButton.Text = "!Remove";
+            this.RemoveRouteButton.UseVisualStyleBackColor = true;
+            // 
+            // ShowDeletedRoutes
+            // 
+            this.ShowDeletedRoutes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedRoutes.AutoSize = true;
+            this.ShowDeletedRoutes.Location = new System.Drawing.Point(246, 9);
+            this.ShowDeletedRoutes.Name = "ShowDeletedRoutes";
+            this.ShowDeletedRoutes.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedRoutes.TabIndex = 3;
+            this.ShowDeletedRoutes.Text = "!Show Deleted";
+            this.ShowDeletedRoutes.UseVisualStyleBackColor = true;
+            this.ShowDeletedRoutes.CheckedChanged += new System.EventHandler(this.RefreshRouteTable);
+            // 
+            // RouteGridView
+            // 
+            this.RouteGridView.AllowUserToAddRows = false;
+            this.RouteGridView.AllowUserToDeleteRows = false;
+            this.RouteGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.RouteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RoutesLayoutTable.SetColumnSpan(this.RouteGridView, 4);
+            this.RouteGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RouteGridView.Location = new System.Drawing.Point(3, 38);
+            this.RouteGridView.MultiSelect = false;
+            this.RouteGridView.Name = "RouteGridView";
+            this.RouteGridView.ReadOnly = true;
+            this.RouteGridView.RowHeadersVisible = false;
+            this.RouteGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RouteGridView.Size = new System.Drawing.Size(764, 402);
+            this.RouteGridView.TabIndex = 4;
+            // 
+            // AddRouteButton
+            // 
+            this.AddRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddRouteButton.AutoSize = true;
+            this.AddRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddRouteButton.Location = new System.Drawing.Point(3, 3);
+            this.AddRouteButton.Name = "AddRouteButton";
+            this.AddRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.AddRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.AddRouteButton.TabIndex = 1;
+            this.AddRouteButton.Text = "!Add";
+            this.AddRouteButton.UseVisualStyleBackColor = true;
+            this.AddRouteButton.Click += new System.EventHandler(this.AddRouteButton_Click);
+            // 
+            // EditRouteButton
+            // 
+            this.EditRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditRouteButton.AutoSize = true;
+            this.EditRouteButton.Location = new System.Drawing.Point(84, 3);
+            this.EditRouteButton.Name = "EditRouteButton";
+            this.EditRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.EditRouteButton.Size = new System.Drawing.Size(75, 29);
+            this.EditRouteButton.TabIndex = 0;
+            this.EditRouteButton.Text = "!Edit";
+            this.EditRouteButton.UseVisualStyleBackColor = true;
+            this.EditRouteButton.Click += new System.EventHandler(this.EditRouteButton_Click);
             // 
             // CitiesTab
             // 
@@ -364,7 +441,7 @@
             this.CitiesTab.Location = new System.Drawing.Point(4, 33);
             this.CitiesTab.Name = "CitiesTab";
             this.CitiesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CitiesTab.Size = new System.Drawing.Size(835, 569);
+            this.CitiesTab.Size = new System.Drawing.Size(776, 449);
             this.CitiesTab.TabIndex = 5;
             this.CitiesTab.Text = "!Cities";
             this.CitiesTab.UseVisualStyleBackColor = true;
@@ -387,7 +464,7 @@
             this.CityLayoutTable.RowCount = 2;
             this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.CityLayoutTable.Size = new System.Drawing.Size(829, 563);
+            this.CityLayoutTable.Size = new System.Drawing.Size(770, 443);
             this.CityLayoutTable.TabIndex = 2;
             // 
             // RemoveCityButton
@@ -408,8 +485,6 @@
             // 
             this.ShowDeletedCities.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ShowDeletedCities.AutoSize = true;
-            this.ShowDeletedCities.Checked = true;
-            this.ShowDeletedCities.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowDeletedCities.Location = new System.Drawing.Point(246, 9);
             this.ShowDeletedCities.Name = "ShowDeletedCities";
             this.ShowDeletedCities.Size = new System.Drawing.Size(96, 17);
@@ -432,7 +507,7 @@
             this.CityGridView.ReadOnly = true;
             this.CityGridView.RowHeadersVisible = false;
             this.CityGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CityGridView.Size = new System.Drawing.Size(823, 522);
+            this.CityGridView.Size = new System.Drawing.Size(764, 402);
             this.CityGridView.TabIndex = 4;
             // 
             // AddCityButton
@@ -462,6 +537,16 @@
             this.EditCityButton.UseVisualStyleBackColor = true;
             this.EditCityButton.Click += new System.EventHandler(this.EditCityButton_Click);
             // 
+            // BatchTab
+            // 
+            this.BatchTab.Location = new System.Drawing.Point(4, 33);
+            this.BatchTab.Name = "BatchTab";
+            this.BatchTab.Padding = new System.Windows.Forms.Padding(3);
+            this.BatchTab.Size = new System.Drawing.Size(776, 449);
+            this.BatchTab.TabIndex = 6;
+            this.BatchTab.Text = "!Batch";
+            this.BatchTab.UseVisualStyleBackColor = true;
+            // 
             // ButtonIcons
             // 
             this.ButtonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ButtonIcons.ImageStream")));
@@ -478,15 +563,23 @@
             this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProgressBar,
             this.StatusLabel});
-            this.StatusBar.Location = new System.Drawing.Point(0, 606);
+            this.StatusBar.Location = new System.Drawing.Point(0, 486);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(843, 25);
+            this.StatusBar.Size = new System.Drawing.Size(784, 25);
             this.StatusBar.TabIndex = 3;
             // 
             // ProgressBar
             // 
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(300, 19);
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
+            this.StatusLabel.Text = "!Processing...";
             // 
             // ExtraButtonsLayout
             // 
@@ -500,119 +593,12 @@
             this.ExtraButtonsLayout.Controls.Add(this.SettingsButton, 0, 0);
             this.ExtraButtonsLayout.Controls.Add(this.LogButton, 1, 0);
             this.ExtraButtonsLayout.Controls.Add(this.AboutButton, 2, 0);
-            this.ExtraButtonsLayout.Location = new System.Drawing.Point(745, -2);
+            this.ExtraButtonsLayout.Location = new System.Drawing.Point(686, -2);
             this.ExtraButtonsLayout.Name = "ExtraButtonsLayout";
             this.ExtraButtonsLayout.RowCount = 1;
             this.ExtraButtonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ExtraButtonsLayout.Size = new System.Drawing.Size(90, 22);
             this.ExtraButtonsLayout.TabIndex = 8;
-            // 
-            // MainFormLayout
-            // 
-            this.MainFormLayout.ColumnCount = 1;
-            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
-            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
-            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.MainFormLayout.Name = "MainFormLayout";
-            this.MainFormLayout.RowCount = 2;
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainFormLayout.Size = new System.Drawing.Size(843, 631);
-            this.MainFormLayout.TabIndex = 10;
-            // 
-            // RoutesLayoutTable
-            // 
-            this.RoutesLayoutTable.ColumnCount = 4;
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.Controls.Add(this.RemoveRouteButton, 2, 0);
-            this.RoutesLayoutTable.Controls.Add(this.ShowDeletedRoutes, 3, 0);
-            this.RoutesLayoutTable.Controls.Add(this.RouteGridView, 0, 1);
-            this.RoutesLayoutTable.Controls.Add(this.AddRouteButton, 0, 0);
-            this.RoutesLayoutTable.Controls.Add(this.EditRouteButton, 1, 0);
-            this.RoutesLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RoutesLayoutTable.Location = new System.Drawing.Point(3, 3);
-            this.RoutesLayoutTable.Name = "RoutesLayoutTable";
-            this.RoutesLayoutTable.RowCount = 2;
-            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.RoutesLayoutTable.Size = new System.Drawing.Size(829, 563);
-            this.RoutesLayoutTable.TabIndex = 2;
-            // 
-            // RemoveRouteButton
-            // 
-            this.RemoveRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveRouteButton.AutoSize = true;
-            this.RemoveRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveRouteButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveRouteButton.Name = "RemoveRouteButton";
-            this.RemoveRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveRouteButton.TabIndex = 2;
-            this.RemoveRouteButton.Text = "!Remove";
-            this.RemoveRouteButton.UseVisualStyleBackColor = true;
-            // 
-            // ShowDeletedRoutes
-            // 
-            this.ShowDeletedRoutes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedRoutes.AutoSize = true;
-            this.ShowDeletedRoutes.Checked = true;
-            this.ShowDeletedRoutes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowDeletedRoutes.Location = new System.Drawing.Point(246, 9);
-            this.ShowDeletedRoutes.Name = "ShowDeletedRoutes";
-            this.ShowDeletedRoutes.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedRoutes.TabIndex = 3;
-            this.ShowDeletedRoutes.Text = "!Show Deleted";
-            this.ShowDeletedRoutes.UseVisualStyleBackColor = true;
-            this.ShowDeletedRoutes.CheckedChanged += new System.EventHandler(this.RefreshRouteTable);
-            // 
-            // RouteGridView
-            // 
-            this.RouteGridView.AllowUserToAddRows = false;
-            this.RouteGridView.AllowUserToDeleteRows = false;
-            this.RouteGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.RouteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RoutesLayoutTable.SetColumnSpan(this.RouteGridView, 4);
-            this.RouteGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RouteGridView.Location = new System.Drawing.Point(3, 38);
-            this.RouteGridView.MultiSelect = false;
-            this.RouteGridView.Name = "RouteGridView";
-            this.RouteGridView.ReadOnly = true;
-            this.RouteGridView.RowHeadersVisible = false;
-            this.RouteGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RouteGridView.Size = new System.Drawing.Size(823, 522);
-            this.RouteGridView.TabIndex = 4;
-            // 
-            // AddRouteButton
-            // 
-            this.AddRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddRouteButton.AutoSize = true;
-            this.AddRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddRouteButton.Location = new System.Drawing.Point(3, 3);
-            this.AddRouteButton.Name = "AddRouteButton";
-            this.AddRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.AddRouteButton.TabIndex = 1;
-            this.AddRouteButton.Text = "!Add";
-            this.AddRouteButton.UseVisualStyleBackColor = true;
-            this.AddRouteButton.Click += new System.EventHandler(this.AddRouteButton_Click);
-            // 
-            // EditRouteButton
-            // 
-            this.EditRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditRouteButton.AutoSize = true;
-            this.EditRouteButton.Location = new System.Drawing.Point(84, 3);
-            this.EditRouteButton.Name = "EditRouteButton";
-            this.EditRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.EditRouteButton.TabIndex = 0;
-            this.EditRouteButton.Text = "!Edit";
-            this.EditRouteButton.UseVisualStyleBackColor = true;
             // 
             // SettingsButton
             // 
@@ -660,35 +646,47 @@
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
-            // StatusLabel
+            // MainFormLayout
             // 
-            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
-            this.StatusLabel.Text = "!Processing...";
+            this.MainFormLayout.ColumnCount = 1;
+            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
+            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
+            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
+            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainFormLayout.Name = "MainFormLayout";
+            this.MainFormLayout.RowCount = 2;
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.MainFormLayout.Size = new System.Drawing.Size(784, 511);
+            this.MainFormLayout.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 631);
+            this.ClientSize = new System.Drawing.Size(784, 511);
             this.Controls.Add(this.ExtraButtonsLayout);
             this.Controls.Add(this.MainFormLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 450);
+            this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "!Ice Cream Manager";
             this.MainTabs.ResumeLayout(false);
             this.RevenueTab.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.RevenueTabs.ResumeLayout(false);
+            this.OverallRevenueTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ItemsTab.ResumeLayout(false);
             this.ItemLayoutTable.ResumeLayout(false);
             this.ItemLayoutTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).EndInit();
             this.RoutesTab.ResumeLayout(false);
+            this.RoutesLayoutTable.ResumeLayout(false);
+            this.RoutesLayoutTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).EndInit();
             this.CitiesTab.ResumeLayout(false);
             this.CityLayoutTable.ResumeLayout(false);
             this.CityLayoutTable.PerformLayout();
@@ -698,9 +696,6 @@
             this.ExtraButtonsLayout.ResumeLayout(false);
             this.MainFormLayout.ResumeLayout(false);
             this.MainFormLayout.PerformLayout();
-            this.RoutesLayoutTable.ResumeLayout(false);
-            this.RoutesLayoutTable.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,19 +719,16 @@
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.TableLayoutPanel ExtraButtonsLayout;
         private System.Windows.Forms.ToolTip MainToolTips;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabControl RevenueTabs;
+        private System.Windows.Forms.TabPage OverallRevenueTab;
+        private System.Windows.Forms.TabPage SalesTab;
+        private System.Windows.Forms.TabPage ItemWasteTab;
+        private System.Windows.Forms.TabPage SalaryCostTab;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TableLayoutPanel MainFormLayout;
         private System.Windows.Forms.TableLayoutPanel ItemLayoutTable;
         protected System.Windows.Forms.Button RemoveItemButton;
         protected System.Windows.Forms.CheckBox ShowDeletedItems;
-        public System.Windows.Forms.DataGridView ItemGridView;
         protected System.Windows.Forms.Button AddItemButton;
         protected System.Windows.Forms.Button EditItemButton;
         private System.Windows.Forms.TableLayoutPanel CityLayoutTable;
@@ -751,5 +743,8 @@
         public System.Windows.Forms.DataGridView RouteGridView;
         protected System.Windows.Forms.Button AddRouteButton;
         protected System.Windows.Forms.Button EditRouteButton;
+        public System.Windows.Forms.DataGridView ItemGridView;
+        private System.Windows.Forms.TabPage BatchTab;
+        private System.Windows.Forms.TabPage FuelUsageTab;
     }
 }

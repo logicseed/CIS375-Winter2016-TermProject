@@ -81,10 +81,14 @@ namespace IceCreamManager.Model
         public new Item LoadItem(int ID)
         {
             var DatabaseCommand = $"SELECT * FROM Item WHERE ID = {ID}";
-            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            var ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
 
             return MapDataRowToProperties(ResultsTable.Rows[0]);
         }
 
+        protected override string SaveLogString(Item item)
+        {
+            return $"Item {item.Number} - {item.Description} for {Language.UserCurrency}{item.Price}, with {item.Quantity} in stock that will last {item.Lifetime} days.";
+        }
     }
 }

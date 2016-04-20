@@ -25,8 +25,41 @@ namespace IceCreamManager.Model
         protected override string DatabaseQueryColumns()
             => "Label,Name,State,Miles,Hours,IsDeleted";
 
+        
+
         protected override string DatabaseQueryColumnValuePairs(City city)
             => $"Label = '{city.Label}',Name = '{city.Name}',State = '{city.State}',Miles = {city.Miles},Hours = {city.Hours},IsDeleted = {city.IsDeleted.ToDatabase()}";
+        
+        public List<City> GetAvailableCityList()
+        {
+            var DatabaseCommand = $"SELECT * FROM City WHERE ID NOT IN (SELECT CityID FROM RouteCity) AND IsDeleted = 0";
+            
+            var ResultsTable = Database.Query(DatabaseCommand);
+            var CityList = new List<City>();
+
+            foreach (DataRow Row in ResultsTable.Rows)
+            {
+                CityList.Add(MapDataRowToProperties(Row));
+            }
+
+            return CityList;
+        }
+
+           public List<City> GetCityList(bool includeDeleted)
+        {
+            var DatabaseCommand = $"SELECT * FROM City";
+            if (!includeDeleted) DatabaseCommand += " WHERE IsDeleted = 0";
+
+            var ResultsTable = Database.Query(DatabaseCommand);
+            var CityList = new List<City>();
+
+            foreach (DataRow Row in ResultsTable.Rows)
+            {
+                CityList.Add(MapDataRowToProperties(Row));
+            }
+
+            return CityList;
+        }
 
         protected override string DatabaseQueryValues(City city)
             => $"'{city.Label}','{city.Name}','{city.State}',{city.Miles},{city.Hours},{city.IsDeleted.ToDatabase()}";
@@ -52,7 +85,7 @@ namespace IceCreamManager.Model
         {
             string DatabaseCommand = $"UPDATE {TableName} SET IsDeleted = 1 WHERE IsDeleted = 0";
 
-            if (Database.ExecuteCommand(DatabaseCommand) > 0) return true;
+            if (DatabaseMan.ExecuteCommand(DatabaseCommand) > 0) return true;
             else return false;
         }
 
@@ -60,7 +93,7 @@ namespace IceCreamManager.Model
         {
             string DatabaseCommand = $"SELECT 1 FROM {TableName} WHERE Label = '{cityLabel}' AND IsDeleted = {isDeleted.ToDatabase()}";
 
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
 
             if (ResultsTable.Rows.Count == 0) return true;
             else return false;
@@ -75,7 +108,7 @@ namespace IceCreamManager.Model
         {
             string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE Label = '{cityLabel}' AND IsDeleted = 0";
 
-            DataTable ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
 
             if (ResultsTable.Rows.Count == 0) return 0;
 
@@ -118,18 +151,42 @@ namespace IceCreamManager.Model
             return TableToReturn;
         }
 
+        public DataTable GetRouteCityDataTable(List<City> CityList)
+        {
+            var RouteCityDataTable = new DataTable();
+
+            RouteCityDataTable.Columns.Add(new DataColumn("ID", typeof(int)));
+            RouteCityDataTable.Columns.Add(new DataColumn("Label", typeof(string)));
+
+            foreach (City city in CityList)
+            {
+                var RowToAdd = RouteCityDataTable.NewRow();
+                RowToAdd["ID"] = city.ID;
+                RowToAdd["Label"] = city.Label;
+
+                RouteCityDataTable.Rows.Add(RowToAdd);
+            }
+
+            return RouteCityDataTable;
+        }
+
         public List<City> GetCityList(int routeID)
         {
             var Cities = new List<City>();
-            var DatabaseCommand = $"SELECT * FROM {TableName} INNER JOIN RouteCity ON RouteCity.CityID = {TableName}.ID WHERE RouteCity.RouteID = {routeID} ORDER BY {TableName}.Label";
-            var ResultsTable = Database.DataTableFromCommand(DatabaseCommand);
+            var sql = $"SELECT * FROM City WHERE ID IN (SELECT CityID FROM RouteCity WHERE RouteID = {routeID})";
+            var table = Database.Query(sql);
 
-            foreach (DataRow Row in ResultsTable.Rows)
+            foreach (DataRow Row in table.Rows)
             {
                 Cities.Add(MapDataRowToProperties(Row));
             }
 
             return Cities;
+        }
+
+        protected override string SaveLogString(City city)
+        {
+            return $"City Label {city.Label} to {city.Name} in {city.State}, which takes {city.Hours} hours to service its {city.Miles} miles.";
         }
     }
 }

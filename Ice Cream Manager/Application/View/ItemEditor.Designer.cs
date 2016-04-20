@@ -163,6 +163,7 @@
             this.LifetimeBox.Name = "LifetimeBox";
             this.LifetimeBox.Size = new System.Drawing.Size(57, 20);
             this.LifetimeBox.TabIndex = 12;
+            this.LifetimeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.LifetimeBox.Value = new decimal(new int[] {
             30,
             0,
@@ -182,6 +183,7 @@
             this.QuantityBox.Name = "QuantityBox";
             this.QuantityBox.Size = new System.Drawing.Size(57, 20);
             this.QuantityBox.TabIndex = 11;
+            this.QuantityBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.QuantityBox.Value = new decimal(new int[] {
             1,
             0,
@@ -207,6 +209,7 @@
             this.PriceBox.Name = "PriceBox";
             this.PriceBox.Size = new System.Drawing.Size(57, 20);
             this.PriceBox.TabIndex = 10;
+            this.PriceBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.PriceBox.Value = new decimal(new int[] {
             15,
             0,
@@ -281,6 +284,7 @@
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(57, 20);
             this.NumberBox.TabIndex = 5;
+            this.NumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NumberBox.Value = new decimal(new int[] {
             8888,
             0,
@@ -305,10 +309,12 @@
             this.CancelButton = this.DiscardButton;
             this.ClientSize = new System.Drawing.Size(532, 388);
             this.Controls.Add(this.FormLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ItemEditor";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "!Item Editor";

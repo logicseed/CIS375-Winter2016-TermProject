@@ -33,5 +33,7 @@ namespace IceCreamManager.Model
 
             return batchHistoryEntry;
         }
+
+        protected override string SaveLogString(BatchHistoryEntry entity) => "";
     }
 }

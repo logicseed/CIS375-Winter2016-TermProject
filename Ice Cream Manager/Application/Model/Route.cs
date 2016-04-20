@@ -40,7 +40,7 @@ namespace IceCreamManager.Model
             }
         }
 
-        public List<City> RouteCities
+        public List<City> Cities
         {
             get
             {
@@ -49,9 +49,12 @@ namespace IceCreamManager.Model
             }
         }
 
-        public void AddCity(object v)
+        public void AddCity(City city)
         {
-            throw new NotImplementedException();
+            if (Cities.Count >= Requirement.MaxRouteCities) throw new RouteCityCountException();
+            Cities.Add(city);
+            IsSaved = false;
+            ReplaceOnSave = true;
         }
 
         public int LastCityAddedID()

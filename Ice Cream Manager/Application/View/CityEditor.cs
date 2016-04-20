@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IceCreamManager.Model;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.View
 {
     public partial class CityEditor: Form
     {
         City CityToEdit = new City();
+        ActionType actionType;
 
         public CityEditor()
         {
@@ -21,6 +23,7 @@ namespace IceCreamManager.View
             LoadEmptyCity();
             LocalizeControl();
             SetRequirements();
+            actionType = ActionType.AddNewCity;
         }
 
         private void LoadEmptyCity()
@@ -34,6 +37,7 @@ namespace IceCreamManager.View
             LoadCity(cityID);
             LocalizeControl();
             SetRequirements();
+            actionType = ActionType.EditCity;
         }
 
         private void LocalizeControl()

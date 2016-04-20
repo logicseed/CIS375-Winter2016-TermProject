@@ -12,6 +12,8 @@ Settings = Settings
 ViewLog = View Log
 About = About
 
+AddCity = Add City
+RemoveCity = Remove City
 
 # Generic editor phrases
 Save = Save
@@ -32,6 +34,9 @@ Deleted = Deleted
 # Column headers
 ItemEditor = Item Editor
 CityEditor = City Editor
+RouteEditor = Route Editor
+DriverEditor = Driver Editor
+TruckEditor = TruckEditor
 
 Label = Label
 State = State
@@ -43,7 +48,7 @@ Description = Description
 Price = Price
 Quantity = Quantity
 Lifetime = Lifetime
-WarehouseQuantity = Warehouse Quantity
+WarehouseQuantity = Quantity
 
 
 # Unit test strings

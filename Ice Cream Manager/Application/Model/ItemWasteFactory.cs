@@ -39,5 +39,10 @@ namespace IceCreamManager.Model
 
             return itemWaste;
         }
+
+        protected override string SaveLogString(ItemWaste entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

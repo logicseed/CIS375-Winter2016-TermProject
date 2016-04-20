@@ -53,6 +53,7 @@ namespace IceCreamManager.Model
         public bool IsDeleted { get; set; } = false;
         public bool IsSaved { get; set; } = false;
         public bool ReplaceOnSave { get; set; } = false;
+        public bool IsSaving { get; set; } = false;
 
         #endregion Public Properties
 

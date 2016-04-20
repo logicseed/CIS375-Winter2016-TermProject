@@ -326,4 +326,22 @@ namespace IceCreamManager.Model
             }
         }
     }
+
+    /// <summary>
+    /// Provides simple access to the database manager methods.
+    /// </summary>
+    public sealed class Database
+    {
+        #region Singleton
+        private static readonly Database SingletonInstance = new Database();
+        public static Database Reference { get { return SingletonInstance; } }
+        private Database() { }
+        #endregion Singleton
+        private static DatabaseManager DatabaseMan = DatabaseManager.Reference;
+        public static DataTable Query(string query) => DatabaseMan.DataTableFromCommand(query);
+        public static int NonQuery(string nonQuery) => DatabaseMan.ExecuteCommand(nonQuery);
+
+
+
+    }
 }

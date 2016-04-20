@@ -10,5 +10,7 @@ namespace IceCreamManager
         AddCityToRoute,
         AddTruckToRoute,
         AddItemToInventory,
+        AddNewCity,
+        EditCity,
     }
 }

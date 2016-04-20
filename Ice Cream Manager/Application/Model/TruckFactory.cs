@@ -55,5 +55,11 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        protected override string SaveLogString(Truck truck)
+        {
+            var LogString = $"Truck {truck.Number} with items";
+            return LogString;
+        }
     }
 }

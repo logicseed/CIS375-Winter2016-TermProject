@@ -50,5 +50,10 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        protected override string SaveLogString(InventoryItem entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

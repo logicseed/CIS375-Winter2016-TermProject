@@ -34,21 +34,21 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.DiscardButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.HoursBox = new System.Windows.Forms.NumericUpDown();
+            this.HoursLabel = new System.Windows.Forms.Label();
+            this.MilesLabel = new System.Windows.Forms.Label();
+            this.StateBox = new System.Windows.Forms.TextBox();
+            this.NameBox = new System.Windows.Forms.TextBox();
             this.LabelLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
-            this.LabelBox = new System.Windows.Forms.TextBox();
-            this.NameBox = new System.Windows.Forms.TextBox();
             this.StateLabel = new System.Windows.Forms.Label();
-            this.StateBox = new System.Windows.Forms.TextBox();
-            this.MilesLabel = new System.Windows.Forms.Label();
-            this.HoursLabel = new System.Windows.Forms.Label();
+            this.LabelBox = new System.Windows.Forms.TextBox();
             this.MilesBox = new System.Windows.Forms.NumericUpDown();
-            this.HoursBox = new System.Windows.Forms.NumericUpDown();
             this.FormLayout.SuspendLayout();
             this.ButtonLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MilesBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HoursBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MilesBox)).BeginInit();
             this.SuspendLayout();
             // 
             // FormLayout
@@ -148,6 +148,69 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(182, 160);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // HoursBox
+            // 
+            this.HoursBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.HoursBox.DecimalPlaces = 2;
+            this.HoursBox.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.HoursBox.Location = new System.Drawing.Point(47, 134);
+            this.HoursBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
+            this.HoursBox.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.HoursBox.Name = "HoursBox";
+            this.HoursBox.Size = new System.Drawing.Size(58, 20);
+            this.HoursBox.TabIndex = 5;
+            this.HoursBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // HoursLabel
+            // 
+            this.HoursLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.HoursLabel.AutoSize = true;
+            this.HoursLabel.Location = new System.Drawing.Point(3, 137);
+            this.HoursLabel.Name = "HoursLabel";
+            this.HoursLabel.Size = new System.Drawing.Size(38, 13);
+            this.HoursLabel.TabIndex = 5;
+            this.HoursLabel.Text = "!Hours";
+            // 
+            // MilesLabel
+            // 
+            this.MilesLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.MilesLabel.AutoSize = true;
+            this.MilesLabel.Location = new System.Drawing.Point(7, 105);
+            this.MilesLabel.Name = "MilesLabel";
+            this.MilesLabel.Size = new System.Drawing.Size(34, 13);
+            this.MilesLabel.TabIndex = 5;
+            this.MilesLabel.Text = "!Miles";
+            // 
+            // StateBox
+            // 
+            this.StateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.StateBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.StateBox.Location = new System.Drawing.Point(47, 70);
+            this.StateBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
+            this.StateBox.MaxLength = 2;
+            this.StateBox.Name = "StateBox";
+            this.StateBox.Size = new System.Drawing.Size(37, 20);
+            this.StateBox.TabIndex = 3;
+            this.StateBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // NameBox
+            // 
+            this.NameBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.NameBox.Location = new System.Drawing.Point(47, 38);
+            this.NameBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
+            this.NameBox.MaxLength = 20;
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(129, 20);
+            this.NameBox.TabIndex = 2;
+            // 
             // LabelLabel
             // 
             this.LabelLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -168,26 +231,6 @@
             this.NameLabel.TabIndex = 1;
             this.NameLabel.Text = "!Name";
             // 
-            // LabelBox
-            // 
-            this.LabelBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.LabelBox.Location = new System.Drawing.Point(47, 6);
-            this.LabelBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
-            this.LabelBox.MaxLength = 20;
-            this.LabelBox.Name = "LabelBox";
-            this.LabelBox.Size = new System.Drawing.Size(129, 20);
-            this.LabelBox.TabIndex = 1;
-            // 
-            // NameBox
-            // 
-            this.NameBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.NameBox.Location = new System.Drawing.Point(47, 38);
-            this.NameBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
-            this.NameBox.MaxLength = 20;
-            this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(129, 20);
-            this.NameBox.TabIndex = 2;
-            // 
             // StateLabel
             // 
             this.StateLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -198,35 +241,15 @@
             this.StateLabel.TabIndex = 2;
             this.StateLabel.Text = "!State";
             // 
-            // StateBox
+            // LabelBox
             // 
-            this.StateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.StateBox.Location = new System.Drawing.Point(47, 70);
-            this.StateBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
-            this.StateBox.MaxLength = 2;
-            this.StateBox.Name = "StateBox";
-            this.StateBox.Size = new System.Drawing.Size(37, 20);
-            this.StateBox.TabIndex = 3;
-            // 
-            // MilesLabel
-            // 
-            this.MilesLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.MilesLabel.AutoSize = true;
-            this.MilesLabel.Location = new System.Drawing.Point(7, 105);
-            this.MilesLabel.Name = "MilesLabel";
-            this.MilesLabel.Size = new System.Drawing.Size(34, 13);
-            this.MilesLabel.TabIndex = 5;
-            this.MilesLabel.Text = "!Miles";
-            // 
-            // HoursLabel
-            // 
-            this.HoursLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.HoursLabel.AutoSize = true;
-            this.HoursLabel.Location = new System.Drawing.Point(3, 137);
-            this.HoursLabel.Name = "HoursLabel";
-            this.HoursLabel.Size = new System.Drawing.Size(38, 13);
-            this.HoursLabel.TabIndex = 5;
-            this.HoursLabel.Text = "!Hours";
+            this.LabelBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LabelBox.Location = new System.Drawing.Point(47, 6);
+            this.LabelBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
+            this.LabelBox.MaxLength = 20;
+            this.LabelBox.Name = "LabelBox";
+            this.LabelBox.Size = new System.Drawing.Size(129, 20);
+            this.LabelBox.TabIndex = 1;
             // 
             // MilesBox
             // 
@@ -247,26 +270,7 @@
             this.MilesBox.Name = "MilesBox";
             this.MilesBox.Size = new System.Drawing.Size(58, 20);
             this.MilesBox.TabIndex = 4;
-            // 
-            // HoursBox
-            // 
-            this.HoursBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.HoursBox.DecimalPlaces = 2;
-            this.HoursBox.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.HoursBox.Location = new System.Drawing.Point(47, 134);
-            this.HoursBox.Margin = new System.Windows.Forms.Padding(3, 6, 6, 6);
-            this.HoursBox.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            131072});
-            this.HoursBox.Name = "HoursBox";
-            this.HoursBox.Size = new System.Drawing.Size(58, 20);
-            this.HoursBox.TabIndex = 5;
+            this.MilesBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // CityEditor
             // 
@@ -282,6 +286,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CityEditor";
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "!City Editor";
             this.FormLayout.ResumeLayout(false);
@@ -290,8 +296,8 @@
             this.ButtonLayout.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MilesBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HoursBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MilesBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -115,7 +115,7 @@ namespace IceCreamManager.UnitTests.Model
             route.AddCity(cityFactory.Load("Dearborn 1"));
             if(route.Save())
             {
-                Logger.Log(EntityType.Route, route.ID, EntityType.City, route.LastCityAddedID(), ActionSource.BatchFile, ActionType.AddCityToRoute, Outcome.Success);
+                //Logger.Log(EntityType.Route, route.ID, EntityType.City, route.LastCityAddedID(), ActionSource.BatchFile, ActionType.AddCityToRoute, Outcome.Success);
             }
 
         }

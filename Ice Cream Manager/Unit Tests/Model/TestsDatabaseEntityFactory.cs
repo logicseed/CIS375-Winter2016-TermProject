@@ -43,6 +43,11 @@ namespace IceCreamManager.UnitTests.Model
 
             return test;
         }
+
+        protected override string SaveLogString(TestDatabaseEntity entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

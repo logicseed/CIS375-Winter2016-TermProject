@@ -6,6 +6,7 @@ using System.Collections.Generic;
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
 using System.Data;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.Model
 {
@@ -43,7 +44,7 @@ namespace IceCreamManager.Model
 
         public List<City> LoadCityList(int routeID)
         {
-            throw new NotImplementedException();
+            return Factory.City.GetCityList(routeID);
         }
 
         public Route LoadByNumber(int v)
@@ -83,6 +84,86 @@ namespace IceCreamManager.Model
             }
 
             return TableToReturn;
+        }
+
+        protected override string SaveLogString(Route route)
+        {
+            var LogString = $"Route {route.Number} with ";
+            foreach (City city in route.Cities)
+            {
+                LogString += $" {city.Label},"; 
+            }
+            LogString.TrimEnd(',');
+            return LogString;
+        }
+
+        public bool HasCity(Route route, string label)
+        {
+            var sql = $"SELECT * FROM City WHERE ID IN (SELECT CityID FROM RouteCity WHERE RouteID = {route.ID} AND IsDeleted = 0) AND Label = '{label}'";
+            var table = Database.Query(sql);
+            return (table.Rows.Count > 0);
+        }
+
+        public bool HasCity(Route route, City city, bool deleted = false)
+        {
+            var sql = $"SELECT * FROM RouteCity WHERE CityID = {city.ID} AND RouteID = {route.ID} AND IsDeleted = {deleted.ToDatabase()}";
+            var table = Database.Query(sql);
+            return (table.Rows.Count > 0);
+        }
+
+        protected override bool SaveChildren(Route route)
+        {
+            foreach (City city in route.Cities)
+            {
+                city.Save();
+                if (!HasCity(route,city))
+                {
+                    if(!AddCity(route, city)) return false;
+                }
+            }
+            return false;
+        }
+
+        protected bool AddCity(Route route, City city)
+        {
+            var sql = "";
+
+            if (HasCity(route,city,true))
+            {
+                sql = $"UPDATE RouteCity SET IsDeleted = 0 WHERE RouteID = {route.ID} AND CityID = {city.ID}";
+            }
+            else
+            {
+                sql = $"INSERT INTO RouteCity (RouteID,CityID,IsDeleted) VALUES ({route.ID},{city.ID},0)";
+            }
+
+            if (Database.NonQuery(sql) > 0)
+            {
+                Log.Success($"Added City {city.Label} to Route {route.Number}.");
+                return true;
+            }
+            else return false;
+        }
+
+        public override bool Save(Route route)
+        {
+            if (route.IsSaving || route.IsSaved) return true;
+            else route.IsSaving = true;
+
+            if (route.InDatabase && route.ReplaceOnSave)
+            {
+
+                route.IsSaved = Replace(route); // Changes that result in deletion
+            }
+            else if (route.InDatabase && !route.ReplaceOnSave)
+            {
+                route.IsSaved = Update(route); // Changes that don't result in deletion
+            }
+            else if (!route.InDatabase)
+            {
+                route.IsSaved = Create(route); // New entity
+            }
+            return (route.IsSaved && SaveChildren(route));
         }
     }
 }

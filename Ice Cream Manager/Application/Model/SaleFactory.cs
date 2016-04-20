@@ -44,5 +44,10 @@ namespace IceCreamManager.Model
 
             return sale;
         }
+
+        protected override string SaveLogString(Sale entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -42,5 +42,10 @@ namespace IceCreamManager.Model
 
             return salaryCost;
         }
+
+        protected override string SaveLogString(SalaryCost entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

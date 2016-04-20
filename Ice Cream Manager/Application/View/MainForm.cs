@@ -16,25 +16,43 @@ namespace IceCreamManager.View
     public partial class MainForm : Form
     {
         LanguageManager Language = LanguageManager.Reference;
-        LogViewer LogView = new LogViewer();
+        LogViewer LogView;
 
         public MainForm()
         {
             InitializeComponent();
-
-            
+            InitializeRowStyles();
+            InitializeEventHandlers();
+            InitializeGridViews();
             LocalizeForm(null, null);
-            Language.OnChangedLanguage += LocalizeForm;
-            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
-            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
 
             RefreshItemTable();
             RefreshCityTable();
             RefreshRouteTable();
-            //ViewItems(null,null);
-            //SetupItemList();
+
+            
         }
-        
+
+        protected override void OnLoad(EventArgs e)
+        {
+            LogButton_Click(null, null);
+
+            base.OnLoad(e);
+        }
+        private void InitializeEventHandlers()
+        {
+            Language.OnChangedLanguage += LocalizeForm;
+            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
+            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
+            Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
+        }
+
+        private void InitializeGridViews()
+        {
+            StyleGridView(ref ItemGridView);
+            StyleGridView(ref CityGridView);
+            StyleGridView(ref RouteGridView);
+        }
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
@@ -50,14 +68,29 @@ namespace IceCreamManager.View
 
         public void RefreshItemTable(object sender, EventArgs e)
         {
-            ItemGridView.DataSource = Factory.Item.GetDataTable(ShowDeletedItems.Checked);
+            var ItemDataTable = Factory.Item.GetDataTable(ShowDeletedItems.Checked);
+            AddSourceAndFillColumnToGridview(ref ItemGridView, ref ItemDataTable);
             SetLocalizedItemStrings();
+        }
+
+        protected void AddSourceAndFillColumnToGridview(ref DataGridView dataGridView, ref DataTable dataTable)
+        {
+            dataTable.Columns.Add(" ");
+            dataGridView.DataSource = dataTable;
+            StyleGridView(ref dataGridView);
+            dataGridView.Columns[" "].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[" "].Resizable = DataGridViewTriState.False;
+            MarkDeletedRows(ref dataGridView);
+            dataGridView.Columns["IsDeleted"].Visible = false;
+            dataGridView.ClearSelection();
         }
 
         public void RefreshCityTable(object sender, EventArgs e)
         {
-            CityGridView.DataSource = Factory.City.GetDataTable(ShowDeletedCities.Checked);
+            var CityDataTable = Factory.City.GetDataTable(ShowDeletedCities.Checked);
+            AddSourceAndFillColumnToGridview(ref CityGridView, ref CityDataTable);
             SetLocalizedCityStrings();
+
         }
 
 
@@ -88,7 +121,8 @@ namespace IceCreamManager.View
 
         private void RefreshRouteTable(object sender, EventArgs e)
         {
-            RouteGridView.DataSource = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
+            var RouteDataTable = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
+            AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
             SetLocalizedRouteStrings();
         }
 
@@ -119,8 +153,29 @@ namespace IceCreamManager.View
 
         private void LogButton_Click(object sender, EventArgs e)
         {
-            LogView.Show();
-            LogView.Select();
+            if (LogView == null)
+            {
+                LogView = new LogViewer();
+                LogView.FormClosed += (o, ea) => LogView = null;
+                LogView.StartPosition = FormStartPosition.Manual;
+                LogView.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+                LogView.Size = new Size(500, this.Size.Height);
+                LogView.Show();
+                LogView.RefreshDataSource();
+            }
+            else
+            {
+                LogView.WindowState = FormWindowState.Normal;
+                LogView.Focus();
+            }
+
+        }
+
+        private void EditRouteButton_Click(object sender, EventArgs e)
+        {
+            int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
+            var routeEditor = new RouteEditor(routeID);
+            routeEditor.ShowDialog();
         }
     }
 }

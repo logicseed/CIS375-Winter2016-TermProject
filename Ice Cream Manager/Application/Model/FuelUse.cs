@@ -63,7 +63,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (truck == null) truck = fuelUseFactory.LoadTruck(truckID);
+                if (truck == null) truck = Factory.Truck.Load(truckID);
                 return truck;
             }
         }
@@ -72,7 +72,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (route == null) route = fuelUseFactory.LoadRoute(routeID);
+                if (route == null) route = Factory.Route.Load(routeID);
                 return route;
             }
         }

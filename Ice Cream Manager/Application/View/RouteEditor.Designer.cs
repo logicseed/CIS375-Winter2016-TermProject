@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteEditor));
             this.FormLayout = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -38,12 +39,13 @@
             this.NumberLabel = new System.Windows.Forms.Label();
             this.NumberBox = new System.Windows.Forms.NumericUpDown();
             this.CityListLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.CityListLabel = new System.Windows.Forms.Label();
             this.CityGridView = new System.Windows.Forms.DataGridView();
+            this.CitiesLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.CitiesBox = new System.Windows.Forms.ComboBox();
             this.AddCityButton = new System.Windows.Forms.Button();
             this.RemoveCityButton = new System.Windows.Forms.Button();
+            this.RouteEditorToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.FormLayout.SuspendLayout();
             this.ButtonLayout.SuspendLayout();
             this.RouteEditorControlsLayout.SuspendLayout();
@@ -104,6 +106,7 @@
             this.SaveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SaveButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // DiscardButton
             // 
@@ -185,6 +188,7 @@
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(56, 20);
             this.NumberBox.TabIndex = 1;
+            this.NumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NumberBox.Value = new decimal(new int[] {
             1,
             0,
@@ -198,8 +202,8 @@
             this.CityListLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CityListLayout.ColumnCount = 1;
             this.CityListLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.CityListLayout.Controls.Add(this.CityListLabel, 0, 0);
             this.CityListLayout.Controls.Add(this.CityGridView, 0, 1);
+            this.CityListLayout.Controls.Add(this.CitiesLabel, 0, 0);
             this.CityListLayout.Location = new System.Drawing.Point(3, 41);
             this.CityListLayout.Name = "CityListLayout";
             this.CityListLayout.RowCount = 2;
@@ -207,17 +211,6 @@
             this.CityListLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.CityListLayout.Size = new System.Drawing.Size(286, 269);
             this.CityListLayout.TabIndex = 1;
-            // 
-            // CityListLabel
-            // 
-            this.CityListLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.CityListLabel.AutoSize = true;
-            this.CityListLabel.Location = new System.Drawing.Point(6, 6);
-            this.CityListLabel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 0);
-            this.CityListLabel.Name = "CityListLabel";
-            this.CityListLabel.Size = new System.Drawing.Size(35, 13);
-            this.CityListLabel.TabIndex = 0;
-            this.CityListLabel.Text = "!Cities";
             // 
             // CityGridView
             // 
@@ -229,6 +222,16 @@
             this.CityGridView.ReadOnly = true;
             this.CityGridView.Size = new System.Drawing.Size(280, 244);
             this.CityGridView.TabIndex = 1;
+            // 
+            // CitiesLabel
+            // 
+            this.CitiesLabel.AutoSize = true;
+            this.CitiesLabel.Location = new System.Drawing.Point(6, 6);
+            this.CitiesLabel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 0);
+            this.CitiesLabel.Name = "CitiesLabel";
+            this.CitiesLabel.Size = new System.Drawing.Size(35, 13);
+            this.CitiesLabel.TabIndex = 2;
+            this.CitiesLabel.Text = "!Cities";
             // 
             // tableLayoutPanel1
             // 
@@ -269,7 +272,9 @@
             this.AddCityButton.Name = "AddCityButton";
             this.AddCityButton.Size = new System.Drawing.Size(22, 22);
             this.AddCityButton.TabIndex = 1;
+            this.RouteEditorToolTips.SetToolTip(this.AddCityButton, "!Add City");
             this.AddCityButton.UseVisualStyleBackColor = true;
+            this.AddCityButton.Click += new System.EventHandler(this.AddCityButton_Click);
             // 
             // RemoveCityButton
             // 
@@ -281,6 +286,7 @@
             this.RemoveCityButton.Name = "RemoveCityButton";
             this.RemoveCityButton.Size = new System.Drawing.Size(22, 22);
             this.RemoveCityButton.TabIndex = 2;
+            this.RouteEditorToolTips.SetToolTip(this.RemoveCityButton, "!Remove City");
             this.RemoveCityButton.UseVisualStyleBackColor = true;
             // 
             // RouteEditor
@@ -291,12 +297,15 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.DiscardButton;
-            this.ClientSize = new System.Drawing.Size(646, 560);
+            this.ClientSize = new System.Drawing.Size(321, 428);
             this.Controls.Add(this.FormLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RouteEditor";
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "!RouteEditor";
             this.FormLayout.ResumeLayout(false);
@@ -328,11 +337,12 @@
         private System.Windows.Forms.Label NumberLabel;
         private System.Windows.Forms.NumericUpDown NumberBox;
         private System.Windows.Forms.TableLayoutPanel CityListLayout;
-        private System.Windows.Forms.Label CityListLabel;
         private System.Windows.Forms.DataGridView CityGridView;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox CitiesBox;
         private System.Windows.Forms.Button AddCityButton;
         private System.Windows.Forms.Button RemoveCityButton;
+        private System.Windows.Forms.ToolTip RouteEditorToolTips;
+        private System.Windows.Forms.Label CitiesLabel;
     }
 }

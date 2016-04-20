@@ -37,10 +37,22 @@ namespace IceCreamManager.View
             OnChangedCityList?.Invoke(null, null);
         }
 
+        public event EventHandler OnChangedRouteList;
+        public void ChangedRouteList()
+        {
+            OnChangedRouteList?.Invoke(null, null);
+        }
+
         public event EventHandler<EventID> OnEditItem;
         public void EditItem(int itemID)
         {
             OnEditItem?.Invoke(this, new EventID(itemID));
+        }
+
+        public event EventHandler OnNewLogEntry;
+        public void NewLogEntry()
+        {
+            OnNewLogEntry?.Invoke(null, null);
         }
     }
 
