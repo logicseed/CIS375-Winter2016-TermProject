@@ -15,7 +15,7 @@ namespace IceCreamManager.View
     public partial class CityEditor: Form
     {
         City CityToEdit = new City();
-        ActionType actionType;
+        LanguageManager Language = LanguageManager.Reference;
 
         public CityEditor()
         {
@@ -23,7 +23,6 @@ namespace IceCreamManager.View
             LoadEmptyCity();
             LocalizeControl();
             SetRequirements();
-            actionType = ActionType.AddNewCity;
         }
 
         private void LoadEmptyCity()
@@ -37,12 +36,11 @@ namespace IceCreamManager.View
             LoadCity(cityID);
             LocalizeControl();
             SetRequirements();
-            actionType = ActionType.EditCity;
         }
 
         private void LocalizeControl()
         {
-            var Language = LanguageManager.Reference;
+            
             Text = Language["CityEditor"];
             LabelLabel.Text = Language["Label"];
             NameLabel.Text = Language["Name"];
@@ -73,15 +71,40 @@ namespace IceCreamManager.View
 
         private void SaveCity(object sender, EventArgs e)
         {
+            if (LabelBox.Text.Trim().Length == 0)
+            {
+                MessageBox.Show(Language["LabelBlankMsg"], Language["LabelBlank"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             CityToEdit.Label = LabelBox.Text;
+            if (Factory.City.LabelInUse(CityToEdit))
+            {
+                MessageBox.Show(Language["LabelInUseMsg"], Language["LabelInUse"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
+
+            if (NameBox.Text.Trim().Length == 0)
+            {
+                MessageBox.Show(Language["NameBlankMsg"], Language["NameBlank"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             CityToEdit.Name = NameBox.Text;
+
+            if (StateBox.Text.Trim().Length == 0)
+            {
+                MessageBox.Show(Language["StateBlankMsg"], Language["StateBlank"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             CityToEdit.State = StateBox.Text;
+
             CityToEdit.Miles = (double)MilesBox.Value;
             CityToEdit.Hours = (double)HoursBox.Value;
 
             CityToEdit.Save();
 
             Manage.Events.ChangedCityList();
+            this.Close();
         }
 
         private void SetRequirements()

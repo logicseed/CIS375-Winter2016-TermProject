@@ -47,6 +47,13 @@ namespace IceCreamManager.Model
             return item;
         }
 
+        public bool NumberInUse(Item item)
+        {
+            var sql = $"SELECT ID FROM Item WHERE Number = {item.Number} AND IsDeleted = 0";
+            var table = Database.Query(sql);
+            return (table.Rows.Count > 0);
+        }
+
         public override DataTable GetDataTable(bool includeDeleted)
         {
             var TableFromDatabase = GetAllDataTable(includeDeleted);

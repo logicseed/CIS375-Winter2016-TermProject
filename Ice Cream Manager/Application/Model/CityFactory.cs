@@ -32,7 +32,7 @@ namespace IceCreamManager.Model
         
         public List<City> GetAvailableCityList()
         {
-            var DatabaseCommand = $"SELECT * FROM City WHERE ID NOT IN (SELECT CityID FROM RouteCity) AND IsDeleted = 0";
+            var DatabaseCommand = $"SELECT * FROM City WHERE ID NOT IN (SELECT CityID FROM RouteCity WHERE IsDeleted = 0) AND IsDeleted = 0";
             
             var ResultsTable = Database.Query(DatabaseCommand);
             var CityList = new List<City>();
@@ -63,6 +63,13 @@ namespace IceCreamManager.Model
 
         protected override string DatabaseQueryValues(City city)
             => $"'{city.Label}','{city.Name}','{city.State}',{city.Miles},{city.Hours},{city.IsDeleted.ToDatabase()}";
+
+        internal bool LabelInUse(City city)
+        {
+            var sql = $"SELECT * FROM City WHERE Label = '{city.Label}' AND IsDeleted = 0";
+            var table = Database.Query(sql);
+            return (table.Rows.Count > 0);
+        }
 
         protected override City MapDataRowToProperties(DataRow row)
         {
@@ -166,6 +173,8 @@ namespace IceCreamManager.Model
 
                 RouteCityDataTable.Rows.Add(RowToAdd);
             }
+
+            RouteCityDataTable.PrimaryKey = new DataColumn[] { RouteCityDataTable.Columns["ID"] };
 
             return RouteCityDataTable;
         }

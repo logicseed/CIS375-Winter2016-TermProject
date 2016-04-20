@@ -18,6 +18,7 @@ namespace IceCreamManager.Model
         private RouteFactory() { }
         #endregion Singleton
 
+        protected int OldRouteID;
         protected override string TableName => "Route";
 
         protected override string DatabaseQueryColumns()
@@ -113,46 +114,59 @@ namespace IceCreamManager.Model
 
         protected override bool SaveChildren(Route route)
         {
+            if (OldRouteID == route.ID) return true;
+            if (!RemoveOldCities(route)) return false;
+            if (!AddNewCities(route)) return false;
+            return true;
+        }
+
+        private bool AddNewCities(Route route)
+        {
             foreach (City city in route.Cities)
             {
                 city.Save();
-                if (!HasCity(route,city))
-                {
-                    if(!AddCity(route, city)) return false;
-                }
+                if (!AddCity(route, city)) return false;
             }
-            return false;
+            return true;
+        }
+
+        private bool RemoveOldCities(Route route)
+        {
+            var sql = $"UPDATE RouteCity SET IsDeleted = 1 WHERE RouteID = {OldRouteID}";
+
+            if (Database.NonQuery(sql) > 0 || OldRouteID == 0)
+            {
+                return true;
+            }
+            else return false;
         }
 
         protected bool AddCity(Route route, City city)
         {
-            var sql = "";
-
-            if (HasCity(route,city,true))
-            {
-                sql = $"UPDATE RouteCity SET IsDeleted = 0 WHERE RouteID = {route.ID} AND CityID = {city.ID}";
-            }
-            else
-            {
-                sql = $"INSERT INTO RouteCity (RouteID,CityID,IsDeleted) VALUES ({route.ID},{city.ID},0)";
-            }
+            var sql = $"INSERT INTO RouteCity (RouteID,CityID,IsDeleted) VALUES ({route.ID},{city.ID},0)";
 
             if (Database.NonQuery(sql) > 0)
             {
-                Log.Success($"Added City {city.Label} to Route {route.Number}.");
                 return true;
             }
             else return false;
+        }
+
+        public bool NumberInUse(Route route)
+        {
+            var sql = $"SELECT ID FROM Route WHERE Number = {route.Number} AND IsDeleted = 0";
+            var table = Database.Query(sql);
+            return (table.Rows.Count > 0);
         }
 
         public override bool Save(Route route)
         {
             if (route.IsSaving || route.IsSaved) return true;
             else route.IsSaving = true;
+            OldRouteID = route.ID;
 
             if (route.InDatabase && route.ReplaceOnSave)
             {
-
                 route.IsSaved = Replace(route); // Changes that result in deletion
             }
             else if (route.InDatabase && !route.ReplaceOnSave)
@@ -164,6 +178,14 @@ namespace IceCreamManager.Model
                 route.IsSaved = Create(route); // New entity
             }
             return (route.IsSaved && SaveChildren(route));
+        }
+
+        public void RemoveRoute(int routeID)
+        {
+            var sql = $"UPDATE Route SET IsDeleted = 1 WHERE ID = {routeID}";
+            Database.NonQuery(sql);
+            sql = $"UPDATE RouteCity SET IsDeleted = 1 WHERE RouteID = {routeID}";
+            Database.NonQuery(sql);
         }
     }
 }

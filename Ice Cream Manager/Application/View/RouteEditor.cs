@@ -15,6 +15,9 @@ namespace IceCreamManager.View
     public partial class RouteEditor : Form
     {
         Route route;
+
+        LanguageManager Language = LanguageManager.Reference;
+
         public RouteEditor()
         {
 
@@ -45,7 +48,6 @@ namespace IceCreamManager.View
         }
         private void LocalizeControl()
         {
-            var Language = LanguageManager.Reference;
             Text = Language["RouteEditor"];
             NumberLabel.Text = Language["Number"];
             CitiesLabel.Text = Language["Cities"];
@@ -61,21 +63,26 @@ namespace IceCreamManager.View
             RefreshCityList();
             AddCityButton.Enabled = (route.Cities.Count < Requirement.MaxRouteCities);
             RemoveCityButton.Enabled = (route.Cities.Count > 0);
-
         }
 
         private void RefreshCityList()
         {
             var CityListBoxContents = new Dictionary<int, string>();
-            var CityList = Factory.City.GetAvailableCityList();
-            var CityTable = Factory.City.GetRouteCityDataTable(route.Cities);
-            CityTable.PrimaryKey = new DataColumn[] { CityTable.Columns["ID"] };
+            var AvailableCityList = Factory.City.GetAvailableCityList();
+            var CurrentRouteCityList = Factory.Route.LoadCityList(route.ID);
 
-            foreach (City city in CityList)
+            AvailableCityList.AddRange(CurrentRouteCityList);
+
+            foreach (City city in AvailableCityList)
             {
+                bool inUse = false;
 
-                if (CityTable.Rows.Contains(city.ID)) continue;
-                CityListBoxContents.Add(city.ID, city.Label);
+                foreach (City usedCity in route.Cities)
+                {
+                    if (usedCity.ID == city.ID) inUse = true;
+                }
+
+                if (!inUse) CityListBoxContents.Add(city.ID, city.Label);
             }
 
             CitiesBox.DataSource = new BindingSource(CityListBoxContents, null);
@@ -135,8 +142,29 @@ namespace IceCreamManager.View
         private void SaveButton_Click(object sender, EventArgs e)
         {
             route.Number = (int)NumberBox.Value;
+            if (Factory.Route.NumberInUse(route))
+            {
+                MessageBox.Show(Language["NumberInUseMsg"], Language["NumberInUse"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (route.Cities.Count == 0)
+            {
+                MessageBox.Show(Language["RouteCityBlankMsg"], Language["RouteCityBlank"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             route.Save();
             Manage.Events.ChangedRouteList();
+
+        }
+
+        private void RemoveCityButton_Click(object sender, EventArgs e)
+        {
+            int cityID = (int)CityGridView.SelectedRows[0].Cells["ID"].Value;
+
+            route.RemoveCity(cityID);
+            RefreshCities();
         }
     }
 }

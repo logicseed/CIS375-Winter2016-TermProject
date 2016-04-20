@@ -377,6 +377,7 @@
             this.RemoveRouteButton.TabIndex = 2;
             this.RemoveRouteButton.Text = "!Remove";
             this.RemoveRouteButton.UseVisualStyleBackColor = true;
+            this.RemoveRouteButton.Click += new System.EventHandler(this.RemoveRouteButton_Click);
             // 
             // ShowDeletedRoutes
             // 

@@ -177,5 +177,12 @@ namespace IceCreamManager.View
             var routeEditor = new RouteEditor(routeID);
             routeEditor.ShowDialog();
         }
+
+        private void RemoveRouteButton_Click(object sender, EventArgs e)
+        {
+            int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Route.RemoveRoute(routeID);
+            Manage.Events.ChangedRouteList();
+        }
     }
 }

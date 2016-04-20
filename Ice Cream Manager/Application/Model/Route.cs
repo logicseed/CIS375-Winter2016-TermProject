@@ -66,5 +66,19 @@ namespace IceCreamManager.Model
         {
             return Factory.Route.Save(this);
         }
+
+        public void RemoveCity(int cityID)
+        {
+            int indexToRemove = -1;
+
+            for (int index = 0; index < Cities.Count; index++)
+            {
+                if (Cities[index].ID == cityID) indexToRemove = index;
+            }
+
+            Cities.RemoveAt(indexToRemove);
+            IsSaved = false;
+            ReplaceOnSave = true;
+        }
     }
 }

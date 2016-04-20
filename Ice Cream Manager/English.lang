@@ -50,6 +50,22 @@ Quantity = Quantity
 Lifetime = Lifetime
 WarehouseQuantity = Quantity
 
+NumberInUse = Number in Use
+NumberInUseMsg = This number is in use.
+LabelInUse = Label in Use
+LabelInUseMsg = This label is in use.
+LabelBlank = Label Blank
+LabelBlankMsg = The label cannot be blank.
+NameBlank = Name Blank
+NameBlankMsg = The name cannot be blank.
+StateBlank = State Blank
+StateBlankMsg = The state cannot be blank.
+DescriptionBlank = Description Blank
+DescriptionBlankMsg = The description cannot be blank.
+RouteCityBlank = No Route Cities
+RouteCityBlankMsg = A route must contain cities.
+
+
 
 # Unit test strings
 Test = This could be anything.

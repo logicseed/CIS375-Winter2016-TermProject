@@ -91,7 +91,6 @@
             // 
             this.SaveButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.SaveButton.AutoSize = true;
-            this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SaveButton.Image = global::IceCreamManager.Properties.Resources.Save;
             this.SaveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SaveButton.Location = new System.Drawing.Point(3, 3);
@@ -184,11 +183,6 @@
             this.QuantityBox.Size = new System.Drawing.Size(57, 20);
             this.QuantityBox.TabIndex = 11;
             this.QuantityBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.QuantityBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // PriceBox
             // 
@@ -301,7 +295,6 @@
             // 
             // ItemEditor
             // 
-            this.AcceptButton = this.SaveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
