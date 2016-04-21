@@ -61,5 +61,16 @@ namespace IceCreamManager.Model
             var LogString = $"Truck {truck.Number} with items";
             return LogString;
         }
+
+        public int GetTruckID(int number)
+        {
+            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE Number = '{number}' AND IsDeleted = 0";
+
+            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
+
+            if (ResultsTable.Rows.Count == 0) return 0;
+
+            return ResultsTable.Row().Col("ID");
+        }
     }
 }
