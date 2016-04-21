@@ -54,6 +54,7 @@ namespace IceCreamManager.Model
         public bool IsSaved { get; set; } = false;
         public bool ReplaceOnSave { get; set; } = false;
         public bool IsSaving { get; set; } = false;
+        public virtual int Number { get; set; } = 0;
 
         #endregion Public Properties
 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.RevenueTab = new System.Windows.Forms.TabPage();
@@ -51,6 +51,12 @@
             this.AddItemButton = new System.Windows.Forms.Button();
             this.EditItemButton = new System.Windows.Forms.Button();
             this.DriversTab = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.DriverGridView = new System.Windows.Forms.DataGridView();
+            this.RemoveDriverButton = new System.Windows.Forms.Button();
+            this.ShowDeletedDrivers = new System.Windows.Forms.CheckBox();
+            this.AddDriverButton = new System.Windows.Forms.Button();
+            this.EditDriverButton = new System.Windows.Forms.Button();
             this.RoutesTab = new System.Windows.Forms.TabPage();
             this.RoutesLayoutTable = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveRouteButton = new System.Windows.Forms.Button();
@@ -84,6 +90,9 @@
             this.ItemsTab.SuspendLayout();
             this.ItemLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).BeginInit();
+            this.DriversTab.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DriverGridView)).BeginInit();
             this.RoutesTab.SuspendLayout();
             this.RoutesLayoutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RouteGridView)).BeginInit();
@@ -153,17 +162,17 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(756, 411);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -323,6 +332,7 @@
             // 
             // DriversTab
             // 
+            this.DriversTab.Controls.Add(this.tableLayoutPanel1);
             this.DriversTab.ImageIndex = 1;
             this.DriversTab.Location = new System.Drawing.Point(4, 33);
             this.DriversTab.Name = "DriversTab";
@@ -331,6 +341,96 @@
             this.DriversTab.TabIndex = 3;
             this.DriversTab.Text = "!Drivers";
             this.DriversTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.DriverGridView, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.RemoveDriverButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ShowDeletedDrivers, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AddDriverButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.EditDriverButton, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(770, 443);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // DriverGridView
+            // 
+            this.DriverGridView.AllowUserToAddRows = false;
+            this.DriverGridView.AllowUserToDeleteRows = false;
+            this.DriverGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.DriverGridView, 4);
+            this.DriverGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DriverGridView.Location = new System.Drawing.Point(3, 38);
+            this.DriverGridView.MultiSelect = false;
+            this.DriverGridView.Name = "DriverGridView";
+            this.DriverGridView.ReadOnly = true;
+            this.DriverGridView.RowHeadersVisible = false;
+            this.DriverGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DriverGridView.Size = new System.Drawing.Size(764, 402);
+            this.DriverGridView.TabIndex = 5;
+            // 
+            // RemoveDriverButton
+            // 
+            this.RemoveDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveDriverButton.AutoSize = true;
+            this.RemoveDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveDriverButton.Location = new System.Drawing.Point(165, 3);
+            this.RemoveDriverButton.Name = "RemoveDriverButton";
+            this.RemoveDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.RemoveDriverButton.Size = new System.Drawing.Size(75, 29);
+            this.RemoveDriverButton.TabIndex = 2;
+            this.RemoveDriverButton.Text = "!Remove";
+            this.RemoveDriverButton.UseVisualStyleBackColor = true;
+            this.RemoveDriverButton.Click += new System.EventHandler(this.RemoveDriverButton_Click);
+            // 
+            // ShowDeletedDrivers
+            // 
+            this.ShowDeletedDrivers.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedDrivers.AutoSize = true;
+            this.ShowDeletedDrivers.Location = new System.Drawing.Point(246, 9);
+            this.ShowDeletedDrivers.Name = "ShowDeletedDrivers";
+            this.ShowDeletedDrivers.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedDrivers.TabIndex = 3;
+            this.ShowDeletedDrivers.Text = "!Show Deleted";
+            this.ShowDeletedDrivers.UseVisualStyleBackColor = true;
+            this.ShowDeletedDrivers.CheckedChanged += new System.EventHandler(this.RefreshDriverTable);
+            // 
+            // AddDriverButton
+            // 
+            this.AddDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddDriverButton.AutoSize = true;
+            this.AddDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddDriverButton.Location = new System.Drawing.Point(3, 3);
+            this.AddDriverButton.Name = "AddDriverButton";
+            this.AddDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.AddDriverButton.Size = new System.Drawing.Size(75, 29);
+            this.AddDriverButton.TabIndex = 1;
+            this.AddDriverButton.Text = "!Add";
+            this.AddDriverButton.UseVisualStyleBackColor = true;
+            this.AddDriverButton.Click += new System.EventHandler(this.AddDriverButton_Click);
+            // 
+            // EditDriverButton
+            // 
+            this.EditDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditDriverButton.AutoSize = true;
+            this.EditDriverButton.Location = new System.Drawing.Point(84, 3);
+            this.EditDriverButton.Name = "EditDriverButton";
+            this.EditDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.EditDriverButton.Size = new System.Drawing.Size(75, 29);
+            this.EditDriverButton.TabIndex = 0;
+            this.EditDriverButton.Text = "!Edit";
+            this.EditDriverButton.UseVisualStyleBackColor = true;
+            this.EditDriverButton.Click += new System.EventHandler(this.EditDriverButton_Click);
             // 
             // RoutesTab
             // 
@@ -684,6 +784,10 @@
             this.ItemLayoutTable.ResumeLayout(false);
             this.ItemLayoutTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).EndInit();
+            this.DriversTab.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DriverGridView)).EndInit();
             this.RoutesTab.ResumeLayout(false);
             this.RoutesLayoutTable.ResumeLayout(false);
             this.RoutesLayoutTable.PerformLayout();
@@ -747,5 +851,11 @@
         public System.Windows.Forms.DataGridView ItemGridView;
         private System.Windows.Forms.TabPage BatchTab;
         private System.Windows.Forms.TabPage FuelUsageTab;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.DataGridView DriverGridView;
+        protected System.Windows.Forms.Button RemoveDriverButton;
+        protected System.Windows.Forms.CheckBox ShowDeletedDrivers;
+        protected System.Windows.Forms.Button AddDriverButton;
+        protected System.Windows.Forms.Button EditDriverButton;
     }
 }

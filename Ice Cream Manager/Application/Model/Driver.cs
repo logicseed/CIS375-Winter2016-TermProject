@@ -24,7 +24,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   User provided number to distinguish the driver. Changing this value marks an item to be deleted. 
         /// </summary>
-        public int Number
+        public override int Number
         {
             get
             {

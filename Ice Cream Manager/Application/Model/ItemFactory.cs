@@ -47,12 +47,7 @@ namespace IceCreamManager.Model
             return item;
         }
 
-        public bool NumberInUse(Item item)
-        {
-            var sql = $"SELECT ID FROM Item WHERE Number = {item.Number} AND IsDeleted = 0";
-            var table = Database.Query(sql);
-            return (table.Rows.Count > 0);
-        }
+        
 
         public override DataTable GetDataTable(bool includeDeleted)
         {
@@ -85,7 +80,7 @@ namespace IceCreamManager.Model
             return TableToReturn;
         }
 
-        public new Item LoadItem(int ID)
+        public Item LoadItem(int ID)
         {
             var DatabaseCommand = $"SELECT * FROM Item WHERE ID = {ID}";
             var ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);

@@ -23,7 +23,7 @@ namespace IceCreamManager.Model
             ID = 0;
         }
 
-        public int Number
+        public override int Number
         {
             get
             {

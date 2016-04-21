@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using IceCreamManager.Model;
-using IceCreamManager.Controller;
 
 namespace IceCreamManager.View
 {
     public partial class MainForm : Form
     {
-        LanguageManager Language = LanguageManager.Reference;
-        LogViewer LogView;
+        #region Public Constructors
 
         public MainForm()
         {
@@ -29,41 +22,30 @@ namespace IceCreamManager.View
             RefreshItemTable();
             RefreshCityTable();
             RefreshRouteTable();
-
-            
+            RefreshDriverTable();
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            LogButton_Click(null, null);
+        #endregion Public Constructors
 
-            base.OnLoad(e);
-        }
-        private void InitializeEventHandlers()
+        #region Public Methods
+
+        public void RefreshCityTable(object sender, EventArgs e)
         {
-            Language.OnChangedLanguage += LocalizeForm;
-            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
-            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
-            Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
+            var CityDataTable = Factory.City.GetDataTable(ShowDeletedCities.Checked);
+            AddSourceAndFillColumnToGridview(ref CityGridView, ref CityDataTable);
+            SetLocalizedCityStrings();
         }
 
-        private void InitializeGridViews()
-        {
-            StyleGridView(ref ItemGridView);
-            StyleGridView(ref CityGridView);
-            StyleGridView(ref RouteGridView);
-        }
+        public void RefreshCityTable() => RefreshCityTable(null, null);
+        
 
-        private void AboutButton_Click(object sender, EventArgs e)
-        {
-            var aboutBox = new AboutForm();
-            aboutBox.ShowDialog();
-        }
+        public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
-        private void SettingsButton_Click(object sender, EventArgs e)
+        public void RefreshDriverTable(object sender, EventArgs e)
         {
-            var settingsEditor = new SettingsEditor();
-            settingsEditor.ShowDialog();
+            var DriverDataTable = Factory.Driver.GetDataTable(ShowDeletedDrivers.Checked);
+            AddSourceAndFillColumnToGridview(ref DriverGridView, ref DriverDataTable);
+            SetLocalizedDriverStrings();
         }
 
         public void RefreshItemTable(object sender, EventArgs e)
@@ -72,6 +54,15 @@ namespace IceCreamManager.View
             AddSourceAndFillColumnToGridview(ref ItemGridView, ref ItemDataTable);
             SetLocalizedItemStrings();
         }
+
+        public void RefreshItemTable() => RefreshItemTable(null, null);
+        
+        public void RefreshRouteTable() => RefreshRouteTable(null, null);
+        
+
+        #endregion Public Methods
+
+        #region Protected Methods
 
         protected void AddSourceAndFillColumnToGridview(ref DataGridView dataGridView, ref DataTable dataTable)
         {
@@ -85,21 +76,40 @@ namespace IceCreamManager.View
             dataGridView.ClearSelection();
         }
 
-        public void RefreshCityTable(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            var CityDataTable = Factory.City.GetDataTable(ShowDeletedCities.Checked);
-            AddSourceAndFillColumnToGridview(ref CityGridView, ref CityDataTable);
-            SetLocalizedCityStrings();
+            LogButton_Click(null, null);
 
+            base.OnLoad(e);
         }
 
+        #endregion Protected Methods
 
+        #region Private Fields
 
-        private void EditItemButton_Click(object sender, EventArgs e)
+        private LanguageManager Language = LanguageManager.Reference;
+        private LogViewer LogView;
+
+        #endregion Private Fields
+
+        #region Private Methods
+
+        private void AboutButton_Click(object sender, EventArgs e)
         {
-            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
-            var itemEditor = new ItemEditor(ItemID);
-            itemEditor.ShowDialog();
+            var aboutBox = new AboutForm();
+            aboutBox.ShowDialog();
+        }
+
+        private void AddCityButton_Click(object sender, EventArgs e)
+        {
+            var cityEditor = new CityEditor();
+            cityEditor.ShowDialog();
+        }
+
+        private void AddDriverButton_Click(object sender, EventArgs e)
+        {
+            var driverEditor = new DriverEditor();
+            driverEditor.ShowDialog();
         }
 
         private void AddItemButton_Click(object sender, EventArgs e)
@@ -108,28 +118,10 @@ namespace IceCreamManager.View
             itemEditor.ShowDialog();
         }
 
-        private void RemoveItemButton_Click(object sender, EventArgs e)
+        private void AddRouteButton_Click(object sender, EventArgs e)
         {
-            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
-            if (Factory.Item.Delete(ItemID)) RefreshItemTable();
-        }
-
-        public void RefreshItemTable() { RefreshItemTable(null, null); }
-        public void RefreshCityTable() { RefreshCityTable(null, null); }
-
-        public void RefreshRouteTable() { RefreshRouteTable(null, null); }
-
-        private void RefreshRouteTable(object sender, EventArgs e)
-        {
-            var RouteDataTable = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
-            AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
-            SetLocalizedRouteStrings();
-        }
-
-        private void AddCityButton_Click(object sender, EventArgs e)
-        {
-            var cityEditor = new CityEditor();
-            cityEditor.ShowDialog();
+            var routeEditor = new RouteEditor();
+            routeEditor.ShowDialog();
         }
 
         private void EditCityButton_Click(object sender, EventArgs e)
@@ -139,16 +131,42 @@ namespace IceCreamManager.View
             cityEditor.ShowDialog();
         }
 
-        private void RemoveCityButton_Click(object sender, EventArgs e)
+        private void EditDriverButton_Click(object sender, EventArgs e)
         {
-            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
-            if (Factory.City.Delete(CityID)) RefreshCityTable();
+            int driverID = Convert.ToInt32(DriverGridView.SelectedRows[0].Cells["ID"].Value);
+            var driverEditor = new DriverEditor(driverID);
+            driverEditor.ShowDialog();
         }
 
-        private void AddRouteButton_Click(object sender, EventArgs e)
+        private void EditItemButton_Click(object sender, EventArgs e)
         {
-            var routeEditor = new RouteEditor();
+            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            var itemEditor = new ItemEditor(ItemID);
+            itemEditor.ShowDialog();
+        }
+
+        private void EditRouteButton_Click(object sender, EventArgs e)
+        {
+            int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
+            var routeEditor = new RouteEditor(routeID);
             routeEditor.ShowDialog();
+        }
+
+        private void InitializeEventHandlers()
+        {
+            Language.OnChangedLanguage += LocalizeForm;
+            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
+            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
+            Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
+            Manage.Events.OnChangedDriverList += new EventHandler(RefreshDriverTable);
+        }
+
+        private void InitializeGridViews()
+        {
+            StyleGridView(ref ItemGridView);
+            StyleGridView(ref CityGridView);
+            StyleGridView(ref RouteGridView);
+            StyleGridView(ref DriverGridView);
         }
 
         private void LogButton_Click(object sender, EventArgs e)
@@ -168,14 +186,34 @@ namespace IceCreamManager.View
                 LogView.WindowState = FormWindowState.Normal;
                 LogView.Focus();
             }
-
         }
 
-        private void EditRouteButton_Click(object sender, EventArgs e)
+        private void RefreshRouteTable(object sender, EventArgs e)
         {
-            int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
-            var routeEditor = new RouteEditor(routeID);
-            routeEditor.ShowDialog();
+            var RouteDataTable = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
+            AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
+            SetLocalizedRouteStrings();
+        }
+
+        private void RemoveCityButton_Click(object sender, EventArgs e)
+        {
+            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.City.Delete(CityID);
+            Manage.Events.ChangedCityList();
+        }
+
+        private void RemoveDriverButton_Click(object sender, EventArgs e)
+        {
+            int driverID = Convert.ToInt32(DriverGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Driver.Delete(driverID);
+            Manage.Events.ChangedDriverList();
+        }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Item.Delete(ItemID);
+            Manage.Events.ChangedItemList();
         }
 
         private void RemoveRouteButton_Click(object sender, EventArgs e)
@@ -184,5 +222,13 @@ namespace IceCreamManager.View
             Factory.Route.RemoveRoute(routeID);
             Manage.Events.ChangedRouteList();
         }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            var settingsEditor = new SettingsEditor();
+            settingsEditor.ShowDialog();
+        }
+
+        #endregion Private Methods
     }
 }

@@ -139,6 +139,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\DriverEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DriverEditor.Designer.cs">
+      <DependentUpon>DriverEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ItemEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DriverEditor.resx">
+      <DependentUpon>DriverEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ItemEditor.resx">
       <DependentUpon>ItemEditor.cs</DependentUpon>

@@ -141,11 +141,14 @@ namespace IceCreamManager.View
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            route.Number = (int)NumberBox.Value;
-            if (Factory.Route.NumberInUse(route))
+            if (route.Number != (int)NumberBox.Value)
             {
-                MessageBox.Show(Language["NumberInUseMsg"], Language["NumberInUse"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (Factory.Route.NumberInUse((int)NumberBox.Value))
+                {
+                    MessageBox.Show(Language["NumberInUseMsg"], Language["NumberInUse"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                route.Number = (int)NumberBox.Value;
             }
 
             if (route.Cities.Count == 0)

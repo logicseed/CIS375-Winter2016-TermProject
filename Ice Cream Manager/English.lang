@@ -36,7 +36,7 @@ ItemEditor = Item Editor
 CityEditor = City Editor
 RouteEditor = Route Editor
 DriverEditor = Driver Editor
-TruckEditor = TruckEditor
+TruckEditor = Truck Editor
 
 Label = Label
 State = State
@@ -49,6 +49,7 @@ Price = Price
 Quantity = Quantity
 Lifetime = Lifetime
 WarehouseQuantity = Quantity
+HourlyRate = Hourly Rate
 
 NumberInUse = Number in Use
 NumberInUseMsg = This number is in use.

@@ -47,5 +47,32 @@ namespace IceCreamManager.Model
         {
             return $"Driver {driver.Number} - {driver.Name} who is paid {driver.HourlyRate} per hour.";
         }
+
+        public override DataTable GetDataTable(bool includeDeleted = true)
+        {
+            var TableFromDatabase = GetAllDataTable(includeDeleted);
+            var TableToReturn = new DataTable();
+
+            TableToReturn.Columns.Add(new DataColumn("ID", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Number", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Name", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("HourlyRate", typeof(double)));
+            TableToReturn.Columns.Add(new DataColumn("IsDeleted", typeof(bool)));
+
+            foreach (DataRow Row in TableFromDatabase.Rows)
+            {
+                DataRow RowToReturn = TableToReturn.NewRow();
+
+                RowToReturn["ID"] = Row.Col("ID");
+                RowToReturn["Number"] = Row.Col("Number");
+                RowToReturn["Name"] = Row.Col<string>("Name");
+                RowToReturn["HourlyRate"] = Row.Col<double>("HourlyRate");
+                RowToReturn["IsDeleted"] = Row.Col<bool>("IsDeleted");
+
+                TableToReturn.Rows.Add(RowToReturn);
+            }
+
+            return TableToReturn;
+        }
     }
 }

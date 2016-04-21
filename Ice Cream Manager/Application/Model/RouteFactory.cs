@@ -152,13 +152,6 @@ namespace IceCreamManager.Model
             else return false;
         }
 
-        public bool NumberInUse(Route route)
-        {
-            var sql = $"SELECT ID FROM Route WHERE Number = {route.Number} AND IsDeleted = 0";
-            var table = Database.Query(sql);
-            return (table.Rows.Count > 0);
-        }
-
         public override bool Save(Route route)
         {
             if (route.IsSaving || route.IsSaved) return true;

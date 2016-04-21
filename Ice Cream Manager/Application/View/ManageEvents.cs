@@ -43,6 +43,12 @@ namespace IceCreamManager.View
             OnChangedRouteList?.Invoke(null, null);
         }
 
+        public event EventHandler OnChangedDriverList;
+        public void ChangedDriverList()
+        {
+            OnChangedDriverList?.Invoke(null, null);
+        }
+
         public event EventHandler<EventID> OnEditItem;
         public void EditItem(int itemID)
         {
