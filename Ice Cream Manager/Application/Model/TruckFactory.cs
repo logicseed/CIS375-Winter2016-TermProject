@@ -16,6 +16,8 @@ namespace IceCreamManager.Model
         private TruckFactory() { }
         #endregion Singleton
 
+        private LanguageManager Language = LanguageManager.Reference;
+
         protected override string DatabaseQueryColumns()
             => "Number,RouteID,DriverID,FuelRate,IsDeleted";
 
@@ -60,6 +62,51 @@ namespace IceCreamManager.Model
         {
             var LogString = $"Truck {truck.Number} with items";
             return LogString;
+        }
+
+        public override DataTable GetDataTable(bool includeDeleted)
+        {
+            var TableFromDatabase = GetAllDataTable(includeDeleted);
+            var TableToReturn = new DataTable();
+
+            TableToReturn.Columns.Add(new DataColumn("ID", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Number", typeof(int)));
+            TableToReturn.Columns.Add(new DataColumn("Driver", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("Route", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("FuelRate", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("Items", typeof(string)));
+            TableToReturn.Columns.Add(new DataColumn("IsDeleted", typeof(bool)));
+
+            foreach (DataRow Row in TableFromDatabase.Rows)
+            {
+                DataRow RowToReturn = TableToReturn.NewRow();
+
+                RowToReturn["ID"] = Row.Col("ID");
+                RowToReturn["Number"] = Row.Col("Number");
+                RowToReturn["FuelRate"] = Row.Col<double>("FuelRate");
+                RowToReturn["IsDeleted"] = Row.Col<bool>("IsDeleted");
+
+                if (Row.Col("DriverID") != 0) RowToReturn["Driver"] = Factory.Driver.GetNameByID(Row.Col("DriverID"));
+                else RowToReturn["Driver"] = Language["NA"];
+
+                if (Row.Col("RouteID") != 0) RowToReturn["Route"] = Factory.Route.GetNumberByID(Row.Col("RouteID"));
+                else RowToReturn["Route"] = Language["NA"];
+
+                var ItemsColumn = "";
+                var TruckItemList = Factory.InventoryItem.GetTruckItemListByID(Row.Col("ID"));
+                foreach (KeyValuePair<Item, int> pair in TruckItemList)
+                {
+                    ItemsColumn += $"{pair.Key.Description} ({pair.Value}), ";
+                }
+                if (ItemsColumn.Length > 0) ItemsColumn = ItemsColumn.Substring(0, ItemsColumn.Length - 2);
+                RowToReturn["Items"] = ItemsColumn.Trim() == "" ? Language["Empty"] : ItemsColumn;
+
+                
+
+                TableToReturn.Rows.Add(RowToReturn);
+            }
+
+            return TableToReturn;
         }
     }
 }

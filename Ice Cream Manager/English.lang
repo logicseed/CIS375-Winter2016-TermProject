@@ -2,10 +2,15 @@
 # Main screen
 
 Revenue = Revenue
+Truck = Truck
 Trucks = Trucks
+Item = Item
 Items = Items
+Driver = Driver
 Drivers = Drivers
+Route = Route
 Routes = Routes
+City = City
 Cities = Cities
 Processing = Processing
 Settings = Settings
@@ -13,7 +18,11 @@ ViewLog = View Log
 About = About
 
 AddCity = Add City
+AddItem = Add Item
 RemoveCity = Remove City
+RemoveItem = Remove Item
+WasteItem = Waste Item
+SellItem = Sell Item
 
 # Generic editor phrases
 Save = Save
@@ -23,6 +32,9 @@ Discard = Discard
 SettingsEditor = Settings Editor
 Language = Language
 Currency = Currency
+FuelRate = Fuel Rate
+Empty = empty
+NA = n/a
 
 # Entity list phrases
 Add = Add

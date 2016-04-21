@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IceCreamManager.Model;
 
-namespace IceCreamManager.View
+namespace IceCreamManager
 {
     /// <summary>
     /// Manages all of the events of the GUI
@@ -49,10 +49,10 @@ namespace IceCreamManager.View
             OnChangedDriverList?.Invoke(null, null);
         }
 
-        public event EventHandler<EventID> OnEditItem;
-        public void EditItem(int itemID)
+        public event EventHandler OnChangedTruckList;
+        public void ChangedTruckList()
         {
-            OnEditItem?.Invoke(this, new EventID(itemID));
+            OnChangedTruckList?.Invoke(null, null);
         }
 
         public event EventHandler OnNewLogEntry;

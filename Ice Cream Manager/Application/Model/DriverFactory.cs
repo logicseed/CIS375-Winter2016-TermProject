@@ -74,5 +74,11 @@ namespace IceCreamManager.Model
 
             return TableToReturn;
         }
+
+        internal string GetNameByID(int id)
+        {
+            Driver driver = Load(id);
+            return driver.Name;
+        }
     }
 }

@@ -55,5 +55,26 @@ namespace IceCreamManager.Model
         {
             throw new NotImplementedException();
         }
+
+        public Dictionary<Item, int> GetTruckItemListByID(int id)
+        {
+            var sql = $"SELECT * FROM InventoryItem WHERE TruckID = {id}";
+            var table = Database.Query(sql);
+
+            var itemIDQuantity = new Dictionary<int, int>();
+            foreach (DataRow row in table.Rows)
+            {
+                if (itemIDQuantity.ContainsKey(row.Col("ItemID"))) itemIDQuantity[row.Col("ItemID")]++;
+                else itemIDQuantity.Add(row.Col("ItemID"), 1);
+            }
+
+            var listToReturn = new Dictionary<Item, int>();
+            foreach (KeyValuePair<int,int> pair in itemIDQuantity)
+            {
+                listToReturn.Add(Factory.Item.Load(pair.Key), pair.Value);
+            }
+
+            return listToReturn;
+        }
     }
 }

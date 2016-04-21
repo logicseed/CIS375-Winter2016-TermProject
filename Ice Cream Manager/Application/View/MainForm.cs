@@ -23,6 +23,7 @@ namespace IceCreamManager.View
             RefreshCityTable();
             RefreshRouteTable();
             RefreshDriverTable();
+            RefreshTruckTable();
         }
 
         #endregion Public Constructors
@@ -37,9 +38,6 @@ namespace IceCreamManager.View
         }
 
         public void RefreshCityTable() => RefreshCityTable(null, null);
-        
-
-        public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
         public void RefreshDriverTable(object sender, EventArgs e)
         {
@@ -47,6 +45,8 @@ namespace IceCreamManager.View
             AddSourceAndFillColumnToGridview(ref DriverGridView, ref DriverDataTable);
             SetLocalizedDriverStrings();
         }
+
+        public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
         public void RefreshItemTable(object sender, EventArgs e)
         {
@@ -56,9 +56,24 @@ namespace IceCreamManager.View
         }
 
         public void RefreshItemTable() => RefreshItemTable(null, null);
-        
+
+        public void RefreshRouteTable(object sender, EventArgs e)
+        {
+            var RouteDataTable = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
+            AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
+            SetLocalizedRouteStrings();
+        }
+
         public void RefreshRouteTable() => RefreshRouteTable(null, null);
-        
+
+        public void RefreshTruckTable(object sender, EventArgs e)
+        {
+            var TruckDataTable = Factory.Truck.GetDataTable(ShowDeletedTrucks.Checked);
+            AddSourceAndFillColumnToGridview(ref TruckGridView, ref TruckDataTable);
+            SetLocalizedTruckStrings();
+        }
+
+        public void RefreshTruckTable() => RefreshTruckTable(null, null);
 
         #endregion Public Methods
 
@@ -74,6 +89,25 @@ namespace IceCreamManager.View
             MarkDeletedRows(ref dataGridView);
             dataGridView.Columns["IsDeleted"].Visible = false;
             dataGridView.ClearSelection();
+        }
+
+        protected void InitializeEventHandlers()
+        {
+            Language.OnChangedLanguage += LocalizeForm;
+            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
+            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
+            Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
+            Manage.Events.OnChangedDriverList += new EventHandler(RefreshDriverTable);
+            Manage.Events.OnChangedTruckList += new EventHandler(RefreshTruckTable);
+        }
+
+        protected void InitializeGridViews()
+        {
+            StyleGridView(ref ItemGridView);
+            StyleGridView(ref CityGridView);
+            StyleGridView(ref RouteGridView);
+            StyleGridView(ref DriverGridView);
+            StyleGridView(ref TruckGridView);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -124,6 +158,12 @@ namespace IceCreamManager.View
             routeEditor.ShowDialog();
         }
 
+        private void AddTruckButton_Click(object sender, EventArgs e)
+        {
+            var truckEditor = new TruckEditor();
+            truckEditor.Show();
+        }
+
         private void EditCityButton_Click(object sender, EventArgs e)
         {
             int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
@@ -152,21 +192,10 @@ namespace IceCreamManager.View
             routeEditor.ShowDialog();
         }
 
-        private void InitializeEventHandlers()
+        private void EditTruckButton_Click(object sender, EventArgs e)
         {
-            Language.OnChangedLanguage += LocalizeForm;
-            Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
-            Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
-            Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
-            Manage.Events.OnChangedDriverList += new EventHandler(RefreshDriverTable);
-        }
-
-        private void InitializeGridViews()
-        {
-            StyleGridView(ref ItemGridView);
-            StyleGridView(ref CityGridView);
-            StyleGridView(ref RouteGridView);
-            StyleGridView(ref DriverGridView);
+            var truckEditor = new TruckEditor();
+            truckEditor.Show();
         }
 
         private void LogButton_Click(object sender, EventArgs e)
@@ -186,13 +215,6 @@ namespace IceCreamManager.View
                 LogView.WindowState = FormWindowState.Normal;
                 LogView.Focus();
             }
-        }
-
-        private void RefreshRouteTable(object sender, EventArgs e)
-        {
-            var RouteDataTable = Factory.Route.GetDataTable(ShowDeletedRoutes.Checked);
-            AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
-            SetLocalizedRouteStrings();
         }
 
         private void RemoveCityButton_Click(object sender, EventArgs e)
@@ -221,6 +243,10 @@ namespace IceCreamManager.View
             int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
             Factory.Route.RemoveRoute(routeID);
             Manage.Events.ChangedRouteList();
+        }
+
+        private void RemoveTruckButton_Click(object sender, EventArgs e)
+        {
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)

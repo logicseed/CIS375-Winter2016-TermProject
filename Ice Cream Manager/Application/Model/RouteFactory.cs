@@ -98,6 +98,12 @@ namespace IceCreamManager.Model
             return LogString;
         }
 
+        public int GetNumberByID(int id)
+        {
+            Route route = Load(id);
+            return route.Number;
+        }
+
         public bool HasCity(Route route, string label)
         {
             var sql = $"SELECT * FROM City WHERE ID IN (SELECT CityID FROM RouteCity WHERE RouteID = {route.ID} AND IsDeleted = 0) AND Label = '{label}'";
@@ -180,5 +186,7 @@ namespace IceCreamManager.Model
             sql = $"UPDATE RouteCity SET IsDeleted = 1 WHERE RouteID = {routeID}";
             Database.NonQuery(sql);
         }
+
+
     }
 }
