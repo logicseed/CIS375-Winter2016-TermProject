@@ -63,7 +63,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (route == null) route = salaryCostFactory.LoadRoute(routeID);
+                if (route == null) route = Factory.Route.Load(routeID);
                 return route;
             }
         }
@@ -72,9 +72,14 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (driver == null) driver = salaryCostFactory.LoadDriver(driverID);
+                if (driver == null) driver = Factory.Driver.Load(driverID);
                 return driver;
             }
+        }
+
+        public override bool Save()
+        {
+            return SalaryCostFactory.Reference.Save(this);
         }
     }
 }

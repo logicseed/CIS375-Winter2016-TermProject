@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <project> IceCreamManager </project>
 /// <module> Route </module>
@@ -22,7 +23,7 @@ namespace IceCreamManager.Model
             ID = 0;
         }
 
-        public int Number
+        public override int Number
         {
             get
             {
@@ -39,7 +40,7 @@ namespace IceCreamManager.Model
             }
         }
 
-        public List<City> RouteCities
+        public List<City> Cities
         {
             get
             {
@@ -47,6 +48,37 @@ namespace IceCreamManager.Model
                 return routeCities;
             }
         }
-        
+
+        public void AddCity(City city)
+        {
+            if (Cities.Count >= Requirement.MaxRouteCities) throw new RouteCityCountException();
+            Cities.Add(city);
+            IsSaved = false;
+            ReplaceOnSave = true;
+        }
+
+        public int LastCityAddedID()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Save()
+        {
+            return Factory.Route.Save(this);
+        }
+
+        public void RemoveCity(int cityID)
+        {
+            int indexToRemove = -1;
+
+            for (int index = 0; index < Cities.Count; index++)
+            {
+                if (Cities[index].ID == cityID) indexToRemove = index;
+            }
+
+            Cities.RemoveAt(indexToRemove);
+            IsSaved = false;
+            ReplaceOnSave = true;
+        }
     }
 }

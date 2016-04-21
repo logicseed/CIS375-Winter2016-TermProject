@@ -42,5 +42,10 @@ namespace IceCreamManager.Model
 
             return fuelUse;
         }
+
+        protected override string SaveLogString(FuelUse entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -63,9 +63,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AboutButton {
+        internal static System.Drawing.Bitmap About {
             get {
-                object obj = ResourceManager.GetObject("AboutButton", resourceCulture);
+                object obj = ResourceManager.GetObject("About", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AddButton {
+        internal static System.Drawing.Bitmap Add {
             get {
-                object obj = ResourceManager.GetObject("AddButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BatchButton {
+        internal static System.Drawing.Bitmap Cancel {
             get {
-                object obj = ResourceManager.GetObject("BatchButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Cancel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChartButton {
+        internal static System.Drawing.Bitmap Cities {
             get {
-                object obj = ResourceManager.GetObject("ChartButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Cities", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DriversButton {
+        internal static System.Drawing.Bitmap DeveloperOptions {
             get {
-                object obj = ResourceManager.GetObject("DriversButton", resourceCulture);
+                object obj = ResourceManager.GetObject("DeveloperOptions", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ErrorButton {
+        internal static System.Drawing.Bitmap Drivers {
             get {
-                object obj = ResourceManager.GetObject("ErrorButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Drivers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FuelButton {
+        internal static System.Drawing.Bitmap Items {
             get {
-                object obj = ResourceManager.GetObject("FuelButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Items", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HelpButton {
+        internal static System.Drawing.Bitmap Log {
             get {
-                object obj = ResourceManager.GetObject("HelpButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Log", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap InventoryFileButton {
+        internal static System.Drawing.Bitmap Progress {
             get {
-                object obj = ResourceManager.GetObject("InventoryFileButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Progress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ItemsButton {
+        internal static System.Drawing.Bitmap Remove {
             get {
-                object obj = ResourceManager.GetObject("ItemsButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ListButton {
+        internal static System.Drawing.Bitmap Revenue {
             get {
-                object obj = ResourceManager.GetObject("ListButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Revenue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,29 +193,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NextIcon {
+        internal static System.Drawing.Bitmap Routes {
             get {
-                object obj = ResourceManager.GetObject("NextIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PresetsButton {
-            get {
-                object obj = ResourceManager.GetObject("PresetsButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RoutesButton {
-            get {
-                object obj = ResourceManager.GetObject("RoutesButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Routes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,16 +213,6 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SalesButton {
-            get {
-                object obj = ResourceManager.GetObject("SalesButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap SalesFileButton {
             get {
                 object obj = ResourceManager.GetObject("SalesFileButton", resourceCulture);
@@ -253,9 +223,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SaveChangesButton {
+        internal static System.Drawing.Bitmap Save {
             get {
-                object obj = ResourceManager.GetObject("SaveChangesButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,29 +233,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SchedulePresetButton {
+        internal static System.Drawing.Bitmap Settings {
             get {
-                object obj = ResourceManager.GetObject("SchedulePresetButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SettingsButton {
-            get {
-                object obj = ResourceManager.GetObject("SettingsButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TruckButton {
-            get {
-                object obj = ResourceManager.GetObject("TruckButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,39 +263,9 @@ namespace IceCreamManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TrucksButton {
+        internal static System.Drawing.Bitmap Trucks {
             get {
-                object obj = ResourceManager.GetObject("TrucksButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UndoChangesButton {
-            get {
-                object obj = ResourceManager.GetObject("UndoChangesButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VotingButton {
-            get {
-                object obj = ResourceManager.GetObject("VotingButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ZonesButton {
-            get {
-                object obj = ResourceManager.GetObject("ZonesButton", resourceCulture);
+                object obj = ResourceManager.GetObject("Trucks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

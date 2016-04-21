@@ -1,0 +1,29 @@
+﻿@Language = русский язык
+# Main screen
+
+Revenue = доходов
+Trucks = Грузовики
+Items = Предметы
+Drivers = Водитель
+#Routes = маршрут
+Cities = Города
+Processing = обработка
+Settings = настройки
+ViewLog = журнал
+About = около
+
+
+
+# Generic editor phrases
+Save = сохранять
+Discard = отбрасывать
+
+# Settings editor phrases
+SettingsEditor = окружение
+Language = язык
+Currency = валюта
+
+# tests
+Test=Russian test 1
+Test2      = Russian test 2
+Test3 = номер

@@ -101,5 +101,10 @@ namespace IceCreamManager.Model
                 return truck;
             }
         }
+
+        public override bool Save()
+        {
+            return InventoryItemFactory.Reference.Save(this);
+        }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IceCreamManager.View
+namespace IceCreamManager.Utilities
 {
-    public partial class BatchPanel : UserControl
+    public partial class TestForm : Form
     {
-        public BatchPanel()
+        public TestForm()
         {
             InitializeComponent();
         }
+
+        
     }
 }

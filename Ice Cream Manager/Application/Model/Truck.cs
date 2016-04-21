@@ -28,7 +28,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   User provided number to distinguish the Truck. Changing this value marks a truck to be deleted. 
         /// </summary>
-        public int Number
+        public override int Number
         {
             get
             {
@@ -141,6 +141,9 @@ namespace IceCreamManager.Model
             { }
         }
 
-        
+        public override bool Save()
+        {
+            return Factory.Truck.Save(this);
+        }
     }
 }
