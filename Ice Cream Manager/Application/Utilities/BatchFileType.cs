@@ -20,6 +20,8 @@ namespace IceCreamManager
         SalesExtension = 8,
         Item = 9,
         ItemExtension = 10,
-        Driver = 11
+        Driver = 11,
+        TruckFuel = 12,
+        TruckDriver = 13,
     }
 }

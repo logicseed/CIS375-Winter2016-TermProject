@@ -28,6 +28,7 @@ namespace IceCreamManager.Controller
         string[] recordTypes = new string[] { "IR", "TR", "SR", "T " };
         int sequenceNumber;
         int trailerNumber;
+        int countedRecords = 0;
         DateTime date;
 
         public bool ProcessHeaderFooter(string FilePath, BatchFileType FileType)
@@ -115,7 +116,7 @@ namespace IceCreamManager.Controller
             }
             catch (Exception)
             {
-                Logger.Log(EntityType.BatchFile, Convert.ToInt32(FileType), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
+                Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(FileType), ActionType.LoadFile, Outcome.FileRejected, countedLines);
                 return false;
             }
         }
@@ -150,7 +151,7 @@ namespace IceCreamManager.Controller
             {
                 fileLine = file.ReadLine();
                 countedLines++;
-                    
+
                 cityLabel = fileLine.Substring(0, Requirement.MaxCityLabelLength);
                 fileLine = fileLine.Remove(0, Requirement.MaxCityLabelLength);
 
@@ -168,10 +169,10 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.AddCity, Outcome.LineRejected, countedLines);
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionType.AddCity, Outcome.LineRejected, countedLines);
                 }
             }
-                file.Close();
+            file.Close();
         }
 
         private void ApplyNewCityData()
@@ -229,28 +230,26 @@ namespace IceCreamManager.Controller
                             else
                             {
                                 //Reject line
-                                Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.LineRejected, countedLines);
+                                Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.CityExtension), ActionType.AddCity, Outcome.LineRejected, countedLines);
                             }
                         }
                         else
                         {
                             //Rejct line
-                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.LineRejected, countedLines);
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.CityExtension), ActionType.AddCity, Outcome.LineRejected, countedLines);
                         }
 
                     }
                     else
                     {
                         //Rejct line
-                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
-
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.CityExtension), ActionType.AddCity, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
                     //Reject line
-                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
-
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.CityExtension), ActionType.AddCity, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -288,7 +287,7 @@ namespace IceCreamManager.Controller
                 else
                 {
                     Array.Clear(cityLabel, 0, 10);
-                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionSource.BatchFile, ActionType.LoadFile, Outcome.FileRejected, countedLines);
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.AddCity, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -301,7 +300,7 @@ namespace IceCreamManager.Controller
         /// </summary>
         /// <param name="FilePath"></param>
         public void ProcessRouteFile(string FilePath)
-        {    
+        {
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
             countedLines++;
@@ -328,7 +327,7 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.ChangeRoute, Outcome.FileRejected, countedLines);
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.ChangeRoute, Outcome.LineRejected, countedLines);
                         }
                     }
                     else if (actionCode == "D")
@@ -339,13 +338,13 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.DeleteRoute, Outcome.FileRejected, countedLines);
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.DeleteRoute, Outcome.LineRejected, countedLines);
                             //Reject line
                         }
                     }
                     else
                     {
-                        //Log for incorrect Action code
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.AddRoute, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
@@ -353,13 +352,13 @@ namespace IceCreamManager.Controller
                     if (actionCode == "A")
                     {
                         ExtractCityLabels();
-                        if(fileLine == null)
+                        if (fileLine == null)
                         {
 
                         }
                         else
                         {
-                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionSource.BatchFile, ActionType.AddRoute, Outcome.FileRejected, countedLines);
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.AddRoute, Outcome.LineRejected, countedLines);
                         }
                         Route newRoute = new Route();
                         //Add routes to new city
@@ -367,7 +366,7 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        //Log for incorrect Action code
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Route), ActionType.ModifyRoute, Outcome.LineRejected, countedLines);
                     }
                 }
             }
@@ -413,12 +412,12 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionType.AddTruck, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddTruck, Outcome.LineRejected, countedLines);
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionType.AddTruck, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -462,17 +461,17 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckFuel), ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
                         }
                     }
                     else
                     {
-                        Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckFuel), ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-                    Logger.Log(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Truck), ActionSource.BatchFile, ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckFuel), ActionType.AddFuelToTruck, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -526,17 +525,17 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            //Log
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Driver), ActionType.AddDriver, Outcome.LineRejected, countedLines);
                         }
                     }
                     else
                     {
-                        //Log
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Driver), ActionType.AddDriver, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-                    //Log
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Driver), ActionType.AddDriver, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -588,17 +587,17 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            //Log
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckDriver), ActionType.AddTruckDriver, Outcome.LineRejected, countedLines);
                         }
                     }
                     else
                     {
-                        //Log
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckDriver), ActionType.AddTruckDriver, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-                    //Log
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckDriver), ActionType.AddTruckDriver, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -649,17 +648,17 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            //Log
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckRoute), ActionType.AddTruckToRoute, Outcome.LineRejected, countedLines);
                         }
                     }
                     else
                     {
-                        //Log
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckRoute), ActionType.AddTruckToRoute, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-                    //Log
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckRoute), ActionType.AddTruckToRoute, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -724,7 +723,7 @@ namespace IceCreamManager.Controller
                                         }
                                         else
                                         {
-                                            //Log
+                                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionType.UpdateTruckItem, Outcome.LineRejected, countedLines);
                                             //Reject line
                                         }
                                     }
@@ -737,14 +736,14 @@ namespace IceCreamManager.Controller
                                         }
                                         else
                                         {
-                                            //Log
+                                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionType.AddTruckItem, Outcome.LineRejected, countedLines);
                                             //Reejct line
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    //Log
+                                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.City), ActionType.UpdateTruckItem, Outcome.LineRejected, countedLines);
                                     //Rejct line
                                 }
                             }
@@ -764,14 +763,12 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            //Log
-                            //Reject set of records
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckInventory), ActionType.ModifyTruckInventory, Outcome.RecordRejected, countedLines);                            //Reject set of records
                         }
                     }
                     else
                     {
-                        //Log
-                        //Reject set of records
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.TruckInventory), ActionType.ModifyTruckInventory, Outcome.RecordRejected, countedLines);                        //Reject set of records
                     }
                 }
 
@@ -781,116 +778,112 @@ namespace IceCreamManager.Controller
 
     class IceCreamTruckSalesUpload : BatchFileProcessing
     {
-            int countedRecords = 0;
-            int fileRecord;
-            int itemNumber;
-            int newQuantity;
+        int countedRecords = 0;
+        int fileRecord;
+        int itemNumber;
+        int newQuantity;
 
-            /// <summary>
-            /// 
-            ///  HD SEQ#      YYYY-MM-DD 
-            /// TR|Truck Number|
-            /// |Item Number||Final Quantity|
-            /// SR #ROWS FOR TRUCK
-            ///  T #ROWS IN FILE
-            ///        
-            /// </summary>
-            /// <param name="FilePath"></param>
+        /// <summary>
+        /// 
+        ///  HD SEQ#      YYYY-MM-DD 
+        /// TR|Truck Number|
+        /// |Item Number||Final Quantity|
+        /// SR #ROWS FOR TRUCK
+        ///  T #ROWS IN FILE
+        ///        
+        /// </summary>
+        /// <param name="FilePath"></param>
         public void ProcessIceCreamTruckSalesFile(string FilePath)
         {
-                StreamReader file = new StreamReader(FilePath);
+            StreamReader file = new StreamReader(FilePath);
+            fileLine = file.ReadLine();
+            countedLines++;
+
+            while (file.EndOfStream != false)
+            {
                 fileLine = file.ReadLine();
                 countedLines++;
-
-                while (file.EndOfStream != false)
+                extractedData = fileLine.Substring(0, 2);
+                if (extractedData == "TR")
                 {
                     fileLine = file.ReadLine();
                     countedLines++;
-                    extractedData = fileLine.Substring(0, 2);
-                    if (extractedData == "TR")
+                    countedRecords++;
+                    while (fileLine.Substring(0, 2) != "SR")
                     {
-                        fileLine = file.ReadLine();
-                        countedLines++;
                         countedRecords++;
-                        while (fileLine.Substring(0, 2) != "SR")
+                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                        if (ZeroFillNumberCheck(extractedData))
                         {
-                            countedRecords++;
+                            itemNumber = Convert.ToInt32(extractedData);
+                            fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
                             extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+
                             if (ZeroFillNumberCheck(extractedData))
                             {
-                                itemNumber = Convert.ToInt32(extractedData);
+                                newQuantity = Convert.ToInt32(extractedData);
                                 fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
-                                extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
 
-                                if (ZeroFillNumberCheck(extractedData))
+                                if (fileLine == null)
                                 {
-                                    newQuantity = Convert.ToInt32(extractedData);
-                                    fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
-
-                                    if (fileLine == null)
+                                    if (itemNumber)
                                     {
-                                        if (itemNumber)
+                                        //Change item quantity
+                                        if (newQuantity > itemQuantity)
                                         {
-                                            //Change item quantity
-                                            if (newQuantity > itemQuantity)
-                                            {
-                                                //Create change record
-                                            }
-                                            else
-                                            {
-                                                //Log
-                                                //Reject line
-                                            }
+                                            //Create change record
                                         }
                                         else
                                         {
-                                            if (adjustmentQuantity > 0)
-                                            {
-                                                //Create new item
-                                                //Create change record
-                                            }
-                                            else
-                                            {
-                                                //Log
-                                                //Reejct line
-                                            }
+                                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Sales), ActionType.UpdateItemQuantity, Outcome.LineRejected, countedLines);
+                                            //Reject line
                                         }
                                     }
                                     else
                                     {
-                                        //Log
-                                        //Rejct line
+                                        if (adjustmentQuantity > 0)
+                                        {
+                                            //Create new item
+                                            //Create change record
+                                        }
+                                        else
+                                        {
+                                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Sales), ActionType.UpdateItemQuantity, Outcome.LineRejected, countedLines);                                                //Reejct line
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Sales), ActionType.UpdateItemQuantity, Outcome.LineRejected, countedLines);                                        //Rejct line
+                                }
                             }
-                            fileLine = file.ReadLine();
                         }
-                        fileLine.Remove(0, 2);
-                        extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
-                        if (ZeroFillNumberCheck(extractedData))
-                        {
-                            fileRecord = Convert.ToInt32(extractedData);
-                            fileLine.Remove(0, Requirement.ZeroFillNumberLength);
+                        fileLine = file.ReadLine();
+                    }
+                    fileLine.Remove(0, 2);
+                    extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
+                    if (ZeroFillNumberCheck(extractedData))
+                    {
+                        fileRecord = Convert.ToInt32(extractedData);
+                        fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
-                            if (fileRecord == countedRecords)
-                            {
-                                //Apply all data
-                            }
-                            else
-                            {
-                                //Log
-                                //Reject set of records
-                            }
+                        if (fileRecord == countedRecords)
+                        {
+                            //Apply all data
                         }
                         else
                         {
-                            //Log
-                            //Reject set of records
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Sales), ActionType.UpdateItemQuantity, Outcome.RecordRejected, countedLines);                                //Reject set of records
                         }
                     }
-
+                    else
+                    {
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Sales), ActionType.UpdateItemQuantity, Outcome.RecordRejected, countedLines);                            //Reject set of records
+                    }
                 }
+
             }
+        }
         /// <summary>
         /// 
         /// HD SEQ#		YYYY-MM-DD
@@ -902,7 +895,7 @@ namespace IceCreamManager.Controller
         /// <param name="FilePath"></param>
         public void ProcessPollFile(string FilePath)
         {
-            //TODO: Implement after more information
+            //TODO: Implement when more information becomes available
         }
     }
 
@@ -910,7 +903,7 @@ namespace IceCreamManager.Controller
     {
         int itemNumber;
         int warehouseQuantity;
-        int itemFreshness; 
+        int itemFreshness;
         double price;
         string description;
 
@@ -947,34 +940,34 @@ namespace IceCreamManager.Controller
 
                     if (fileLine == null)
                     {
-                        if(price != 0)
+                        if (price != 0)
                         {
 
                         }
 
-                        if(description != null)
+                        if (description != null)
                         {
 
                         }
-                        if(warehouseQuantity != 0)
+                        if (warehouseQuantity != 0)
                         {
 
                         }
                         else
                         {
-                            //Log
+                            Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Item), ActionType.AddItemToInventory, Outcome.LineRejected, countedLines);
                         }
                         //Check if item exists
                         //Apply data if they both exist
                     }
                     else
                     {
-                        //Log
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Item), ActionType.AddItemToInventory, Outcome.LineRejected, countedLines);
                     }
                 }
                 else
                 {
-
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.Item), ActionType.AddItemToInventory, Outcome.LineRejected, countedLines);
                 }
             }
         }
@@ -1001,25 +994,25 @@ namespace IceCreamManager.Controller
                 if (ZeroFillNumberCheck(extractedData))
                 {
                     itemNumber = Convert.ToInt32(fileLine.Substring(0, Requirement.ZeroFillNumberLength));
-                    //if truck exists
+                    //if item exists
                     fileLine = fileLine.Remove(0, Requirement.ZeroFillNumberLength);
 
                     extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
                     //extractedData = itemfreshness, think it will only be a 3 digit number;
-                        if (fileLine == null)
-                        {
-                            //Check if truck and route exist
-                            //Apply data if they both exist
-                        }
-                        else
-                        {
-                            //Log
-                        }
+                    if (fileLine == null)
+                    {
+
+                        //Apply data if they both exist
                     }
                     else
                     {
-                        //Log
+                        Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.ItemExtension), ActionType.AddFreshnessToItem, Outcome.LineRejected, countedLines);
                     }
+                }
+                else
+                {
+                    Logger.LogBatch(EntityType.BatchFile, Convert.ToInt32(BatchFileType.ItemExtension), ActionType.AddFreshnessToItem, Outcome.LineRejected, countedLines);
+                }
             }
         }
     }

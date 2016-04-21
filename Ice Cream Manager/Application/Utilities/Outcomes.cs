@@ -30,5 +30,6 @@ namespace IceCreamManager
         DateEarlierThanPreviousFile = 501,
         FileRejected = 502,
         LineRejected = 503,
+        RecordRejected = 504,
     }
 }
