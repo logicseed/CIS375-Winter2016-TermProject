@@ -62,7 +62,23 @@ namespace IceCreamManager.Model
             entity = MapDataRowToProperties(ResultsTable.Rows[0]);
             return true;
         }
+        public DatabaseEntityType LoadByNumber(int number)
+        {
+            string DatabaseCommand = $"SELECT * FROM {TableName} WHERE Number = {number}";
+            DataTable ResultsTable = Database.Query(DatabaseCommand);
+            return MapDataRowToProperties(ResultsTable.Rows[0]);
+        }
 
+        public int GetID(int number)
+        {
+            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE Number = '{number}' AND IsDeleted = 0";
+
+            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
+
+            if (ResultsTable.Rows.Count == 0) return 0;
+
+            return ResultsTable.Row().Col("ID");
+        }
         public DatabaseEntityType New()
         {
             DatabaseEntityType entity = new DatabaseEntityType();

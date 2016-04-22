@@ -26,6 +26,12 @@ namespace IceCreamManager.Controller
         protected string extractedData;
         protected int ID;
 
+        /// <summary>
+        /// Checks if a string is a valid number by checking it's length after trimming spaces and if it can be converted into a interger or double.
+        /// </summary>
+        /// <param name="originalString">The string that will be parsed</param>
+        /// <param name="numberOfCharacters">The length of the number to be extracted</param>
+        /// <returns></returns>
         protected bool ZeroFillNumberCheck(string originalString, int numberOfCharacters)
         {
             string fileNumber = originalString.Substring(0, numberOfCharacters);
@@ -73,7 +79,14 @@ namespace IceCreamManager.Controller
 
                 headerRecord = Extract<string>(ref fileLine, 3);
                 headerRecord.TrimEnd(trim);
-                sequenceNumber = Extract<int>(ref fileLine, 10);
+                if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
+                {
+                    sequenceNumber = Extract<int>(ref fileLine, 10);
+                }
+                else
+                {
+                    throw new ExceptionWithOutcome("Message");
+                }
                 date = Extract<DateTime>(ref fileLine, 10);
 
                 if (fileLine == null)
@@ -84,7 +97,7 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome("Message");
+                        throw new ExceptionWithOutcome();
                     }
 
                     if (sequenceNumber == BatchHistory.GetSequence(FileType))
@@ -127,7 +140,7 @@ namespace IceCreamManager.Controller
                         {
                             BatchHistory.SetSequence(FileType, sequenceNumber);
                             BatchHistory.SetDateUpdated(FileType, date);
-                            Log.Success("Message");
+                            Log.Success(string.Format("Successful {0} check.", FileType.ToString()));
                             file.Close();
                             return true;
                         }
@@ -227,7 +240,7 @@ namespace IceCreamManager.Controller
         ///T ROWS
         ///
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessCityFileExtension(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -330,7 +343,7 @@ namespace IceCreamManager.Controller
         ///T #ROWS
         ///
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessRouteFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -359,7 +372,7 @@ namespace IceCreamManager.Controller
                         ExtractCityLabels();
                         if (fileLine == null)
                         {
-                            ID = routeAction.GetRouteID(routeNumber);
+                            ID = routeAction.GetID(routeNumber);
                             routeAction.Delete(ID);
                             ApplyCityLabels(routeNumber); //Apply cityLabels
                         }
@@ -372,7 +385,7 @@ namespace IceCreamManager.Controller
                     {
                         if (fileLine == null)
                         {
-                            ID = routeAction.GetRouteID(routeNumber);
+                            ID = routeAction.GetID(routeNumber);
                             routeAction.Delete(ID);
                         }
                         else
@@ -424,7 +437,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -467,7 +480,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS
         ///
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckFuelFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -504,8 +517,8 @@ namespace IceCreamManager.Controller
                 {
                     if (truckAction.NumberInUse(truckNumber))  //Does this truck exist in the DB
                     {
-                        ID = truckAction.GetTruckID(truckNumber);
-                        Truck oldTruck = truckAction.Load(ID);
+                        Truck oldTruck = new Truck();
+                        oldTruck = truckAction.LoadByNumber(truckNumber);
                         oldTruck.FuelRate = fuelRate;
                         oldTruck.Save();
                     }
@@ -525,7 +538,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckDriverFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -560,9 +573,9 @@ namespace IceCreamManager.Controller
                 {
                     if (truckAction.NumberInUse(truckNumber) & driverAction.NumberInUse(driverNumber))
                     {
-                        ID = truckAction.GetTruckID(truckNumber);
-                        Truck oldTruck = truckAction.Load(ID);
-                        ID = driverAction.GetDriverID(driverNumber);
+                        Truck oldTruck = new Truck();
+                        oldTruck = truckAction.LoadByNumber(truckNumber);
+                        ID = driverAction.GetID(driverNumber);
                         oldTruck.DriverID = ID;
                     }
                     else
@@ -590,7 +603,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckRouteFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -625,9 +638,9 @@ namespace IceCreamManager.Controller
                 {
                     if (truckAction.NumberInUse(truckNumber) & routeAction.NumberInUse(routeNumber))
                     {
-                        ID = truckAction.GetTruckID(truckNumber);
-                        Truck oldTruck = truckAction.Load(ID);
-                        ID = routeAction.GetRouteID(routeNumber);
+                        Truck oldTruck = new Truck();
+                        oldTruck = truckAction.LoadByNumber(truckNumber);
+                        ID = routeAction.GetID(routeNumber);
                         oldTruck.RouteID = ID;
                     }
                     else
@@ -671,7 +684,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessDriverFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -742,7 +755,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS IN FILE
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessIceCreamTruckFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -811,13 +824,14 @@ namespace IceCreamManager.Controller
                         {
                             if (itemAction.NumberInUse(itemNumber)) //AND the item is in the default list created by the user
                             {
-                                ID = itemAction.GetItemID(itemNumber);
                                 Item oldItem = new Item();
-                                oldItem = itemAction.Load(ID);
+                                oldItem = itemAction.LoadByNumber(itemNumber);
                                 if ((adjustmentQuantity + oldItem.Quantity) > 0) //Change item quantity
                                 {
                                     //TODO: How to check if it's in the default list? Where is the default list stored?
                                     //Create change record for how much is in the OVERALL INVENTORY
+                                    itemRecord.Add(itemNumber);
+                                    adjustmentRecord.Add(adjustmentQuantity + oldItem.Quantity);
                                 }
                                 else
                                 {
@@ -826,18 +840,23 @@ namespace IceCreamManager.Controller
                             }
                             else if (itemAction.NumberInUse(itemNumber)) //AND the item is not in the default list
                             {
-                                ID = itemAction.GetItemID(itemNumber);
                                 Item oldItem = new Item();
-                                oldItem = itemAction.Load(ID);
+                                oldItem = itemAction.LoadByNumber(itemNumber);
                                 if (adjustmentQuantity > 0) //AND the number of items on the default list is less than 5
                                 {
                                     //TODO: How to check if it's in the default list? Where is the default list stored?
                                     //Create change record for how much is in the OVERALL INVENTORY
+                                    itemRecord.Add(itemNumber);
+                                    adjustmentRecord.Add(adjustmentQuantity);
                                 }
                                 else
                                 {
                                     Log.Failure("Message");
                                 }
+                            }
+                            else
+                            {
+                                Log.Failure("Message");
                             }
 
                         }
@@ -850,6 +869,8 @@ namespace IceCreamManager.Controller
                         fileRecord = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
                         if (fileRecord == countedRecords)
                         {
+                            //Load truck inventory
+                            //For each item in the list, change quantities in the truck
                             //Apply data
                         }
                         else
@@ -866,6 +887,8 @@ namespace IceCreamManager.Controller
                 {
                     Log.Failure("Message");
                 }
+                itemRecord.Clear();
+                adjustmentRecord.Clear();
             }
         }
     }
@@ -877,6 +900,8 @@ namespace IceCreamManager.Controller
         int itemNumber;
         int newQuantity;
         int truckNumber;
+        List<int> itemRecord;
+        List<int> quantityRecord;
 
         /// <summary>
         /// 
@@ -887,7 +912,7 @@ namespace IceCreamManager.Controller
         ///  T #ROWS IN FILE
         ///        
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessIceCreamTruckSalesFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -952,27 +977,16 @@ namespace IceCreamManager.Controller
 
                         if (fileLine == null)
                         {
-                            if (itemAction.NumberInUse(itemNumber)) //AND the item is in the default list
+                            if (itemAction.NumberInUse(itemNumber)) //AND the item is in the starting list for that truck
                             {
-                                ID = itemAction.GetItemID(itemNumber);
                                 Item oldItem = new Item();
-                                oldItem = itemAction.Load(ID);
+                                oldItem = itemAction.LoadByNumber(itemNumber);
 
                                 if (newQuantity <= oldItem.Quantity)
                                 {
                                     //Create change record
-                                }
-                                else
-                                {
-                                    Log.Failure("Message");
-                                }
-                            }
-                            else if (itemAction.NumberInUse(itemNumber)) //AND the item is not in the default list
-                            {
-                                if (newQuantity <=) //Less than or equal to the inventory quantity of this item
-                                {
-                                    //Create new item
-                                    //Create change record
+                                    itemRecord.Add(itemNumber);
+                                    quantityRecord.Add(newQuantity);
                                 }
                                 else
                                 {
@@ -1030,7 +1044,7 @@ namespace IceCreamManager.Controller
         ///  T #ROWS IN FILE
         ///  
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessInventoryUpdateFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -1050,9 +1064,8 @@ namespace IceCreamManager.Controller
 
                     if (fileLine == null)
                     {
-                        ID = itemAction.GetItemID(itemNumber);
                         Item oldItem = new Item();
-                        oldItem = itemAction.Load(ID);
+                        oldItem = itemAction.LoadByNumber(itemNumber);
 
                         if (price != 0)
                         {
@@ -1098,7 +1111,7 @@ namespace IceCreamManager.Controller
         /// T #ROWS IN FILE
         /// 
         /// </summary>
-        /// <param name="FilePath"></param>
+        /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessInventoryUpdateExtensionFile(string FilePath)
         {
             StreamReader file = new StreamReader(FilePath);
@@ -1132,11 +1145,10 @@ namespace IceCreamManager.Controller
 
                 if (fileLine == null)
                 {
-                    if (itemAction.NumberInUse(itemNumber))  //Does this truck exist in the DB
+                    if (itemAction.NumberInUse(itemNumber))
                     {
-                        ID = itemAction.GetItemID(itemNumber);
                         Item oldItem = new Item();
-                        oldItem = itemAction.Load(ID);
+                        oldItem = itemAction.LoadByNumber(itemNumber);
                         oldItem.Lifetime = itemFreshness;
                         oldItem.Save();
                     }

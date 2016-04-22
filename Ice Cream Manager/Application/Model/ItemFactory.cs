@@ -92,16 +92,5 @@ namespace IceCreamManager.Model
         {
             return $"Item {item.Number} - {item.Description} for {Language.UserCurrency}{item.Price}, with {item.Quantity} in stock that will last {item.Lifetime} days.";
         }
-
-        public int GetItemID(int number)
-        {
-            string DatabaseCommand = $"SELECT ID FROM {TableName} WHERE Number = '{number}' AND IsDeleted = 0";
-
-            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
-
-            if (ResultsTable.Rows.Count == 0) return 0;
-
-            return ResultsTable.Row().Col("ID");
-        }
     }
 }
