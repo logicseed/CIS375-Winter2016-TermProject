@@ -70,7 +70,7 @@ namespace IceCreamManager.Controller
             /// Returns true if passes all if statements and data is applied
             /// If it fails any if statement, throw an exception and returns false
             /// </returns>
-
+            
             try
             {
                 StreamReader file = new StreamReader(FilePath);
@@ -85,11 +85,11 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    throw new ExceptionWithOutcome("Message");
+                    throw new ExceptionWithOutcome($"Batch file: {FileType} - Incorrect sequence number format.");
                 }
                 date = Extract<DateTime>(ref fileLine, 10);
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (headerRecord == "HD")
                     {
@@ -97,7 +97,7 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome();
+                        throw new ExceptionWithOutcome($"Batch file: {FileType} - Header record not found.");
                     }
 
                     if (sequenceNumber == BatchHistory.GetSequence(FileType))
@@ -106,7 +106,7 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome("Message");
+                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Sequence number out of order.");
                     }
 
                     if (date >= BatchHistory.GetDateUpdated(FileType))
@@ -115,7 +115,7 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome("Message");
+                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Date out of order.");
                     }
 
                     while (file.EndOfStream != false)
@@ -140,13 +140,13 @@ namespace IceCreamManager.Controller
                         {
                             BatchHistory.SetSequence(FileType, sequenceNumber);
                             BatchHistory.SetDateUpdated(FileType, date);
-                            Log.Success(string.Format("Successful {0} check.", FileType.ToString()));
+                            Log.Success($"Batch file: { FileType } - Successful header and footer check.");
                             file.Close();
                             return true;
                         }
                         else
                         {
-                            throw new ExceptionWithOutcome("Message");
+                            throw new ExceptionWithOutcome($"Batch file: { FileType } - Sequence number out of order.");
                         }
                     }
                     else
@@ -219,7 +219,7 @@ namespace IceCreamManager.Controller
                 cityName = Extract<string>(ref fileLine, Requirement.MaxCityNameLength);
                 state = Extract<string>(ref fileLine, Requirement.MaxCityStateLength);
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     ApplyNewCityData();
                     Log.Success("Message");
@@ -275,7 +275,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (cityAction.Exists(cityLabel))
                     {
@@ -370,7 +370,7 @@ namespace IceCreamManager.Controller
                     if (actionCode == 'C')
                     {
                         ExtractCityLabels();
-                        if (fileLine == null)
+                        if (fileLine == "")
                         {
                             ID = routeAction.GetID(routeNumber);
                             routeAction.Delete(ID);
@@ -383,7 +383,7 @@ namespace IceCreamManager.Controller
                     }
                     else if (actionCode == 'D')
                     {
-                        if (fileLine == null)
+                        if (fileLine == "")
                         {
                             ID = routeAction.GetID(routeNumber);
                             routeAction.Delete(ID);
@@ -452,7 +452,7 @@ namespace IceCreamManager.Controller
                 {
                     truckNumber = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
 
-                    if (fileLine == null)
+                    if (fileLine == "")
                     {
                         Truck newTruck = new Truck();
                         newTruck.Number = truckNumber;
@@ -513,7 +513,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber))  //Does this truck exist in the DB
                     {
@@ -569,7 +569,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber) & driverAction.NumberInUse(driverNumber))
                     {
@@ -634,7 +634,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber) & routeAction.NumberInUse(routeNumber))
                     {
@@ -720,7 +720,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     ApplyDriverData();
                 }
@@ -820,7 +820,7 @@ namespace IceCreamManager.Controller
                             continue;
                         }
 
-                        if (fileLine == null)
+                        if (fileLine == "")
                         {
                             if (itemAction.NumberInUse(itemNumber)) //AND the item is in the default list created by the user
                             {
@@ -829,7 +829,6 @@ namespace IceCreamManager.Controller
                                 if ((adjustmentQuantity + oldItem.Quantity) > 0) //Change item quantity
                                 {
                                     //TODO: How to check if it's in the default list? Where is the default list stored?
-                                    //Create change record for how much is in the OVERALL INVENTORY
                                     itemRecord.Add(itemNumber);
                                     adjustmentRecord.Add(adjustmentQuantity + oldItem.Quantity);
                                 }
@@ -975,7 +974,7 @@ namespace IceCreamManager.Controller
                             continue;
                         }
 
-                        if (fileLine == null)
+                        if (fileLine == "")
                         {
                             if (itemAction.NumberInUse(itemNumber)) //AND the item is in the starting list for that truck
                             {
@@ -1009,15 +1008,22 @@ namespace IceCreamManager.Controller
                         if (fileRecord == countedRecords)
                         {
                             //Apply data
+
+                            itemRecord.Clear();
+                            quantityRecord.Clear();
                         }
                         else
                         {
                             Log.Failure("Message");
+                            itemRecord.Clear();
+                            quantityRecord.Clear();
                         }
                     }
                     else
                     {
                         Log.Failure("Message");
+                        itemRecord.Clear();
+                        quantityRecord.Clear();
                     }
                 }
                 else
@@ -1062,7 +1068,7 @@ namespace IceCreamManager.Controller
                     price = price / 100;
                     description = Extract<string>(ref fileLine, Requirement.MinItemDescriptionLength);
 
-                    if (fileLine == null)
+                    if (fileLine == "")
                     {
                         Item oldItem = new Item();
                         oldItem = itemAction.LoadByNumber(itemNumber);
@@ -1071,7 +1077,7 @@ namespace IceCreamManager.Controller
                         {
                             oldItem.Price = price;
                         }
-                        if (description != null)
+                        if (description != "")
                         {
                             oldItem.Description = description;
                         }
@@ -1143,7 +1149,7 @@ namespace IceCreamManager.Controller
                     continue;
                 }
 
-                if (fileLine == null)
+                if (fileLine == "")
                 {
                     if (itemAction.NumberInUse(itemNumber))
                     {
