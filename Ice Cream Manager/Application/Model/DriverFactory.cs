@@ -95,5 +95,16 @@ namespace IceCreamManager.Model
             Driver driver = Load(id);
             return driver.Name;
         }
+
+        internal void GetDriverNumberList(ref Dictionary<int, string> driverList)
+        {
+            var sql = $"SELECT * FROM Driver WHERE IsDeleted = 0 ORDER BY Name";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                driverList.Add(row.Col("Number"), row.Col<string>("Name"));
+            }
+        }
     }
 }

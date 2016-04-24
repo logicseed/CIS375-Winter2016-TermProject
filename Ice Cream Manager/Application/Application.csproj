@@ -119,6 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Requirements.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\RevenueCriteria.cs" />
     <Compile Include="Utilities\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -197,5 +197,17 @@ namespace IceCreamManager.Model
         {
             return $"City Label {city.Label} to {city.Name} in {city.State}, which takes {city.Hours} hours to service its {city.Miles} miles.";
         }
+
+        internal void GetCityLabelList(ref Dictionary<string, string> cityList)
+        {
+            var sql = $"SELECT * FROM City WHERE IsDeleted = 0 ORDER BY Label";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                var name = $"{row.Col<string>("Label")}, {row.Col<string>("Name")}, {row.Col<string>("State")}";
+                cityList.Add(row.Col<string>("Label"), name);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -19,11 +20,8 @@ namespace IceCreamManager.View
             InitializeGridViews();
             LocalizeForm(null, null);
 
-            RefreshItemTable();
-            RefreshCityTable();
-            RefreshRouteTable();
-            RefreshDriverTable();
-            RefreshTruckTable();
+            InitializeCriteriaControls();
+
         }
 
         #endregion Public Constructors
@@ -114,6 +112,7 @@ namespace IceCreamManager.View
         protected override void OnLoad(EventArgs e)
         {
             LogButton_Click(null, null);
+            RefreshRevenueTab();
 
             base.OnLoad(e);
         }
@@ -268,6 +267,145 @@ namespace IceCreamManager.View
         {
             var defaultInventoryEditor = new DefaultInventoryEditor();
             defaultInventoryEditor.ShowDialog();
+        }
+
+        private void MainTabs_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            switch (e.TabPage.Name)
+            {
+                case "RevenueTab":
+                    RefreshRevenueTab();
+                    break;
+                case "BatchTab":
+                     
+                    break;
+                case "TrucksTab":
+                    RefreshTruckTable();
+                    break;
+                case "ItemsTab":
+                    RefreshItemTable();
+                    break;
+                case "DriversTab":
+                    RefreshDriverTable();
+                    break;
+                case "RoutesTab":
+                    RefreshRouteTable();
+                    break;
+                case "CitiesTab":
+                    RefreshCityTable();
+                    break;
+            }
+        }
+
+        private void RefreshRevenueTab()
+        {
+            // get criteria
+            var criteria = GetRevenueCriteria();
+
+            // fill grid with data
+            // fill chart with data
+        }
+
+        private RevenueCriteria GetRevenueCriteria()
+        {
+            var criteria = new RevenueCriteria();
+            criteria.StartDate = StartDateBox.Value.Date;
+            criteria.EndDate = EndDateBox.Value.Date;
+
+            if (RouteRevenueBox.SelectedItem == null) criteria.RouteNumber = 0;
+            else criteria.RouteNumber = ((KeyValuePair<int, string>)RouteRevenueBox.SelectedItem).Key;
+
+            if (CityRevenueBox.SelectedItem == null) criteria.CityLabel = "All";
+            else criteria.CityLabel = ((KeyValuePair<string, string>)CityRevenueBox.SelectedItem).Key;
+
+            if (TruckRevenueBox.SelectedItem == null) criteria.TruckNumber = 0;
+            else criteria.TruckNumber = ((KeyValuePair<int, string>)TruckRevenueBox.SelectedItem).Key;
+
+            if (DriverRevenueBox.SelectedItem == null) criteria.DriverNumber = 0;
+            else criteria.DriverNumber = ((KeyValuePair<int, string>)DriverRevenueBox.SelectedItem).Key;
+
+            if (ItemRevenueBox.SelectedItem == null) criteria.ItemNumber = 0;
+            else criteria.ItemNumber = ((KeyValuePair<int, string>)ItemRevenueBox.SelectedItem).Key;
+
+            return criteria;
+        }
+
+        private void InitializeCriteriaControls()
+        {
+            EndDateBox.Value = DateTime.Now.Date;
+            StartDateBox.Value = EndDateBox.Value.AddDays(-7).Date;
+
+            // fill route list
+            var routeList = new Dictionary<int, string>();
+            routeList.Add(0, Language["All"]);
+            Factory.Route.GetRouteNumberList(ref routeList);
+            RouteRevenueBox.DataSource = new BindingSource(routeList, null);
+            RouteRevenueBox.ValueMember = "Key";
+            RouteRevenueBox.DisplayMember = "Value";
+            RouteRevenueBox.SelectedIndex = 0;
+
+            //fill city list
+            var cityList = new Dictionary<string, string>();
+            cityList.Add("All", Language["All"]);
+            Factory.City.GetCityLabelList(ref cityList);
+            CityRevenueBox.DataSource = new BindingSource(cityList, null);
+            CityRevenueBox.ValueMember = "Key";
+            CityRevenueBox.DisplayMember = "Value";
+            CityRevenueBox.SelectedIndex = 0;
+
+            // fill truck list
+            var truckList = new Dictionary<int, string>();
+            truckList.Add(0, Language["All"]);
+            Factory.Truck.GetTruckNumberList(ref truckList);
+            TruckRevenueBox.DataSource = new BindingSource(truckList, null);
+            TruckRevenueBox.ValueMember = "Key";
+            TruckRevenueBox.DisplayMember = "Value";
+            TruckRevenueBox.SelectedIndex = 0;
+
+            // fill driver list
+            var driverList = new Dictionary<int, string>();
+            driverList.Add(0, Language["All"]);
+            Factory.Driver.GetDriverNumberList(ref driverList);
+            DriverRevenueBox.DataSource = new BindingSource(driverList, null);
+            DriverRevenueBox.ValueMember = "Key";
+            DriverRevenueBox.DisplayMember = "Value";
+            DriverRevenueBox.SelectedIndex = 0;
+
+            // fill item list
+            var itemList = new Dictionary<int, string>();
+            itemList.Add(0, Language["All"]);
+            Factory.Item.GetItemNumberList(ref itemList);
+            ItemRevenueBox.DataSource = new BindingSource(itemList, null);
+            ItemRevenueBox.ValueMember = "Key";
+            ItemRevenueBox.DisplayMember = "Value";
+            ItemRevenueBox.SelectedIndex = 0;
+        }
+
+        private void StartDateBox_ValueChanged(object sender, EventArgs e)
+        {
+            // Cannot start later than the end date
+            if (StartDateBox.Value.Date.CompareTo(EndDateBox.Value.Date) == 1)
+            {
+                EndDateBox.Value = StartDateBox.Value.Date;
+            }
+
+            RefreshRevenueTab();
+        }
+
+        private void EndDateBox_ValueChanged(object sender, EventArgs e)
+        {
+            // Cannot be earlier than the start date
+            if (EndDateBox.Value.Date.CompareTo(StartDateBox.Value.Date) == -1)
+            {
+                StartDateBox.Value = EndDateBox.Value.Date;
+            }
+
+            RefreshRevenueTab();
+        }
+
+        private void RouteRevenueBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,27 +29,42 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.RevenueTab = new System.Windows.Forms.TabPage();
-            this.RevenueTabs = new System.Windows.Forms.TabControl();
-            this.OverallRevenueTab = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.SalesTab = new System.Windows.Forms.TabPage();
-            this.ItemWasteTab = new System.Windows.Forms.TabPage();
-            this.SalaryCostTab = new System.Windows.Forms.TabPage();
-            this.FuelUsageTab = new System.Windows.Forms.TabPage();
+            this.RevenueLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.RevenueTabLayout = new System.Windows.Forms.TabControl();
+            this.GridTab = new System.Windows.Forms.TabPage();
+            this.RevenueGrid = new System.Windows.Forms.DataGridView();
+            this.GraphTab = new System.Windows.Forms.TabPage();
+            this.RevenueChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.StartDateLabel = new System.Windows.Forms.Label();
+            this.StartDateBox = new System.Windows.Forms.DateTimePicker();
+            this.EndDateLabel = new System.Windows.Forms.Label();
+            this.EndDateBox = new System.Windows.Forms.DateTimePicker();
+            this.RouteRevenueLabel = new System.Windows.Forms.Label();
+            this.CityRevenueLabel = new System.Windows.Forms.Label();
+            this.TruckRevenueLabel = new System.Windows.Forms.Label();
+            this.DriverRevenueLabel = new System.Windows.Forms.Label();
+            this.ItemRevenueLabel = new System.Windows.Forms.Label();
+            this.RouteRevenueBox = new System.Windows.Forms.ComboBox();
+            this.CityRevenueBox = new System.Windows.Forms.ComboBox();
+            this.TruckRevenueBox = new System.Windows.Forms.ComboBox();
+            this.DriverRevenueBox = new System.Windows.Forms.ComboBox();
+            this.ItemRevenueBox = new System.Windows.Forms.ComboBox();
             this.BatchTab = new System.Windows.Forms.TabPage();
             this.TrucksTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.DefaultInventoryButton = new System.Windows.Forms.Button();
             this.RemoveTruckButton = new System.Windows.Forms.Button();
-            this.ShowDeletedTrucks = new System.Windows.Forms.CheckBox();
             this.TruckGridView = new System.Windows.Forms.DataGridView();
             this.AddTruckButton = new System.Windows.Forms.Button();
             this.EditTruckButton = new System.Windows.Forms.Button();
+            this.ShowDeletedTrucks = new System.Windows.Forms.CheckBox();
             this.ItemsTab = new System.Windows.Forms.TabPage();
             this.ItemLayoutTable = new System.Windows.Forms.TableLayoutPanel();
             this.ItemGridView = new System.Windows.Forms.DataGridView();
@@ -81,19 +96,22 @@
             this.ButtonIcons = new System.Windows.Forms.ImageList(this.components);
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ExtraButtonsLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
-            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.DefaultInventoryButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.LogButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
+            this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainTabs.SuspendLayout();
             this.RevenueTab.SuspendLayout();
-            this.RevenueTabs.SuspendLayout();
-            this.OverallRevenueTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.RevenueLayout.SuspendLayout();
+            this.RevenueTabLayout.SuspendLayout();
+            this.GridTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RevenueGrid)).BeginInit();
+            this.GraphTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RevenueChart)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.TrucksTab.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TruckGridView)).BeginInit();
@@ -130,102 +148,297 @@
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.Padding = new System.Drawing.Point(8, 8);
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(784, 486);
+            this.MainTabs.Size = new System.Drawing.Size(784, 489);
             this.MainTabs.TabIndex = 0;
+            this.MainTabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainTabs_Selecting);
             // 
             // RevenueTab
             // 
-            this.RevenueTab.Controls.Add(this.RevenueTabs);
+            this.RevenueTab.Controls.Add(this.RevenueLayout);
             this.RevenueTab.ImageIndex = 3;
             this.RevenueTab.Location = new System.Drawing.Point(4, 33);
             this.RevenueTab.Name = "RevenueTab";
             this.RevenueTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RevenueTab.Size = new System.Drawing.Size(776, 449);
+            this.RevenueTab.Size = new System.Drawing.Size(776, 452);
             this.RevenueTab.TabIndex = 0;
             this.RevenueTab.Text = "!Revenue";
             this.RevenueTab.UseVisualStyleBackColor = true;
             // 
-            // RevenueTabs
+            // RevenueLayout
             // 
-            this.RevenueTabs.Controls.Add(this.OverallRevenueTab);
-            this.RevenueTabs.Controls.Add(this.SalesTab);
-            this.RevenueTabs.Controls.Add(this.ItemWasteTab);
-            this.RevenueTabs.Controls.Add(this.SalaryCostTab);
-            this.RevenueTabs.Controls.Add(this.FuelUsageTab);
-            this.RevenueTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RevenueTabs.Location = new System.Drawing.Point(3, 3);
-            this.RevenueTabs.Name = "RevenueTabs";
-            this.RevenueTabs.SelectedIndex = 0;
-            this.RevenueTabs.Size = new System.Drawing.Size(770, 443);
-            this.RevenueTabs.TabIndex = 0;
+            this.RevenueLayout.ColumnCount = 1;
+            this.RevenueLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RevenueLayout.Controls.Add(this.RevenueTabLayout, 0, 1);
+            this.RevenueLayout.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.RevenueLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RevenueLayout.Location = new System.Drawing.Point(3, 3);
+            this.RevenueLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.RevenueLayout.Name = "RevenueLayout";
+            this.RevenueLayout.RowCount = 2;
+            this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RevenueLayout.Size = new System.Drawing.Size(770, 446);
+            this.RevenueLayout.TabIndex = 0;
             // 
-            // OverallRevenueTab
+            // RevenueTabLayout
             // 
-            this.OverallRevenueTab.Controls.Add(this.chart1);
-            this.OverallRevenueTab.Location = new System.Drawing.Point(4, 22);
-            this.OverallRevenueTab.Name = "OverallRevenueTab";
-            this.OverallRevenueTab.Padding = new System.Windows.Forms.Padding(3);
-            this.OverallRevenueTab.Size = new System.Drawing.Size(762, 417);
-            this.OverallRevenueTab.TabIndex = 0;
-            this.OverallRevenueTab.Text = "!Overall";
-            this.OverallRevenueTab.UseVisualStyleBackColor = true;
+            this.RevenueTabLayout.Controls.Add(this.GridTab);
+            this.RevenueTabLayout.Controls.Add(this.GraphTab);
+            this.RevenueTabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RevenueTabLayout.Location = new System.Drawing.Point(0, 70);
+            this.RevenueTabLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.RevenueTabLayout.Name = "RevenueTabLayout";
+            this.RevenueTabLayout.SelectedIndex = 0;
+            this.RevenueTabLayout.Size = new System.Drawing.Size(770, 376);
+            this.RevenueTabLayout.TabIndex = 0;
             // 
-            // chart1
+            // GridTab
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(756, 411);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.GridTab.Controls.Add(this.RevenueGrid);
+            this.GridTab.Location = new System.Drawing.Point(4, 22);
+            this.GridTab.Name = "GridTab";
+            this.GridTab.Padding = new System.Windows.Forms.Padding(3);
+            this.GridTab.Size = new System.Drawing.Size(762, 350);
+            this.GridTab.TabIndex = 0;
+            this.GridTab.Text = "!Grid";
+            this.GridTab.UseVisualStyleBackColor = true;
             // 
-            // SalesTab
+            // RevenueGrid
             // 
-            this.SalesTab.Location = new System.Drawing.Point(4, 22);
-            this.SalesTab.Name = "SalesTab";
-            this.SalesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SalesTab.Size = new System.Drawing.Size(762, 417);
-            this.SalesTab.TabIndex = 1;
-            this.SalesTab.Text = "!Sales";
-            this.SalesTab.UseVisualStyleBackColor = true;
+            this.RevenueGrid.AllowUserToAddRows = false;
+            this.RevenueGrid.AllowUserToDeleteRows = false;
+            this.RevenueGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RevenueGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RevenueGrid.Location = new System.Drawing.Point(3, 3);
+            this.RevenueGrid.Name = "RevenueGrid";
+            this.RevenueGrid.ReadOnly = true;
+            this.RevenueGrid.Size = new System.Drawing.Size(756, 344);
+            this.RevenueGrid.TabIndex = 0;
             // 
-            // ItemWasteTab
+            // GraphTab
             // 
-            this.ItemWasteTab.Location = new System.Drawing.Point(4, 22);
-            this.ItemWasteTab.Name = "ItemWasteTab";
-            this.ItemWasteTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ItemWasteTab.Size = new System.Drawing.Size(762, 417);
-            this.ItemWasteTab.TabIndex = 2;
-            this.ItemWasteTab.Text = "!Item Waste";
-            this.ItemWasteTab.UseVisualStyleBackColor = true;
+            this.GraphTab.Controls.Add(this.RevenueChart);
+            this.GraphTab.Location = new System.Drawing.Point(4, 22);
+            this.GraphTab.Name = "GraphTab";
+            this.GraphTab.Padding = new System.Windows.Forms.Padding(3);
+            this.GraphTab.Size = new System.Drawing.Size(762, 350);
+            this.GraphTab.TabIndex = 1;
+            this.GraphTab.Text = "!Graph";
+            this.GraphTab.UseVisualStyleBackColor = true;
             // 
-            // SalaryCostTab
+            // RevenueChart
             // 
-            this.SalaryCostTab.Location = new System.Drawing.Point(4, 22);
-            this.SalaryCostTab.Name = "SalaryCostTab";
-            this.SalaryCostTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SalaryCostTab.Size = new System.Drawing.Size(762, 417);
-            this.SalaryCostTab.TabIndex = 3;
-            this.SalaryCostTab.Text = "!Salary Cost";
-            this.SalaryCostTab.UseVisualStyleBackColor = true;
+            chartArea9.Name = "ChartArea1";
+            this.RevenueChart.ChartAreas.Add(chartArea9);
+            this.RevenueChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend9.Name = "Legend1";
+            this.RevenueChart.Legends.Add(legend9);
+            this.RevenueChart.Location = new System.Drawing.Point(3, 3);
+            this.RevenueChart.Name = "RevenueChart";
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.RevenueChart.Series.Add(series9);
+            this.RevenueChart.Size = new System.Drawing.Size(756, 344);
+            this.RevenueChart.SuppressExceptions = true;
+            this.RevenueChart.TabIndex = 0;
+            this.RevenueChart.Text = "RevenueChart";
             // 
-            // FuelUsageTab
+            // tableLayoutPanel3
             // 
-            this.FuelUsageTab.Location = new System.Drawing.Point(4, 22);
-            this.FuelUsageTab.Name = "FuelUsageTab";
-            this.FuelUsageTab.Padding = new System.Windows.Forms.Padding(3);
-            this.FuelUsageTab.Size = new System.Drawing.Size(762, 417);
-            this.FuelUsageTab.TabIndex = 4;
-            this.FuelUsageTab.Text = "!Fuel Usage";
-            this.FuelUsageTab.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 9;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.StartDateLabel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.StartDateBox, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.EndDateLabel, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.EndDateBox, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.RouteRevenueLabel, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CityRevenueLabel, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.TruckRevenueLabel, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.DriverRevenueLabel, 5, 1);
+            this.tableLayoutPanel3.Controls.Add(this.ItemRevenueLabel, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.RouteRevenueBox, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CityRevenueBox, 4, 1);
+            this.tableLayoutPanel3.Controls.Add(this.TruckRevenueBox, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.DriverRevenueBox, 6, 1);
+            this.tableLayoutPanel3.Controls.Add(this.ItemRevenueBox, 8, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(764, 64);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // StartDateLabel
+            // 
+            this.StartDateLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.StartDateLabel.AutoSize = true;
+            this.StartDateLabel.Location = new System.Drawing.Point(6, 9);
+            this.StartDateLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.StartDateLabel.Name = "StartDateLabel";
+            this.StartDateLabel.Size = new System.Drawing.Size(58, 13);
+            this.StartDateLabel.TabIndex = 0;
+            this.StartDateLabel.Text = "!Start Date";
+            this.StartDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // StartDateBox
+            // 
+            this.StartDateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.StartDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.StartDateBox.Location = new System.Drawing.Point(70, 6);
+            this.StartDateBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.StartDateBox.Name = "StartDateBox";
+            this.StartDateBox.Size = new System.Drawing.Size(95, 20);
+            this.StartDateBox.TabIndex = 8;
+            this.StartDateBox.ValueChanged += new System.EventHandler(this.StartDateBox_ValueChanged);
+            // 
+            // EndDateLabel
+            // 
+            this.EndDateLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EndDateLabel.AutoSize = true;
+            this.EndDateLabel.Location = new System.Drawing.Point(9, 41);
+            this.EndDateLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.EndDateLabel.Name = "EndDateLabel";
+            this.EndDateLabel.Size = new System.Drawing.Size(55, 13);
+            this.EndDateLabel.TabIndex = 2;
+            this.EndDateLabel.Text = "!End Date";
+            this.EndDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // EndDateBox
+            // 
+            this.EndDateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EndDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.EndDateBox.Location = new System.Drawing.Point(70, 38);
+            this.EndDateBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.EndDateBox.Name = "EndDateBox";
+            this.EndDateBox.Size = new System.Drawing.Size(95, 20);
+            this.EndDateBox.TabIndex = 9;
+            this.EndDateBox.ValueChanged += new System.EventHandler(this.EndDateBox_ValueChanged);
+            // 
+            // RouteRevenueLabel
+            // 
+            this.RouteRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.RouteRevenueLabel.AutoSize = true;
+            this.RouteRevenueLabel.Location = new System.Drawing.Point(194, 9);
+            this.RouteRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.RouteRevenueLabel.Name = "RouteRevenueLabel";
+            this.RouteRevenueLabel.Size = new System.Drawing.Size(39, 13);
+            this.RouteRevenueLabel.TabIndex = 3;
+            this.RouteRevenueLabel.Text = "!Route";
+            this.RouteRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CityRevenueLabel
+            // 
+            this.CityRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.CityRevenueLabel.AutoSize = true;
+            this.CityRevenueLabel.Location = new System.Drawing.Point(206, 41);
+            this.CityRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.CityRevenueLabel.Name = "CityRevenueLabel";
+            this.CityRevenueLabel.Size = new System.Drawing.Size(27, 13);
+            this.CityRevenueLabel.TabIndex = 6;
+            this.CityRevenueLabel.Text = "!City";
+            this.CityRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TruckRevenueLabel
+            // 
+            this.TruckRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TruckRevenueLabel.AutoSize = true;
+            this.TruckRevenueLabel.Location = new System.Drawing.Point(370, 9);
+            this.TruckRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.TruckRevenueLabel.Name = "TruckRevenueLabel";
+            this.TruckRevenueLabel.Size = new System.Drawing.Size(38, 13);
+            this.TruckRevenueLabel.TabIndex = 4;
+            this.TruckRevenueLabel.Text = "!Truck";
+            this.TruckRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // DriverRevenueLabel
+            // 
+            this.DriverRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.DriverRevenueLabel.AutoSize = true;
+            this.DriverRevenueLabel.Location = new System.Drawing.Point(370, 41);
+            this.DriverRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.DriverRevenueLabel.Name = "DriverRevenueLabel";
+            this.DriverRevenueLabel.Size = new System.Drawing.Size(38, 13);
+            this.DriverRevenueLabel.TabIndex = 7;
+            this.DriverRevenueLabel.Text = "!Driver";
+            this.DriverRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ItemRevenueLabel
+            // 
+            this.ItemRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ItemRevenueLabel.AutoSize = true;
+            this.ItemRevenueLabel.Location = new System.Drawing.Point(545, 9);
+            this.ItemRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.ItemRevenueLabel.Name = "ItemRevenueLabel";
+            this.ItemRevenueLabel.Size = new System.Drawing.Size(30, 13);
+            this.ItemRevenueLabel.TabIndex = 5;
+            this.ItemRevenueLabel.Text = "!Item";
+            this.ItemRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // RouteRevenueBox
+            // 
+            this.RouteRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RouteRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RouteRevenueBox.DropDownWidth = 200;
+            this.RouteRevenueBox.FormattingEnabled = true;
+            this.RouteRevenueBox.Location = new System.Drawing.Point(239, 5);
+            this.RouteRevenueBox.Name = "RouteRevenueBox";
+            this.RouteRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.RouteRevenueBox.TabIndex = 10;
+            this.RouteRevenueBox.SelectedIndexChanged += new System.EventHandler(this.RouteRevenueBox_SelectedIndexChanged);
+            // 
+            // CityRevenueBox
+            // 
+            this.CityRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CityRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CityRevenueBox.DropDownWidth = 200;
+            this.CityRevenueBox.FormattingEnabled = true;
+            this.CityRevenueBox.Location = new System.Drawing.Point(239, 37);
+            this.CityRevenueBox.Name = "CityRevenueBox";
+            this.CityRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.CityRevenueBox.TabIndex = 11;
+            // 
+            // TruckRevenueBox
+            // 
+            this.TruckRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.TruckRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TruckRevenueBox.FormattingEnabled = true;
+            this.TruckRevenueBox.Location = new System.Drawing.Point(414, 5);
+            this.TruckRevenueBox.Name = "TruckRevenueBox";
+            this.TruckRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.TruckRevenueBox.TabIndex = 12;
+            // 
+            // DriverRevenueBox
+            // 
+            this.DriverRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.DriverRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DriverRevenueBox.FormattingEnabled = true;
+            this.DriverRevenueBox.Location = new System.Drawing.Point(414, 37);
+            this.DriverRevenueBox.Name = "DriverRevenueBox";
+            this.DriverRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.DriverRevenueBox.TabIndex = 13;
+            // 
+            // ItemRevenueBox
+            // 
+            this.ItemRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ItemRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ItemRevenueBox.FormattingEnabled = true;
+            this.ItemRevenueBox.Location = new System.Drawing.Point(581, 5);
+            this.ItemRevenueBox.Name = "ItemRevenueBox";
+            this.ItemRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.ItemRevenueBox.TabIndex = 14;
             // 
             // BatchTab
             // 
@@ -245,7 +458,7 @@
             this.TrucksTab.Location = new System.Drawing.Point(4, 33);
             this.TrucksTab.Name = "TrucksTab";
             this.TrucksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TrucksTab.Size = new System.Drawing.Size(776, 449);
+            this.TrucksTab.Size = new System.Drawing.Size(776, 452);
             this.TrucksTab.TabIndex = 1;
             this.TrucksTab.Text = "!Trucks";
             this.TrucksTab.UseVisualStyleBackColor = true;
@@ -270,8 +483,22 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 443);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 446);
             this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // DefaultInventoryButton
+            // 
+            this.DefaultInventoryButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.DefaultInventoryButton.AutoSize = true;
+            this.DefaultInventoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DefaultInventoryButton.Location = new System.Drawing.Point(246, 3);
+            this.DefaultInventoryButton.Name = "DefaultInventoryButton";
+            this.DefaultInventoryButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.DefaultInventoryButton.Size = new System.Drawing.Size(103, 29);
+            this.DefaultInventoryButton.TabIndex = 5;
+            this.DefaultInventoryButton.Text = "!Default Inventory";
+            this.DefaultInventoryButton.UseVisualStyleBackColor = true;
+            this.DefaultInventoryButton.Click += new System.EventHandler(this.DefaultInventoryButton_Click);
             // 
             // RemoveTruckButton
             // 
@@ -287,18 +514,6 @@
             this.RemoveTruckButton.UseVisualStyleBackColor = true;
             this.RemoveTruckButton.Click += new System.EventHandler(this.RemoveTruckButton_Click);
             // 
-            // ShowDeletedTrucks
-            // 
-            this.ShowDeletedTrucks.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedTrucks.AutoSize = true;
-            this.ShowDeletedTrucks.Location = new System.Drawing.Point(355, 9);
-            this.ShowDeletedTrucks.Name = "ShowDeletedTrucks";
-            this.ShowDeletedTrucks.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedTrucks.TabIndex = 3;
-            this.ShowDeletedTrucks.Text = "!Show Deleted";
-            this.ShowDeletedTrucks.UseVisualStyleBackColor = true;
-            this.ShowDeletedTrucks.CheckedChanged += new System.EventHandler(this.RefreshTruckTable);
-            // 
             // TruckGridView
             // 
             this.TruckGridView.AllowUserToAddRows = false;
@@ -313,7 +528,7 @@
             this.TruckGridView.ReadOnly = true;
             this.TruckGridView.RowHeadersVisible = false;
             this.TruckGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TruckGridView.Size = new System.Drawing.Size(764, 402);
+            this.TruckGridView.Size = new System.Drawing.Size(764, 405);
             this.TruckGridView.TabIndex = 4;
             // 
             // AddTruckButton
@@ -342,6 +557,18 @@
             this.EditTruckButton.Text = "!Edit";
             this.EditTruckButton.UseVisualStyleBackColor = true;
             this.EditTruckButton.Click += new System.EventHandler(this.EditTruckButton_Click);
+            // 
+            // ShowDeletedTrucks
+            // 
+            this.ShowDeletedTrucks.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedTrucks.AutoSize = true;
+            this.ShowDeletedTrucks.Location = new System.Drawing.Point(355, 9);
+            this.ShowDeletedTrucks.Name = "ShowDeletedTrucks";
+            this.ShowDeletedTrucks.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedTrucks.TabIndex = 3;
+            this.ShowDeletedTrucks.Text = "!Show Deleted";
+            this.ShowDeletedTrucks.UseVisualStyleBackColor = true;
+            this.ShowDeletedTrucks.CheckedChanged += new System.EventHandler(this.RefreshTruckTable);
             // 
             // ItemsTab
             // 
@@ -771,15 +998,25 @@
             this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProgressBar,
             this.StatusLabel});
-            this.StatusBar.Location = new System.Drawing.Point(0, 486);
+            this.StatusBar.Location = new System.Drawing.Point(0, 489);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(784, 25);
+            this.StatusBar.Size = new System.Drawing.Size(784, 22);
             this.StatusBar.TabIndex = 3;
             // 
             // ProgressBar
             // 
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(300, 19);
+            this.ProgressBar.Visible = false;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
+            this.StatusLabel.Text = "!Processing...";
+            this.StatusLabel.Visible = false;
             // 
             // ExtraButtonsLayout
             // 
@@ -799,36 +1036,6 @@
             this.ExtraButtonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ExtraButtonsLayout.Size = new System.Drawing.Size(90, 22);
             this.ExtraButtonsLayout.TabIndex = 8;
-            // 
-            // MainFormLayout
-            // 
-            this.MainFormLayout.ColumnCount = 1;
-            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
-            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
-            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.MainFormLayout.Name = "MainFormLayout";
-            this.MainFormLayout.RowCount = 2;
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainFormLayout.Size = new System.Drawing.Size(784, 511);
-            this.MainFormLayout.TabIndex = 10;
-            // 
-            // DefaultInventoryButton
-            // 
-            this.DefaultInventoryButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.DefaultInventoryButton.AutoSize = true;
-            this.DefaultInventoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DefaultInventoryButton.Location = new System.Drawing.Point(246, 3);
-            this.DefaultInventoryButton.Name = "DefaultInventoryButton";
-            this.DefaultInventoryButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.DefaultInventoryButton.Size = new System.Drawing.Size(103, 29);
-            this.DefaultInventoryButton.TabIndex = 5;
-            this.DefaultInventoryButton.Text = "!Default Inventory";
-            this.DefaultInventoryButton.UseVisualStyleBackColor = true;
-            this.DefaultInventoryButton.Click += new System.EventHandler(this.DefaultInventoryButton_Click);
             // 
             // SettingsButton
             // 
@@ -876,13 +1083,21 @@
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
-            // StatusLabel
+            // MainFormLayout
             // 
-            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
-            this.StatusLabel.Text = "!Processing...";
+            this.MainFormLayout.ColumnCount = 1;
+            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
+            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
+            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
+            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainFormLayout.Name = "MainFormLayout";
+            this.MainFormLayout.RowCount = 2;
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.MainFormLayout.Size = new System.Drawing.Size(784, 511);
+            this.MainFormLayout.TabIndex = 10;
             // 
             // MainForm
             // 
@@ -898,9 +1113,15 @@
             this.Text = "!Ice Cream Manager";
             this.MainTabs.ResumeLayout(false);
             this.RevenueTab.ResumeLayout(false);
-            this.RevenueTabs.ResumeLayout(false);
-            this.OverallRevenueTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.RevenueLayout.ResumeLayout(false);
+            this.RevenueLayout.PerformLayout();
+            this.RevenueTabLayout.ResumeLayout(false);
+            this.GridTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RevenueGrid)).EndInit();
+            this.GraphTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RevenueChart)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.TrucksTab.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -949,12 +1170,6 @@
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.TableLayoutPanel ExtraButtonsLayout;
         private System.Windows.Forms.ToolTip MainToolTips;
-        private System.Windows.Forms.TabControl RevenueTabs;
-        private System.Windows.Forms.TabPage OverallRevenueTab;
-        private System.Windows.Forms.TabPage SalesTab;
-        private System.Windows.Forms.TabPage ItemWasteTab;
-        private System.Windows.Forms.TabPage SalaryCostTab;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TableLayoutPanel MainFormLayout;
         private System.Windows.Forms.TableLayoutPanel ItemLayoutTable;
         protected System.Windows.Forms.Button RemoveItemButton;
@@ -975,7 +1190,6 @@
         protected System.Windows.Forms.Button EditRouteButton;
         public System.Windows.Forms.DataGridView ItemGridView;
         private System.Windows.Forms.TabPage BatchTab;
-        private System.Windows.Forms.TabPage FuelUsageTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.DataGridView DriverGridView;
         protected System.Windows.Forms.Button RemoveDriverButton;
@@ -989,5 +1203,26 @@
         protected System.Windows.Forms.Button AddTruckButton;
         protected System.Windows.Forms.Button EditTruckButton;
         protected System.Windows.Forms.Button DefaultInventoryButton;
+        private System.Windows.Forms.TableLayoutPanel RevenueLayout;
+        private System.Windows.Forms.TabControl RevenueTabLayout;
+        private System.Windows.Forms.TabPage GridTab;
+        private System.Windows.Forms.DataGridView RevenueGrid;
+        private System.Windows.Forms.TabPage GraphTab;
+        private System.Windows.Forms.DataVisualization.Charting.Chart RevenueChart;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label StartDateLabel;
+        private System.Windows.Forms.DateTimePicker StartDateBox;
+        private System.Windows.Forms.Label EndDateLabel;
+        private System.Windows.Forms.DateTimePicker EndDateBox;
+        private System.Windows.Forms.Label RouteRevenueLabel;
+        private System.Windows.Forms.Label CityRevenueLabel;
+        private System.Windows.Forms.Label TruckRevenueLabel;
+        private System.Windows.Forms.Label DriverRevenueLabel;
+        private System.Windows.Forms.Label ItemRevenueLabel;
+        private System.Windows.Forms.ComboBox RouteRevenueBox;
+        private System.Windows.Forms.ComboBox CityRevenueBox;
+        private System.Windows.Forms.ComboBox TruckRevenueBox;
+        private System.Windows.Forms.ComboBox DriverRevenueBox;
+        private System.Windows.Forms.ComboBox ItemRevenueBox;
     }
 }

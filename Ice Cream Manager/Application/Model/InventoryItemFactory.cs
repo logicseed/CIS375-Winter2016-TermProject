@@ -205,5 +205,12 @@ namespace IceCreamManager.Model
             var sql = $"UPDATE InventoryItem SET TruckID = {newID} WHERE TruckID = {oldID}";
             Database.NonQuery(sql);
         }
+
+        public int GetInventoryQuantity(int truckID, int itemID)
+        {
+            var sql = $"SELECT count(*) FROM IventoryItem WHERE TruckID = {truckID} AND ItemID = {itemID}";
+            var table = Database.Query(sql);
+            return table.Row().Col();
+        }
     }
 }

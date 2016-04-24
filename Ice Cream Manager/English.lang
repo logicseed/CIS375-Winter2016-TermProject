@@ -29,6 +29,7 @@ Save = Save
 Discard = Discard
 OK = OK
 Update = Update
+All = All
 
 # Settings editor phrases
 SettingsEditor = Settings Editor

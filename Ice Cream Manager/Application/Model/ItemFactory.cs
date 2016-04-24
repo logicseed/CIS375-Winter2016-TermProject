@@ -113,5 +113,16 @@ namespace IceCreamManager.Model
             var table = Database.Query(sql);
             return table.Row().Col<string>("Description");
         }
+
+        internal void GetItemNumberList(ref Dictionary<int, string> itemList)
+        {
+            var sql = $"SELECT * FROM Item WHERE IsDeleted = 0 ORDER BY Description";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                itemList.Add(row.Col("Number"), row.Col<string>("Description"));
+            }
+        }
     }
 }
