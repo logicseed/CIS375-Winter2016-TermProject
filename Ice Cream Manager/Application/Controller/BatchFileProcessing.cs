@@ -19,6 +19,7 @@ namespace IceCreamManager.Controller
         protected DriverFactory driverAction = DriverFactory.Reference;
         protected RouteFactory routeAction = RouteFactory.Reference;
         protected TruckFactory truckAction = TruckFactory.Reference;
+        protected InventoryItemFactory inventoryAction = InventoryItemFactory.Reference;
 
         protected string fileLine;
         protected int countedLines = 0;
@@ -85,15 +86,16 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    throw new ExceptionWithOutcome($"Batch file: {FileType} - Incorrect sequence number format.");
+                    throw new ExceptionWithOutcome($"Batch file: {FileType} - Invalid sequence number format.");
                 }
                 date = Extract<DateTime>(ref fileLine, 10);
 
+                fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (headerRecord == "HD")
                     {
-                        Log.Success("Message");
+                        Log.Success($"Batch file: { FileType } - Header record found.");
                     }
                     else
                     {
@@ -102,7 +104,7 @@ namespace IceCreamManager.Controller
 
                     if (sequenceNumber == BatchHistory.GetSequence(FileType))
                     {
-                        Log.Success("Message");
+                        Log.Success($"Batch file: { FileType } - Date sequence number processed.");
                     }
                     else
                     {
@@ -111,7 +113,7 @@ namespace IceCreamManager.Controller
 
                     if (date >= BatchHistory.GetDateUpdated(FileType))
                     {
-                        Log.Success("Message");
+                        Log.Success($"Batch file: { FileType } - Date processed.");
                     }
                     else
                     {
@@ -132,10 +134,10 @@ namespace IceCreamManager.Controller
                     }
                     extractedData = Extract<string>(ref fileLine, 2);
                     extractedData.TrimEnd(trim);
-
+                    fileLine.TrimEnd(trim);
                     if (extractedData == "T")
                     {
-                        trailerNumber = Extract<int>(ref fileLine, 4);
+                        trailerNumber = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
                         if (trailerNumber == countedRecords)
                         {
                             BatchHistory.SetSequence(FileType, sequenceNumber);
@@ -146,17 +148,17 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            throw new ExceptionWithOutcome($"Batch file: { FileType } - Sequence number out of order.");
+                            throw new ExceptionWithOutcome($"Batch file: { FileType } - Trailer record doesn't match number of records in file.");
                         }
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome("Message");
+                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Trailer record not found.");
                     }
                 }
                 else
                 {
-                    throw new ExceptionWithOutcome("Message");
+                    throw new ExceptionWithOutcome($"Batch file: { FileType } - Extraneous characters beyond record length");
                 }
             }
             catch (Exception e)
@@ -197,12 +199,10 @@ namespace IceCreamManager.Controller
         }
 
         /// <summary>
-        /// Processes City file, Rejects line if information is invalid.
-        /// 
-        ///HD SEQ#      YYYY-MM-DD 
-        ///|------city label----||------city name-----||state|
-        ///T #ROWS
-        ///     
+        /// Processes City files, extracts city labels, city name, and state. Accepts these values as they are.
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |------city label----||------city name-----||state|
+        ///     T #ROWS  
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessCityFile(string FilePath)
@@ -222,23 +222,22 @@ namespace IceCreamManager.Controller
                 if (fileLine == "")
                 {
                     ApplyNewCityData();
-                    Log.Success("Message");
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.City } - Extraneous characters beyond record length, failed to add city label: {cityLabel}.");
                 }
             }
-            Log.Success("Message");
+            Log.Success($"Batch file: { BatchFileType.City } - Successful.");
             file.Close();
         }
 
         /// <summary>
-        /// 
-        ///HD SEQ#      YYYY-MM-DD
-        ///|------city label----||Hours||Miles|
-        ///T ROWS
-        ///
+        /// Processes city file extension that adds the time and distance for each city label.
+        /// Checks if these labels exist in the DB, add hours and miles values if they do. Else reject line.
+        ///     HD SEQ#      YYYY-MM-DD
+        ///     |------city label----||Hours||Miles|
+        ///     T ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessCityFileExtension(string FilePath)
@@ -261,7 +260,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid hours format, line: {countedLines}.");
                     continue;
                 }
 
@@ -271,7 +270,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid miles format, line: {countedLines}.");
                     continue;
                 }
 
@@ -279,17 +278,16 @@ namespace IceCreamManager.Controller
                 {
                     if (cityAction.Exists(cityLabel))
                     {
-                        Log.Success("Message");
                         ApplyCityHoursMiles();
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.CityExtension } - City label does not exist, line: {countedLines}.");
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.City } - Extraneous characters beyond record length, line: {countedLines}.");
                 }
             }
             Log.Success("Message");
@@ -320,6 +318,7 @@ namespace IceCreamManager.Controller
                 {
                     Log.Failure("Message");
                     routeComposition.Clear();
+                    break;
                 }
             }
         }
@@ -337,11 +336,10 @@ namespace IceCreamManager.Controller
             newRoute.Save();
         }
         /// <summary>
-        /// 
-        ///HD SEQ#      YYYY-MM-DD    
-        ///|action code||Route Number||-----city label-----|*10
-        ///T #ROWS
-        ///
+        /// Processes route files
+        ///     HD SEQ#      YYYY-MM-DD    
+        ///     |action code||Route Number||-----city label-----|*10
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessRouteFile(string FilePath)
@@ -432,10 +430,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// |Truck Number|
-        /// T #ROWS
-        /// 
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Truck Number|
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckFile(string FilePath)
@@ -475,10 +472,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// |Truck Number||Fuel Rate|
-        /// T #ROWS
-        ///
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Truck Number||Fuel Rate|
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckFuelFile(string FilePath)
@@ -533,10 +529,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// |Truck Number||Driver Number|
-        /// T #ROWS
-        /// 
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Truck Number||Driver Number|
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckDriverFile(string FilePath)
@@ -598,10 +593,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// |Truck Number||Route Number|
-        /// T #ROWS
-        /// 
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Truck Number||Route Number|
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessTruckRouteFile(string FilePath)
@@ -679,10 +673,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// |Driver Number||Driver Name||Hourly Rate|
-        /// T #ROWS
-        /// 
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Driver Number||Driver Name||Hourly Rate|
+        ///     T #ROWS
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessDriverFile(string FilePath)
@@ -742,18 +735,21 @@ namespace IceCreamManager.Controller
         int fileRecord;
         int itemNumber;
         int adjustmentQuantity;
+        int oldQuantity;
         int truckNumber;
+        int truckID;
+        int itemID;
         List<int> adjustmentRecord;
         List<int> itemRecord;
+        List<bool> addItem;
 
         /// <summary>
         /// 
-        /// HD SEQ#      YYYY-MM-DD 
-        /// TR|Truck Number|
-        /// |Item Number||Adjustment Quantity|
-        /// IR #ROWS FOR TRUCK
-        /// T #ROWS IN FILE
-        /// 
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     TR|Truck Number|
+        ///     |Item Number||Adjustment Quantity|
+        ///     IR #ROWS FOR TRUCK
+        ///     T #ROWS IN FILE
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessIceCreamTruckFile(string FilePath)
@@ -822,31 +818,28 @@ namespace IceCreamManager.Controller
 
                         if (fileLine == "")
                         {
-                            if (itemAction.NumberInUse(itemNumber)) //AND the item is in the default list created by the user
+                            oldQuantity = inventoryAction.GetInventoryQuantity(truckID, itemID);
+                            if (oldQuantity > 0)
                             {
-                                Item oldItem = new Item();
-                                oldItem = itemAction.LoadByNumber(itemNumber);
-                                if ((adjustmentQuantity + oldItem.Quantity) > 0) //Change item quantity
+                                if (adjustmentQuantity + oldQuantity > 0) //Change item quantity
                                 {
-                                    //TODO: How to check if it's in the default list? Where is the default list stored?
                                     itemRecord.Add(itemNumber);
-                                    adjustmentRecord.Add(adjustmentQuantity + oldItem.Quantity);
+                                    adjustmentRecord.Add(adjustmentQuantity + oldQuantity);
+                                    addItem.Add(false);
                                 }
                                 else
                                 {
                                     Log.Failure("Message");
                                 }
                             }
-                            else if (itemAction.NumberInUse(itemNumber)) //AND the item is not in the default list
+                            else if (itemAction.NumberInUse(itemNumber))
                             {
-                                Item oldItem = new Item();
-                                oldItem = itemAction.LoadByNumber(itemNumber);
-                                if (adjustmentQuantity > 0) //AND the number of items on the default list is less than 5
+                                if (adjustmentQuantity > 0)
                                 {
-                                    //TODO: How to check if it's in the default list? Where is the default list stored?
                                     //Create change record for how much is in the OVERALL INVENTORY
                                     itemRecord.Add(itemNumber);
                                     adjustmentRecord.Add(adjustmentQuantity);
+                                    addItem.Add(true);
                                 }
                                 else
                                 {
@@ -868,18 +861,34 @@ namespace IceCreamManager.Controller
                         fileRecord = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
                         if (fileRecord == countedRecords)
                         {
-                            //Load truck inventory
-                            //For each item in the list, change quantities in the truck
-                            //Apply data
+                            truckID = truckAction.GetID(truckNumber);
+                            for (int index = 0; index < countedRecords; index++)
+                            {
+                                itemID = itemAction.GetID(itemRecord[index]);
+                                if (addItem[index] == false)
+                                {
+                                    inventoryAction.ChangeMany(itemID, truckID, adjustmentRecord[index]);
+                                }
+                                else
+                                {
+                                    inventoryAction.Add(itemID, truckID, adjustmentRecord[index]);
+                                }
+                            }
+                            itemRecord.Clear();
+                            adjustmentRecord.Clear();
                         }
                         else
                         {
                             Log.Failure("Message");
+                            itemRecord.Clear();
+                            adjustmentRecord.Clear();
                         }
                     }
                     else
                     {
                         Log.Failure("Message");
+                        itemRecord.Clear();
+                        adjustmentRecord.Clear();
                     }
                 }
                 else
@@ -897,19 +906,22 @@ namespace IceCreamManager.Controller
         int countedRecords = 0;
         int fileRecord;
         int itemNumber;
+        int oldQuantity;
         int newQuantity;
         int truckNumber;
+        int truckID;
+        int itemID;
         List<int> itemRecord;
         List<int> quantityRecord;
+        Dictionary<Item, int> itemList;
 
         /// <summary>
         /// 
-        ///  HD SEQ#      YYYY-MM-DD 
-        /// TR|Truck Number|
-        /// |Item Number||Final Quantity|
-        /// SR #ROWS FOR TRUCK
-        ///  T #ROWS IN FILE
-        ///        
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     TR|Truck Number|
+        ///     |Item Number||Final Quantity|
+        ///     SR #ROWS FOR TRUCK
+        ///     T #ROWS IN FILE       
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessIceCreamTruckSalesFile(string FilePath)
@@ -976,14 +988,13 @@ namespace IceCreamManager.Controller
 
                         if (fileLine == "")
                         {
-                            if (itemAction.NumberInUse(itemNumber)) //AND the item is in the starting list for that truck
+                            itemID = itemAction.GetID(itemNumber);
+                            truckID = truckAction.GetID(truckNumber);
+                            oldQuantity = inventoryAction.GetInventoryQuantity(truckID, itemID);
+                            if ( oldQuantity > 0 )
                             {
-                                Item oldItem = new Item();
-                                oldItem = itemAction.LoadByNumber(itemNumber);
-
-                                if (newQuantity <= oldItem.Quantity)
+                                if (newQuantity <= oldQuantity)
                                 {
-                                    //Create change record
                                     itemRecord.Add(itemNumber);
                                     quantityRecord.Add(newQuantity);
                                 }
@@ -1007,8 +1018,12 @@ namespace IceCreamManager.Controller
                         fileRecord = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
                         if (fileRecord == countedRecords)
                         {
-                            //Apply data
-
+                            truckID = truckAction.GetID(truckNumber);
+                            for (int index = 0; index < countedRecords; index++)
+                            {
+                                itemID = itemAction.GetID(itemRecord[index]);
+                                inventoryAction.SellMany(itemID, truckID, quantityRecord[index]);
+                            }
                             itemRecord.Clear();
                             quantityRecord.Clear();
                         }
@@ -1045,10 +1060,9 @@ namespace IceCreamManager.Controller
 
         /// <summary>
         /// 
-        ///  HD SEQ#      YYYY-MM-DD 
-        ///  |Item Number||Warehouse Quantity||Price||Description|
-        ///  T #ROWS IN FILE
-        ///  
+        ///     HD SEQ#      YYYY-MM-DD 
+        ///     |Item Number||Warehouse Quantity||Price||Description|
+        ///     T #ROWS IN FILE
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessInventoryUpdateFile(string FilePath)
@@ -1112,10 +1126,9 @@ namespace IceCreamManager.Controller
         }
         /// <summary>
         /// 
-        /// HD SEQ#		YYYY-MM-DD
-        /// |Item number||Item freshness|
-        /// T #ROWS IN FILE
-        /// 
+        ///     HD SEQ#		YYYY-MM-DD
+        ///     |Item number||Item freshness|
+        ///     T #ROWS IN FILE
         /// </summary>
         /// <param name="FilePath">Pathing to the input file</param>
         public void ProcessInventoryUpdateExtensionFile(string FilePath)

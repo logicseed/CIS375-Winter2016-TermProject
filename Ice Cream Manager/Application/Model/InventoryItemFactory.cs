@@ -154,6 +154,12 @@ namespace IceCreamManager.Model
 
             return TableToReturn;
         }
+        public int GetInventoryQuantity(int truckID, int itemID)
+        {
+            var sql = $"SELECT count(*) FROM IventoryItem WHERE TruckID = {truckID} AND ItemID = {itemID}";
+            var table = Database.Query(sql);
+            return table.Row().Col();
+        }
 
         public void Add(int itemID, int truckID, int quantity = 1)
         {
