@@ -2,10 +2,15 @@
 # Main screen
 
 Revenue = Revenue
+Truck = Truck
 Trucks = Trucks
+Item = Item
 Items = Items
+Driver = Driver
 Drivers = Drivers
+Route = Route
 Routes = Routes
+City = City
 Cities = Cities
 Processing = Processing
 Settings = Settings
@@ -13,16 +18,23 @@ ViewLog = View Log
 About = About
 
 AddCity = Add City
+AddItem = Add Item
 RemoveCity = Remove City
+RemoveItem = Remove Item
+WasteItem = Waste Item
+SellItem = Sell Item
 
 # Generic editor phrases
 Save = Save
 Discard = Discard
+OK = OK
+Update = Update
 
 # Settings editor phrases
 SettingsEditor = Settings Editor
 Language = Language
 Currency = Currency
+FuelRate = Fuel Rate
 
 # Entity list phrases
 Add = Add
@@ -30,13 +42,15 @@ Edit = Edit
 Remove = Remove
 ShowDeleted = Show Deleted
 Deleted = Deleted
+Stock = Stock
 
-# Column headers
+
 ItemEditor = Item Editor
 CityEditor = City Editor
 RouteEditor = Route Editor
 DriverEditor = Driver Editor
 TruckEditor = Truck Editor
+DefaultInventoryEditor = Default Inventory Editor
 
 Label = Label
 State = State
@@ -65,7 +79,10 @@ DescriptionBlank = Description Blank
 DescriptionBlankMsg = The description cannot be blank.
 RouteCityBlank = No Route Cities
 RouteCityBlankMsg = A route must contain cities.
-
+DefaultItemMax = Too Many Items
+DefaultItemMaxMsg = You cannot add more items to the default inventory.
+TooManyItems = Too Many Items
+TooManyItemsMsg = You cannot add more items to the inventory.
 
 
 # Unit test strings

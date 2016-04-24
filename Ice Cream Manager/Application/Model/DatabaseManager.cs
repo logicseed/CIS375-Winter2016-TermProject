@@ -325,6 +325,7 @@ namespace IceCreamManager.Model
                 throw new Exception("Error marking a database row as deleted.", e);
             }
         }
+
     }
 
     /// <summary>
@@ -340,8 +341,7 @@ namespace IceCreamManager.Model
         private static DatabaseManager DatabaseMan = DatabaseManager.Reference;
         public static DataTable Query(string query) => DatabaseMan.DataTableFromCommand(query);
         public static int NonQuery(string nonQuery) => DatabaseMan.ExecuteCommand(nonQuery);
-
-
-
     }
+
+    
 }

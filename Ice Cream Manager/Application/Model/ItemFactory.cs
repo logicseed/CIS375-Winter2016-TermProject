@@ -80,6 +80,20 @@ namespace IceCreamManager.Model
             return TableToReturn;
         }
 
+        public List<Item> GetAvailableItemList()
+        {
+            var sql = "SELECT ID FROM Item WHERE IsDeleted = 0";
+            var table = Database.Query(sql);
+
+            var list = new List<Item>();
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(Load(row.Col("ID")));
+            }
+
+            return list;
+        }
+
         public Item LoadItem(int ID)
         {
             var DatabaseCommand = $"SELECT * FROM Item WHERE ID = {ID}";
@@ -91,6 +105,13 @@ namespace IceCreamManager.Model
         protected override string SaveLogString(Item item)
         {
             return $"Item {item.Number} - {item.Description} for {Language.UserCurrency}{item.Price}, with {item.Quantity} in stock that will last {item.Lifetime} days.";
+        }
+
+        public string GetNameByID(int itemID)
+        {
+            var sql = $"SELECT Description FROM Item WHERE ID = {itemID}";
+            var table = Database.Query(sql);
+            return table.Row().Col<string>("Description");
         }
     }
 }

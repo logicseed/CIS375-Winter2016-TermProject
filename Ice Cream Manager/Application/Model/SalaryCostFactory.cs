@@ -21,21 +21,20 @@ namespace IceCreamManager.Model
         #endregion Singleton
 
         protected override string DatabaseQueryColumns()
-            => "DriverID,RouteID,DateWorked";
+            => "TruckID,DateWorked";
 
         protected override string DatabaseQueryColumnValuePairs(SalaryCost salaryCost)
-            => $"DriverID = {salaryCost.DriverID},RouteID = {salaryCost.RouteID},DateWorked = '{salaryCost.DateWorked.ToDatabase()}'";
+            => $"TruckID = {salaryCost.TruckID},DateWorked = '{salaryCost.DateWorked.ToDatabase()}'";
 
         protected override string DatabaseQueryValues(SalaryCost salaryCost)
-            => $"{salaryCost.DriverID},{salaryCost.RouteID},'{salaryCost.DateWorked.ToDatabase()}'";
+            => $"{salaryCost.TruckID},'{salaryCost.DateWorked.ToDatabase()}'";
 
         protected override SalaryCost MapDataRowToProperties(DataRow row)
         {
             SalaryCost salaryCost = new SalaryCost();
 
             salaryCost.ID = row.Col("ID");
-            salaryCost.DriverID = row.Col("DriverID");
-            salaryCost.RouteID = row.Col("RouteID");
+            salaryCost.TruckID = row.Col("TruckID");
             salaryCost.DateWorked = row.Col<DateTime>("DateWorked");
             salaryCost.InDatabase = true;
             salaryCost.IsSaved = true;

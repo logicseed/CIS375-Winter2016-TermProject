@@ -72,7 +72,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (inventory == null) inventory = truckFactory.LoadInventoryList(ID);
+                if (inventory == null) inventory = Factory.Truck.LoadInventoryList(ID);
                 return inventory;
             }
 
@@ -93,6 +93,7 @@ namespace IceCreamManager.Model
             {
                 routeID = value;
                 IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
@@ -103,7 +104,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (route == null) route = truckFactory.LoadTruckRoute(routeID);
+                if (route == null || routeID != route.ID) route = Factory.Route.Load(routeID);
                 return route;
             }
 
@@ -124,6 +125,7 @@ namespace IceCreamManager.Model
             {
                 driverID = value;
                 IsSaved = false;
+                ReplaceOnSave = true;
             }
         }
 
@@ -134,7 +136,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (driver == null) driver = truckFactory.LoadTruckDriver(driverID);
+                if (driver == null || driverID != driver.ID) driver = Factory.Driver.Load(driverID);
                 return driver;
             }
             set
