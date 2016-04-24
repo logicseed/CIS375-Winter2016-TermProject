@@ -55,25 +55,32 @@ namespace IceCreamManager.Model
             return MapDataRowToProperties(ResultsTable.Rows[0]);
         }
 
+        public DatabaseEntityType LoadByNumber(int number)
+        {
+            string DatabaseCommand = $"SELECT * FROM {TableName} WHERE Number = {number}";
+            DataTable ResultsTable = Database.Query(DatabaseCommand);
+            return MapDataRowToProperties(ResultsTable.Rows[0]);
+        }
+
         public bool Load(DatabaseEntityType entity)
         {
             string DatabaseCommand = $"SELECT * FROM {TableName} WHERE ID = {entity.ID}";
-            DataTable ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
+            DataTable ResultsTable = Database.Query(DatabaseCommand);
             entity = MapDataRowToProperties(ResultsTable.Rows[0]);
             return true;
         }
 
+
         public DatabaseEntityType New()
         {
             DatabaseEntityType entity = new DatabaseEntityType();
-            SubscribeToEntityEvents(entity);
             return new DatabaseEntityType();
         }
 
         public decimal NextNumber()
         {
             var DatabaseCommand = $"SELECT Max(Number) FROM {TableName} WHERE IsDeleted = 0";
-            var ResultsTable = DatabaseMan.DataTableFromCommand(DatabaseCommand);
+            var ResultsTable = Database.Query(DatabaseCommand);
 
             return ResultsTable.Row().Col() + 1;
         }
@@ -82,7 +89,7 @@ namespace IceCreamManager.Model
         {
             string DatabaseCommand = $"SELECT * FROM {TableName}";
             if (!includeDeleted) DatabaseCommand += " WHERE IsDeleted = 0";
-            return DatabaseMan.DataTableFromCommand(DatabaseCommand);
+            return Database.Query(DatabaseCommand);
         }
 
         #endregion Public Methods
@@ -151,7 +158,7 @@ namespace IceCreamManager.Model
         {
             // TODO: Make this search for existing entities with the same values to reduce db clutter.
             string DatabaseCommand = $"INSERT INTO {TableName} ({DatabaseQueryColumns()}) VALUES ({DatabaseQueryValues(entity)})";
-            if (DatabaseMan.ExecuteCommand(DatabaseCommand) > 0)
+            if (Database.NonQuery(DatabaseCommand) > 0)
             {
                 entity.ID = DatabaseMan.LastInsertID;
                 entity.InDatabase = true;
@@ -165,7 +172,7 @@ namespace IceCreamManager.Model
 
         abstract protected DatabaseEntityType MapDataRowToProperties(DataRow row);
 
-        protected bool Replace(DatabaseEntityType entity)
+        protected virtual bool Replace(DatabaseEntityType entity)
         {
             EntityCache.Remove(TableName, entity);
             DatabaseMan.MarkAsDeleted(TableName, entity.ID);
@@ -196,26 +203,6 @@ namespace IceCreamManager.Model
         }
 
         #endregion Protected Methods
-
-        #region Private Methods
-
-        private void DatabaseEntityProperties_SaveImmediately(DatabaseEntity entity)
-        {
-            Save((DatabaseEntityType)entity);
-        }
-
-        private void DatabaseEntityProperties_UndoImmediately(DatabaseEntity entity)
-        {
-            Load((DatabaseEntityType)entity);
-        }
-
-        private void SubscribeToEntityEvents(DatabaseEntityType entity)
-        {
-            entity.OnSaveImmediately += DatabaseEntityProperties_SaveImmediately;
-            entity.OnUndoImmediately += DatabaseEntityProperties_UndoImmediately;
-        }
-
-        #endregion Private Methods
 
     }
 }

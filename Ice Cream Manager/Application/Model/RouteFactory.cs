@@ -43,6 +43,20 @@ namespace IceCreamManager.Model
             return route;
         }
 
+        internal List<Route> GetAvailableRouteList(int truckID)
+        {
+            var sql = $"SELECT ID FROM Route WHERE ID NOT IN (SELECT RouteID FROM Truck WHERE ID != {truckID} AND IsDeleted = 0) AND IsDeleted = 0";
+            var table = Database.Query(sql);
+
+            var list = new List<Route>();
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(Load(row.Col("ID")));
+            }
+
+            return list;
+        }
+
         public List<City> LoadCityList(int routeID)
         {
             return Factory.City.GetCityList(routeID);
@@ -71,11 +85,11 @@ namespace IceCreamManager.Model
                 RowToReturn["Number"] = Row.Col("Number");
 
                 string CitiesColumn = "";
-                foreach (City city in  Factory.City.GetCityList(Row.Col("ID")))
+                foreach (City city in Factory.City.GetCityList(Row.Col("ID")))
                 {
                     CitiesColumn += city.Label + ", ";
                 }
-                if (CitiesColumn.Length > 0) CitiesColumn = CitiesColumn.Substring(0, CitiesColumn.Length - 2);
+                if (Factory.City.GetCityList(Row.Col("ID")).Count > 1) CitiesColumn = CitiesColumn.Substring(0, CitiesColumn.Length - 2);
                 RowToReturn["Cities"] = CitiesColumn;
                 RowToReturn["IsDeleted"] = Row.Col<bool>("IsDeleted");
 

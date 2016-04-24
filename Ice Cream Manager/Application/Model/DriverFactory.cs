@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 /// <project> IceCreamManager </project>
 /// <module> DriverFactory </module>
 /// <author> Marc King </author>
@@ -41,6 +42,20 @@ namespace IceCreamManager.Model
             driver.IsSaved = true;
 
             return driver;
+        }
+
+        internal List<Driver> GetAvailableDriverList(int truckID)
+        {
+            var sql = $"SELECT ID FROM Driver WHERE ID NOT IN (SELECT DriverID FROM Truck WHERE ID != {truckID} AND IsDeleted = 0) AND IsDeleted = 0";
+            var table = Database.Query(sql);
+
+            var list = new List<Driver>();
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(Load(row.Col("ID")));
+            }
+
+            return list;
         }
 
         protected override string SaveLogString(Driver driver)

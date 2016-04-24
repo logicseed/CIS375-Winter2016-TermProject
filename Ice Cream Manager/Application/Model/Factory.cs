@@ -21,5 +21,7 @@ namespace IceCreamManager.Model
         public static TruckFactory Truck { get { return TruckFactory.Reference; } }
         public static InventoryItemFactory InventoryItem { get { return InventoryItemFactory.Reference; } }
         public static LogEntryFactory Log { get { return LogEntryFactory.Reference; } }
+        public static SaleFactory Sale { get { return SaleFactory.Reference; } }
+        public static ItemWasteFactory ItemWaste { get { return ItemWasteFactory.Reference; } }
     }
 }

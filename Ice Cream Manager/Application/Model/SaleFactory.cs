@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.Model
 {
@@ -48,6 +49,20 @@ namespace IceCreamManager.Model
         protected override string SaveLogString(Sale entity)
         {
             throw new NotImplementedException();
+        }
+
+        public void SellMany(int itemID, int truckID, int quantity)
+        {
+            var sql = $"INSERT INTO Sale (ItemID, TruckID, DateSold) VALUES ";
+            for (int i = 0; i < quantity; i++)
+            {
+                sql += $"({itemID},{truckID},'{DateTime.Now.ToDatabase()}'),";
+            }
+            sql = sql.TrimEnd(',');
+
+            Database.NonQuery(sql);
+            Log.Success($"Sold {quantity} {Factory.Item.GetNameByID(itemID)} from truck number {Factory.Truck.GetNumberByID(truckID)}.");
+
         }
     }
 }

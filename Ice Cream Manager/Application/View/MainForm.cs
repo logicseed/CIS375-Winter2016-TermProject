@@ -70,6 +70,7 @@ namespace IceCreamManager.View
         {
             var TruckDataTable = Factory.Truck.GetDataTable(ShowDeletedTrucks.Checked);
             AddSourceAndFillColumnToGridview(ref TruckGridView, ref TruckDataTable);
+            TruckGridView.Columns["FuelRate"].DefaultCellStyle.Format = $"{Language.UserCurrency}#.0#";
             SetLocalizedTruckStrings();
         }
 
@@ -161,18 +162,20 @@ namespace IceCreamManager.View
         private void AddTruckButton_Click(object sender, EventArgs e)
         {
             var truckEditor = new TruckEditor();
-            truckEditor.Show();
+            truckEditor.ShowDialog();
         }
 
         private void EditCityButton_Click(object sender, EventArgs e)
         {
-            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
-            var cityEditor = new CityEditor(CityID);
+            if (CityGridView.SelectedRows.Count == 0) return;
+            int cityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
+            var cityEditor = new CityEditor(cityID);
             cityEditor.ShowDialog();
         }
 
         private void EditDriverButton_Click(object sender, EventArgs e)
         {
+            if (DriverGridView.SelectedRows.Count == 0) return;
             int driverID = Convert.ToInt32(DriverGridView.SelectedRows[0].Cells["ID"].Value);
             var driverEditor = new DriverEditor(driverID);
             driverEditor.ShowDialog();
@@ -180,13 +183,15 @@ namespace IceCreamManager.View
 
         private void EditItemButton_Click(object sender, EventArgs e)
         {
-            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
-            var itemEditor = new ItemEditor(ItemID);
+            if (ItemGridView.SelectedRows.Count == 0) return;
+            int itemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            var itemEditor = new ItemEditor(itemID);
             itemEditor.ShowDialog();
         }
 
         private void EditRouteButton_Click(object sender, EventArgs e)
         {
+            if (RouteGridView.SelectedRows.Count == 0) return;
             int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
             var routeEditor = new RouteEditor(routeID);
             routeEditor.ShowDialog();
@@ -194,8 +199,10 @@ namespace IceCreamManager.View
 
         private void EditTruckButton_Click(object sender, EventArgs e)
         {
-            var truckEditor = new TruckEditor();
-            truckEditor.Show();
+            if (TruckGridView.SelectedRows.Count == 0) return;
+            int truckID = Convert.ToInt32(TruckGridView.SelectedRows[0].Cells["ID"].Value);
+            var truckEditor = new TruckEditor(truckID);
+            truckEditor.ShowDialog();
         }
 
         private void LogButton_Click(object sender, EventArgs e)
@@ -256,5 +263,11 @@ namespace IceCreamManager.View
         }
 
         #endregion Private Methods
+
+        private void DefaultInventoryButton_Click(object sender, EventArgs e)
+        {
+            var defaultInventoryEditor = new DefaultInventoryEditor();
+            defaultInventoryEditor.ShowDialog();
+        }
     }
 }

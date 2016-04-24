@@ -5,6 +5,7 @@
 
 using System;
 using System.Data;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.Model
 {
@@ -43,6 +44,20 @@ namespace IceCreamManager.Model
         protected override string SaveLogString(ItemWaste entity)
         {
             throw new NotImplementedException();
+        }
+
+        internal void WasteMany(int itemID, int truckID, int quantity)
+        {
+            var sql = $"INSERT INTO ItemWaste (ItemID, TruckID, DateExpired) VALUES ";
+            for (int i = 0; i < quantity; i++)
+            {
+                sql += $"({itemID},{truckID},'{DateTime.Now.ToDatabase()}'),";
+            }
+            sql = sql.TrimEnd(',');
+
+            Database.NonQuery(sql);
+            Log.Success($"Wasted {quantity} {Factory.Item.GetNameByID(itemID)} from truck number {Factory.Truck.GetNumberByID(truckID)}.");
+
         }
     }
 }

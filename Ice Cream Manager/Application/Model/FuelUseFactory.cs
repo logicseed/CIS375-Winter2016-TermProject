@@ -21,20 +21,19 @@ namespace IceCreamManager.Model
         #endregion Singleton
 
         protected override string DatabaseQueryColumns()
-            => "RouteID,TruckID,DateUsed";
+            => "TruckID,DateUsed";
 
         protected override string DatabaseQueryColumnValuePairs(FuelUse fuelUse)
-            => $"RouteID = {fuelUse.RouteID},TruckID = {fuelUse.TruckID},DateUsed = '{fuelUse.DateUsed.ToDatabase()}'";
+            => $"TruckID = {fuelUse.TruckID},DateUsed = '{fuelUse.DateUsed.ToDatabase()}'";
 
         protected override string DatabaseQueryValues(FuelUse fuelUse)
-            => $"{fuelUse.RouteID},{fuelUse.TruckID},'{fuelUse.DateUsed.ToDatabase()}'";
+            => $"{fuelUse.TruckID},'{fuelUse.DateUsed.ToDatabase()}'";
 
         protected override FuelUse MapDataRowToProperties(DataRow row)
         {
             FuelUse fuelUse = new FuelUse();
 
             fuelUse.ID = row.Col("ID");
-            fuelUse.RouteID = row.Col("RouteID");
             fuelUse.TruckID = row.Col("TruckID");
             fuelUse.DateUsed = row.Col<DateTime>("DateUsed");
             fuelUse.InDatabase = true;

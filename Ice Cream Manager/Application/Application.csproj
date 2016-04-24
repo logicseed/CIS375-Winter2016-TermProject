@@ -139,6 +139,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\DefaultInventoryEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DefaultInventoryEditor.Designer.cs">
+      <DependentUpon>DefaultInventoryEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DriverEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DefaultInventoryEditor.resx">
+      <DependentUpon>DefaultInventoryEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DriverEditor.resx">
       <DependentUpon>DriverEditor.cs</DependentUpon>
