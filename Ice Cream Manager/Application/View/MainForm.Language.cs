@@ -13,74 +13,75 @@ namespace IceCreamManager.View
         private void LocalizeForm(object sender, EventArgs e)
         {
             Text = "!Ice Cream Manager";
-            RevenueTab.Text = "!Revenue";
-            TrucksTab.Text = "!Trucks";
-            ItemsTab.Text = "!Items";
-            DriversTab.Text = "!Drivers";
-            RoutesTab.Text = "!Routes";
-            CitiesTab.Text = "!Cities";
-            StatusLabel.Text = "!Processing...";
-            MainToolTips.SetToolTip(this.SettingsButton, "!Settings");
-            MainToolTips.SetToolTip(this.LogButton, "!View Log");
-            MainToolTips.SetToolTip(this.AboutButton, "!About");
+            RevenueTab.Text = Language["Revenue"];
+            BatchTab.Text = Language["Batch"];
+            TrucksTab.Text = Language["Trucks"];
+            ItemsTab.Text = Language["Items"];
+            DriversTab.Text = Language["Drivers"];
+            RoutesTab.Text = Language["Routes"];
+            CitiesTab.Text = Language["Cities"];
+            StatusLabel.Text = Language["Processing"] + "...";
+            MainToolTips.SetToolTip(this.SettingsButton, Language["Settings"]);
+            MainToolTips.SetToolTip(this.LogButton, Language["ViewLog"]);
+            MainToolTips.SetToolTip(this.AboutButton, Language["About"]);
         }
 
         private void SetLocalizedCityStrings()
         {
-            AddCityButton.Text = "!Add";
-            EditCityButton.Text = "!Edit";
-            RemoveCityButton.Text = "!Remove";
-            ShowDeletedCities.Text = "!Show Deleted";
+            AddCityButton.Text = Language["Add"];
+            EditCityButton.Text = Language["Edit"];
+            RemoveCityButton.Text = Language["Remove"];
+            ShowDeletedCities.Text = Language["ShowDeleted"];
 
         }
 
         private void SetLocalizedDriverStrings()
         {
-            AddDriverButton.Text = "!Add";
-            EditDriverButton.Text = "!Edit";
-            RemoveDriverButton.Text = "!Remove";
-            ShowDeletedDrivers.Text = "!Show Deleted";
+            AddDriverButton.Text = Language["Add"];
+            EditDriverButton.Text = Language["Edit"];
+            RemoveDriverButton.Text = Language["Remove"];
+            ShowDeletedDrivers.Text = Language["ShowDeleted"];
         }
 
         private void SetLocalizedItemStrings()
         {
-            AddItemButton.Text = "!Add";
-            EditItemButton.Text = "!Edit";
-            RemoveItemButton.Text = "!Remove";
-            ShowDeletedItems.Text = "!Show Deleted";
+            AddItemButton.Text = Language["Add"];
+            EditItemButton.Text = Language["Edit"];
+            RemoveItemButton.Text = Language["Remove"];
+            ShowDeletedItems.Text = Language["ShowDeleted"];
         }
 
         private void SetLocalizedRouteStrings()
         {
-            AddRouteButton.Text = "!Add";
-            EditRouteButton.Text = "!Edit";
-            RemoveRouteButton.Text = "!Remove";
-            ShowDeletedRoutes.Text = "!Show Deleted";
+            AddRouteButton.Text = Language["Add"];
+            EditRouteButton.Text = Language["Edit"];
+            RemoveRouteButton.Text = Language["Remove"];
+            ShowDeletedRoutes.Text = Language["ShowDeleted"];
         }
 
         private void SetLocalizedTruckStrings()
         {
-            AddTruckButton.Text = "!Add";
-            EditTruckButton.Text = "!Edit";
-            RemoveTruckButton.Text = "!Remove";
-            DefaultInventoryButton.Text = "!Default Inventory";
-            ShowDeletedTrucks.Text = "!Show Deleted";
+            AddTruckButton.Text = Language["Add"];
+            EditTruckButton.Text = Language["Edit"];
+            RemoveTruckButton.Text = Language["Remove"];
+            DefaultInventoryButton.Text = Language["DefaultInventory"];
+            ShowDeletedTrucks.Text = Language["ShowDeleted"];
         }
 
         private void SetLocalizedRevenueStrings()
         {
-            StartDateLabel.Text = "!Start Date";
-            EndDateLabel.Text = "!End Date";
-            RouteRevenueLabel.Text = "!Route";
-            CityRevenueLabel.Text = "!City";
-            TruckRevenueLabel.Text = "!Truck";
-            DriverRevenueLabel.Text = "!Driver";
-            ItemRevenueLabel.Text = "!Item";
+            StartDateLabel.Text = Language["StartDate"];
+            EndDateLabel.Text = Language["EndDate"];
+            RouteRevenueLabel.Text = Language["Route"];
+            CityRevenueLabel.Text = Language["City"];
+            TruckRevenueLabel.Text = Language["Truck"];
+            DriverRevenueLabel.Text = Language["Driver"];
+            ItemRevenueLabel.Text = Language["Item"];
         }
 
         private void SetLocalizedBatchStrings()
         {
-            BatchTab.Text = "!Batch";
+            
         }
     }
 }

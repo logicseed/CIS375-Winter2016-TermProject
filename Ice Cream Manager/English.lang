@@ -12,6 +12,7 @@ Route = Route
 Routes = Routes
 City = City
 Cities = Cities
+Batch = Batch
 Processing = Processing
 Settings = Settings
 ViewLog = View Log
@@ -44,6 +45,7 @@ Remove = Remove
 ShowDeleted = Show Deleted
 Deleted = Deleted
 Stock = Stock
+DefaultInventory = Default Inventory
 
 
 ItemEditor = Item Editor
