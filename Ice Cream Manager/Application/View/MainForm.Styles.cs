@@ -25,31 +25,36 @@ namespace IceCreamManager.View
         {
             DeletedRowStyle.BackColor = Color.WhiteSmoke;
             DeletedRowStyle.ForeColor = Color.Gray;
-            DeletedRowStyle.SelectionBackColor = Color.Gainsboro;
-            DeletedRowStyle.SelectionForeColor = Color.Gray;
-            DeletedRowStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            DeletedRowStyle.Padding = new Padding(6, 3, 6, 3);
+            DeletedRowStyle.SelectionBackColor = Color.Silver;
+            DeletedRowStyle.SelectionForeColor = Color.Black;
             DeletedRowStyle.WrapMode = DataGridViewTriState.False;
+            DeletedRowStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            DeletedRowStyle.Font = this.Font;
             DeletedRowStyle.Font = new Font(this.Font, FontStyle.Italic);
         }
 
         private void InitializeDefaultHeaderStyle()
         {
-            DefaultHeaderStyle.BackColor = Color.WhiteSmoke;
+            DefaultHeaderStyle.BackColor = Color.Gainsboro;
             DefaultHeaderStyle.ForeColor = Color.Black;
-            DefaultHeaderStyle.SelectionBackColor = Color.Gainsboro;
+            DefaultHeaderStyle.Padding = new Padding(6, 3, 6, 3);
+            DefaultHeaderStyle.SelectionBackColor = Color.Silver;
             DefaultHeaderStyle.SelectionForeColor = Color.Black;
-            DefaultHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             DefaultHeaderStyle.WrapMode = DataGridViewTriState.False;
+            DefaultHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            DefaultHeaderStyle.Font = this.Font;
         }
 
         private void InitializeDefaultRowStyle()
         {
             DefaultRowStyle.BackColor = Color.WhiteSmoke;
             DefaultRowStyle.ForeColor = Color.Black;
-            DefaultRowStyle.SelectionBackColor = Color.Gainsboro;
+            DefaultRowStyle.Padding = new Padding(6, 3, 6, 3);
+            DefaultRowStyle.SelectionBackColor = Color.Silver;
             DefaultRowStyle.SelectionForeColor = Color.Black;
-            DefaultRowStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             DefaultRowStyle.WrapMode = DataGridViewTriState.False;
+            DefaultRowStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             DefaultRowStyle.Font = this.Font;
         }
 
@@ -68,7 +73,10 @@ namespace IceCreamManager.View
             dataGridView.MultiSelect = false;
             dataGridView.ReadOnly = true;
             dataGridView.RowHeadersVisible = false;
-            dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            if (dataGridView.Columns.Contains("ID")) dataGridView.Columns["ID"].Visible = false;
         }
 
         private void MarkDeletedRows(ref DataGridView dataGridView)

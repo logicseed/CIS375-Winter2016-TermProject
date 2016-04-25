@@ -40,7 +40,7 @@ namespace IceCreamManager.View
             this.ItemsLabel = new System.Windows.Forms.Label();
             this.UnderItemGridLayout = new System.Windows.Forms.TableLayoutPanel();
             this.ItemQuantityBox = new System.Windows.Forms.NumericUpDown();
-            this.ItemsBox = new System.Windows.Forms.ComboBox();
+            this.ItemBox = new System.Windows.Forms.ComboBox();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.FormLayout.SuspendLayout();
             this.ButtonLayout.SuspendLayout();
@@ -87,7 +87,7 @@ namespace IceCreamManager.View
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.OKButton.AutoSize = true;
-            this.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.OKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OKButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OKButton.Location = new System.Drawing.Point(3, 3);
             this.OKButton.Name = "OKButton";
@@ -142,6 +142,7 @@ namespace IceCreamManager.View
             this.ItemGridView.ReadOnly = true;
             this.ItemGridView.Size = new System.Drawing.Size(272, 225);
             this.ItemGridView.TabIndex = 1;
+            this.ItemGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemGridView_CellClick);
             // 
             // ItemsLabel
             // 
@@ -163,7 +164,7 @@ namespace IceCreamManager.View
             this.UnderItemGridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.UnderItemGridLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.UnderItemGridLayout.Controls.Add(this.ItemQuantityBox, 1, 0);
-            this.UnderItemGridLayout.Controls.Add(this.ItemsBox, 0, 0);
+            this.UnderItemGridLayout.Controls.Add(this.ItemBox, 0, 0);
             this.UnderItemGridLayout.Controls.Add(this.UpdateButton, 2, 0);
             this.UnderItemGridLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UnderItemGridLayout.Location = new System.Drawing.Point(3, 256);
@@ -198,15 +199,17 @@ namespace IceCreamManager.View
             0,
             0});
             // 
-            // ItemsBox
+            // ItemBox
             // 
-            this.ItemsBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ItemsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ItemsBox.FormattingEnabled = true;
-            this.ItemsBox.Location = new System.Drawing.Point(3, 5);
-            this.ItemsBox.Name = "ItemsBox";
-            this.ItemsBox.Size = new System.Drawing.Size(146, 21);
-            this.ItemsBox.TabIndex = 0;
+            this.ItemBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ItemBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ItemBox.DropDownWidth = 200;
+            this.ItemBox.FormattingEnabled = true;
+            this.ItemBox.Location = new System.Drawing.Point(3, 5);
+            this.ItemBox.Name = "ItemBox";
+            this.ItemBox.Size = new System.Drawing.Size(146, 21);
+            this.ItemBox.TabIndex = 0;
+            this.ItemBox.SelectionChangeCommitted += new System.EventHandler(this.ItemBox_SelectionChangeCommitted);
             // 
             // UpdateButton
             // 
@@ -267,7 +270,7 @@ namespace IceCreamManager.View
         private System.Windows.Forms.Label ItemsLabel;
         private System.Windows.Forms.TableLayoutPanel UnderItemGridLayout;
         private System.Windows.Forms.NumericUpDown ItemQuantityBox;
-        private System.Windows.Forms.ComboBox ItemsBox;
+        private System.Windows.Forms.ComboBox ItemBox;
         private System.Windows.Forms.Button UpdateButton;
     }
 }
