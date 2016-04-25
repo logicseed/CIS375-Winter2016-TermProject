@@ -24,6 +24,10 @@ namespace IceCreamManager.View
 
         }
 
+        
+
+
+
         #endregion Public Constructors
 
         #region Public Methods
@@ -35,6 +39,8 @@ namespace IceCreamManager.View
             SetLocalizedCityStrings();
         }
 
+        
+
         public void RefreshCityTable() => RefreshCityTable(null, null);
 
         public void RefreshDriverTable(object sender, EventArgs e)
@@ -43,6 +49,8 @@ namespace IceCreamManager.View
             AddSourceAndFillColumnToGridview(ref DriverGridView, ref DriverDataTable);
             SetLocalizedDriverStrings();
         }
+
+        
 
         public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
@@ -53,6 +61,8 @@ namespace IceCreamManager.View
             SetLocalizedItemStrings();
         }
 
+        
+
         public void RefreshItemTable() => RefreshItemTable(null, null);
 
         public void RefreshRouteTable(object sender, EventArgs e)
@@ -61,6 +71,8 @@ namespace IceCreamManager.View
             AddSourceAndFillColumnToGridview(ref RouteGridView, ref RouteDataTable);
             SetLocalizedRouteStrings();
         }
+
+        
 
         public void RefreshRouteTable() => RefreshRouteTable(null, null);
 
@@ -71,6 +83,8 @@ namespace IceCreamManager.View
             TruckGridView.Columns["FuelRate"].DefaultCellStyle.Format = $"{Language.UserCurrency}#.0#";
             SetLocalizedTruckStrings();
         }
+
+        
 
         public void RefreshTruckTable() => RefreshTruckTable(null, null);
 
@@ -90,9 +104,11 @@ namespace IceCreamManager.View
             dataGridView.ClearSelection();
         }
 
+        
+
         protected void InitializeEventHandlers()
         {
-            Language.OnChangedLanguage += LocalizeForm;
+            Manage.Events.OnChangedLanguage += new EventHandler(LocalizeForm);
             Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
             Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
             Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
@@ -121,7 +137,7 @@ namespace IceCreamManager.View
 
         #region Private Fields
 
-        private LanguageManager Language = LanguageManager.Reference;
+        private IceCreamManager.Model.LanguageManager Language = IceCreamManager.Model.LanguageManager.Reference;
         private LogViewer LogView;
 
         #endregion Private Fields

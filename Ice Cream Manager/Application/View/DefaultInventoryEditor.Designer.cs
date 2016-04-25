@@ -1,4 +1,6 @@
-﻿namespace IceCreamManager.View
+﻿using System;
+
+namespace IceCreamManager.View
 {
     partial class DefaultInventoryEditor
     {

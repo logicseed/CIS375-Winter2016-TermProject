@@ -1,4 +1,6 @@
-﻿namespace IceCreamManager.View
+﻿using System;
+
+namespace IceCreamManager.View
 {
     partial class ItemEditor
     {
@@ -325,6 +327,8 @@
             this.PerformLayout();
 
         }
+
+
 
         #endregion
 
