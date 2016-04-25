@@ -1,9 +1,9 @@
-﻿
-using System;
-/// <project> IceCreamManager </project>
+﻿/// <project> IceCreamManager </project>
 /// <module> City </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-09 </date_created>
+
+using System;
 using System.Data;
 
 namespace IceCreamManager.Model

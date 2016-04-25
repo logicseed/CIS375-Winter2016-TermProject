@@ -8,9 +8,30 @@ using System.IO;
 
 namespace IceCreamManager.Controller
 {
+    /// <summary>
+    ///   Parses language files for use by the LanguageManager.
+    /// </summary>
     public class LanguageParser
     {
         #region Public Methods
+
+        /// <summary>
+        ///   Builds an array of strings contains the names of languages for which there exists a [LanguageName].lang
+        ///   file in the application directory.
+        /// </summary>
+        /// <returns> Array of language names. </returns>
+        public string[] GetValidLanguageFiles(string filesLocation, string filesExtension)
+        {
+            string[] ValidLanguagePaths = Directory.GetFiles(filesLocation, $"*{filesExtension}");
+
+            // Strip off paths
+            for (int i = 0; i < ValidLanguagePaths.Length; i++)
+            {
+                ValidLanguagePaths[i] = Path.GetFileNameWithoutExtension(ValidLanguagePaths[i]);
+            }
+
+            return ValidLanguagePaths;
+        }
 
         /// <summary>
         ///   Creates a Dictionary of phrase key and phrase value from a file. File has format "Key=Value" per line,
@@ -38,7 +59,7 @@ namespace IceCreamManager.Controller
                 var Key = Line.Substring(0, Index).Trim();
                 var Value = Line.Substring(Index + 1).Trim();
 
-                if(languageNameOnly)
+                if (languageNameOnly)
                 {
                     if (Key == "@Language")
                     {
@@ -55,34 +76,6 @@ namespace IceCreamManager.Controller
             return ParsedStrings;
         }
 
-
-
-        
         #endregion Public Methods
-
-        /// <summary>
-        ///   Builds an array of strings contains the names of languages for which there exists a [LanguageName].lang
-        ///   file in the application directory.
-        /// </summary>
-        /// <returns> Array of language names. </returns>
-        public string[] GetValidLanguageFiles(string filesLocation, string filesExtension)
-        {
-            string[] ValidLanguagePaths = Directory.GetFiles(filesLocation, $"*{filesExtension}");
-
-            // Strip off paths
-            for (int i = 0; i < ValidLanguagePaths.Length; i++)
-            {
-                ValidLanguagePaths[i] = Path.GetFileNameWithoutExtension(ValidLanguagePaths[i]);
-            }
-
-
-            return ValidLanguagePaths;
-        }
-
-
-
-
-
-
     }
 }
