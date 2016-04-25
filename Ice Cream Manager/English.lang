@@ -1,4 +1,10 @@
+# <project> IceCreamManager </project>
+# <module> English Language </module>
+# <author> Marc King </author>
+# <date_created> 2016-04-16 </date_created>
+
 @Language = English
+
 # Main screen
 
 Revenue = Revenue
@@ -20,6 +26,8 @@ About = About
 StartDate = Start Date
 EndDate = End Date
 
+# Truck Editor
+
 AddCity = Add City
 AddItem = Add Item
 RemoveCity = Remove City
@@ -27,20 +35,29 @@ RemoveItem = Remove Item
 WasteItem = Waste Item
 SellItem = Sell Item
 
-# Generic editor phrases
+# Generic Editor
+
 Save = Save
 Discard = Discard
 OK = OK
 Update = Update
 All = All
+ItemEditor = Item Editor
+CityEditor = City Editor
+RouteEditor = Route Editor
+DriverEditor = Driver Editor
+TruckEditor = Truck Editor
+DefaultInventoryEditor = Default Inventory Editor
 
-# Settings editor phrases
+# Settings Editor
+
 SettingsEditor = Settings Editor
 Language = Language
 Currency = Currency
 FuelRate = Fuel Rate
 
-# Entity list phrases
+# Entity Lists
+
 Add = Add
 Edit = Edit
 Remove = Remove
@@ -49,13 +66,6 @@ Deleted = Deleted
 Stock = Stock
 DefaultInventory = Default Inventory
 
-
-ItemEditor = Item Editor
-CityEditor = City Editor
-RouteEditor = Route Editor
-DriverEditor = Driver Editor
-TruckEditor = Truck Editor
-DefaultInventoryEditor = Default Inventory Editor
 
 Label = Label
 State = State

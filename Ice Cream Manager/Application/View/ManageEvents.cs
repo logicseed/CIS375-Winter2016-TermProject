@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IceCreamManager.Model;
+﻿/// <project> IceCreamManager </project>
+/// <module> ManageEvents </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-18 </date_created>
+
+using System;
 
 namespace IceCreamManager
 {

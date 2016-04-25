@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <project> IceCreamManager </project>
+/// <module> Factory </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-18 </date_created>
 
 namespace IceCreamManager.Model
 {

@@ -1,9 +1,13 @@
-﻿using System;
+﻿/// <project> IceCreamManager </project>
+/// <module> Program </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-03-26 </date_created>
+
+using System;
 using System.Windows.Forms;
 
 using IceCreamManager.Model;
 using IceCreamManager.View;
-//using IceCreamManager.Controller;
 
 namespace IceCreamManager
 {

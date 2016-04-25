@@ -1,7 +1,7 @@
-﻿# <project> IceCreamManager </project>
-# <module> Russian Language </module>
+# <project> IceCreamManager </project>
+# <module> French Language </module>
 # <author> Marc King </author>
-# <date_created> 2016-04-16 </date_created>
+# <date_created> 2016-04-25 </date_created>
 
 @Language = English
 
@@ -116,7 +116,8 @@ ProcessEndOfDay = Process End of Day
 BatchFiles = Batch Files
 AllFiles = All Files
 
-# Unit Test strings
-Test=Russian test 1
-Test2      = Russian test 2
-Test3 = номер
+# Unit test strings
+Test = This could be anything.
+Test2    = English test 2
+Test3 = English test 3
+Test4 = English test 4

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-/// <project> IceCreamManager </project>
+﻿/// <project> IceCreamManager </project>
 /// <module> Route </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
 
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace IceCreamManager.Model

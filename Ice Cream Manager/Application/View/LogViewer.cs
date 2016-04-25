@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/// <project> IceCreamManager </project>
+/// <module> LogViewer </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-18 </date_created>
+
+using System;
 using System.Data;
-using System.Globalization;
 using System.Windows.Forms;
 using IceCreamManager.Model;
 

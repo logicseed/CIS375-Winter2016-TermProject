@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <project> IceCreamManager </project>
+/// <module> DriverEditor </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-20 </date_created>
+
+using System;
 using System.Windows.Forms;
 using IceCreamManager.Model;
 

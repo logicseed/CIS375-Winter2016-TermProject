@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <project> IceCreamManager </project>
+/// <module> AboutForm </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-03-27 </date_created>
+
 using System.Windows.Forms;
 
 namespace IceCreamManager.View

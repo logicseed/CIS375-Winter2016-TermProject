@@ -1,11 +1,9 @@
-﻿
-using System;
-/// <project> IceCreamManager </project>
+﻿/// <project> IceCreamManager </project>
 /// <module> Truck </module>
 /// <author> Marc King </author>
 /// <date_created> 2016-04-10 </date_created>
+
 using System.Collections.Generic;
-using System.Data;
 
 namespace IceCreamManager.Model
 {
