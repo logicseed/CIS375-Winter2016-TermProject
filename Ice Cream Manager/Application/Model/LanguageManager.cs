@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IceCreamManager.Controller;
 
 namespace IceCreamManager.Model
@@ -10,35 +7,40 @@ namespace IceCreamManager.Model
     public class LanguageManager
     {
         #region Singleton
-        private static readonly LanguageManager SingletonInstance = new LanguageManager();
+
         public static LanguageManager Reference { get { return SingletonInstance; } }
-        private LanguageManager() { }
+        private static readonly LanguageManager SingletonInstance = new LanguageManager();
+
+        private LanguageManager()
+        {
+            
+        }
+
+        internal void InitializeLanguages()
+        {
+            BuildDefaultLanguage();
+            LoadUserLanguage();
+        }
+
         #endregion Singleton
 
-        private string userCurrency = "$";
-        private LanguageParser Parser = new LanguageParser();
+        #region Public Properties
 
-        public void Save()
+        public string UserCurrency
         {
-            throw new NotImplementedException();
+            get { return userCurrency; }
+            set { userCurrency = value; }
         }
 
-        private string userLanguage = "English";
-        private Dictionary<string, string> LoadedDefaultLanguage;
-        private Dictionary<string, string> LoadedUserLanguage;
+        public string UserLanguage
+        {
+            get { return userLanguage; }
+            set { userLanguage = value; }
+        }
 
-        public string UserCurrency { get { return userCurrency;}
-        set
-            {
-                userCurrency = value;
-            }
-        }
-        public string UserLanguage { get { return userLanguage; }
-        set
-            {
-                userLanguage = value;
-            }
-        }
+        #endregion Public Properties
+
+        #region Public Indexers
 
         public string this[string key]
         {
@@ -47,6 +49,59 @@ namespace IceCreamManager.Model
                 if (LoadedUserLanguage.ContainsKey(key)) return LoadedUserLanguage[key];
                 return LoadedDefaultLanguage[key];
             }
+        }
+
+        #endregion Public Indexers
+
+        #region Public Methods
+
+        public void Save()
+        {
+            var sql = $"UPDATE Settings SET Language = '{userLanguage}', Currency = '{userCurrency}' WHERE ID = 1";
+            Database.NonQuery(sql);
+            LoadUserLanguage();
+        }
+
+        
+
+        #endregion Public Methods
+
+        #region Private Fields
+
+        private Dictionary<string, string> LoadedDefaultLanguage;
+        private Dictionary<string, string> LoadedUserLanguage;
+        private LanguageParser Parser = new LanguageParser();
+        private string userCurrency = "$";
+        private string userLanguage = "English";
+        private string defaultLanguage = "English";
+        private string fileExtension = ".lang";
+#if DEBUG   // Development
+        private string fileLocation = "../../../";
+#else       // Production
+        private string fileLocation = "";
+#endif
+
+
+        #endregion Private Fields
+
+        private void BuildDefaultLanguage()
+        {
+            LoadedDefaultLanguage = Parser.ParseLanguageFile(fileLocation + defaultLanguage + fileExtension);
+        }
+
+        private void BuildUserLanguage()
+        {
+            LoadedUserLanguage = Parser.ParseLanguageFile(fileLocation + userLanguage + fileExtension);
+
+        }
+
+        private void LoadUserLanguage()
+        {
+            var sql = $"SELECT * FROM Settings WHERE ID = 1";
+            var table = Database.Query(sql);
+            userLanguage = table.Row().Col<string>("Language");
+            userCurrency = table.Row().Col<string>("Currency");
+            BuildUserLanguage();
         }
     }
 }

@@ -137,7 +137,7 @@ namespace IceCreamManager.View
 
         #region Private Fields
 
-        private IceCreamManager.Model.LanguageManager Language = IceCreamManager.Model.LanguageManager.Reference;
+        private LanguageManager Language = LanguageManager.Reference;
         private LogViewer LogView;
 
         #endregion Private Fields
