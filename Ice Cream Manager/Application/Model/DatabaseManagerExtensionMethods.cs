@@ -21,6 +21,7 @@ namespace IceCreamManager.Model
         /// <exception cref="InvalidCastException" />
         public static ReturnType Col<ReturnType>(this DataRow dataRow, string name)
         {
+            if (dataRow[name] == DBNull.Value) return default(ReturnType);
             return (ReturnType)Convert.ChangeType(dataRow[name], typeof(ReturnType), CultureInfo.InvariantCulture);
         }
 

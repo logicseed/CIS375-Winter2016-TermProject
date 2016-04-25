@@ -76,8 +76,8 @@ namespace IceCreamManager.View
                 MessageBox.Show(Language["LabelBlankMsg"], Language["LabelBlank"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            CityToEdit.Label = LabelBox.Text;
-            if (Factory.City.LabelInUse(CityToEdit))
+            if (CityToEdit.Label != LabelBox.Text) CityToEdit.Label = LabelBox.Text;
+            if (CityToEdit.Label != LabelBox.Text && Factory.City.LabelInUse(CityToEdit))
             {
                 MessageBox.Show(Language["LabelInUseMsg"], Language["LabelInUse"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

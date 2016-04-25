@@ -12,10 +12,13 @@ Route = Route
 Routes = Routes
 City = City
 Cities = Cities
+Batch = Batch
 Processing = Processing
 Settings = Settings
 ViewLog = View Log
 About = About
+StartDate = Start Date
+EndDate = End Date
 
 AddCity = Add City
 AddItem = Add Item
@@ -29,6 +32,7 @@ Save = Save
 Discard = Discard
 OK = OK
 Update = Update
+All = All
 
 # Settings editor phrases
 SettingsEditor = Settings Editor
@@ -43,6 +47,7 @@ Remove = Remove
 ShowDeleted = Show Deleted
 Deleted = Deleted
 Stock = Stock
+DefaultInventory = Default Inventory
 
 
 ItemEditor = Item Editor
@@ -84,6 +89,22 @@ DefaultItemMaxMsg = You cannot add more items to the default inventory.
 TooManyItems = Too Many Items
 TooManyItemsMsg = You cannot add more items to the inventory.
 
+ProcessStartOfDay = Process Start of Day
+LoadCityFile = Load City File
+LoadCityFileExtension = Load City File Extension
+LoadRouteFile = Load Route File
+LoadDriverFile = Load Driver File
+LoadTruckFile = Load Truck File
+LoadTruckFuelFile = Load Truck Fuel File
+LoadTruckInventoryFile = Load Truck Inventory File
+LoadOverallInventoryFile = Load Overall Inventory File
+LoadOverallInventoryExtensionFile = Load Overall Inventory Extension File
+LoadTruckDriverFile = Load Truck Driver File
+LoadTruckRouteFile = Load Truck Route File
+LoadSalesFile = Load Sales File
+ProcessEndOfDay = Process End of Day
+BatchFiles = Batch Files
+AllFiles = All Files
 
 # Unit test strings
 Test = This could be anything.

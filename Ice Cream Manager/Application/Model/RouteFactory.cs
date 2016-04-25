@@ -196,6 +196,22 @@ namespace IceCreamManager.Model
             Database.NonQuery(sql);
         }
 
+        public void GetRouteNumberList(ref Dictionary<int, string> routeList)
+        {
+            var sql = $"SELECT * FROM Route WHERE IsDeleted = 0 ORDER BY Number";
+            var table = Database.Query(sql);
 
+            foreach (DataRow row in table.Rows)
+            {
+                string name = $"{row.Col("Number")} -";
+                foreach (var city in LoadCityList(row.Col("ID")))
+                {
+                    name += $" {city.Name},";
+                }
+                name = name.TrimEnd(',');
+
+                routeList.Add(row.Col("Number"), name);
+            }
+        }
     }
 }

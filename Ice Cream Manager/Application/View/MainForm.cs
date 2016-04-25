@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,21 +19,26 @@ namespace IceCreamManager.View
             InitializeGridViews();
             LocalizeForm(null, null);
 
-            RefreshItemTable();
-            RefreshCityTable();
-            RefreshRouteTable();
-            RefreshDriverTable();
-            RefreshTruckTable();
-            // Default view
-            salesButton_Click(this, new EventArgs());
+            InitializeCriteriaControls();
+
         }
 
-        private void highlightToolStripButton(String buttonName)
+        
+
+
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public void RefreshCityTable(object sender, EventArgs e)
         {
             var CityDataTable = Factory.City.GetDataTable(ShowDeletedCities.Checked);
             AddSourceAndFillColumnToGridview(ref CityGridView, ref CityDataTable);
             SetLocalizedCityStrings();
         }
+
+        
 
         public void RefreshCityTable() => RefreshCityTable(null, null);
 
@@ -47,6 +51,8 @@ namespace IceCreamManager.View
             SetLocalizedDriverStrings();
         }
 
+        
+
         public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
         public void RefreshItemTable(object sender, EventArgs e)
@@ -54,6 +60,8 @@ namespace IceCreamManager.View
         {
                     item.BackColor = Color.Transparent;
         }
+
+        
 
         public void RefreshItemTable() => RefreshItemTable(null, null);
 
@@ -64,6 +72,8 @@ namespace IceCreamManager.View
             SetLocalizedRouteStrings();
         }
 
+        
+
         public void RefreshRouteTable() => RefreshRouteTable(null, null);
 
         public void RefreshTruckTable(object sender, EventArgs e)
@@ -73,6 +83,8 @@ namespace IceCreamManager.View
             TruckGridView.Columns["FuelRate"].DefaultCellStyle.Format = $"{Language.UserCurrency}#.0#";
             SetLocalizedTruckStrings();
         }
+
+        
 
         public void RefreshTruckTable() => RefreshTruckTable(null, null);
 
@@ -92,9 +104,11 @@ namespace IceCreamManager.View
             dataGridView.ClearSelection();
         }
 
+        
+
         protected void InitializeEventHandlers()
         {
-            Language.OnChangedLanguage += LocalizeForm;
+            Manage.Events.OnChangedLanguage += new EventHandler(LocalizeForm);
             Manage.Events.OnChangedItemList += new EventHandler(RefreshItemTable);
             Manage.Events.OnChangedCityList += new EventHandler(RefreshCityTable);
             Manage.Events.OnChangedRouteList += new EventHandler(RefreshRouteTable);
@@ -114,6 +128,7 @@ namespace IceCreamManager.View
         protected override void OnLoad(EventArgs e)
         {
             LogButton_Click(null, null);
+            RefreshRevenueTab();
 
             base.OnLoad(e);
             // Highlight specified button
@@ -216,10 +231,10 @@ namespace IceCreamManager.View
             {
             highlightToolStripButton("presetsButton");
             switchPanel(new PresetsPanel());
-        }
+            }
 
         private void settingsButton_Click(object sender, EventArgs e)
-        {
+            {
             highlightToolStripButton("settingsButton");
             switchPanel(new SettingsPanel());
                 LogView.WindowState = FormWindowState.Normal;
@@ -261,5 +276,154 @@ namespace IceCreamManager.View
             var defaultInventoryEditor = new DefaultInventoryEditor();
             defaultInventoryEditor.ShowDialog();
         }
+
+        private void MainTabs_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            switch (e.TabPage.Name)
+            {
+                case "RevenueTab":
+                    RefreshRevenueTab();
+                    break;
+                case "BatchTab":
+                     
+                    break;
+                case "TrucksTab":
+                    RefreshTruckTable();
+                    break;
+                case "ItemsTab":
+                    RefreshItemTable();
+                    break;
+                case "DriversTab":
+                    RefreshDriverTable();
+                    break;
+                case "RoutesTab":
+                    RefreshRouteTable();
+                    break;
+                case "CitiesTab":
+                    RefreshCityTable();
+                    break;
+            }
+        }
+
+        private void RefreshRevenueTab()
+        {
+            // get criteria
+            var criteria = GetRevenueCriteria();
+
+            // fill grid with data
+            var gridTable = Revenue.GetRevenueTable(criteria);
+            gridTable.Columns.Add(" ");
+            RevenueGrid.DataSource = gridTable;
+            // localize grid
+            StyleGridView(ref RevenueGrid);
+            RevenueGrid.Columns[" "].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RevenueGrid.Columns[" "].Resizable = DataGridViewTriState.False;
+
+            // fill chart with data
+        }
+
+        private RevenueCriteria GetRevenueCriteria()
+        {
+            var criteria = new RevenueCriteria();
+            criteria.StartDate = StartDateBox.Value.Date;
+            criteria.EndDate = EndDateBox.Value.Date;
+
+            if (RouteRevenueBox.SelectedItem == null) criteria.RouteNumber = 0;
+            else criteria.RouteNumber = ((KeyValuePair<int, string>)RouteRevenueBox.SelectedItem).Key;
+
+            if (CityRevenueBox.SelectedItem == null) criteria.CityLabel = "All";
+            else criteria.CityLabel = ((KeyValuePair<string, string>)CityRevenueBox.SelectedItem).Key;
+
+            if (TruckRevenueBox.SelectedItem == null) criteria.TruckNumber = 0;
+            else criteria.TruckNumber = ((KeyValuePair<int, string>)TruckRevenueBox.SelectedItem).Key;
+
+            if (DriverRevenueBox.SelectedItem == null) criteria.DriverNumber = 0;
+            else criteria.DriverNumber = ((KeyValuePair<int, string>)DriverRevenueBox.SelectedItem).Key;
+
+            if (ItemRevenueBox.SelectedItem == null) criteria.ItemNumber = 0;
+            else criteria.ItemNumber = ((KeyValuePair<int, string>)ItemRevenueBox.SelectedItem).Key;
+
+            return criteria;
+        }
+
+        private void InitializeCriteriaControls()
+        {
+            EndDateBox.Value = DateTime.Now.Date;
+            StartDateBox.Value = EndDateBox.Value.AddDays(-7).Date;
+
+            // fill route list
+            var routeList = new Dictionary<int, string>();
+            routeList.Add(0, Language["All"]);
+            Factory.Route.GetRouteNumberList(ref routeList);
+            RouteRevenueBox.DataSource = new BindingSource(routeList, null);
+            RouteRevenueBox.ValueMember = "Key";
+            RouteRevenueBox.DisplayMember = "Value";
+            RouteRevenueBox.SelectedIndex = 0;
+
+            //fill city list
+            var cityList = new Dictionary<string, string>();
+            cityList.Add("All", Language["All"]);
+            Factory.City.GetCityLabelList(ref cityList);
+            CityRevenueBox.DataSource = new BindingSource(cityList, null);
+            CityRevenueBox.ValueMember = "Key";
+            CityRevenueBox.DisplayMember = "Value";
+            CityRevenueBox.SelectedIndex = 0;
+
+            // fill truck list
+            var truckList = new Dictionary<int, string>();
+            truckList.Add(0, Language["All"]);
+            Factory.Truck.GetTruckNumberList(ref truckList);
+            TruckRevenueBox.DataSource = new BindingSource(truckList, null);
+            TruckRevenueBox.ValueMember = "Key";
+            TruckRevenueBox.DisplayMember = "Value";
+            TruckRevenueBox.SelectedIndex = 0;
+
+            // fill driver list
+            var driverList = new Dictionary<int, string>();
+            driverList.Add(0, Language["All"]);
+            Factory.Driver.GetDriverNumberList(ref driverList);
+            DriverRevenueBox.DataSource = new BindingSource(driverList, null);
+            DriverRevenueBox.ValueMember = "Key";
+            DriverRevenueBox.DisplayMember = "Value";
+            DriverRevenueBox.SelectedIndex = 0;
+
+            // fill item list
+            var itemList = new Dictionary<int, string>();
+            itemList.Add(0, Language["All"]);
+            Factory.Item.GetItemNumberList(ref itemList);
+            ItemRevenueBox.DataSource = new BindingSource(itemList, null);
+            ItemRevenueBox.ValueMember = "Key";
+            ItemRevenueBox.DisplayMember = "Value";
+            ItemRevenueBox.SelectedIndex = 0;
+        }
+
+        private void StartDateBox_ValueChanged(object sender, EventArgs e)
+        {
+            // Cannot start later than the end date
+            if (StartDateBox.Value.Date.CompareTo(EndDateBox.Value.Date) == 1)
+            {
+                EndDateBox.Value = StartDateBox.Value.Date;
+            }
+
+            RefreshRevenueTab();
+        }
+
+        private void EndDateBox_ValueChanged(object sender, EventArgs e)
+        {
+            // Cannot be earlier than the start date
+            if (EndDateBox.Value.Date.CompareTo(StartDateBox.Value.Date) == -1)
+            {
+                StartDateBox.Value = EndDateBox.Value.Date;
+            }
+
+            RefreshRevenueTab();
+        }
+
+        private void RouteRevenueBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshRevenueTab();
+        }
+
+        
     }
 }

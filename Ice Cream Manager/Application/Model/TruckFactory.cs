@@ -151,6 +151,12 @@ namespace IceCreamManager.Model
             Database.NonQuery(sql);
         }
 
+        public void ChangeItemID(int oldID, int newID)
+        {
+            var sql = $"UPDATE DefaultInventory SET ItemID = {newID} WHERE ItemID = {oldID}";
+            Database.NonQuery(sql);
+        }
+
         internal List<int> GetDefaultInventoryList()
         {
             var sql = "SELECT ItemID FROM DefaultInventory";
@@ -210,6 +216,25 @@ namespace IceCreamManager.Model
                 return true;
             }
             else return false;
+        }
+
+        internal void GetTruckNumberList(ref Dictionary<int, string> truckList)
+        {
+            var sql = $"SELECT * FROM Truck WHERE IsDeleted = 0 ORDER BY Number";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                var name = $"{row.Col("Number")}";
+                var driverID = row.Col("DriverID");
+                var routeID = row.Col("RouteID");
+                if (driverID != 0 || routeID != 0) name += " - ";
+                if (driverID != 0) name += Factory.Driver.GetNameByID(row.Col("DriverID"));
+                if (driverID != 0 && routeID != 0) name += ", ";
+                if (routeID != 0) name += $"Route {Factory.Route.GetNumberByID(row.Col("RouteID"))}";
+
+                truckList.Add(row.Col("Number"), name);
+            }
         }
 
     }

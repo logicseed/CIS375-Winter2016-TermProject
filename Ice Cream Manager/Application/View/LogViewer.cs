@@ -27,16 +27,17 @@ namespace IceCreamManager.View
         public void RefreshDataSource()
         {
             // Not enough entries, start over
-            if (LogGridView.Rows.Count < MaxEntriesBox.Value)
-            {
-                BuildDataSource();
-            }
-            else
-            {
-                LogTable.Merge(Factory.Log.GetUpdatedRows(LastUpdate, (int)MaxEntriesBox.Value));
-                CullLogTable();
-            }
-            LastUpdate = DateTime.Now;
+            //if (LogGridView.Rows.Count < MaxEntriesBox.Value)
+            //{
+            //    BuildDataSource();
+            //}
+            //else
+            //{
+            //    LogTable.Merge(Factory.Log.GetUpdatedRows(LastUpdate, (int)MaxEntriesBox.Value));
+            //    CullLogTable();
+            //}
+            //LastUpdate = DateTime.Now;
+            BuildDataSource();
             LogGridView.Refresh();
             MarkFailureRows();
         }

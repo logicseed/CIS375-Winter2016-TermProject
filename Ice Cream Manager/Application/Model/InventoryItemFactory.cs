@@ -161,7 +161,7 @@ namespace IceCreamManager.Model
             return table.Row().Col();
         }
 
-        public void Add(int itemID, int truckID, int quantity = 1)
+        private void Add(int itemID, int truckID, int quantity = 1)
         {
             if (quantity == 0) return;
             var sql = $"INSERT INTO InventoryItem (ItemID, TruckID, DateCreated) VALUES ";
@@ -175,7 +175,7 @@ namespace IceCreamManager.Model
             Log.Success($"Added {quantity} {Factory.Item.GetNameByID(itemID)} to truck number {Factory.Truck.GetNumberByID(truckID)}.");
         }
 
-        public void Remove(int itemID, int truckID, int quantity = 1)
+        private void Remove(int itemID, int truckID, int quantity = 1)
         {
             if (quantity == 0) return;
             var sql = $"DELETE FROM InventoryItem WHERE ID IN (SELECT ID FROM InventoryItem WHERE ItemID = {itemID} AND TruckID = {truckID} ORDER BY DateCreated ASC LIMIT {quantity})";
@@ -185,9 +185,17 @@ namespace IceCreamManager.Model
 
         public void ChangeMany(int itemID, int truckID, int quantity)
         {
+            if (Factory.Item.GetWarehouseQuantity(itemID) < quantity) quantity = Factory.Item.GetWarehouseQuantity(itemID);
             if (quantity == 0) return;
             if (quantity < 0) Remove(itemID, truckID, quantity * -1);
-            else Add(itemID, truckID, quantity);
+            else
+            {
+                Add(itemID, truckID, quantity);
+                var item = Factory.Item.Load(itemID);
+                item.Quantity = item.Quantity - quantity;
+                item.ReplaceOnSave = false;
+                item.Save();
+            }
         }
 
         public void SellMany(int itemID, int truckID, int quantity)
@@ -210,6 +218,19 @@ namespace IceCreamManager.Model
         {
             var sql = $"UPDATE InventoryItem SET TruckID = {newID} WHERE TruckID = {oldID}";
             Database.NonQuery(sql);
+        }
+
+        public void ChangeItemID(int oldID, int newID)
+        {
+            var sql = $"UPDATE InventoryItem SET ItemID = {newID} WHERE ItemID = {oldID}";
+            Database.NonQuery(sql);
+        }
+
+        public int GetInventoryQuantity(int truckID, int itemID)
+        {
+            var sql = $"SELECT count(*) FROM IventoryItem WHERE TruckID = {truckID} AND ItemID = {itemID}";
+            var table = Database.Query(sql);
+            return table.Row().Col();
         }
     }
 }

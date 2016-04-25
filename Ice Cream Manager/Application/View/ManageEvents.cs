@@ -60,6 +60,12 @@ namespace IceCreamManager
         {
             OnNewLogEntry?.Invoke(null, null);
         }
+
+        public event EventHandler OnChangedLanguage;
+        public void ChangedLanguage()
+        {
+            OnChangedLanguage?.Invoke(null, null);
+        }
     }
 
     public class EventID : EventArgs

@@ -73,6 +73,8 @@ namespace IceCreamManager.View
 
             AvailableCityList.AddRange(CurrentRouteCityList);
 
+            if (AvailableCityList.Count == 0) CityListBoxContents.Add(0, " ");
+
             foreach (City city in AvailableCityList)
             {
                 bool inUse = false;
@@ -84,6 +86,8 @@ namespace IceCreamManager.View
 
                 if (!inUse) CityListBoxContents.Add(city.ID, city.Label);
             }
+
+            if (CityListBoxContents.Count == 0) CityListBoxContents.Add(0, " ");
 
             CitiesBox.DataSource = new BindingSource(CityListBoxContents, null);
             CitiesBox.ValueMember = "Key";
@@ -134,6 +138,7 @@ namespace IceCreamManager.View
 
         private void AddCityButton_Click(object sender, EventArgs e)
         {
+            if (((KeyValuePair<int, string>)CitiesBox.SelectedItem).Key == 0) return;
             int cityID = ((KeyValuePair<int, string>)CitiesBox.SelectedItem).Key;
             route.AddCity(Factory.City.Load(cityID));
             RefreshCities();
@@ -159,7 +164,7 @@ namespace IceCreamManager.View
 
             route.Save();
             Manage.Events.ChangedRouteList();
-
+            this.Close();
         }
 
         private void RemoveCityButton_Click(object sender, EventArgs e)

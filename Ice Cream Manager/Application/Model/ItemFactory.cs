@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using IceCreamManager.Controller;
 /// <project> IceCreamManager </project>
 /// <module> ItemFactory </module>
 /// <author> Marc King </author>
@@ -112,6 +113,39 @@ namespace IceCreamManager.Model
             var sql = $"SELECT Description FROM Item WHERE ID = {itemID}";
             var table = Database.Query(sql);
             return table.Row().Col<string>("Description");
+        }
+
+        internal void GetItemNumberList(ref Dictionary<int, string> itemList)
+        {
+            var sql = $"SELECT * FROM Item WHERE IsDeleted = 0 ORDER BY Description";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                itemList.Add(row.Col("Number"), row.Col<string>("Description"));
+            }
+        }
+
+        internal int GetWarehouseQuantity(int itemID)
+        {
+            var sql = $"SELECT Quantity FROM Item WHERE ID = {itemID}";
+            var table = Database.Query(sql);
+            return table.Row().Col();
+        }
+
+        protected override bool Replace(Item item)
+        {
+            var oldID = item.ID;
+            EntityCache.Remove(TableName, item);
+            DatabaseMan.MarkAsDeleted(TableName, item.ID);
+            if (Insert(item))
+            {
+                Log.Success($"Edited {SaveLogString(item)}");
+                Factory.InventoryItem.ChangeItemID(oldID, item.ID);
+                Factory.Truck.ChangeItemID(oldID, item.ID);
+                return true;
+            }
+            else return false;
         }
     }
 }

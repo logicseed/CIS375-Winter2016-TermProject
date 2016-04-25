@@ -32,7 +32,7 @@ namespace IceCreamManager.Model
         
         public List<City> GetAvailableCityList()
         {
-            var DatabaseCommand = $"SELECT * FROM City WHERE ID NOT IN (SELECT CityID FROM RouteCity WHERE IsDeleted = 0) AND IsDeleted = 0";
+            var DatabaseCommand = $"SELECT * FROM City WHERE ID NOT IN (SELECT CityID FROM RouteCity WHERE IsDeleted = 0) AND IsDeleted = 0 ORDER BY Label";
             
             var ResultsTable = Database.Query(DatabaseCommand);
             var CityList = new List<City>();
@@ -47,8 +47,9 @@ namespace IceCreamManager.Model
 
            public List<City> GetCityList(bool includeDeleted)
         {
-            var DatabaseCommand = $"SELECT * FROM City";
-            if (!includeDeleted) DatabaseCommand += " WHERE IsDeleted = 0";
+            var DatabaseCommand = $"SELECT * FROM City ";
+            if (!includeDeleted) DatabaseCommand += "WHERE IsDeleted = 0 ";
+            DatabaseCommand += "ORDER BY Label";
 
             var ResultsTable = Database.Query(DatabaseCommand);
             var CityList = new List<City>();
@@ -129,7 +130,7 @@ namespace IceCreamManager.Model
 
         public override DataTable GetDataTable(bool includeDeleted)
         {
-            var TableFromDatabase = GetAllDataTable(includeDeleted);
+            var TableFromDatabase = GetAllDataTableOrdered(includeDeleted, "ORDER BY Label");
             var TableToReturn = new DataTable();
 
             TableToReturn.Columns.Add(new DataColumn("ID", typeof(int)));
@@ -196,6 +197,18 @@ namespace IceCreamManager.Model
         protected override string SaveLogString(City city)
         {
             return $"City Label {city.Label} to {city.Name} in {city.State}, which takes {city.Hours} hours to service its {city.Miles} miles.";
+        }
+
+        internal void GetCityLabelList(ref Dictionary<string, string> cityList)
+        {
+            var sql = $"SELECT * FROM City WHERE IsDeleted = 0 ORDER BY Label";
+            var table = Database.Query(sql);
+
+            foreach (DataRow row in table.Rows)
+            {
+                var name = $"{row.Col<string>("Label")}, {row.Col<string>("Name")}, {row.Col<string>("State")}";
+                cityList.Add(row.Col<string>("Label"), name);
+            }
         }
     }
 }

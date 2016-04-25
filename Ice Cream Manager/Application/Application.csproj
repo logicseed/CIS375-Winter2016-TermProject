@@ -137,7 +137,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\DefaultInventoryEditor.cs" />
+    <Compile Include="View\DefaultInventoryEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\DefaultInventoryEditor.Designer.cs">
       <DependentUpon>DefaultInventoryEditor.cs</DependentUpon>
     </Compile>
@@ -147,7 +149,9 @@
     <Compile Include="View\DriverEditor.Designer.cs">
       <DependentUpon>DriverEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ItemEditor.cs" />
+    <Compile Include="View\ItemEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\ItemEditor.Designer.cs">
       <DependentUpon>ItemEditor.cs</DependentUpon>
     </Compile>
@@ -165,8 +169,11 @@
     </Compile>
     <Compile Include="View\MainForm.Language.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\MainForm.Styles.cs" />
+    <Compile Include="View\MainForm.Styles.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\ManageEvents.cs" />
     <Compile Include="View\RouteEditor.cs">
       <SubType>Form</SubType>
@@ -174,7 +181,9 @@
     <Compile Include="View\RouteEditor.Designer.cs">
       <DependentUpon>RouteEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingsEditor.cs" />
+    <Compile Include="View\SettingsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\SettingsEditor.Designer.cs">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
     </Compile>
