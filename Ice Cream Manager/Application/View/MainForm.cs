@@ -303,6 +303,14 @@ namespace IceCreamManager.View
             var criteria = GetRevenueCriteria();
 
             // fill grid with data
+            var gridTable = Revenue.GetRevenueTable(criteria);
+            gridTable.Columns.Add(" ");
+            RevenueGrid.DataSource = gridTable;
+            // localize grid
+            StyleGridView(ref RevenueGrid);
+            RevenueGrid.Columns[" "].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RevenueGrid.Columns[" "].Resizable = DataGridViewTriState.False;
+
             // fill chart with data
         }
 
@@ -405,7 +413,7 @@ namespace IceCreamManager.View
 
         private void RouteRevenueBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            RefreshRevenueTab();
         }
     }
 }

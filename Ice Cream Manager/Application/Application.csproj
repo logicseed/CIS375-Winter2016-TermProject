@@ -71,6 +71,7 @@
     <Compile Include="Controller\LanguageParser.cs" />
     <Compile Include="Model\Factory.cs" />
     <Compile Include="Model\LanguageManager.cs" />
+    <Compile Include="Model\Revenue.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
