@@ -91,6 +91,7 @@ namespace IceCreamManager.View
             driver.Save();
 
             Manage.Events.ChangedDriverList();
+            Manage.Events.NewLogEntry();
 
             this.Close();
         }

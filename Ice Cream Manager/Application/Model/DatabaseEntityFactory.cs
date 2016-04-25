@@ -92,6 +92,14 @@ namespace IceCreamManager.Model
             return Database.Query(DatabaseCommand);
         }
 
+        protected DataTable GetAllDataTableOrdered(bool includeDeleted, string orderBy)
+        {
+            string DatabaseCommand = $"SELECT * FROM {TableName} ";
+            if (!includeDeleted) DatabaseCommand += "WHERE IsDeleted = 0 ";
+            DatabaseCommand += orderBy;
+            return Database.Query(DatabaseCommand);
+        }
+
         #endregion Public Methods
 
         #region Protected Fields

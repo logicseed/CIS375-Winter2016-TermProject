@@ -151,6 +151,12 @@ namespace IceCreamManager.Model
             Database.NonQuery(sql);
         }
 
+        public void ChangeItemID(int oldID, int newID)
+        {
+            var sql = $"UPDATE DefaultInventory SET ItemID = {newID} WHERE ItemID = {oldID}";
+            Database.NonQuery(sql);
+        }
+
         internal List<int> GetDefaultInventoryList()
         {
             var sql = "SELECT ItemID FROM DefaultInventory";

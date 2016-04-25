@@ -61,6 +61,8 @@ namespace IceCreamManager.View
             var RouteListBoxContents = new Dictionary<int, string>();
             var AvailableRouteList = Factory.Route.GetAvailableRouteList(truck.ID);
 
+            RouteListBoxContents.Add(0, " ");
+
             foreach (Route route in AvailableRouteList)
             {
                 var name = route.Number + " - ";
@@ -78,11 +80,14 @@ namespace IceCreamManager.View
                 RouteListBoxContents.Add(route.ID, name);
             }
 
-            if (RouteListBoxContents.Count == 0) return;
+            //if (RouteListBoxContents.Count == 0) RouteListBoxContents.Add(0, " ");
 
             RouteBox.DataSource = new BindingSource(RouteListBoxContents, null);
             RouteBox.ValueMember = "Key";
             RouteBox.DisplayMember = "Value";
+
+            if (truck.RouteID != 0) 
+            RouteBox.SelectedIndex = RouteBox.FindStringExact("test1");
         }
 
         private void RefreshDrivers()
@@ -90,12 +95,14 @@ namespace IceCreamManager.View
             var DriverListBoxContents = new Dictionary<int, string>();
             var AvailableDriverList = Factory.Driver.GetAvailableDriverList(truck.ID);
 
+            DriverListBoxContents.Add(0, " ");
+
             foreach (Driver driver in AvailableDriverList)
             {
                 DriverListBoxContents.Add(driver.ID, driver.Name);
             }
 
-            if (DriverListBoxContents.Count == 0) return;
+            //if (DriverListBoxContents.Count == 0) DriverListBoxContents.Add(0, " ");
 
             DriverBox.DataSource = new BindingSource(DriverListBoxContents, null);
             DriverBox.ValueMember = "Key";
@@ -134,6 +141,8 @@ namespace IceCreamManager.View
             {
                 ItemListBoxContents.Add(item.ID, item.Description);
             }
+
+            if (ItemListBoxContents.Count == 0) ItemListBoxContents.Add(0, " ");
 
             ItemBox.DataSource = new BindingSource(ItemListBoxContents, null);
             ItemBox.ValueMember = "Key";
@@ -220,9 +229,9 @@ namespace IceCreamManager.View
 
                 if (total == 0 && quantity == 0 && !isDefault)
                 {
-                    Row.Visible = false;
+                    ChangeGridRowVisibility(ref ItemGridView, Row.Index, false);
                 }
-                else Row.Visible = true;
+                ChangeGridRowVisibility(ref ItemGridView, Row.Index, true);
 
                 if (isDefault)
                 {
@@ -236,6 +245,14 @@ namespace IceCreamManager.View
                 }
                 
             }
+        }
+
+        private void ChangeGridRowVisibility(ref DataGridView gridView, int index, bool visible)
+        {
+            CurrencyManager currencyManager = (CurrencyManager)BindingContext[gridView.DataSource];
+            currencyManager.SuspendBinding();
+            gridView.Rows[index].Visible = visible;
+            currencyManager.ResumeBinding();
         }
 
         private void SetupDefaultCellStyle()
@@ -291,7 +308,7 @@ namespace IceCreamManager.View
             var itemID = ((KeyValuePair<int, string>)ItemBox.SelectedItem).Key;
             var change = ItemQuantityBox.Value;
 
-            if (!ItemInTable(itemID) && NumberNonDefaultItems() + NumberDefaultItems() >= Requirement.MaxInventoryItems)
+            if ((!ItemInTable(itemID) || ItemGridView.Rows[GetItemTableRowIndex(itemID)].Visible == false) && NumberNonDefaultItems() + NumberDefaultItems() >= Requirement.MaxInventoryItems)
             {
                 MessageBox.Show(Language["TooManyItemsMsg"], Language["TooManyItems"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -304,6 +321,7 @@ namespace IceCreamManager.View
                 var sale = (int)inventory.Rows[index]["Sale"];
                 var waste = (int)inventory.Rows[index]["Waste"];
                 inventory.Rows[index]["Change"] = change + sale + waste - quantity;
+                ItemGridView.Rows[GetItemTableRowIndex(itemID)].Visible = true;
             }
             else
             {
