@@ -431,5 +431,7 @@ namespace IceCreamManager.View
         {
             RefreshRevenueTab();
         }
+
+        
     }
 }

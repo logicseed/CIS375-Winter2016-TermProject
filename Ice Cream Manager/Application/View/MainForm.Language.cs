@@ -32,6 +32,7 @@ namespace IceCreamManager.View
             SetLocalizedRevenueStrings();
             SetLocalizedRouteStrings();
             SetLocalizedTruckStrings();
+            
         }
 
         private void SetLocalizedCityStrings()
@@ -85,11 +86,6 @@ namespace IceCreamManager.View
             TruckRevenueLabel.Text = Language["Truck"];
             DriverRevenueLabel.Text = Language["Driver"];
             ItemRevenueLabel.Text = Language["Item"];
-        }
-
-        private void SetLocalizedBatchStrings()
-        {
-            
         }
     }
 }
