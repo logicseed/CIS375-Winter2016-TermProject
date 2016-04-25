@@ -22,6 +22,27 @@ namespace IceCreamManager.Model
             LoadUserLanguage();
         }
 
+        internal Dictionary<string, string> GetAvailableLanguages()
+        {
+            var languages = new Dictionary<string, string>();
+            var languageFiles = Parser.GetValidLanguageFiles(fileLocation, fileExtension);
+
+            for (int i = 0; i < languageFiles.Length; i++)
+            {
+                var name = Parser.ParseLanguageFile(fileLocation + languageFiles[i] + fileExtension, true)["Language"];
+                languages.Add(languageFiles[i], name);
+            }
+
+            return languages;
+        }
+
+        internal KeyValuePair<string,string> GetCurrentLanguagePair()
+        {
+            var name = Parser.ParseLanguageFile(fileLocation + userLanguage + fileExtension, true)["Language"];
+            var pair = new KeyValuePair<string, string>(userLanguage, name);
+            return pair;
+        }
+
         #endregion Singleton
 
         #region Public Properties
@@ -60,6 +81,7 @@ namespace IceCreamManager.Model
             var sql = $"UPDATE Settings SET Language = '{userLanguage}', Currency = '{userCurrency}' WHERE ID = 1";
             Database.NonQuery(sql);
             LoadUserLanguage();
+            Manage.Events.ChangedLanguage();
         }
 
         

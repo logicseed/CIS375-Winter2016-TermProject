@@ -24,6 +24,14 @@ namespace IceCreamManager.View
             MainToolTips.SetToolTip(this.SettingsButton, Language["Settings"]);
             MainToolTips.SetToolTip(this.LogButton, Language["ViewLog"]);
             MainToolTips.SetToolTip(this.AboutButton, Language["About"]);
+
+            SetLocalizedBatchStrings();
+            SetLocalizedCityStrings();
+            SetLocalizedDriverStrings();
+            SetLocalizedItemStrings();
+            SetLocalizedRevenueStrings();
+            SetLocalizedRouteStrings();
+            SetLocalizedTruckStrings();
         }
 
         private void SetLocalizedCityStrings()

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.RevenueTab = new System.Windows.Forms.TabPage();
@@ -228,17 +228,17 @@
             // 
             // RevenueChart
             // 
-            chartArea9.Name = "ChartArea1";
-            this.RevenueChart.ChartAreas.Add(chartArea9);
+            chartArea1.Name = "ChartArea1";
+            this.RevenueChart.ChartAreas.Add(chartArea1);
             this.RevenueChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend9.Name = "Legend1";
-            this.RevenueChart.Legends.Add(legend9);
+            legend1.Name = "Legend1";
+            this.RevenueChart.Legends.Add(legend1);
             this.RevenueChart.Location = new System.Drawing.Point(3, 3);
             this.RevenueChart.Name = "RevenueChart";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.RevenueChart.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.RevenueChart.Series.Add(series1);
             this.RevenueChart.Size = new System.Drawing.Size(756, 344);
             this.RevenueChart.SuppressExceptions = true;
             this.RevenueChart.TabIndex = 0;
@@ -458,7 +458,7 @@
             this.TrucksTab.Location = new System.Drawing.Point(4, 33);
             this.TrucksTab.Name = "TrucksTab";
             this.TrucksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TrucksTab.Size = new System.Drawing.Size(776, 452);
+            this.TrucksTab.Size = new System.Drawing.Size(776, 449);
             this.TrucksTab.TabIndex = 1;
             this.TrucksTab.Text = "!Trucks";
             this.TrucksTab.UseVisualStyleBackColor = true;
@@ -483,7 +483,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 446);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 443);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // DefaultInventoryButton
@@ -528,7 +528,7 @@
             this.TruckGridView.ReadOnly = true;
             this.TruckGridView.RowHeadersVisible = false;
             this.TruckGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TruckGridView.Size = new System.Drawing.Size(764, 405);
+            this.TruckGridView.Size = new System.Drawing.Size(764, 402);
             this.TruckGridView.TabIndex = 4;
             // 
             // AddTruckButton

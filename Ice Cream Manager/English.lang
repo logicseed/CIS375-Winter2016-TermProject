@@ -17,6 +17,8 @@ Processing = Processing
 Settings = Settings
 ViewLog = View Log
 About = About
+StartDate = Start Date
+EndDate = End Date
 
 AddCity = Add City
 AddItem = Add Item
