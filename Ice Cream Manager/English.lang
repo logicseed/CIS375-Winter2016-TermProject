@@ -1,0 +1,93 @@
+@Language = English
+# Main screen
+
+Revenue = Revenue
+Truck = Truck
+Trucks = Trucks
+Item = Item
+Items = Items
+Driver = Driver
+Drivers = Drivers
+Route = Route
+Routes = Routes
+City = City
+Cities = Cities
+Processing = Processing
+Settings = Settings
+ViewLog = View Log
+About = About
+
+AddCity = Add City
+AddItem = Add Item
+RemoveCity = Remove City
+RemoveItem = Remove Item
+WasteItem = Waste Item
+SellItem = Sell Item
+
+# Generic editor phrases
+Save = Save
+Discard = Discard
+OK = OK
+Update = Update
+All = All
+
+# Settings editor phrases
+SettingsEditor = Settings Editor
+Language = Language
+Currency = Currency
+FuelRate = Fuel Rate
+
+# Entity list phrases
+Add = Add
+Edit = Edit
+Remove = Remove
+ShowDeleted = Show Deleted
+Deleted = Deleted
+Stock = Stock
+
+
+ItemEditor = Item Editor
+CityEditor = City Editor
+RouteEditor = Route Editor
+DriverEditor = Driver Editor
+TruckEditor = Truck Editor
+DefaultInventoryEditor = Default Inventory Editor
+
+Label = Label
+State = State
+Name = Name
+Miles = Miles
+Hours = Hours
+Number = Number
+Description = Description
+Price = Price
+Quantity = Quantity
+Lifetime = Lifetime
+WarehouseQuantity = Quantity
+HourlyRate = Hourly Rate
+
+NumberInUse = Number in Use
+NumberInUseMsg = This number is in use.
+LabelInUse = Label in Use
+LabelInUseMsg = This label is in use.
+LabelBlank = Label Blank
+LabelBlankMsg = The label cannot be blank.
+NameBlank = Name Blank
+NameBlankMsg = The name cannot be blank.
+StateBlank = State Blank
+StateBlankMsg = The state cannot be blank.
+DescriptionBlank = Description Blank
+DescriptionBlankMsg = The description cannot be blank.
+RouteCityBlank = No Route Cities
+RouteCityBlankMsg = A route must contain cities.
+DefaultItemMax = Too Many Items
+DefaultItemMaxMsg = You cannot add more items to the default inventory.
+TooManyItems = Too Many Items
+TooManyItemsMsg = You cannot add more items to the inventory.
+
+
+# Unit test strings
+Test = This could be anything.
+Test2    = English test 2
+Test3 = English test 3
+Test4 = English test 4

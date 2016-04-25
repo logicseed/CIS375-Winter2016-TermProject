@@ -95,7 +95,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (item == null) item = saleFactory.LoadItem(itemID);
+                if (item == null) item = Factory.Item.Load(itemID);
                 return item;
             }
         }
@@ -104,7 +104,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (truck == null) truck = saleFactory.LoadTruck(truckID);
+                if (truck == null) truck = Factory.Truck.Load(truckID);
                 return truck;
             }
         }
@@ -113,7 +113,7 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (route == null) route = saleFactory.LoadRoute(routeID);
+                if (route == null) route = Factory.Route.Load(routeID);
                 return route;
             }
         }
@@ -122,9 +122,14 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (driver == null) driver = saleFactory.LoadDriver(driverID);
+                if (driver == null) driver = Factory.Driver.Load(driverID);
                 return driver;
             }
+        }
+
+        public override bool Save()
+        {
+            return SaleFactory.Reference.Save(this);
         }
     }
 }

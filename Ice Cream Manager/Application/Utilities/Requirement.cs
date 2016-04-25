@@ -82,6 +82,8 @@ namespace IceCreamManager
 
         public static int MaxRouteNumber => Properties.Requirements.Default.MaxRouteNumber;
 
+        public static int MaxRouteCities => Properties.Requirements.Default.MaxRouteCities;
+
         // Truck requirements
 
 

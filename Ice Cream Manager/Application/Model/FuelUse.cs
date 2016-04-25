@@ -12,11 +12,9 @@ namespace IceCreamManager.Model
         FuelUseFactory fuelUseFactory = FuelUseFactory.Reference;
 
         private int truckID = 0;
-        private int routeID = 0;
         private DateTime dateUsed;
 
         private Truck truck = null;
-        private Route route = null;
 
         public int TruckID
         {
@@ -28,20 +26,6 @@ namespace IceCreamManager.Model
             {
                 if (value != truckID) truck = null;
                 truckID = value;
-                IsSaved = false;
-            }
-        }
-
-        public int RouteID
-        {
-            get
-            {
-                return routeID;
-            }
-            set
-            {
-                if (value != routeID) route = null;
-                routeID = value;
                 IsSaved = false;
             }
         }
@@ -63,19 +47,14 @@ namespace IceCreamManager.Model
         {
             get
             {
-                if (truck == null) truck = fuelUseFactory.LoadTruck(truckID);
+                if (truck == null) truck = Factory.Truck.Load(truckID);
                 return truck;
             }
         }
 
-        public Route Route
+        public override bool Save()
         {
-            get
-            {
-                if (route == null) route = fuelUseFactory.LoadRoute(routeID);
-                return route;
-            }
+            return FuelUseFactory.Reference.Save(this);
         }
-
     }
 }

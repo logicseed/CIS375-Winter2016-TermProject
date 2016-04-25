@@ -7,41 +7,25 @@ using System;
 
 namespace IceCreamManager.Model
 {
-    class SalaryCost : DatabaseEntity
+    public class SalaryCost : DatabaseEntity
     {
         SalaryCostFactory salaryCostFactory = SalaryCostFactory.Reference;
 
-        private int routeID = 0;
-        private int driverID = 0;
+        private int truckID = 0;
         private DateTime dateWorked;
 
-        private Route route = null;
-        private Driver driver = null;
+        private Truck truck = null;
 
-        public int RouteID
+        public int TruckID
         {
             get
             {
-                return routeID;
+                return truckID;
             }
             set
             {
-                if (value != routeID) route = null;
-                routeID = value;
-                IsSaved = false;
-            }
-        }
-
-        public int DriverID
-        {
-            get
-            {
-                return driverID;
-            }
-            set
-            {
-                if (value != driverID) driver = null;
-                driverID = value;
+                if (value != truckID) truck = null;
+                truckID = value;
                 IsSaved = false;
             }
         }
@@ -59,22 +43,18 @@ namespace IceCreamManager.Model
             }
         }
 
-        public Route Route
+        public Truck Truck
         {
             get
             {
-                if (route == null) route = salaryCostFactory.LoadRoute(routeID);
-                return route;
+                if (truck == null) truck = Factory.Truck.Load(truckID);
+                return truck;
             }
         }
 
-        public Driver Driver
+        public override bool Save()
         {
-            get
-            {
-                if (driver == null) driver = salaryCostFactory.LoadDriver(driverID);
-                return driver;
-            }
+            return SalaryCostFactory.Reference.Save(this);
         }
     }
 }

@@ -4,6 +4,7 @@
 /// <date_created> 2016-04-10 </date_created>
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace IceCreamManager.Model
@@ -12,37 +13,77 @@ namespace IceCreamManager.Model
     {
         #region Singleton
         private static readonly LogEntryFactory SingletonInstance = new LogEntryFactory();
+
         public static LogEntryFactory Reference { get { return SingletonInstance; } }
         private LogEntryFactory() { }
         #endregion Singleton
 
+        protected override string TableName => "LogEntry";
+
         protected override string DatabaseQueryColumns()
-            => "MainEntityType,MainEntityID,SubEntityType,SubEntityID,ActionSource,ActionType,Outcome,BatchFileLine,DateLogged";
+            => "Message,DateLogged,Success";
 
         protected override string DatabaseQueryColumnValuePairs(LogEntry logEntry)
-            => $"MainEntityType = {(int)logEntry.MainEntityType},MainEntityID = {logEntry.MainEntityID},SubEntityType = {(int)logEntry.SubEntityType},SubEntityID = {logEntry.SubEntityID},ActionSource = {(int)logEntry.Source},ActionType = {(int)logEntry.Action},Outcome = {(int)logEntry.Outcome},BatchFileLine = {logEntry.BatchFileLine},DateLogged = '{logEntry.DateLogged.ToDatabase()}'";
+            => $"Message = '{logEntry.Message}', DateLogged = '{logEntry.DateLogged.ToDatabase()}', Success = {logEntry.Success.ToDatabase()}";
 
         protected override string DatabaseQueryValues(LogEntry logEntry)
-            => $"{(int)logEntry.MainEntityType},{logEntry.MainEntityID},{(int)logEntry.SubEntityType},{logEntry.SubEntityID},{(int)logEntry.Source},{(int)logEntry.Action},{(int)logEntry.Outcome},{logEntry.BatchFileLine},'{logEntry.DateLogged.ToDatabase()}'";
+            => $"'{logEntry.Message}','{logEntry.DateLogged.ToDatabase()}',{logEntry.Success.ToDatabase()}";
 
         protected override LogEntry MapDataRowToProperties(DataRow row)
         {
             LogEntry logEntry = new LogEntry();
 
             logEntry.ID = row.Col("ID");
-            logEntry.MainEntityType = (EntityType)row.Col("MainEntityType");
-            logEntry.MainEntityID = row.Col("MainEntityID");
-            logEntry.SubEntityType = (EntityType)row.Col("SubEntityType");
-            logEntry.SubEntityID = row.Col("SubEntityID");
-            logEntry.Source = (ActionSource)row.Col("ActionSource");
-            logEntry.Action = (ActionType)row.Col("ActionType");
-            logEntry.Outcome = (Outcome)row.Col("Outcome");
-            logEntry.BatchFileLine = row.Col("BatchFileLine");
-            logEntry.DateLogged = row.Col<DateTime>("DateLogged");
+            logEntry.Message = row.Col<string>("Message");
+            logEntry.DateLogged = row.ColDateTime("DateLogged");
+            logEntry.Success = row.Col<bool>("Success");
             logEntry.InDatabase = true;
             logEntry.IsSaved = true;
 
             return logEntry;
+        }
+
+        public DataTable FormatDataTable(DataTable dataTableToFormat = null)
+        {
+            var dataTable = new DataTable();
+
+            dataTable.Columns.Add(new DataColumn("ID", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("DateLogged", typeof(DateTime)));
+            dataTable.Columns.Add(new DataColumn("Message", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Success", typeof(bool)));
+
+            if (dataTableToFormat == null) return dataTable;
+
+            foreach (DataRow Row in dataTableToFormat.Rows)
+            {
+                DataRow RowToReturn = dataTable.NewRow();
+
+                RowToReturn["ID"] = Row.Col("ID");
+                RowToReturn["DateLogged"] = Row.Col<DateTime>("DateLogged");
+                RowToReturn["Message"] = Row.Col<string>("Message");
+                RowToReturn["Success"] = Row.Col<bool>("Success");
+
+                dataTable.Rows.Add(RowToReturn);
+            }
+
+            return dataTable;
+        }
+
+        public DataTable GetDataTable(int maxEntries)
+        {
+            var ResultsTable = Database.Query($"SELECT * FROM {TableName} ORDER BY DateLogged DESC LIMIT {maxEntries}");
+            return FormatDataTable(ResultsTable);
+        }
+
+        public DataTable GetUpdatedRows(DateTime lastUpdate, int maxEntries)
+        {
+            var ResultsTable = Database.Query($"SELECT * FROM {TableName} WHERE DateLogged > datetime('{lastUpdate.ToDatabase()}') LIMIT {maxEntries}");
+            return FormatDataTable(ResultsTable);
+        }
+
+        protected override string SaveLogString(LogEntry entity)
+        {
+            return "#DONTLOGLOG#";
         }
     }
 }

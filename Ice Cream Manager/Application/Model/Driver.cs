@@ -24,7 +24,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   User provided number to distinguish the driver. Changing this value marks an item to be deleted. 
         /// </summary>
-        public int Number
+        public override int Number
         {
             get
             {
@@ -82,6 +82,11 @@ namespace IceCreamManager.Model
                 IsSaved = false;
                 ReplaceOnSave = true;
             }
+        }
+
+        public override bool Save()
+        {
+            return Factory.Driver.Save(this);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   User provided number to distinguish the item. Changing this value marks an item to be deleted. 
         /// </summary>
-        public int Number
+        public override int Number
         {
             get
             {
@@ -126,6 +126,11 @@ namespace IceCreamManager.Model
                 quantity = value;
                 IsSaved = false;
             }
+        }
+
+        public override bool Save()
+        {
+            return Factory.Item.Save(this);
         }
     }
 }

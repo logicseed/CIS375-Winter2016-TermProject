@@ -9,14 +9,8 @@ namespace IceCreamManager.Model
 {
     public class LogEntry : DatabaseEntity
     {
-        private EntityType mainEntityType;
-        private int mainEntityID;
-        private EntityType subEntityType = EntityType.None;
-        private int subEntityID = 0;
-        private ActionSource source;
-        private ActionType action;
-        private Outcome outcome;
-        private int batchFileLine;
+        private string message;
+        private bool success;
         private DateTime dateLogged;
 
         public LogEntry()
@@ -24,99 +18,27 @@ namespace IceCreamManager.Model
             ID = 0;
         }
 
-        public EntityType MainEntityType
+        public string Message
         {
             get
             {
-                return mainEntityType;
+                return message;
             }
             set
             {
-                mainEntityType = value;
+                message = value;
             }
         }
 
-        public int MainEntityID
+        public bool Success
         {
             get
             {
-                return mainEntityID;
+                return success;
             }
             set
             {
-                mainEntityID = value;
-            }
-        }
-
-        public EntityType SubEntityType
-        {
-            get
-            {
-                return subEntityType;
-            }
-            set
-            {
-                subEntityType = value;
-            }
-        }
-
-        public int SubEntityID
-        {
-            get
-            {
-                return subEntityID;
-            }
-            set
-            {
-                subEntityID = value;
-            }
-        }
-
-        public ActionSource Source
-        {
-            get
-            {
-                return source;
-            }
-            set
-            {
-                source = value;
-            }
-        }
-
-        public ActionType Action
-        {
-            get
-            {
-                return action;
-            }
-            set
-            {
-                action = value;
-            }
-        }
-
-        public Outcome Outcome
-        {
-            get
-            {
-                return outcome;
-            }
-            set
-            {
-                outcome = value;
-            }
-        }
-
-        public int BatchFileLine
-        {
-            get
-            {
-                return batchFileLine;
-            }
-            set
-            {
-                batchFileLine = value;
+                success = value;
             }
         }
 
@@ -131,6 +53,10 @@ namespace IceCreamManager.Model
                 dateLogged = value;
             }
         }
-        
+
+        public override bool Save()
+        {
+            return Factory.Log.Save(this);
+        }
     }
 }
