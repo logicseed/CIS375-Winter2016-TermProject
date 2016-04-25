@@ -29,18 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.RevenueTab = new System.Windows.Forms.TabPage();
             this.RevenueLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.RevenueTabLayout = new System.Windows.Forms.TabControl();
-            this.GridTab = new System.Windows.Forms.TabPage();
             this.RevenueGrid = new System.Windows.Forms.DataGridView();
-            this.GraphTab = new System.Windows.Forms.TabPage();
-            this.RevenueChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.StartDateLabel = new System.Windows.Forms.Label();
             this.StartDateBox = new System.Windows.Forms.DateTimePicker();
@@ -106,11 +99,7 @@
             this.MainTabs.SuspendLayout();
             this.RevenueTab.SuspendLayout();
             this.RevenueLayout.SuspendLayout();
-            this.RevenueTabLayout.SuspendLayout();
-            this.GridTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RevenueGrid)).BeginInit();
-            this.GraphTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RevenueChart)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.TrucksTab.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -168,7 +157,7 @@
             // 
             this.RevenueLayout.ColumnCount = 1;
             this.RevenueLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.RevenueLayout.Controls.Add(this.RevenueTabLayout, 0, 1);
+            this.RevenueLayout.Controls.Add(this.RevenueGrid, 0, 1);
             this.RevenueLayout.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.RevenueLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RevenueLayout.Location = new System.Drawing.Point(3, 3);
@@ -177,31 +166,9 @@
             this.RevenueLayout.RowCount = 2;
             this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.RevenueLayout.Size = new System.Drawing.Size(770, 446);
             this.RevenueLayout.TabIndex = 0;
-            // 
-            // RevenueTabLayout
-            // 
-            this.RevenueTabLayout.Controls.Add(this.GridTab);
-            this.RevenueTabLayout.Controls.Add(this.GraphTab);
-            this.RevenueTabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RevenueTabLayout.Location = new System.Drawing.Point(0, 70);
-            this.RevenueTabLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.RevenueTabLayout.Name = "RevenueTabLayout";
-            this.RevenueTabLayout.SelectedIndex = 0;
-            this.RevenueTabLayout.Size = new System.Drawing.Size(770, 376);
-            this.RevenueTabLayout.TabIndex = 0;
-            // 
-            // GridTab
-            // 
-            this.GridTab.Controls.Add(this.RevenueGrid);
-            this.GridTab.Location = new System.Drawing.Point(4, 22);
-            this.GridTab.Name = "GridTab";
-            this.GridTab.Padding = new System.Windows.Forms.Padding(3);
-            this.GridTab.Size = new System.Drawing.Size(762, 350);
-            this.GridTab.TabIndex = 0;
-            this.GridTab.Text = "!Grid";
-            this.GridTab.UseVisualStyleBackColor = true;
             // 
             // RevenueGrid
             // 
@@ -209,40 +176,11 @@
             this.RevenueGrid.AllowUserToDeleteRows = false;
             this.RevenueGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RevenueGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RevenueGrid.Location = new System.Drawing.Point(3, 3);
+            this.RevenueGrid.Location = new System.Drawing.Point(3, 73);
             this.RevenueGrid.Name = "RevenueGrid";
             this.RevenueGrid.ReadOnly = true;
-            this.RevenueGrid.Size = new System.Drawing.Size(756, 344);
+            this.RevenueGrid.Size = new System.Drawing.Size(764, 370);
             this.RevenueGrid.TabIndex = 0;
-            // 
-            // GraphTab
-            // 
-            this.GraphTab.Controls.Add(this.RevenueChart);
-            this.GraphTab.Location = new System.Drawing.Point(4, 22);
-            this.GraphTab.Name = "GraphTab";
-            this.GraphTab.Padding = new System.Windows.Forms.Padding(3);
-            this.GraphTab.Size = new System.Drawing.Size(762, 350);
-            this.GraphTab.TabIndex = 1;
-            this.GraphTab.Text = "!Graph";
-            this.GraphTab.UseVisualStyleBackColor = true;
-            // 
-            // RevenueChart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.RevenueChart.ChartAreas.Add(chartArea1);
-            this.RevenueChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.RevenueChart.Legends.Add(legend1);
-            this.RevenueChart.Location = new System.Drawing.Point(3, 3);
-            this.RevenueChart.Name = "RevenueChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.RevenueChart.Series.Add(series1);
-            this.RevenueChart.Size = new System.Drawing.Size(756, 344);
-            this.RevenueChart.SuppressExceptions = true;
-            this.RevenueChart.TabIndex = 0;
-            this.RevenueChart.Text = "RevenueChart";
             // 
             // tableLayoutPanel3
             // 
@@ -1115,11 +1053,7 @@
             this.RevenueTab.ResumeLayout(false);
             this.RevenueLayout.ResumeLayout(false);
             this.RevenueLayout.PerformLayout();
-            this.RevenueTabLayout.ResumeLayout(false);
-            this.GridTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RevenueGrid)).EndInit();
-            this.GraphTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RevenueChart)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.TrucksTab.ResumeLayout(false);
@@ -1204,11 +1138,7 @@
         protected System.Windows.Forms.Button EditTruckButton;
         protected System.Windows.Forms.Button DefaultInventoryButton;
         private System.Windows.Forms.TableLayoutPanel RevenueLayout;
-        private System.Windows.Forms.TabControl RevenueTabLayout;
-        private System.Windows.Forms.TabPage GridTab;
         private System.Windows.Forms.DataGridView RevenueGrid;
-        private System.Windows.Forms.TabPage GraphTab;
-        private System.Windows.Forms.DataVisualization.Charting.Chart RevenueChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label StartDateLabel;
         private System.Windows.Forms.DateTimePicker StartDateBox;
