@@ -3,118 +3,118 @@
 # <author> Marc King </author>
 # <date_created> 2016-04-16 </date_created>
 
-@Language = English
+@Language = русский
 
 # Main screen
 
-Revenue = Revenue
-Truck = Truck
-Trucks = Trucks
-Item = Item
-Items = Items
-Driver = Driver
-Drivers = Drivers
-Route = Route
-Routes = Routes
-City = City
-Cities = Cities
-Batch = Batch
-Processing = Processing
-Settings = Settings
-ViewLog = View Log
-About = About
-StartDate = Start Date
-EndDate = End Date
+Revenue = доходов
+Truck = Грузовик
+Trucks = Грузовики
+Item = Пункт
+Items = Предметы
+Driver = Водитель
+Drivers = Драйверы
+Route = маршрут
+Routes = Маршруты
+City = Сити
+Cities = Города
+Batch = партия
+Processing = обработка
+Settings = окружение
+ViewLog = Просмотр журнал
+About = около
+StartDate = Дата начала
+EndDate = Дата окончания
 
 # Truck Editor
 
-AddCity = Add City
-AddItem = Add Item
-RemoveCity = Remove City
-RemoveItem = Remove Item
-WasteItem = Waste Item
-SellItem = Sell Item
+AddCity = Добавить город
+AddItem = Добавить элемент
+RemoveCity = Удалить Город
+RemoveItem = Убрать предмет
+WasteItem = Корзина товара
+SellItem = Продажа товара
 
 # Generic Editor
 
-Save = Save
-Discard = Discard
-OK = OK
-Update = Update
-All = All
-ItemEditor = Item Editor
-CityEditor = City Editor
-RouteEditor = Route Editor
-DriverEditor = Driver Editor
-TruckEditor = Truck Editor
-DefaultInventoryEditor = Default Inventory Editor
+Save = Сохранить
+Discard = отбрасывать
+OK = Хорошо
+Update = Обновить
+All = Все
+ItemEditor = Редактор Пункт
+CityEditor = заведующий репортажем
+RouteEditor = Редактор маршрута
+DriverEditor = Редактор Драйвер
+TruckEditor = Грузовик редактор
+DefaultInventoryEditor = Редактор инвентаризации
 
 # Settings Editor
 
-SettingsEditor = Settings Editor
-Language = Language
-Currency = Currency
-FuelRate = Fuel Rate
+SettingsEditor = Настройки редактора
+Language = язык
+Currency = валюта
+FuelRate = Топливо Оценить
 
 # Entity Lists
 
-Add = Add
-Edit = Edit
-Remove = Remove
-ShowDeleted = Show Deleted
-Deleted = Deleted
-Stock = Stock
-DefaultInventory = Default Inventory
+Add = Добавить
+Edit = редактировать
+Remove = Удалить
+ShowDeleted = исключаемый
+Deleted = удаленный
+Stock = Акции
+DefaultInventory = По умолчанию Инвентарь
 
 
-Label = Label
-State = State
-Name = Name
-Miles = Miles
+Label = метка
+State = государство
+Name = имя
+Miles = миль
 Hours = Hours
-Number = Number
-Description = Description
-Price = Price
-Quantity = Quantity
-Lifetime = Lifetime
-WarehouseQuantity = Quantity
-HourlyRate = Hourly Rate
+Number = часов
+Description = Описание
+Price = Цена
+Quantity = Количество
+Lifetime = Продолжительность жизни
+WarehouseQuantity = Количество
+HourlyRate = почасовая ставка
 
-NumberInUse = Number in Use
-NumberInUseMsg = This number is in use.
-LabelInUse = Label in Use
-LabelInUseMsg = This label is in use.
-LabelBlank = Label Blank
-LabelBlankMsg = The label cannot be blank.
-NameBlank = Name Blank
-NameBlankMsg = The name cannot be blank.
-StateBlank = State Blank
-StateBlankMsg = The state cannot be blank.
-DescriptionBlank = Description Blank
-DescriptionBlankMsg = The description cannot be blank.
-RouteCityBlank = No Route Cities
-RouteCityBlankMsg = A route must contain cities.
-DefaultItemMax = Too Many Items
-DefaultItemMaxMsg = You cannot add more items to the default inventory.
-TooManyItems = Too Many Items
-TooManyItemsMsg = You cannot add more items to the inventory.
+NumberInUse = Номер в использовании
+NumberInUseMsg = Это число используется.
+LabelInUse = Этикетка в использовании
+LabelInUseMsg = Эта метка используется.
+LabelBlank = Этикетка Бланк
+LabelBlankMsg = Метка не может быть пустым.
+NameBlank = Имя Пустой
+NameBlankMsg = Название не может быть пустым.
+StateBlank = Государство Пустой
+StateBlankMsg = Государство не может быть пустым.
+DescriptionBlank = Описание Пустой
+DescriptionBlankMsg = Описание не может быть пустым.
+RouteCityBlank = Нет городов маршрута
+RouteCityBlankMsg = Маршрут должен содержать города.
+DefaultItemMax = Слишком много предметов
+DefaultItemMaxMsg = Вы не можете добавить больше деталей к инвентарю по умолчанию.
+TooManyItems = Слишком много предметов
+TooManyItemsMsg = Вы не можете добавить больше деталей к инвентарю.
 
-ProcessStartOfDay = Process Start of Day
-LoadCityFile = Load City File
-LoadCityFileExtension = Load City File Extension
-LoadRouteFile = Load Route File
-LoadDriverFile = Load Driver File
-LoadTruckFile = Load Truck File
-LoadTruckFuelFile = Load Truck Fuel File
-LoadTruckInventoryFile = Load Truck Inventory File
-LoadOverallInventoryFile = Load Overall Inventory File
-LoadOverallInventoryExtensionFile = Load Overall Inventory Extension File
-LoadTruckDriverFile = Load Truck Driver File
-LoadTruckRouteFile = Load Truck Route File
-LoadSalesFile = Load Sales File
-ProcessEndOfDay = Process End of Day
-BatchFiles = Batch Files
-AllFiles = All Files
+ProcessStartOfDay = Процесс Начало дня
+LoadCityFile = Загрузка файла Город
+LoadCityFileExtension = Расширение загрузки файла Город
+LoadRouteFile = Загрузить маршрут Город
+LoadDriverFile = Загрузить файл драйвера
+LoadTruckFile = Загрузка файла Грузовик
+LoadTruckFuelFile = Загрузка файла Грузовик топлива
+LoadTruckInventoryFile = Грузовиками инвентаризации файлов
+LoadOverallInventoryFile = Загрузить Общий инвентаризации Файл
+LoadOverallInventoryExtensionFile = Загрузка Общий инвентаризации Расширение файла
+LoadTruckDriverFile = Загрузить файл драйвера Грузовик
+LoadTruckRouteFile = Загрузить файл Город файла
+LoadSalesFile = Загрузить файл по продажам
+ProcessEndOfDay = Процесс Конец дня
+BatchFiles = Пакетные файлы
+AllFiles = Все файлы
 
 # Unit Test strings
 Test=Russian test 1

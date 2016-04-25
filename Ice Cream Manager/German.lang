@@ -3,118 +3,118 @@
 # <author> Marc King </author>
 # <date_created> 2016-04-25 </date_created>
 
-@Language = English
+@Language = Deutsche
 
 # Main screen
 
-Revenue = Revenue
-Truck = Truck
-Trucks = Trucks
-Item = Item
-Items = Items
-Driver = Driver
-Drivers = Drivers
+Revenue = Einnahmen
+Truck = Lastwagen
+Trucks = Laster
+Item = Artikel
+Items = Artikel
+Driver = Treiber
+Drivers = Treiber
 Route = Route
-Routes = Routes
-City = City
-Cities = Cities
-Batch = Batch
-Processing = Processing
-Settings = Settings
-ViewLog = View Log
-About = About
-StartDate = Start Date
-EndDate = End Date
+Routes = Routen
+City = Stadt
+Cities = Städte
+Batch = Stapel
+Processing = Verarbeitung
+Settings = Einstellungen
+ViewLog = Untersuchen Sie Log
+About = Etwa
+StartDate = Anfangsdatum
+EndDate = Enddatum
 
 # Truck Editor
 
-AddCity = Add City
-AddItem = Add Item
-RemoveCity = Remove City
-RemoveItem = Remove Item
-WasteItem = Waste Item
-SellItem = Sell Item
+AddCity = In der Stadt
+AddItem = Artikel hinzufügen
+RemoveCity = Entfernen Stadt
+RemoveItem = Gegenstand Entfernen
+WasteItem = Abfall Artikel
+SellItem = Verkaufen Sie Artikel
 
 # Generic Editor
 
-Save = Save
-Discard = Discard
-OK = OK
-Update = Update
-All = All
-ItemEditor = Item Editor
-CityEditor = City Editor
-RouteEditor = Route Editor
-DriverEditor = Driver Editor
-TruckEditor = Truck Editor
-DefaultInventoryEditor = Default Inventory Editor
+Save = Sparen
+Discard = Verwerfen
+OK = In Ordnung
+Update = Aktualisieren
+All = Alle
+ItemEditor = Artikel-Editor
+CityEditor = Stadt-Editor
+RouteEditor = Route-Editor
+DriverEditor = Treiber-Editor
+TruckEditor = Lastwagen-Editor
+DefaultInventoryEditor = Standard Inventar-Editor
 
 # Settings Editor
 
-SettingsEditor = Settings Editor
-Language = Language
-Currency = Currency
-FuelRate = Fuel Rate
+SettingsEditor = Einstellungen-Editor
+Language = Sprache
+Currency = Währung
+FuelRate = Kraftstoffverbrauch
 
 # Entity Lists
 
-Add = Add
-Edit = Edit
-Remove = Remove
-ShowDeleted = Show Deleted
-Deleted = Deleted
-Stock = Stock
-DefaultInventory = Default Inventory
+Add = Hinzufügen
+Edit = Bearbeiten
+Remove = Entfernen
+ShowDeleted = Gelöschte anzeigen
+Deleted = Gelöscht
+Stock = Vorrat
+DefaultInventory = Standardinventar
 
 
-Label = Label
-State = State
-Name = Name
-Miles = Miles
-Hours = Hours
-Number = Number
-Description = Description
-Price = Price
-Quantity = Quantity
-Lifetime = Lifetime
-WarehouseQuantity = Quantity
-HourlyRate = Hourly Rate
+Label = Etikette
+State = Staat
+Name = Benennung
+Miles = Meilen
+Hours = Stunden
+Number = Nummer
+Description = Beschreibung
+Price = Preis
+Quantity = Menge
+Lifetime = Lebenszeit
+WarehouseQuantity = Menge
+HourlyRate = Stundensatz
 
-NumberInUse = Number in Use
-NumberInUseMsg = This number is in use.
-LabelInUse = Label in Use
-LabelInUseMsg = This label is in use.
-LabelBlank = Label Blank
-LabelBlankMsg = The label cannot be blank.
-NameBlank = Name Blank
-NameBlankMsg = The name cannot be blank.
-StateBlank = State Blank
-StateBlankMsg = The state cannot be blank.
-DescriptionBlank = Description Blank
-DescriptionBlankMsg = The description cannot be blank.
-RouteCityBlank = No Route Cities
-RouteCityBlankMsg = A route must contain cities.
-DefaultItemMax = Too Many Items
-DefaultItemMaxMsg = You cannot add more items to the default inventory.
-TooManyItems = Too Many Items
-TooManyItemsMsg = You cannot add more items to the inventory.
+NumberInUse = Anzahl im Einsatz
+NumberInUseMsg = Diese Nummer wird verwendet.
+LabelInUse = Label im Einsatz
+LabelInUseMsg = Dieses Etikett wird verwendet.
+LabelBlank = Label-Leer
+LabelBlankMsg = Das Etikett kann nicht leer sein.
+NameBlank = Benennung-Leer
+NameBlankMsg = Der Name darf nicht leer sein.
+StateBlank = Staat-Leer
+StateBlankMsg = Der Staat kann nicht leer sein.
+DescriptionBlank = Beschreibung-Leer
+DescriptionBlankMsg = Die Beschreibung kann nicht leer sein.
+RouteCityBlank = Keine Route Städte
+RouteCityBlankMsg = Eine Route muss Städte enthalten.
+DefaultItemMax = Zu viele Dinge
+DefaultItemMaxMsg = Sie können nicht mehr Produkte auf den Standard Inventar hinzufügen.
+TooManyItems = Zu viele Dinge
+TooManyItemsMsg = Sie können nicht mehr Artikel zum Inventar hinzufügen.
 
-ProcessStartOfDay = Process Start of Day
-LoadCityFile = Load City File
-LoadCityFileExtension = Load City File Extension
-LoadRouteFile = Load Route File
-LoadDriverFile = Load Driver File
-LoadTruckFile = Load Truck File
-LoadTruckFuelFile = Load Truck Fuel File
-LoadTruckInventoryFile = Load Truck Inventory File
-LoadOverallInventoryFile = Load Overall Inventory File
-LoadOverallInventoryExtensionFile = Load Overall Inventory Extension File
-LoadTruckDriverFile = Load Truck Driver File
-LoadTruckRouteFile = Load Truck Route File
-LoadSalesFile = Load Sales File
-ProcessEndOfDay = Process End of Day
-BatchFiles = Batch Files
-AllFiles = All Files
+ProcessStartOfDay = Prozess Beginn des Tages
+LoadCityFile = Last Stadt Datei
+LoadCityFileExtension = Last Stadt Dateierweiterung
+LoadRouteFile = Route laden Datei
+LoadDriverFile = Treiber laden Datei
+LoadTruckFile = Last Lastwagen Datei
+LoadTruckFuelFile = Last Lastwagen Kraftstoff Datei
+LoadTruckInventoryFile = Last Lastwgen Bestandsdatei
+LoadOverallInventoryFile = Laden Gesamtinventardatei
+LoadOverallInventoryExtensionFile = Laden Insgesamt Inventurerweiterung Datei
+LoadTruckDriverFile = Last Lastwagen Treiber Datei
+LoadTruckRouteFile = Laden Lastwagen Routendatei
+LoadSalesFile = Lastverkaufsdatei
+ProcessEndOfDay = Prozess Ende des Tages
+BatchFiles = Batch-Dateien
+AllFiles = Alle Dateien
 
 # Unit test strings
 Test = This could be anything.
