@@ -67,15 +67,16 @@ namespace IceCreamManager.Controller
         /// <returns> Array of language names. </returns>
         public string[] GetValidLanguageFiles(string filesLocation, string filesExtension)
         {
-            string[] ValidLanguageFiles = Directory.GetFiles(filesLocation, $"*{filesExtension}");
+            string[] ValidLanguagePaths = Directory.GetFiles(filesLocation, $"*{filesExtension}");
 
             // Strip off paths
-            for (int i = 0; i < ValidLanguageFiles.Length; i++)
+            for (int i = 0; i < ValidLanguagePaths.Length; i++)
             {
-                ValidLanguageFiles[i] = Path.GetFileNameWithoutExtension(ValidLanguageFiles[i]);
+                ValidLanguagePaths[i] = Path.GetFileNameWithoutExtension(ValidLanguagePaths[i]);
             }
 
-            return ValidLanguageFiles;
+
+            return ValidLanguagePaths;
         }
 
 

@@ -15,6 +15,7 @@ namespace IceCreamManager
         [STAThread]
         static void Main()
         {
+            LanguageManager.Reference.InitializeLanguages();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

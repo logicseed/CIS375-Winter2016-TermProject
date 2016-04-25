@@ -64,7 +64,6 @@ namespace IceCreamManager.Model
         {
 #if DEBUG   // Development
             DatabaseFile = "../../../TestDatabase.db";
-            //DatabaseFile = "C:/Cosmosys/Ice Cream Manager/TestDatabase.db"; // Marc's path
 #else       // Production
             DatabaseFile = "IceCreamManager.db";
 #endif

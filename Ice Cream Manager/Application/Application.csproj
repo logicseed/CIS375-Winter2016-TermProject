@@ -165,6 +165,9 @@
     <Compile Include="View\LogViewer.Designer.cs">
       <DependentUpon>LogViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MainForm.Batch.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

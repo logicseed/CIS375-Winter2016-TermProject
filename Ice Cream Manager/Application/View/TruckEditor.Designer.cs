@@ -356,6 +356,7 @@
             // 
             this.ItemBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ItemBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ItemBox.DropDownWidth = 200;
             this.ItemBox.FormattingEnabled = true;
             this.ItemBox.Location = new System.Drawing.Point(3, 5);
             this.ItemBox.Name = "ItemBox";
@@ -467,6 +468,7 @@
             // RouteBox
             // 
             this.RouteBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RouteBox.DropDownWidth = 250;
             this.RouteBox.FormattingEnabled = true;
             this.RouteBox.Location = new System.Drawing.Point(51, 3);
             this.RouteBox.Name = "RouteBox";
