@@ -100,6 +100,13 @@ namespace IceCreamManager.Model
             return Database.Query(DatabaseCommand);
         }
 
+        public int GetID(int number)
+        {
+            var sql = $"SELECT ID FROM {TableName} WHERE Number = {number}";
+            var table = Database.Query(sql);
+            return table.Row().Col();
+        }
+
         #endregion Public Methods
 
         #region Protected Fields

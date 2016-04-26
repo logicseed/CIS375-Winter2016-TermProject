@@ -95,5 +95,7 @@ namespace IceCreamManager
 
         public static double MaxTruckFuelRate => Properties.Requirements.Default.MaxTruckFuelRate;
 
+        public static int ZeroFillNumberLength => Properties.Requirements.Default.ZeroFillNumberLength;
+
     }
 }

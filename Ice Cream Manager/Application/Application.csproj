@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BatchFileProcessing.cs" />
     <Compile Include="Controller\LanguageParser.cs" />
     <Compile Include="Model\Factory.cs" />
     <Compile Include="Model\LanguageManager.cs" />

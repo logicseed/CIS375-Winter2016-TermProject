@@ -64,6 +64,10 @@ namespace IceCreamManager.Model
             return Exists(cityLabel, false);
         }
 
+        public City Load(string label)
+        {
+            return Load(GetCityID(label));
+        }
         /// <summary>
         ///   Builds a list of Cities that are available to be assigned to Routes. 
         /// </summary>
