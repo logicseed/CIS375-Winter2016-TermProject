@@ -1,29 +1,122 @@
-﻿@Language = русский язык
+﻿# <project> IceCreamManager </project>
+# <module> Russian Language </module>
+# <author> Marc King </author>
+# <date_created> 2016-04-16 </date_created>
+
+@Language = русский
+
 # Main screen
 
 Revenue = доходов
+Truck = Грузовик
 Trucks = Грузовики
+Item = Пункт
 Items = Предметы
-Drivers = Водитель
-Routes = маршрут
+Driver = Водитель
+Drivers = Драйверы
+Route = маршрут
+Routes = Маршруты
+City = Сити
 Cities = Города
+Batch = партия
 Processing = обработка
-Settings = настройки
-ViewLog = журнал
+Settings = окружение
+ViewLog = Просмотр журнал
 About = около
+StartDate = Дата начала
+EndDate = Дата окончания
 
+# Truck Editor
 
+AddCity = Добавить город
+AddItem = Добавить элемент
+RemoveCity = Удалить Город
+RemoveItem = Убрать предмет
+WasteItem = Корзина товара
+SellItem = Продажа товара
 
-# Generic editor phrases
-Save = сохранять
+# Generic Editor
+
+Save = Сохранить
 Discard = отбрасывать
+OK = Хорошо
+Update = Обновить
+All = Все
+ItemEditor = Редактор Пункт
+CityEditor = заведующий репортажем
+RouteEditor = Редактор маршрута
+DriverEditor = Редактор Драйвер
+TruckEditor = Грузовик редактор
+DefaultInventoryEditor = Редактор инвентаризации
 
-# Settings editor phrases
-SettingsEditor = окружение
+# Settings Editor
+
+SettingsEditor = Настройки редактора
 Language = язык
 Currency = валюта
+FuelRate = Топливо Оценить
 
-# tests
+# Entity Lists
+
+Add = Добавить
+Edit = редактировать
+Remove = Удалить
+ShowDeleted = исключаемый
+Deleted = удаленный
+Stock = Акции
+DefaultInventory = По умолчанию Инвентарь
+
+
+Label = метка
+State = государство
+Name = имя
+Miles = миль
+Hours = Hours
+Number = часов
+Description = Описание
+Price = Цена
+Quantity = Количество
+Lifetime = Продолжительность жизни
+WarehouseQuantity = Количество
+HourlyRate = почасовая ставка
+
+NumberInUse = Номер в использовании
+NumberInUseMsg = Это число используется.
+LabelInUse = Этикетка в использовании
+LabelInUseMsg = Эта метка используется.
+LabelBlank = Этикетка Бланк
+LabelBlankMsg = Метка не может быть пустым.
+NameBlank = Имя Пустой
+NameBlankMsg = Название не может быть пустым.
+StateBlank = Государство Пустой
+StateBlankMsg = Государство не может быть пустым.
+DescriptionBlank = Описание Пустой
+DescriptionBlankMsg = Описание не может быть пустым.
+RouteCityBlank = Нет городов маршрута
+RouteCityBlankMsg = Маршрут должен содержать города.
+DefaultItemMax = Слишком много предметов
+DefaultItemMaxMsg = Вы не можете добавить больше деталей к инвентарю по умолчанию.
+TooManyItems = Слишком много предметов
+TooManyItemsMsg = Вы не можете добавить больше деталей к инвентарю.
+
+ProcessStartOfDay = Процесс Начало дня
+LoadCityFile = Загрузка файла Город
+LoadCityFileExtension = Расширение загрузки файла Город
+LoadRouteFile = Загрузить маршрут Город
+LoadDriverFile = Загрузить файл драйвера
+LoadTruckFile = Загрузка файла Грузовик
+LoadTruckFuelFile = Загрузка файла Грузовик топлива
+LoadTruckInventoryFile = Грузовиками инвентаризации файлов
+LoadOverallInventoryFile = Загрузить Общий инвентаризации Файл
+LoadOverallInventoryExtensionFile = Загрузка Общий инвентаризации Расширение файла
+LoadTruckDriverFile = Загрузить файл драйвера Грузовик
+LoadTruckRouteFile = Загрузить файл Город файла
+LoadSalesFile = Загрузить файл по продажам
+ProcessEndOfDay = Процесс Конец дня
+BatchFiles = Пакетные файлы
+AllFiles = Все файлы
+
+# Unit Test strings
 Test=Russian test 1
 Test2      = Russian test 2
 Test3 = номер

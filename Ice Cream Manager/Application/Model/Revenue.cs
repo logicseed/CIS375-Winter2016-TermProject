@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// <project> IceCreamManager </project>
+/// <module> Revenue </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-24 </date_created>
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

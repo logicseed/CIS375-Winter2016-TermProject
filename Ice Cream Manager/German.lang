@@ -1,0 +1,123 @@
+# <project> IceCreamManager </project>
+# <module> German Language </module>
+# <author> Marc King </author>
+# <date_created> 2016-04-25 </date_created>
+
+@Language = Deutsche
+
+# Main screen
+
+Revenue = Einnahmen
+Truck = Lastwagen
+Trucks = Laster
+Item = Artikel
+Items = Artikel
+Driver = Treiber
+Drivers = Treiber
+Route = Route
+Routes = Routen
+City = Stadt
+Cities = Städte
+Batch = Stapel
+Processing = Verarbeitung
+Settings = Einstellungen
+ViewLog = Untersuchen Sie Log
+About = Etwa
+StartDate = Anfangsdatum
+EndDate = Enddatum
+
+# Truck Editor
+
+AddCity = In der Stadt
+AddItem = Artikel hinzufügen
+RemoveCity = Entfernen Stadt
+RemoveItem = Gegenstand Entfernen
+WasteItem = Abfall Artikel
+SellItem = Verkaufen Sie Artikel
+
+# Generic Editor
+
+Save = Sparen
+Discard = Verwerfen
+OK = In Ordnung
+Update = Aktualisieren
+All = Alle
+ItemEditor = Artikel-Editor
+CityEditor = Stadt-Editor
+RouteEditor = Route-Editor
+DriverEditor = Treiber-Editor
+TruckEditor = Lastwagen-Editor
+DefaultInventoryEditor = Standard Inventar-Editor
+
+# Settings Editor
+
+SettingsEditor = Einstellungen-Editor
+Language = Sprache
+Currency = Währung
+FuelRate = Kraftstoffverbrauch
+
+# Entity Lists
+
+Add = Hinzufügen
+Edit = Bearbeiten
+Remove = Entfernen
+ShowDeleted = Gelöschte anzeigen
+Deleted = Gelöscht
+Stock = Vorrat
+DefaultInventory = Standardinventar
+
+
+Label = Etikette
+State = Staat
+Name = Benennung
+Miles = Meilen
+Hours = Stunden
+Number = Nummer
+Description = Beschreibung
+Price = Preis
+Quantity = Menge
+Lifetime = Lebenszeit
+WarehouseQuantity = Menge
+HourlyRate = Stundensatz
+
+NumberInUse = Anzahl im Einsatz
+NumberInUseMsg = Diese Nummer wird verwendet.
+LabelInUse = Label im Einsatz
+LabelInUseMsg = Dieses Etikett wird verwendet.
+LabelBlank = Label-Leer
+LabelBlankMsg = Das Etikett kann nicht leer sein.
+NameBlank = Benennung-Leer
+NameBlankMsg = Der Name darf nicht leer sein.
+StateBlank = Staat-Leer
+StateBlankMsg = Der Staat kann nicht leer sein.
+DescriptionBlank = Beschreibung-Leer
+DescriptionBlankMsg = Die Beschreibung kann nicht leer sein.
+RouteCityBlank = Keine Route Städte
+RouteCityBlankMsg = Eine Route muss Städte enthalten.
+DefaultItemMax = Zu viele Dinge
+DefaultItemMaxMsg = Sie können nicht mehr Produkte auf den Standard Inventar hinzufügen.
+TooManyItems = Zu viele Dinge
+TooManyItemsMsg = Sie können nicht mehr Artikel zum Inventar hinzufügen.
+
+ProcessStartOfDay = Prozess Beginn des Tages
+LoadCityFile = Last Stadt Datei
+LoadCityFileExtension = Last Stadt Dateierweiterung
+LoadRouteFile = Route laden Datei
+LoadDriverFile = Treiber laden Datei
+LoadTruckFile = Last Lastwagen Datei
+LoadTruckFuelFile = Last Lastwagen Kraftstoff Datei
+LoadTruckInventoryFile = Last Lastwgen Bestandsdatei
+LoadOverallInventoryFile = Laden Gesamtinventardatei
+LoadOverallInventoryExtensionFile = Laden Insgesamt Inventurerweiterung Datei
+LoadTruckDriverFile = Last Lastwagen Treiber Datei
+LoadTruckRouteFile = Laden Lastwagen Routendatei
+LoadSalesFile = Lastverkaufsdatei
+ProcessEndOfDay = Prozess Ende des Tages
+BatchFiles = Batch-Dateien
+AllFiles = Alle Dateien
+
+# Unit test strings
+Test = This could be anything.
+Test2    = English test 2
+Test3 = English test 3
+Test4 = English test 4

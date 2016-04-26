@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <project> IceCreamManager </project>
+/// <module> Factory </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-18 </date_created>
 
 namespace IceCreamManager.Model
 {
@@ -25,5 +24,6 @@ namespace IceCreamManager.Model
         public static ItemWasteFactory ItemWaste { get { return ItemWasteFactory.Reference; } }
         public static FuelUseFactory FuelUse { get { return FuelUseFactory.Reference; } }
         public static SalaryCostFactory SalaryCost { get { return SalaryCostFactory.Reference; } }
+        public static BatchHistoryEntryFactory BatchHistory { get { return BatchHistoryEntryFactory.Reference; } }
     }
 }

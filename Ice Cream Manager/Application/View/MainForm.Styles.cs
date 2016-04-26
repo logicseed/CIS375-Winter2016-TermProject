@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/// <project> IceCreamManager </project>
+/// <module> MainForm.Styles </module>
+/// <author> Marc King </author>
+/// <date_created> 2016-04-25 </date_created>
+
 using System.Windows.Forms;
 using System.Drawing;
 

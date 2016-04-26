@@ -4,11 +4,7 @@
 /// <date_created> 2016-04-13 </date_created>
 
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IceCreamManager.Controller;
 
 namespace IceCreamManager.Model
