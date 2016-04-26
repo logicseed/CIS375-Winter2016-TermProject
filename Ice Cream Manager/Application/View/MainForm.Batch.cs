@@ -1,16 +1,29 @@
 ﻿using System;
 using System.Windows.Forms;
+using IceCreamManager.Controller;
 
 namespace IceCreamManager.View
 {
     partial class MainForm
     {
+        HeaderFooter newFile;
+        CityUpload cityFiles;
+        RouteUpload routeFiles;
+        TruckUpload truckFiles;
+        DriverUpload driverFiles;
+        IceCreamTruckUpload iceCreamTruckFiles;
+        IceCreamTruckSalesUpload salesFiles;
+        InventoryUpdateUpload inventoryFiles;
+
+
         private void LoadCityFileButton_Click(object sender, EventArgs e)
         {
             var fileURI = GetFileURIFromUser(Language["LoadCityFile"]);
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.City))
+                cityFiles.ProcessCityFile(fileURI);
         }
 
         private void LoadCityFileExtensionButton_Click(object sender, EventArgs e)
@@ -19,6 +32,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.CityExtension))
+                cityFiles.ProcessCityFileExtension(fileURI);
         }
 
         private void LoadRouteFileButton_Click(object sender, EventArgs e)
@@ -27,6 +42,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.Route))
+                routeFiles.ProcessRouteFile(fileURI);
         }
 
         private void LoadDriverFileButton_Click(object sender, EventArgs e)
@@ -35,6 +52,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.Driver))
+                driverFiles.ProcessDriverFile(fileURI);
         }
 
         private void LoadTruckFileButton_Click(object sender, EventArgs e)
@@ -43,6 +62,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.Truck))
+                truckFiles.ProcessTruckFile(fileURI);
         }
 
         private void LoadTruckFuelFileButton_Click(object sender, EventArgs e)
@@ -51,6 +72,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.TruckFuel))
+                truckFiles.ProcessTruckFuelFile(fileURI);
         }
 
         private void LoadTruckInventoryFileButton_Click(object sender, EventArgs e)
@@ -59,6 +82,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.TruckInventory))
+                iceCreamTruckFiles.ProcessIceCreamTruckFile(fileURI);
         }
 
         private void LoadOverallInventoryFileButton_Click(object sender, EventArgs e)
@@ -67,6 +92,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.OverallInventory))
+                inventoryFiles.ProcessInventoryUpdateFile(fileURI);
         }
 
         private void LoadOverallInventoryExtensionFileButton_Click(object sender, EventArgs e)
@@ -75,6 +102,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.OverallIventoryExtension))
+                inventoryFiles.ProcessInventoryUpdateExtensionFile(fileURI);
         }
 
         private void LoadTruckDriverFileButton_Click(object sender, EventArgs e)
@@ -83,6 +112,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.TruckDriver))
+                truckFiles.ProcessTruckDriverFile(fileURI);
         }
 
         private void LoadTruckRouteFileButton_Click(object sender, EventArgs e)
@@ -91,6 +122,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.TruckRoute))
+                truckFiles.ProcessTruckRouteFile(fileURI);
         }
 
         private void LoadSalesFileButton_Click(object sender, EventArgs e)
@@ -99,6 +132,8 @@ namespace IceCreamManager.View
             if (fileURI == "") return;
 
             // use fileURI to call a method to process the file
+            if (newFile.ProcessHeaderFooter(fileURI, BatchFileType.Sales))
+                salesFiles.ProcessIceCreamTruckSalesFile(fileURI);
         }
 
         private void ProcessStartOfDayButton_Click(object sender, EventArgs e)
