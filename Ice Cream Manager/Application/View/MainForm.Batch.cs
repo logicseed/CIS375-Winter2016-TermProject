@@ -6,14 +6,14 @@ namespace IceCreamManager.View
 {
     partial class MainForm
     {
-        HeaderFooter newFile;
-        CityUpload cityFiles;
-        RouteUpload routeFiles;
-        TruckUpload truckFiles;
-        DriverUpload driverFiles;
-        IceCreamTruckUpload iceCreamTruckFiles;
-        IceCreamTruckSalesUpload salesFiles;
-        InventoryUpdateUpload inventoryFiles;
+        HeaderFooter newFile = new HeaderFooter();
+        CityUpload cityFiles = new CityUpload();
+        RouteUpload routeFiles = new RouteUpload();
+        TruckUpload truckFiles = new TruckUpload();
+        DriverUpload driverFiles = new DriverUpload();
+        IceCreamTruckUpload iceCreamTruckFiles = new IceCreamTruckUpload();
+        IceCreamTruckSalesUpload salesFiles = new IceCreamTruckSalesUpload();
+        InventoryUpdateUpload inventoryFiles = new InventoryUpdateUpload();
 
 
         private void LoadCityFileButton_Click(object sender, EventArgs e)

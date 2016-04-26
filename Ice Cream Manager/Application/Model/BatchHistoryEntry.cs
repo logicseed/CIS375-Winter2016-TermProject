@@ -114,7 +114,7 @@ namespace IceCreamManager.Model
         /// <summary>
         ///   The current sequence number of the batch file type. 
         /// </summary>
-        private int sequenceNumber;
+        public int sequenceNumber;
 
         #endregion Private Fields
     }

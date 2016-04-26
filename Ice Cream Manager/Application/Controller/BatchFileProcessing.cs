@@ -79,7 +79,7 @@ namespace IceCreamManager.Controller
                 countedLines++;
 
                 headerRecord = Extract<string>(ref fileLine, 3);
-                headerRecord.TrimEnd(trim);
+                headerRecord = headerRecord.TrimEnd(trim);
                 if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
                 {
                     sequenceNumber = Extract<int>(ref fileLine, 10);
@@ -90,51 +90,50 @@ namespace IceCreamManager.Controller
                 }
                 date = Extract<DateTime>(ref fileLine, 10);
 
-                fileLine.TrimEnd(trim);
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (headerRecord == "HD")
                     {
-                        Log.Success($"Batch file: { FileType } - Header record found.");
+                        Log.Success($"Header record found.");
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome($"Batch file: {FileType} - Header record not found.");
+                        throw new ExceptionWithOutcome($"Header record not found.");
                     }
 
-                    if (sequenceNumber == BatchHistory.GetSequence(FileType))
+                    if (sequenceNumber == BatchHistory.GetSequence(FileType) + 1)
                     {
-                        Log.Success($"Batch file: { FileType } - Date sequence number processed.");
+                        Log.Success($"Date sequence number processed.");
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Sequence number out of order.");
+                        throw new ExceptionWithOutcome($"Sequence number out of order.");
                     }
 
                     if (date >= BatchHistory.GetDateUpdated(FileType))
                     {
-                        Log.Success($"Batch file: { FileType } - Date processed.");
+                        Log.Success($"Date processed.");
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Date out of order.");
+                        throw new ExceptionWithOutcome($"Date out of order.");
                     }
 
-                    while (file.EndOfStream != false)
+                    while (!file.EndOfStream)
                     {
                         fileLine = file.ReadLine();
-                        foreach (string element in recordTypes)
+                        if (isRecordType(fileLine))
+                            countedLines++;
+                        else
                         {
-                            if ((fileLine.Substring(0, 2)) == element)
-                            {
-                                countedRecords++;
-                                countedLines++;
-                            }
+                            countedRecords++;
+                            countedLines++;
                         }
                     }
                     extractedData = Extract<string>(ref fileLine, 2);
-                    extractedData.TrimEnd(trim);
-                    fileLine.TrimEnd(trim);
+                    extractedData = extractedData.TrimEnd(trim);
+                    fileLine = fileLine.TrimEnd(trim);
                     if (extractedData == "T")
                     {
                         trailerNumber = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
@@ -142,30 +141,40 @@ namespace IceCreamManager.Controller
                         {
                             BatchHistory.SetSequence(FileType, sequenceNumber);
                             BatchHistory.SetDateUpdated(FileType, date);
-                            Log.Success($"Batch file: { FileType } - Successful header and footer check.");
+                            Log.Success("Successful header and footer check.");
                             file.Close();
                             return true;
                         }
                         else
                         {
-                            throw new ExceptionWithOutcome($"Batch file: { FileType } - Trailer record doesn't match number of records in file.");
+                            throw new ExceptionWithOutcome("Trailer record doesn't match number of records in file.");
                         }
                     }
                     else
                     {
-                        throw new ExceptionWithOutcome($"Batch file: { FileType } - Trailer record not found.");
+                        throw new ExceptionWithOutcome("Trailer record not found.");
                     }
                 }
                 else
                 {
-                    throw new ExceptionWithOutcome($"Batch file: { FileType } - Extraneous characters beyond record length");
+                    throw new ExceptionWithOutcome("Extraneous characters beyond record length");
                 }
             }
             catch (Exception e)
             {
-                //Log.Failure(e.Message);
+                Log.Failure($"Batch file: {FileType} - {e}");
                 return false;
             }
+        }
+
+        private bool isRecordType(string line)
+        {
+            foreach (string element in recordTypes)
+            {
+                if ((line.Substring(0, 2)) == element)
+                    return true;
+            }
+            return false;
         }
     }
 
@@ -211,7 +220,7 @@ namespace IceCreamManager.Controller
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
             countedLines++;
-            while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
+            while (!file.EndOfStream || fileLine.Substring(0, 2) != "T ")
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -219,6 +228,7 @@ namespace IceCreamManager.Controller
                 cityName = Extract<string>(ref fileLine, Requirement.MaxCityNameLength);
                 state = Extract<string>(ref fileLine, Requirement.MaxCityStateLength);
 
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     ApplyNewCityData();
@@ -246,13 +256,13 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false || fileLine.Substring(0, 2) != "T ")
+            while (!file.EndOfStream || fileLine.Substring(0, 2) != "T ")
             {
                 fileLine = file.ReadLine();
                 countedLines++;
 
                 cityLabel = Extract<string>(ref fileLine, Requirement.MaxCityLabelLength);
-                cityLabel.TrimEnd(trim);
+                cityLabel = cityLabel.TrimEnd(trim);
 
                 if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
                 {
@@ -273,7 +283,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid miles format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (cityAction.Exists(cityLabel))
@@ -301,14 +311,14 @@ namespace IceCreamManager.Controller
     {
         char actionCode;
         int routeNumber;
-        List<string> routeComposition;
+        List<string> routeComposition = new List<string>();
 
         private void ExtractCityLabels()
         {
             for (int i = 0; i < Requirement.MaxRouteCities; i++)
             {
                 string cityLabel = Extract<string>(ref fileLine, Requirement.MaxCityLabelLength);
-                cityLabel.TrimEnd(trim);
+                cityLabel = cityLabel.TrimEnd(trim);
 
                 if (cityAction.Exists(cityLabel))
                 {
@@ -348,7 +358,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 actionCode = Extract<char>(ref fileLine, 1);
@@ -368,6 +378,7 @@ namespace IceCreamManager.Controller
                     if (actionCode == 'C')
                     {
                         ExtractCityLabels();
+                        fileLine = fileLine.TrimEnd(trim);
                         if (fileLine == "")
                         {
                             ID = routeAction.GetID(routeNumber);
@@ -381,6 +392,7 @@ namespace IceCreamManager.Controller
                     }
                     else if (actionCode == 'D')
                     {
+                        fileLine = fileLine.TrimEnd(trim);
                         if (fileLine == "")
                         {
                             ID = routeAction.GetID(routeNumber);
@@ -401,6 +413,7 @@ namespace IceCreamManager.Controller
                     if (actionCode == 'A')
                     {
                         ExtractCityLabels();
+                        fileLine = fileLine.TrimEnd(trim);
                         if (fileLine == "")
                         {
                             ApplyCityLabels(routeNumber);
@@ -441,14 +454,14 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
                 if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
                 {
                     truckNumber = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
-
+                    fileLine = fileLine.TrimEnd(trim);
                     if (fileLine == "")
                     {
                         Truck newTruck = new Truck();
@@ -483,7 +496,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -508,7 +521,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.TruckFuel } - Invalid fuel rate format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber))  //Does this truck exist in the DB
@@ -542,7 +555,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -565,7 +578,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.TruckDriver } - Invalid driver number format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber) & driverAction.NumberInUse(driverNumber))
@@ -612,7 +625,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -635,7 +648,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.TruckRoute } - Invalid route number format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (truckAction.NumberInUse(truckNumber) & routeAction.NumberInUse(routeNumber))
@@ -697,7 +710,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -713,7 +726,7 @@ namespace IceCreamManager.Controller
                 }
 
                 driverName = Extract<string>(ref fileLine, Requirement.MaxDriverNameLength);
-                driverName.TrimEnd(trim);
+                driverName = driverName.TrimEnd(trim);
 
                 if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
                 {
@@ -725,7 +738,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.Driver } - Invalid hourly rate format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     ApplyDriverData();
@@ -751,8 +764,8 @@ namespace IceCreamManager.Controller
         int truckNumber;
         int truckID;
         int itemID;
-        List<int> adjustmentRecord;
-        List<int> itemRecord;
+        List<int> adjustmentRecord = new List<int>();
+        List<int> itemRecord = new List<int>();
 
         /// <summary>
         /// 
@@ -769,13 +782,13 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
 
                 extractedData = Extract<string>(ref fileLine, 3);
-                extractedData.TrimEnd(trim);
+                extractedData = extractedData.TrimEnd(trim);
                 if (extractedData == "TR")
                 {
                     if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
@@ -814,7 +827,7 @@ namespace IceCreamManager.Controller
                         }
 
                         extractedData = fileLine.Substring(0, Requirement.ZeroFillNumberLength);
-                        extractedData.TrimEnd(trim);
+                        extractedData = extractedData.TrimEnd(trim);
                         if (extractedData.Length == Requirement.ZeroFillNumberLength)
                         {
                             adjustmentQuantity = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
@@ -826,7 +839,7 @@ namespace IceCreamManager.Controller
                             Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Invalid adjustment quantity format, on line: {countedLines}.");
                             continue;
                         }
-
+                        fileLine = fileLine.TrimEnd(trim);
                         if (fileLine == "")
                         {
                             oldQuantity = inventoryAction.GetInventoryQuantity(truckID, itemID);
@@ -919,8 +932,8 @@ namespace IceCreamManager.Controller
         int truckNumber;
         int truckID;
         int itemID;
-        List<int> itemRecord;
-        List<int> quantityRecord;
+        List<int> itemRecord = new List<int>();
+        List<int> quantityRecord = new List<int>();
 
         /// <summary>
         /// 
@@ -937,13 +950,13 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
 
                 extractedData = Extract<string>(ref fileLine, 3);
-                extractedData.TrimEnd(trim);
+                extractedData = extractedData.TrimEnd(trim);
                 if (extractedData == "TR")
                 {
                     if (ZeroFillNumberCheck(fileLine, Requirement.ZeroFillNumberLength))
@@ -1077,7 +1090,7 @@ namespace IceCreamManager.Controller
             StreamReader file = new StreamReader(FilePath);
             fileLine = file.ReadLine();
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
 
@@ -1089,6 +1102,7 @@ namespace IceCreamManager.Controller
 
                 if (itemAction.NumberInUse(itemNumber)) //If it it exists in the DB
                 {
+                    fileLine = fileLine.TrimEnd(trim);
                     if (fileLine == "")
                     {
                         Item oldItem = new Item();
@@ -1115,6 +1129,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
+                    fileLine = fileLine.TrimEnd(trim);
                     if (fileLine == "")
                     {
                         Item newItem = new Item();
@@ -1146,7 +1161,7 @@ namespace IceCreamManager.Controller
             fileLine = file.ReadLine();
             countedLines++;
 
-            while (file.EndOfStream != false)
+            while (!file.EndOfStream)
             {
                 fileLine = file.ReadLine();
                 countedLines++;
@@ -1170,7 +1185,7 @@ namespace IceCreamManager.Controller
                     Log.Failure($"Batch file: { BatchFileType.OverallIventoryExtension } - Invalid item freshness format, on line: {countedLines}.");
                     continue;
                 }
-
+                fileLine = fileLine.TrimEnd(trim);
                 if (fileLine == "")
                 {
                     if (itemAction.NumberInUse(itemNumber))

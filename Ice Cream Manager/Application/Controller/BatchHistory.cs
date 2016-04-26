@@ -35,7 +35,7 @@ namespace IceCreamManager
         public static int GetSequence(BatchFileType fileType)
         {
             var batchHistoryEntry = Factory.BatchHistory.Load((int)fileType);
-            return batchHistoryEntry.SequenceNumber;
+            return batchHistoryEntry.sequenceNumber;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace IceCreamManager
         public static bool SetSequence(BatchFileType fileType, int sequenceNumber)
         {
             var batchHistoryEntry = Factory.BatchHistory.Load((int)fileType);
-            batchHistoryEntry.SequenceNumber = sequenceNumber;
+            batchHistoryEntry.sequenceNumber = sequenceNumber;
             return batchHistoryEntry.Save();
         }
 

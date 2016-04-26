@@ -7,7 +7,7 @@ namespace IceCreamManager.UnitTests.Controller
     [TestClass]
     public class TestsBatchFileProcessing
     {
-        HeaderFooter file;
+        HeaderFooter file = new HeaderFooter();
         [TestMethod]
         public void Headercheck()
         {
