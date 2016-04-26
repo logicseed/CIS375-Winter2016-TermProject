@@ -95,7 +95,7 @@ namespace IceCreamManager.Controller
                 {
                     if (headerRecord == "HD")
                     {
-                        Log.Success($"Batch file: { FileType } - Header record found.");
+                       Log.Success($"Batch file: { FileType } - Header record found.");
                     }
                     else
                     {
@@ -113,7 +113,7 @@ namespace IceCreamManager.Controller
 
                     if (date >= BatchHistory.GetDateUpdated(FileType))
                     {
-                        Log.Success($"Batch file: { FileType } - Date processed.");
+                       Log.Success($"Batch file: { FileType } - Date processed.");
                     }
                     else
                     {
@@ -163,7 +163,7 @@ namespace IceCreamManager.Controller
             }
             catch (Exception e)
             {
-                Log.Failure(e.Message);
+                //Log.Failure(e.Message);
                 return false;
             }
         }

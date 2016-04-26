@@ -76,6 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDatabase.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Exceptions.cs" />
     <Compile Include="Controller\Log.cs" />
     <Compile Include="Utilities\Outcomes.cs" />
@@ -240,6 +245,17 @@
     <None Include="Properties\Requirements.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Requirements.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TestDatabase.xsc">
+      <DependentUpon>TestDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="TestDatabase.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestDatabase.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestDatabase.xss">
+      <DependentUpon>TestDatabase.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
