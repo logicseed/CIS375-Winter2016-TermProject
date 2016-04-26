@@ -17,6 +17,11 @@ namespace IceCreamManager.UnitTests.Model
         public string TestString;
         public bool TestBoolean;
         public DateTime TestDateTime;
+
+        public override bool Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [TestClass]

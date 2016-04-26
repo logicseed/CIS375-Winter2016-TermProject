@@ -32,7 +32,7 @@ namespace IceCreamManager.View
             SetLocalizedRevenueStrings();
             SetLocalizedRouteStrings();
             SetLocalizedTruckStrings();
-            
+
         }
 
         private void SetLocalizedCityStrings()
@@ -89,3 +89,4 @@ namespace IceCreamManager.View
         }
     }
 }
+

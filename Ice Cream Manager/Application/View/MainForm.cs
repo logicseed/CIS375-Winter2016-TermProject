@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using IceCreamManager.Model;
 
 namespace IceCreamManager.View
 {
     public partial class MainForm : Form
     {
+        #region Public Constructors
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace IceCreamManager.View
 
         }
 
-        
+
 
 
 
@@ -38,30 +39,29 @@ namespace IceCreamManager.View
             SetLocalizedCityStrings();
         }
 
-        
+
 
         public void RefreshCityTable() => RefreshCityTable(null, null);
 
         public void RefreshDriverTable(object sender, EventArgs e)
-            // Remove existing highlights
-            foreach (ToolStripItem item in mainToolStrip.Items)
         {
             var DriverDataTable = Factory.Driver.GetDataTable(ShowDeletedDrivers.Checked);
             AddSourceAndFillColumnToGridview(ref DriverGridView, ref DriverDataTable);
             SetLocalizedDriverStrings();
         }
 
-        
+
 
         public void RefreshDriverTable() => RefreshDriverTable(null, null);
 
         public void RefreshItemTable(object sender, EventArgs e)
-                if (item is ToolStripButton)
         {
-                    item.BackColor = Color.Transparent;
+            var ItemDataTable = Factory.Item.GetDataTable(ShowDeletedItems.Checked);
+            AddSourceAndFillColumnToGridview(ref ItemGridView, ref ItemDataTable);
+            SetLocalizedItemStrings();
         }
 
-        
+
 
         public void RefreshItemTable() => RefreshItemTable(null, null);
 
@@ -72,7 +72,7 @@ namespace IceCreamManager.View
             SetLocalizedRouteStrings();
         }
 
-        
+
 
         public void RefreshRouteTable() => RefreshRouteTable(null, null);
 
@@ -84,7 +84,7 @@ namespace IceCreamManager.View
             SetLocalizedTruckStrings();
         }
 
-        
+
 
         public void RefreshTruckTable() => RefreshTruckTable(null, null);
 
@@ -104,7 +104,7 @@ namespace IceCreamManager.View
             dataGridView.ClearSelection();
         }
 
-        
+
 
         protected void InitializeEventHandlers()
         {
@@ -131,30 +131,38 @@ namespace IceCreamManager.View
             RefreshRevenueTab();
 
             base.OnLoad(e);
-            // Highlight specified button
-            mainToolStrip.Items.Find(buttonName, true)[0].BackColor = SystemColors.Highlight;
         }
 
-        private void switchPanel(UserControl panel)
+        #endregion Protected Methods
+
+        #region Private Fields
+
+        private LanguageManager Language = LanguageManager.Reference;
+        private LogViewer LogView;
+
+        #endregion Private Fields
+
+        #region Private Methods
+
+        private void AboutButton_Click(object sender, EventArgs e)
         {
-            panel.Dock = DockStyle.Fill;
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(panel);
+            var aboutBox = new AboutForm();
+            aboutBox.ShowDialog();
         }
 
-        private void salesButton_Click(object sender, EventArgs e)
+        private void AddCityButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("salesButton");
-            switchPanel(new SalesPanel());
+            var cityEditor = new CityEditor();
+            cityEditor.ShowDialog();
         }
 
-        private void routesButton_Click(object sender, EventArgs e)
+        private void AddDriverButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("routesButton");
-            switchPanel(new RoutesPanel());
+            var driverEditor = new DriverEditor();
+            driverEditor.ShowDialog();
         }
 
-        private void zonesButton_Click(object sender, EventArgs e)
+        private void AddItemButton_Click(object sender, EventArgs e)
         {
             var itemEditor = new ItemEditor();
             itemEditor.ShowDialog();
@@ -186,77 +194,77 @@ namespace IceCreamManager.View
             int driverID = Convert.ToInt32(DriverGridView.SelectedRows[0].Cells["ID"].Value);
             var driverEditor = new DriverEditor(driverID);
             driverEditor.ShowDialog();
-            highlightToolStripButton("zonesButton");
-            switchPanel(new ZonesPanel());
         }
 
-        private void trucksButton_Click(object sender, EventArgs e)
+        private void EditItemButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("trucksButton");
-            switchPanel(new TrucksPanel());
             if (ItemGridView.SelectedRows.Count == 0) return;
             int itemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
             var itemEditor = new ItemEditor(itemID);
             itemEditor.ShowDialog();
         }
 
-        private void driversButton_Click(object sender, EventArgs e)
+        private void EditRouteButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("driversButton");
-            switchPanel(new DriversPanel());
             if (RouteGridView.SelectedRows.Count == 0) return;
             int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
             var routeEditor = new RouteEditor(routeID);
             routeEditor.ShowDialog();
         }
 
-        private void fuelUsageButton_Click(object sender, EventArgs e)
-        {
-            highlightToolStripButton("fuelUsageButton");
-            switchPanel(new FuelUsagePanel());
-        }
-
-        private void itemsButton_Click(object sender, EventArgs e)
         private void EditTruckButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("itemsButton");
-            switchPanel(new ItemsPanel());
             if (TruckGridView.SelectedRows.Count == 0) return;
             int truckID = Convert.ToInt32(TruckGridView.SelectedRows[0].Cells["ID"].Value);
             var truckEditor = new TruckEditor(truckID);
             truckEditor.ShowDialog();
         }
 
-        private void presetsButton_Click(object sender, EventArgs e)
+        private void LogButton_Click(object sender, EventArgs e)
+        {
+            if (LogView == null)
             {
-            highlightToolStripButton("presetsButton");
-            switchPanel(new PresetsPanel());
+                LogView = new LogViewer();
+                LogView.FormClosed += (o, ea) => LogView = null;
+                LogView.StartPosition = FormStartPosition.Manual;
+                LogView.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+                LogView.Size = new Size(500, this.Size.Height);
+                LogView.Show();
+                LogView.RefreshDataSource();
             }
-
-        private void settingsButton_Click(object sender, EventArgs e)
+            else
             {
-            highlightToolStripButton("settingsButton");
-            switchPanel(new SettingsPanel());
                 LogView.WindowState = FormWindowState.Normal;
                 LogView.Focus();
             }
         }
 
-        private void votingButton_Click(object sender, EventArgs e)
+        private void RemoveCityButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("votingButton");
-            switchPanel(new VotingPanel());
+            int CityID = Convert.ToInt32(CityGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.City.Delete(CityID);
+            Manage.Events.ChangedCityList();
         }
 
-        private void aboutButton_Click(object sender, EventArgs e)
+        private void RemoveDriverButton_Click(object sender, EventArgs e)
         {
-            AboutForm aboutForm = new AboutForm();
-            aboutForm.ShowDialog();
+            int driverID = Convert.ToInt32(DriverGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Driver.Delete(driverID);
+            Manage.Events.ChangedDriverList();
         }
 
-        private void helpButton_Click(object sender, EventArgs e)
+        private void RemoveItemButton_Click(object sender, EventArgs e)
         {
+            int ItemID = Convert.ToInt32(ItemGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Item.Delete(ItemID);
+            Manage.Events.ChangedItemList();
+        }
 
+        private void RemoveRouteButton_Click(object sender, EventArgs e)
+        {
+            int routeID = Convert.ToInt32(RouteGridView.SelectedRows[0].Cells["ID"].Value);
+            Factory.Route.RemoveRoute(routeID);
+            Manage.Events.ChangedRouteList();
         }
 
         private void RemoveTruckButton_Click(object sender, EventArgs e)
@@ -265,8 +273,8 @@ namespace IceCreamManager.View
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            highlightToolStripButton("batchButton");
-            switchPanel(new BatchPanel());
+            var settingsEditor = new SettingsEditor();
+            settingsEditor.ShowDialog();
         }
 
         #endregion Private Methods
@@ -285,7 +293,7 @@ namespace IceCreamManager.View
                     RefreshRevenueTab();
                     break;
                 case "BatchTab":
-                     
+
                     break;
                 case "TrucksTab":
                     RefreshTruckTable();
@@ -424,6 +432,6 @@ namespace IceCreamManager.View
             RefreshRevenueTab();
         }
 
-        
+
     }
 }

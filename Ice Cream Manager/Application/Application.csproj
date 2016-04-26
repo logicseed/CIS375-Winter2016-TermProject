@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="Controller\LanguageParser.cs" />
     <Compile Include="Model\Factory.cs" />
+    <Compile Include="Model\LanguageManager.cs" />
+    <Compile Include="Model\Revenue.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Requirements.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\RevenueCriteria.cs" />
     <Compile Include="Utilities\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +163,9 @@
     </Compile>
     <Compile Include="View\LogViewer.Designer.cs">
       <DependentUpon>LogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainForm.Batch.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>

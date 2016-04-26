@@ -161,7 +161,7 @@ namespace IceCreamManager.Model
             return table.Row().Col();
         }
 
-        private void Add(int itemID, int truckID, int quantity = 1)
+        public void Add(int itemID, int truckID, int quantity = 1)
         {
             if (quantity == 0) return;
             var sql = $"INSERT INTO InventoryItem (ItemID, TruckID, DateCreated) VALUES ";
@@ -224,13 +224,6 @@ namespace IceCreamManager.Model
         {
             var sql = $"UPDATE InventoryItem SET ItemID = {newID} WHERE ItemID = {oldID}";
             Database.NonQuery(sql);
-        }
-
-        public int GetInventoryQuantity(int truckID, int itemID)
-        {
-            var sql = $"SELECT count(*) FROM IventoryItem WHERE TruckID = {truckID} AND ItemID = {itemID}";
-            var table = Database.Query(sql);
-            return table.Row().Col();
         }
     }
 }

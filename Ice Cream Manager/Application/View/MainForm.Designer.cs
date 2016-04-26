@@ -136,62 +136,12 @@
             this.StatusBar.SuspendLayout();
             this.ExtraButtonsLayout.SuspendLayout();
             this.MainFormLayout.SuspendLayout();
-            this.mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.salesButton = new System.Windows.Forms.ToolStripButton();
-            this.batchButton = new System.Windows.Forms.ToolStripButton();
-            this.zonesSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.zonesButton = new System.Windows.Forms.ToolStripButton();
-            this.routesButton = new System.Windows.Forms.ToolStripButton();
-            this.trucksSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.trucksButton = new System.Windows.Forms.ToolStripButton();
-            this.driversButton = new System.Windows.Forms.ToolStripButton();
-            this.fuelUsageButton = new System.Windows.Forms.ToolStripButton();
-            this.itemsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.itemsButton = new System.Windows.Forms.ToolStripButton();
-            this.presetsButton = new System.Windows.Forms.ToolStripButton();
-            this.votingButton = new System.Windows.Forms.ToolStripButton();
-            this.settingsSectionSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.settingsButton = new System.Windows.Forms.ToolStripButton();
-            this.aboutButton = new System.Windows.Forms.ToolStripButton();
-            this.helpButtonSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.helpButton = new System.Windows.Forms.ToolStripButton();
-            this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.mainStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mainStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.mainToolStrip.SuspendLayout();
-            this.mainStatusStrip.SuspendLayout();
             this.BatchTabLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // mainToolStrip
+            // MainTabs
             // 
-            this.mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salesButton,
-            this.batchButton,
-            this.zonesSectionSeperator,
-            this.zonesButton,
-            this.routesButton,
-            this.trucksSectionSeperator,
-            this.trucksButton,
-            this.driversButton,
-            this.fuelUsageButton,
-            this.itemsSectionSeperator,
-            this.itemsButton,
-            this.presetsButton,
-            this.votingButton,
-            this.settingsSectionSeperator,
-            this.settingsButton,
-            this.aboutButton,
-            this.helpButtonSeparator,
-            this.helpButton});
-            this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(884, 55);
-            this.mainToolStrip.TabIndex = 0;
-            this.mainToolStrip.Text = "toolStrip1";
             this.MainTabs.Controls.Add(this.RevenueTab);
             this.MainTabs.Controls.Add(this.BatchTab);
             this.MainTabs.Controls.Add(this.TrucksTab);
@@ -210,16 +160,8 @@
             this.MainTabs.TabIndex = 0;
             this.MainTabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainTabs_Selecting);
             // 
-            // salesButton
+            // RevenueTab
             // 
-            this.salesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.salesButton.Image = global::IceCreamManager.Properties.Resources.SalesButton;
-            this.salesButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.salesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.salesButton.Name = "salesButton";
-            this.salesButton.Size = new System.Drawing.Size(52, 52);
-            this.salesButton.Text = "Sales";
-            this.salesButton.Click += new System.EventHandler(this.salesButton_Click);
             this.RevenueTab.Controls.Add(this.RevenueLayout);
             this.RevenueTab.ImageIndex = 3;
             this.RevenueTab.Location = new System.Drawing.Point(4, 33);
@@ -354,14 +296,6 @@
             this.RouteRevenueLabel.Text = "!Route";
             this.RouteRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            this.batchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.batchButton.Image = global::IceCreamManager.Properties.Resources.BatchButton;
-            this.batchButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.batchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.batchButton.Name = "batchButton";
-            this.batchButton.Size = new System.Drawing.Size(52, 52);
-            this.batchButton.Text = "Batch";
-            this.batchButton.Click += new System.EventHandler(this.batchButton_Click);
             // CityRevenueLabel
             // 
             this.CityRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -373,10 +307,7 @@
             this.CityRevenueLabel.TabIndex = 6;
             this.CityRevenueLabel.Text = "!City";
             this.CityRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // zonesSectionSeperator
             // 
-            this.zonesSectionSeperator.Name = "zonesSectionSeperator";
-            this.zonesSectionSeperator.Size = new System.Drawing.Size(6, 55);
             // TruckRevenueLabel
             // 
             this.TruckRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -388,7 +319,6 @@
             this.TruckRevenueLabel.TabIndex = 4;
             this.TruckRevenueLabel.Text = "!Truck";
             this.TruckRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // zonesButton
             // 
             // DriverRevenueLabel
             // 
@@ -425,31 +355,8 @@
             this.RouteRevenueBox.Size = new System.Drawing.Size(122, 21);
             this.RouteRevenueBox.TabIndex = 10;
             this.RouteRevenueBox.SelectedIndexChanged += new System.EventHandler(this.RouteRevenueBox_SelectedIndexChanged);
-            this.zonesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.zonesButton.Image = global::IceCreamManager.Properties.Resources.ZonesButton;
-            this.zonesButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.zonesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.zonesButton.Name = "zonesButton";
-            this.zonesButton.Size = new System.Drawing.Size(52, 52);
-            this.zonesButton.Text = "Zones";
-            this.zonesButton.Click += new System.EventHandler(this.zonesButton_Click);
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(756, 411);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
             // 
             // CityRevenueBox
-            // routesButton
             // 
             this.CityRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CityRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -459,17 +366,8 @@
             this.CityRevenueBox.Name = "CityRevenueBox";
             this.CityRevenueBox.Size = new System.Drawing.Size(122, 21);
             this.CityRevenueBox.TabIndex = 11;
-            this.routesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.routesButton.Image = global::IceCreamManager.Properties.Resources.RoutesButton;
-            this.routesButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.routesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.routesButton.Name = "routesButton";
-            this.routesButton.Size = new System.Drawing.Size(52, 52);
-            this.routesButton.Text = "Routes";
-            this.routesButton.Click += new System.EventHandler(this.routesButton_Click);
             // 
             // TruckRevenueBox
-            // trucksSectionSeperator
             // 
             this.TruckRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TruckRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -478,11 +376,8 @@
             this.TruckRevenueBox.Name = "TruckRevenueBox";
             this.TruckRevenueBox.Size = new System.Drawing.Size(122, 21);
             this.TruckRevenueBox.TabIndex = 12;
-            this.trucksSectionSeperator.Name = "trucksSectionSeperator";
-            this.trucksSectionSeperator.Size = new System.Drawing.Size(6, 55);
             // 
             // DriverRevenueBox
-            // trucksButton
             // 
             this.DriverRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.DriverRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -491,26 +386,9 @@
             this.DriverRevenueBox.Name = "DriverRevenueBox";
             this.DriverRevenueBox.Size = new System.Drawing.Size(122, 21);
             this.DriverRevenueBox.TabIndex = 13;
-            this.trucksButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.trucksButton.Image = global::IceCreamManager.Properties.Resources.TruckButton;
-            this.trucksButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.trucksButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.trucksButton.Name = "trucksButton";
-            this.trucksButton.Size = new System.Drawing.Size(52, 52);
-            this.trucksButton.Text = "Trucks";
-            this.trucksButton.Click += new System.EventHandler(this.trucksButton_Click);
             // 
             // ItemRevenueBox
-            // driversButton
             // 
-            this.driversButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.driversButton.Image = global::IceCreamManager.Properties.Resources.DriversButton;
-            this.driversButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.driversButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.driversButton.Name = "driversButton";
-            this.driversButton.Size = new System.Drawing.Size(52, 52);
-            this.driversButton.Text = "Drivers";
-            this.driversButton.Click += new System.EventHandler(this.driversButton_Click);
             this.ItemRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ItemRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ItemRevenueBox.FormattingEnabled = true;
@@ -533,14 +411,6 @@
             // 
             // TrucksTab
             // 
-            this.fuelUsageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.fuelUsageButton.Image = global::IceCreamManager.Properties.Resources.FuelButton;
-            this.fuelUsageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.fuelUsageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.fuelUsageButton.Name = "fuelUsageButton";
-            this.fuelUsageButton.Size = new System.Drawing.Size(52, 52);
-            this.fuelUsageButton.Text = "Fuel Usage";
-            this.fuelUsageButton.Click += new System.EventHandler(this.fuelUsageButton_Click);
             this.TrucksTab.Controls.Add(this.tableLayoutPanel2);
             this.TrucksTab.ImageIndex = 5;
             this.TrucksTab.Location = new System.Drawing.Point(4, 33);
@@ -660,97 +530,156 @@
             // 
             // ItemsTab
             // 
-            this.itemsSectionSeperator.Name = "itemsSectionSeperator";
-            this.itemsSectionSeperator.Size = new System.Drawing.Size(6, 55);
+            this.ItemsTab.Controls.Add(this.ItemLayoutTable);
+            this.ItemsTab.ImageIndex = 2;
+            this.ItemsTab.Location = new System.Drawing.Point(4, 33);
+            this.ItemsTab.Name = "ItemsTab";
+            this.ItemsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ItemsTab.Size = new System.Drawing.Size(776, 449);
+            this.ItemsTab.TabIndex = 2;
+            this.ItemsTab.Text = "!Items";
+            this.ItemsTab.UseVisualStyleBackColor = true;
             // 
-            // itemsButton
+            // ItemLayoutTable
             // 
-            this.itemsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.itemsButton.Image = global::IceCreamManager.Properties.Resources.ItemsButton;
-            this.itemsButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.itemsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.itemsButton.Name = "itemsButton";
-            this.itemsButton.Size = new System.Drawing.Size(52, 52);
-            this.itemsButton.Text = "Items";
-            this.itemsButton.Click += new System.EventHandler(this.itemsButton_Click);
+            this.ItemLayoutTable.ColumnCount = 4;
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
+            this.ItemLayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
+            this.ItemLayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
+            this.ItemLayoutTable.Controls.Add(this.AddItemButton, 0, 0);
+            this.ItemLayoutTable.Controls.Add(this.EditItemButton, 1, 0);
+            this.ItemLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemLayoutTable.Location = new System.Drawing.Point(3, 3);
+            this.ItemLayoutTable.Name = "ItemLayoutTable";
+            this.ItemLayoutTable.RowCount = 2;
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ItemLayoutTable.Size = new System.Drawing.Size(770, 443);
+            this.ItemLayoutTable.TabIndex = 1;
             // 
-            // presetsButton
+            // ItemGridView
             // 
-            this.presetsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.presetsButton.Image = global::IceCreamManager.Properties.Resources.PresetsButton;
-            this.presetsButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.presetsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.presetsButton.Name = "presetsButton";
-            this.presetsButton.Size = new System.Drawing.Size(52, 52);
-            this.presetsButton.Text = "Presets";
-            this.presetsButton.Click += new System.EventHandler(this.presetsButton_Click);
+            this.ItemGridView.AllowUserToAddRows = false;
+            this.ItemGridView.AllowUserToDeleteRows = false;
+            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
+            this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemGridView.Location = new System.Drawing.Point(3, 38);
+            this.ItemGridView.MultiSelect = false;
+            this.ItemGridView.Name = "ItemGridView";
+            this.ItemGridView.ReadOnly = true;
+            this.ItemGridView.RowHeadersVisible = false;
+            this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemGridView.Size = new System.Drawing.Size(764, 402);
+            this.ItemGridView.TabIndex = 5;
             // 
-            // votingButton
+            // RemoveItemButton
             // 
-            this.votingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.votingButton.Image = global::IceCreamManager.Properties.Resources.VotingButton;
-            this.votingButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.votingButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.votingButton.Name = "votingButton";
-            this.votingButton.Size = new System.Drawing.Size(52, 52);
-            this.votingButton.Text = "Voting";
-            this.votingButton.Click += new System.EventHandler(this.votingButton_Click);
+            this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveItemButton.AutoSize = true;
+            this.RemoveItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveItemButton.Location = new System.Drawing.Point(165, 3);
+            this.RemoveItemButton.Name = "RemoveItemButton";
+            this.RemoveItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.RemoveItemButton.Size = new System.Drawing.Size(75, 29);
+            this.RemoveItemButton.TabIndex = 2;
+            this.RemoveItemButton.Text = "!Remove";
+            this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
-            // settingsSectionSeperator
+            // ShowDeletedItems
             // 
-            this.settingsSectionSeperator.Name = "settingsSectionSeperator";
-            this.settingsSectionSeperator.Size = new System.Drawing.Size(6, 55);
+            this.ShowDeletedItems.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedItems.AutoSize = true;
+            this.ShowDeletedItems.Location = new System.Drawing.Point(246, 9);
+            this.ShowDeletedItems.Name = "ShowDeletedItems";
+            this.ShowDeletedItems.Size = new System.Drawing.Size(96, 17);
+            this.ShowDeletedItems.TabIndex = 3;
+            this.ShowDeletedItems.Text = "!Show Deleted";
+            this.ShowDeletedItems.UseVisualStyleBackColor = true;
+            this.ShowDeletedItems.CheckedChanged += new System.EventHandler(this.RefreshItemTable);
             // 
-            // settingsButton
+            // AddItemButton
             // 
-            this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.settingsButton.Image = global::IceCreamManager.Properties.Resources.SettingsButton;
-            this.settingsButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.settingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(52, 52);
-            this.settingsButton.Text = "Settings";
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            this.AddItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddItemButton.AutoSize = true;
+            this.AddItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddItemButton.Location = new System.Drawing.Point(3, 3);
+            this.AddItemButton.Name = "AddItemButton";
+            this.AddItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.AddItemButton.Size = new System.Drawing.Size(75, 29);
+            this.AddItemButton.TabIndex = 1;
+            this.AddItemButton.Text = "!Add";
+            this.AddItemButton.UseVisualStyleBackColor = true;
+            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
-            // aboutButton
+            // EditItemButton
             // 
-            this.aboutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.aboutButton.Image = global::IceCreamManager.Properties.Resources.AboutButton;
-            this.aboutButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.aboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(52, 52);
-            this.aboutButton.Text = "About";
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            this.EditItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditItemButton.AutoSize = true;
+            this.EditItemButton.Location = new System.Drawing.Point(84, 3);
+            this.EditItemButton.Name = "EditItemButton";
+            this.EditItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
+            this.EditItemButton.Size = new System.Drawing.Size(75, 29);
+            this.EditItemButton.TabIndex = 0;
+            this.EditItemButton.Text = "!Edit";
+            this.EditItemButton.UseVisualStyleBackColor = true;
+            this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
             // 
-            // helpButtonSeparator
+            // DriversTab
             // 
-            this.helpButtonSeparator.Name = "helpButtonSeparator";
-            this.helpButtonSeparator.Size = new System.Drawing.Size(6, 55);
+            this.DriversTab.Controls.Add(this.tableLayoutPanel1);
+            this.DriversTab.ImageIndex = 1;
+            this.DriversTab.Location = new System.Drawing.Point(4, 33);
+            this.DriversTab.Name = "DriversTab";
+            this.DriversTab.Padding = new System.Windows.Forms.Padding(3);
+            this.DriversTab.Size = new System.Drawing.Size(776, 449);
+            this.DriversTab.TabIndex = 3;
+            this.DriversTab.Text = "!Drivers";
+            this.DriversTab.UseVisualStyleBackColor = true;
             // 
-            // helpButton
+            // tableLayoutPanel1
             // 
-            this.helpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpButton.Image = global::IceCreamManager.Properties.Resources.HelpButton;
-            this.helpButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.helpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpButton.Name = "helpButton";
-            this.helpButton.Size = new System.Drawing.Size(36, 52);
-            this.helpButton.Text = "Help";
-            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.DriverGridView, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.RemoveDriverButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ShowDeletedDrivers, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AddDriverButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.EditDriverButton, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(770, 443);
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // mainStatusStrip
+            // DriverGridView
             // 
-            this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mainStatusLabel,
-            this.mainStatusProgressBar});
-            this.mainStatusStrip.Location = new System.Drawing.Point(0, 639);
-            this.mainStatusStrip.Name = "mainStatusStrip";
-            this.mainStatusStrip.Size = new System.Drawing.Size(884, 22);
-            this.mainStatusStrip.TabIndex = 1;
-            this.mainStatusStrip.Text = "statusStrip1";
+            this.DriverGridView.AllowUserToAddRows = false;
+            this.DriverGridView.AllowUserToDeleteRows = false;
+            this.DriverGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.DriverGridView, 4);
+            this.DriverGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DriverGridView.Location = new System.Drawing.Point(3, 38);
+            this.DriverGridView.MultiSelect = false;
+            this.DriverGridView.Name = "DriverGridView";
+            this.DriverGridView.ReadOnly = true;
+            this.DriverGridView.RowHeadersVisible = false;
+            this.DriverGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DriverGridView.Size = new System.Drawing.Size(764, 402);
+            this.DriverGridView.TabIndex = 5;
             // 
-            // mainStatusLabel
+            // RemoveDriverButton
             // 
             this.RemoveDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemoveDriverButton.AutoSize = true;
@@ -1096,14 +1025,21 @@
             this.MainToolTips.SetToolTip(this.LogButton, "!View Log");
             this.LogButton.UseVisualStyleBackColor = true;
             this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
-            this.mainStatusLabel.Name = "mainStatusLabel";
-            this.mainStatusLabel.Size = new System.Drawing.Size(94, 17);
-            this.mainStatusLabel.Text = "mainStatusLabel";
             // 
-            // mainStatusProgressBar
+            // AboutButton
             // 
-            this.mainStatusProgressBar.Name = "mainStatusProgressBar";
-            this.mainStatusProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.AboutButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AboutButton.FlatAppearance.BorderSize = 0;
+            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
+            this.AboutButton.Location = new System.Drawing.Point(64, 0);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(0);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(22, 22);
+            this.AboutButton.TabIndex = 9;
+            this.MainToolTips.SetToolTip(this.AboutButton, "!About");
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // MainFormLayout
             // 
@@ -1361,10 +1297,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 661);
-            this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.mainStatusStrip);
-            this.Controls.Add(this.mainToolStrip);
+            this.ClientSize = new System.Drawing.Size(784, 511);
+            this.Controls.Add(this.ExtraButtonsLayout);
+            this.Controls.Add(this.MainFormLayout);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "!Ice Cream Manager";
@@ -1401,11 +1338,6 @@
             this.ExtraButtonsLayout.ResumeLayout(false);
             this.MainFormLayout.ResumeLayout(false);
             this.MainFormLayout.PerformLayout();
-            this.Text = "Ice Cream Manager";
-            this.mainToolStrip.ResumeLayout(false);
-            this.mainToolStrip.PerformLayout();
-            this.mainStatusStrip.ResumeLayout(false);
-            this.mainStatusStrip.PerformLayout();
             this.BatchTabLayout.ResumeLayout(false);
             this.BatchTabLayout.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -1499,29 +1431,8 @@
         private System.Windows.Forms.Button LoadCityFileButton;
         private System.Windows.Forms.Button ProcessStartOfDayButton;
         private System.Windows.Forms.Button LoadSalesFileButton;
-        private System.Windows.Forms.ToolStrip mainToolStrip;
-        private System.Windows.Forms.StatusStrip mainStatusStrip;
-        private System.Windows.Forms.ToolStripButton salesButton;
-        private System.Windows.Forms.ToolStripButton batchButton;
-        private System.Windows.Forms.ToolStripButton zonesButton;
-        private System.Windows.Forms.ToolStripButton routesButton;
-        private System.Windows.Forms.ToolStripButton trucksButton;
-        private System.Windows.Forms.ToolStripButton aboutButton;
-        private System.Windows.Forms.ToolStripButton driversButton;
-        private System.Windows.Forms.ToolStripButton fuelUsageButton;
-        private System.Windows.Forms.ToolStripButton itemsButton;
-        private System.Windows.Forms.ToolStripButton presetsButton;
-        private System.Windows.Forms.ToolStripButton settingsButton;
-        private System.Windows.Forms.ToolStripButton votingButton;
-        private System.Windows.Forms.ToolStripButton helpButton;
-        private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.ToolStripStatusLabel mainStatusLabel;
-        private System.Windows.Forms.ToolStripProgressBar mainStatusProgressBar;
-        private System.Windows.Forms.ToolStripSeparator helpButtonSeparator;
-        private System.Windows.Forms.ToolStripSeparator zonesSectionSeperator;
-        private System.Windows.Forms.ToolStripSeparator trucksSectionSeperator;
-        private System.Windows.Forms.ToolStripSeparator itemsSectionSeperator;
-        private System.Windows.Forms.ToolStripSeparator settingsSectionSeperator;
     }
 }
+
+
 
