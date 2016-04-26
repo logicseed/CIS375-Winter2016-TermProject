@@ -12,7 +12,7 @@ namespace IceCreamManager.Controller
     // Add logging messages
     // Finish sales and truck upload, applying the data and checking if it's in default
     // Move more repeated variables to BatchFileProcessing
-    class BatchFileProcessing
+    public class BatchFileProcessing
     {
         protected ItemFactory itemAction = ItemFactory.Reference;
         protected CityFactory cityAction = CityFactory.Reference;
@@ -51,7 +51,7 @@ namespace IceCreamManager.Controller
         }
     }
 
-    class HeaderFooter : BatchFileProcessing
+    public class HeaderFooter : BatchFileProcessing
     {
         string[] recordTypes = new string[] { "IR", "TR", "SR", "T " };
         string headerRecord;
@@ -169,7 +169,7 @@ namespace IceCreamManager.Controller
         }
     }
 
-    class CityUpload : BatchFileProcessing
+    public class CityUpload : BatchFileProcessing
     {
         string cityLabel;
         string cityName;
@@ -225,10 +225,10 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure($"Batch file: { BatchFileType.City } - Extraneous characters beyond record length, failed to add city label: {cityLabel}.");
+                    Log.Failure($"Batch file: { BatchFileType.City } - Extraneous characters beyond record length, failed to add city label: {cityLabel} on line {countedLines}.");
                 }
             }
-            Log.Success($"Batch file: { BatchFileType.City } - Successful.");
+            Log.Success($"Batch file: { BatchFileType.City } - Processed.");
             file.Close();
         }
 
@@ -260,7 +260,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid hours format, line: {countedLines}.");
+                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid hours format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -270,7 +270,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid miles format, line: {countedLines}.");
+                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Invalid miles format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -287,17 +287,17 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure($"Batch file: { BatchFileType.City } - Extraneous characters beyond record length, line: {countedLines}.");
+                    Log.Failure($"Batch file: { BatchFileType.CityExtension } - Extraneous characters beyond record length, line: {countedLines}.");
                 }
             }
-            Log.Success("Message");
+            Log.Success($"Batch file: { BatchFileType.CityExtension } - Processed.");
             file.Close();
         }
 
 
     }
 
-    class RouteUpload : BatchFileProcessing
+    public class RouteUpload : BatchFileProcessing
     {
         char actionCode;
         int routeNumber;
@@ -316,9 +316,9 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Route } - City Label doesn't exist, on line: {countedLines}.");
                     routeComposition.Clear();
-                    break;
+                    return;
                 }
             }
         }
@@ -359,7 +359,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Route } - Invalid route number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -376,7 +376,7 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Route } - Extraneous characters beyond record length, on line: {countedLines}.");
                         }
                     }
                     else if (actionCode == 'D')
@@ -388,12 +388,12 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Route } - Extraneous characters beyond record length, on line: {countedLines}.");
                         }
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.Route } - Adding route that already exists, on line: {countedLines}.");
                     }
                 }
                 else
@@ -401,27 +401,27 @@ namespace IceCreamManager.Controller
                     if (actionCode == 'A')
                     {
                         ExtractCityLabels();
-                        if (fileLine == null)
+                        if (fileLine == "")
                         {
                             ApplyCityLabels(routeNumber);
                         }
                         else
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Route } - Extraneous characters beyond record length, on line: {countedLines}.");
                         }
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.Route } - No matching action codes, on line: {countedLines}.");
                     }
                 }
             }
-            Log.Success("Message");
+            Log.Success($"Batch file: { BatchFileType.Route } - Processed.");
             file.Close();
         }
     }
 
-    class TruckUpload : BatchFileProcessing
+    public class TruckUpload : BatchFileProcessing
     {
         int truckNumber;
         int driverNumber;
@@ -457,15 +457,15 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.Truck } - Extraneous characters beyond record length, on line: {countedLines}.");
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Truck } - Invalid truck number format, on line: {countedLines}.");
                 }
             }
-            Log.Success("Message");
+            Log.Success($"Batch file: { BatchFileType.Truck } - Processed.");
             file.Close();
         }
 
@@ -494,7 +494,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckFuel } - Invalid truck number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -505,7 +505,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckFuel } - Invalid fuel rate format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -521,10 +521,12 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckFuel } - Extraneous characters beyond record length, on line: {countedLines}.");
                     continue;
                 }
             }
+            Log.Success($"Batch file: { BatchFileType.TruckFuel } - Processed.");
+            file.Close();
         }
 
         /// <summary>
@@ -550,7 +552,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckDriver } - Invalid truck number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -560,7 +562,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckDriver } - Invalid driver number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -577,17 +579,23 @@ namespace IceCreamManager.Controller
                     {
                         if (!truckAction.NumberInUse(truckNumber))
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckDriver } - truck doesn't exist, on line: {countedLines}.");
                             continue;
                         }
                         else if (!driverAction.NumberInUse(driverNumber))
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckDriver } - driver doesn't exist, on line: {countedLines}.");
                             continue;
                         }
                     }
                 }
+                else
+                {
+                    Log.Failure($"Batch file: { BatchFileType.TruckDriver } - Extraneous characters beyond record length, on line: {countedLines}.");
+                }
             }
+            Log.Success($"Batch file: { BatchFileType.TruckDriver } - Processed");
+            file.Close();
         }
 
 
@@ -614,7 +622,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckRoute } - Invalid truck number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -624,7 +632,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckRoute } - Invalid route number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -641,24 +649,29 @@ namespace IceCreamManager.Controller
                     {
                         if (!truckAction.NumberInUse(truckNumber))
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckRoute } - truck doesn't exist, on line: {countedLines}.");
                             continue;
                         }
                         else if (!routeAction.NumberInUse(routeNumber))
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckRoute } - route doesn't exist, on line: {countedLines}.");
                             continue;
                         }
                     }
                 }
+                else
+                {
+                    Log.Failure($"Batch file: { BatchFileType.TruckRoute } - Extraneous characters beyond record length, on line: {countedLines}.");
+                }
             }
+            Log.Success($"Batch file: { BatchFileType.TruckRoute } - Processed");
+            file.Close();
         }
     }
 
-    class DriverUpload : BatchFileProcessing
+    public class DriverUpload : BatchFileProcessing
     {
         int driverNumber;
-        int truckNumber;
         string driverName;
         double hourlyRate;
 
@@ -695,7 +708,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Driver } - Invalid driver number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -709,7 +722,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Driver } - Invalid hourly rate format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -719,18 +732,17 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Driver } - Extraneous characters beyond record length, on line: {countedLines}.");
                     continue;
                 }
             }
-            Log.Success("Message");
+            Log.Success($"Batch file: { BatchFileType.Driver } - Processed");
             file.Close();
         }
     }
 
-    class IceCreamTruckUpload : BatchFileProcessing
+    public class IceCreamTruckUpload : BatchFileProcessing
     {
-        int itemQuantity;
         int countedRecords = 0;
         int fileRecord;
         int itemNumber;
@@ -741,7 +753,6 @@ namespace IceCreamManager.Controller
         int itemID;
         List<int> adjustmentRecord;
         List<int> itemRecord;
-        List<bool> addItem;
 
         /// <summary>
         /// 
@@ -773,13 +784,13 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Invalid truck number format, on line: {countedLines}.");
                         continue;
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Truck record not found, on line: {countedLines}.");
                     continue;
                 }
 
@@ -798,7 +809,7 @@ namespace IceCreamManager.Controller
                         {
                             fileLine = file.ReadLine();
                             countedLines++;
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Invalid item number format, on line: {countedLines}.");
                             continue;
                         }
 
@@ -812,7 +823,7 @@ namespace IceCreamManager.Controller
                         {
                             fileLine = file.ReadLine();
                             countedLines++;
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Invalid adjustment quantity format, on line: {countedLines}.");
                             continue;
                         }
 
@@ -821,36 +832,38 @@ namespace IceCreamManager.Controller
                             oldQuantity = inventoryAction.GetInventoryQuantity(truckID, itemID);
                             if (oldQuantity > 0)
                             {
-                                if (adjustmentQuantity + oldQuantity > 0) //Change item quantity
+                                if (adjustmentQuantity + oldQuantity >= 0) //Change item quantity
                                 {
                                     itemRecord.Add(itemNumber);
                                     adjustmentRecord.Add(adjustmentQuantity + oldQuantity);
-                                    addItem.Add(false);
                                 }
                                 else
                                 {
-                                    Log.Failure("Message");
+                                    Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Adjustment qunatity results in negative number, on line: {countedLines}.");
                                 }
                             }
                             else if (itemAction.NumberInUse(itemNumber))
                             {
-                                if (adjustmentQuantity > 0)
+                                if (adjustmentQuantity >= 0)
                                 {
                                     //Create change record for how much is in the OVERALL INVENTORY
                                     itemRecord.Add(itemNumber);
                                     adjustmentRecord.Add(adjustmentQuantity);
-                                    addItem.Add(true);
                                 }
                                 else
                                 {
-                                    Log.Failure("Message");
+                                    Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Adjustment quantity is a negative number, on line: {countedLines}.");
                                 }
                             }
                             else
                             {
-                                Log.Failure("Message");
+                                Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Item doesn't exist, on line: {countedLines}.");
                             }
 
+                        }
+                        else
+                        {
+                            Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Extraneous characters beyond record length, on line: {countedLines}.");
                         }
                         fileLine = file.ReadLine();
                         countedLines++;
@@ -865,43 +878,38 @@ namespace IceCreamManager.Controller
                             for (int index = 0; index < countedRecords; index++)
                             {
                                 itemID = itemAction.GetID(itemRecord[index]);
-                                if (addItem[index] == false)
-                                {
-                                    inventoryAction.ChangeMany(itemID, truckID, adjustmentRecord[index]);
-                                }
-                                else
-                                {
-                                    inventoryAction.Add(itemID, truckID, adjustmentRecord[index]);
-                                }
+                                inventoryAction.ChangeMany(itemID, truckID, adjustmentRecord[index]);
                             }
                             itemRecord.Clear();
                             adjustmentRecord.Clear();
                         }
                         else
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Item record doesn't match counted records, on line: {countedLines}.");
                             itemRecord.Clear();
                             adjustmentRecord.Clear();
                         }
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Invalid item record format, on line: {countedLines}.");
                         itemRecord.Clear();
                         adjustmentRecord.Clear();
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.TruckInventory } - Truck doesn't exist, on line: {countedLines}.");
                 }
                 itemRecord.Clear();
                 adjustmentRecord.Clear();
             }
+            Log.Success($"Batch file: { BatchFileType.TruckInventory } - Processed.");
+            file.Close();
         }
     }
 
-    class IceCreamTruckSalesUpload : BatchFileProcessing
+    public class IceCreamTruckSalesUpload : BatchFileProcessing
     {
         int countedRecords = 0;
         int fileRecord;
@@ -913,7 +921,6 @@ namespace IceCreamManager.Controller
         int itemID;
         List<int> itemRecord;
         List<int> quantityRecord;
-        Dictionary<Item, int> itemList;
 
         /// <summary>
         /// 
@@ -945,13 +952,13 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.Sales } - Invalid truck number format, on line: {countedLines}.");
                         continue;
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Sales } - Truck record not found, on line: {countedLines}.");
                     continue;
                 }
 
@@ -970,7 +977,7 @@ namespace IceCreamManager.Controller
                         {
                             fileLine = file.ReadLine();
                             countedLines++;
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Sales } - Invalid item number format, on line: {countedLines}.");
                             continue;
                         }
 
@@ -982,7 +989,7 @@ namespace IceCreamManager.Controller
                         {
                             fileLine = file.ReadLine();
                             countedLines++;
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Sales } - Invalid new quantity format, on line: {countedLines}.");
                             continue;
                         }
 
@@ -1000,13 +1007,12 @@ namespace IceCreamManager.Controller
                                 }
                                 else
                                 {
-                                    Log.Failure("Message");
+                                    Log.Failure($"Batch file: { BatchFileType.Sales } - Ice cream was gained, on line: {countedLines}.");
                                 }
                             }
                             else
                             {
-                                Log.Failure("Message");
-                                //Log of item not existing
+                                Log.Failure($"Batch file: { BatchFileType.Sales } - Item doesn't exist, on line: {countedLines}.");
                             }
                         }
                         fileLine = file.ReadLine();
@@ -1029,28 +1035,29 @@ namespace IceCreamManager.Controller
                         }
                         else
                         {
-                            Log.Failure("Message");
+                            Log.Failure($"Batch file: { BatchFileType.Sales } - Sales record doesn't match counted records, on line: {countedLines}.");
                             itemRecord.Clear();
                             quantityRecord.Clear();
                         }
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.Sales } - Invalid sale record format, on line: {countedLines}.");
                         itemRecord.Clear();
                         quantityRecord.Clear();
                     }
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.Sales } - Truck doesn't exist, on line: {countedLines}.");
                 }
             }
-
+            Log.Success($"Batch file: { BatchFileType.Sales } - Processed");
+            file.Close();
         }
     }
 
-    class InventoryUpdateUpload : BatchFileProcessing
+    public class InventoryUpdateUpload : BatchFileProcessing
     {
         int itemNumber;
         int warehouseQuantity;
@@ -1075,13 +1082,13 @@ namespace IceCreamManager.Controller
                 fileLine = file.ReadLine();
 
                 itemNumber = Extract<int>(ref fileLine, Requirement.ZeroFillNumberLength);
+                warehouseQuantity = Extract<int>(ref fileLine, 6);
+                price = Extract<double>(ref fileLine, Requirement.ZeroFillNumberLength);
+                price = price / 100;
+                description = Extract<string>(ref fileLine, Requirement.MinItemDescriptionLength);
+
                 if (itemAction.NumberInUse(itemNumber)) //If it it exists in the DB
                 {
-                    warehouseQuantity = Extract<int>(ref fileLine, 6);
-                    price = Extract<double>(ref fileLine, Requirement.ZeroFillNumberLength);
-                    price = price / 100;
-                    description = Extract<string>(ref fileLine, Requirement.MinItemDescriptionLength);
-
                     if (fileLine == "")
                     {
                         Item oldItem = new Item();
@@ -1103,12 +1110,12 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.OverallInventory } - Extraneous characters beyond record length, on line: {countedLines}");
                     }
                 }
                 else
                 {
-                    if (fileLine == null)
+                    if (fileLine == "")
                     {
                         Item newItem = new Item();
                         newItem.Number = itemNumber;
@@ -1119,10 +1126,12 @@ namespace IceCreamManager.Controller
                     }
                     else
                     {
-                        Log.Failure("Message");
+                        Log.Failure($"Batch file: { BatchFileType.OverallInventory } - Extraneous characters beyond record length, on line: {countedLines}");
                     }
                 }
             }
+            Log.Success($"Batch file: { BatchFileType.OverallInventory } - Processed");
+            file.Close();
         }
         /// <summary>
         /// 
@@ -1148,7 +1157,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.OverallIventoryExtension } - Invalid item number format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -1158,7 +1167,7 @@ namespace IceCreamManager.Controller
                 }
                 else
                 {
-                    Log.Failure("Message");
+                    Log.Failure($"Batch file: { BatchFileType.OverallIventoryExtension } - Invalid item freshness format, on line: {countedLines}.");
                     continue;
                 }
 
@@ -1171,13 +1180,18 @@ namespace IceCreamManager.Controller
                         oldItem.Lifetime = itemFreshness;
                         oldItem.Save();
                     }
+                    else
+                    {
+                        Log.Failure($"Batch file: { BatchFileType.OverallIventoryExtension } - Item doesn't exist, on line: {countedLines}.");
+                    }
                 }
                 else
                 {
-                    Log.Failure("Message");
-                    continue;
+                    Log.Failure($"Batch file: { BatchFileType.OverallIventoryExtension } - Extraneous characters beyond record length, on line: {countedLines}.");
                 }
             }
+            Log.Success($"Batch file: { BatchFileType.OverallIventoryExtension } - Processed");
+            file.Close();
         }
     }
 }

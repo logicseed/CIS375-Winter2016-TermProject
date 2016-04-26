@@ -50,6 +50,22 @@
             this.DriverRevenueBox = new System.Windows.Forms.ComboBox();
             this.ItemRevenueBox = new System.Windows.Forms.ComboBox();
             this.BatchTab = new System.Windows.Forms.TabPage();
+            this.BatchTabLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.ProcessEndOfDayButton = new System.Windows.Forms.Button();
+            this.LoadTruckRouteFileButton = new System.Windows.Forms.Button();
+            this.LoadTruckDriverFileButton = new System.Windows.Forms.Button();
+            this.LoadOverallInventoryExtensionFileButton = new System.Windows.Forms.Button();
+            this.LoadOverallInventoryFileButton = new System.Windows.Forms.Button();
+            this.LoadTruckInventoryFileButton = new System.Windows.Forms.Button();
+            this.LoadTruckFuelFileButton = new System.Windows.Forms.Button();
+            this.LoadTruckFileButton = new System.Windows.Forms.Button();
+            this.LoadDriverFileButton = new System.Windows.Forms.Button();
+            this.LoadRouteFileButton = new System.Windows.Forms.Button();
+            this.LoadCityFileExtensionButton = new System.Windows.Forms.Button();
+            this.LoadCityFileButton = new System.Windows.Forms.Button();
+            this.ProcessStartOfDayButton = new System.Windows.Forms.Button();
+            this.LoadSalesFileButton = new System.Windows.Forms.Button();
             this.TrucksTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.DefaultInventoryButton = new System.Windows.Forms.Button();
@@ -96,28 +112,14 @@
             this.AboutButton = new System.Windows.Forms.Button();
             this.MainToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.MainFormLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.BatchTabLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.ProcessStartOfDayButton = new System.Windows.Forms.Button();
-            this.LoadCityFileButton = new System.Windows.Forms.Button();
-            this.LoadCityFileExtensionButton = new System.Windows.Forms.Button();
-            this.LoadRouteFileButton = new System.Windows.Forms.Button();
-            this.LoadDriverFileButton = new System.Windows.Forms.Button();
-            this.LoadTruckFileButton = new System.Windows.Forms.Button();
-            this.LoadTruckFuelFileButton = new System.Windows.Forms.Button();
-            this.LoadTruckInventoryFileButton = new System.Windows.Forms.Button();
-            this.LoadOverallInventoryFileButton = new System.Windows.Forms.Button();
-            this.LoadOverallInventoryExtensionFileButton = new System.Windows.Forms.Button();
-            this.LoadTruckDriverFileButton = new System.Windows.Forms.Button();
-            this.LoadTruckRouteFileButton = new System.Windows.Forms.Button();
-            this.LoadSalesFileButton = new System.Windows.Forms.Button();
-            this.ProcessEndOfDayButton = new System.Windows.Forms.Button();
             this.MainTabs.SuspendLayout();
             this.RevenueTab.SuspendLayout();
             this.RevenueLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RevenueGrid)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.BatchTab.SuspendLayout();
+            this.BatchTabLayout.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.TrucksTab.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TruckGridView)).BeginInit();
@@ -136,8 +138,6 @@
             this.StatusBar.SuspendLayout();
             this.ExtraButtonsLayout.SuspendLayout();
             this.MainFormLayout.SuspendLayout();
-            this.BatchTabLayout.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabs
@@ -156,7 +156,7 @@
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.Padding = new System.Drawing.Point(8, 8);
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(784, 489);
+            this.MainTabs.Size = new System.Drawing.Size(1568, 961);
             this.MainTabs.TabIndex = 0;
             this.MainTabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.MainTabs_Selecting);
             // 
@@ -164,10 +164,11 @@
             // 
             this.RevenueTab.Controls.Add(this.RevenueLayout);
             this.RevenueTab.ImageIndex = 3;
-            this.RevenueTab.Location = new System.Drawing.Point(4, 33);
+            this.RevenueTab.Location = new System.Drawing.Point(8, 47);
+            this.RevenueTab.Margin = new System.Windows.Forms.Padding(6);
             this.RevenueTab.Name = "RevenueTab";
-            this.RevenueTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RevenueTab.Size = new System.Drawing.Size(776, 452);
+            this.RevenueTab.Padding = new System.Windows.Forms.Padding(6);
+            this.RevenueTab.Size = new System.Drawing.Size(1552, 906);
             this.RevenueTab.TabIndex = 0;
             this.RevenueTab.Text = "!Revenue";
             this.RevenueTab.UseVisualStyleBackColor = true;
@@ -179,14 +180,14 @@
             this.RevenueLayout.Controls.Add(this.RevenueGrid, 0, 1);
             this.RevenueLayout.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.RevenueLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RevenueLayout.Location = new System.Drawing.Point(3, 3);
+            this.RevenueLayout.Location = new System.Drawing.Point(6, 6);
             this.RevenueLayout.Margin = new System.Windows.Forms.Padding(0);
             this.RevenueLayout.Name = "RevenueLayout";
             this.RevenueLayout.RowCount = 2;
             this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.RevenueLayout.Size = new System.Drawing.Size(770, 446);
+            this.RevenueLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.RevenueLayout.Size = new System.Drawing.Size(1540, 894);
             this.RevenueLayout.TabIndex = 0;
             // 
             // RevenueGrid
@@ -195,10 +196,11 @@
             this.RevenueGrid.AllowUserToDeleteRows = false;
             this.RevenueGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RevenueGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RevenueGrid.Location = new System.Drawing.Point(3, 73);
+            this.RevenueGrid.Location = new System.Drawing.Point(6, 128);
+            this.RevenueGrid.Margin = new System.Windows.Forms.Padding(6);
             this.RevenueGrid.Name = "RevenueGrid";
             this.RevenueGrid.ReadOnly = true;
-            this.RevenueGrid.Size = new System.Drawing.Size(764, 370);
+            this.RevenueGrid.Size = new System.Drawing.Size(1528, 760);
             this.RevenueGrid.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -208,7 +210,7 @@
             this.tableLayoutPanel3.ColumnCount = 9;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -230,22 +232,23 @@
             this.tableLayoutPanel3.Controls.Add(this.DriverRevenueBox, 6, 1);
             this.tableLayoutPanel3.Controls.Add(this.ItemRevenueBox, 8, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(764, 64);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1528, 110);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // StartDateLabel
             // 
             this.StartDateLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.StartDateLabel.AutoSize = true;
-            this.StartDateLabel.Location = new System.Drawing.Point(6, 9);
-            this.StartDateLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.StartDateLabel.Location = new System.Drawing.Point(12, 15);
+            this.StartDateLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.StartDateLabel.Name = "StartDateLabel";
-            this.StartDateLabel.Size = new System.Drawing.Size(58, 13);
+            this.StartDateLabel.Size = new System.Drawing.Size(114, 25);
             this.StartDateLabel.TabIndex = 0;
             this.StartDateLabel.Text = "!Start Date";
             this.StartDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -254,10 +257,10 @@
             // 
             this.StartDateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.StartDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.StartDateBox.Location = new System.Drawing.Point(70, 6);
-            this.StartDateBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.StartDateBox.Location = new System.Drawing.Point(138, 12);
+            this.StartDateBox.Margin = new System.Windows.Forms.Padding(6, 12, 6, 12);
             this.StartDateBox.Name = "StartDateBox";
-            this.StartDateBox.Size = new System.Drawing.Size(95, 20);
+            this.StartDateBox.Size = new System.Drawing.Size(186, 31);
             this.StartDateBox.TabIndex = 8;
             this.StartDateBox.ValueChanged += new System.EventHandler(this.StartDateBox_ValueChanged);
             // 
@@ -265,10 +268,10 @@
             // 
             this.EndDateLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EndDateLabel.AutoSize = true;
-            this.EndDateLabel.Location = new System.Drawing.Point(9, 41);
-            this.EndDateLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.EndDateLabel.Location = new System.Drawing.Point(19, 70);
+            this.EndDateLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.EndDateLabel.Name = "EndDateLabel";
-            this.EndDateLabel.Size = new System.Drawing.Size(55, 13);
+            this.EndDateLabel.Size = new System.Drawing.Size(107, 25);
             this.EndDateLabel.TabIndex = 2;
             this.EndDateLabel.Text = "!End Date";
             this.EndDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -277,10 +280,10 @@
             // 
             this.EndDateBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.EndDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.EndDateBox.Location = new System.Drawing.Point(70, 38);
-            this.EndDateBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.EndDateBox.Location = new System.Drawing.Point(138, 67);
+            this.EndDateBox.Margin = new System.Windows.Forms.Padding(6, 12, 6, 12);
             this.EndDateBox.Name = "EndDateBox";
-            this.EndDateBox.Size = new System.Drawing.Size(95, 20);
+            this.EndDateBox.Size = new System.Drawing.Size(186, 31);
             this.EndDateBox.TabIndex = 9;
             this.EndDateBox.ValueChanged += new System.EventHandler(this.EndDateBox_ValueChanged);
             // 
@@ -288,10 +291,10 @@
             // 
             this.RouteRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RouteRevenueLabel.AutoSize = true;
-            this.RouteRevenueLabel.Location = new System.Drawing.Point(194, 9);
-            this.RouteRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.RouteRevenueLabel.Location = new System.Drawing.Point(382, 15);
+            this.RouteRevenueLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.RouteRevenueLabel.Name = "RouteRevenueLabel";
-            this.RouteRevenueLabel.Size = new System.Drawing.Size(39, 13);
+            this.RouteRevenueLabel.Size = new System.Drawing.Size(75, 25);
             this.RouteRevenueLabel.TabIndex = 3;
             this.RouteRevenueLabel.Text = "!Route";
             this.RouteRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -300,10 +303,10 @@
             // 
             this.CityRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.CityRevenueLabel.AutoSize = true;
-            this.CityRevenueLabel.Location = new System.Drawing.Point(206, 41);
-            this.CityRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.CityRevenueLabel.Location = new System.Drawing.Point(402, 70);
+            this.CityRevenueLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.CityRevenueLabel.Name = "CityRevenueLabel";
-            this.CityRevenueLabel.Size = new System.Drawing.Size(27, 13);
+            this.CityRevenueLabel.Size = new System.Drawing.Size(55, 25);
             this.CityRevenueLabel.TabIndex = 6;
             this.CityRevenueLabel.Text = "!City";
             this.CityRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -312,10 +315,10 @@
             // 
             this.TruckRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.TruckRevenueLabel.AutoSize = true;
-            this.TruckRevenueLabel.Location = new System.Drawing.Point(370, 9);
-            this.TruckRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.TruckRevenueLabel.Location = new System.Drawing.Point(730, 15);
+            this.TruckRevenueLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.TruckRevenueLabel.Name = "TruckRevenueLabel";
-            this.TruckRevenueLabel.Size = new System.Drawing.Size(38, 13);
+            this.TruckRevenueLabel.Size = new System.Drawing.Size(72, 25);
             this.TruckRevenueLabel.TabIndex = 4;
             this.TruckRevenueLabel.Text = "!Truck";
             this.TruckRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -324,10 +327,10 @@
             // 
             this.DriverRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DriverRevenueLabel.AutoSize = true;
-            this.DriverRevenueLabel.Location = new System.Drawing.Point(370, 41);
-            this.DriverRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.DriverRevenueLabel.Location = new System.Drawing.Point(727, 70);
+            this.DriverRevenueLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.DriverRevenueLabel.Name = "DriverRevenueLabel";
-            this.DriverRevenueLabel.Size = new System.Drawing.Size(38, 13);
+            this.DriverRevenueLabel.Size = new System.Drawing.Size(75, 25);
             this.DriverRevenueLabel.TabIndex = 7;
             this.DriverRevenueLabel.Text = "!Driver";
             this.DriverRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -336,10 +339,10 @@
             // 
             this.ItemRevenueLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ItemRevenueLabel.AutoSize = true;
-            this.ItemRevenueLabel.Location = new System.Drawing.Point(545, 9);
-            this.ItemRevenueLabel.Margin = new System.Windows.Forms.Padding(6, 6, 3, 6);
+            this.ItemRevenueLabel.Location = new System.Drawing.Point(1072, 15);
+            this.ItemRevenueLabel.Margin = new System.Windows.Forms.Padding(12, 12, 6, 12);
             this.ItemRevenueLabel.Name = "ItemRevenueLabel";
-            this.ItemRevenueLabel.Size = new System.Drawing.Size(30, 13);
+            this.ItemRevenueLabel.Size = new System.Drawing.Size(58, 25);
             this.ItemRevenueLabel.TabIndex = 5;
             this.ItemRevenueLabel.Text = "!Item";
             this.ItemRevenueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -350,9 +353,10 @@
             this.RouteRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RouteRevenueBox.DropDownWidth = 200;
             this.RouteRevenueBox.FormattingEnabled = true;
-            this.RouteRevenueBox.Location = new System.Drawing.Point(239, 5);
+            this.RouteRevenueBox.Location = new System.Drawing.Point(469, 11);
+            this.RouteRevenueBox.Margin = new System.Windows.Forms.Padding(6);
             this.RouteRevenueBox.Name = "RouteRevenueBox";
-            this.RouteRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.RouteRevenueBox.Size = new System.Drawing.Size(240, 33);
             this.RouteRevenueBox.TabIndex = 10;
             this.RouteRevenueBox.SelectedIndexChanged += new System.EventHandler(this.RouteRevenueBox_SelectedIndexChanged);
             // 
@@ -362,9 +366,10 @@
             this.CityRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CityRevenueBox.DropDownWidth = 200;
             this.CityRevenueBox.FormattingEnabled = true;
-            this.CityRevenueBox.Location = new System.Drawing.Point(239, 37);
+            this.CityRevenueBox.Location = new System.Drawing.Point(469, 66);
+            this.CityRevenueBox.Margin = new System.Windows.Forms.Padding(6);
             this.CityRevenueBox.Name = "CityRevenueBox";
-            this.CityRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.CityRevenueBox.Size = new System.Drawing.Size(240, 33);
             this.CityRevenueBox.TabIndex = 11;
             // 
             // TruckRevenueBox
@@ -372,9 +377,10 @@
             this.TruckRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TruckRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TruckRevenueBox.FormattingEnabled = true;
-            this.TruckRevenueBox.Location = new System.Drawing.Point(414, 5);
+            this.TruckRevenueBox.Location = new System.Drawing.Point(814, 11);
+            this.TruckRevenueBox.Margin = new System.Windows.Forms.Padding(6);
             this.TruckRevenueBox.Name = "TruckRevenueBox";
-            this.TruckRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.TruckRevenueBox.Size = new System.Drawing.Size(240, 33);
             this.TruckRevenueBox.TabIndex = 12;
             // 
             // DriverRevenueBox
@@ -382,9 +388,10 @@
             this.DriverRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.DriverRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DriverRevenueBox.FormattingEnabled = true;
-            this.DriverRevenueBox.Location = new System.Drawing.Point(414, 37);
+            this.DriverRevenueBox.Location = new System.Drawing.Point(814, 66);
+            this.DriverRevenueBox.Margin = new System.Windows.Forms.Padding(6);
             this.DriverRevenueBox.Name = "DriverRevenueBox";
-            this.DriverRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.DriverRevenueBox.Size = new System.Drawing.Size(240, 33);
             this.DriverRevenueBox.TabIndex = 13;
             // 
             // ItemRevenueBox
@@ -392,670 +399,24 @@
             this.ItemRevenueBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ItemRevenueBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ItemRevenueBox.FormattingEnabled = true;
-            this.ItemRevenueBox.Location = new System.Drawing.Point(581, 5);
+            this.ItemRevenueBox.Location = new System.Drawing.Point(1142, 11);
+            this.ItemRevenueBox.Margin = new System.Windows.Forms.Padding(6);
             this.ItemRevenueBox.Name = "ItemRevenueBox";
-            this.ItemRevenueBox.Size = new System.Drawing.Size(122, 21);
+            this.ItemRevenueBox.Size = new System.Drawing.Size(240, 33);
             this.ItemRevenueBox.TabIndex = 14;
             // 
             // BatchTab
             // 
             this.BatchTab.Controls.Add(this.BatchTabLayout);
             this.BatchTab.ImageIndex = 7;
-            this.BatchTab.Location = new System.Drawing.Point(4, 33);
+            this.BatchTab.Location = new System.Drawing.Point(8, 47);
+            this.BatchTab.Margin = new System.Windows.Forms.Padding(6);
             this.BatchTab.Name = "BatchTab";
-            this.BatchTab.Padding = new System.Windows.Forms.Padding(3);
-            this.BatchTab.Size = new System.Drawing.Size(776, 452);
+            this.BatchTab.Padding = new System.Windows.Forms.Padding(6);
+            this.BatchTab.Size = new System.Drawing.Size(1552, 855);
             this.BatchTab.TabIndex = 6;
             this.BatchTab.Text = "!Batch";
             this.BatchTab.UseVisualStyleBackColor = true;
-            // 
-            // TrucksTab
-            // 
-            this.TrucksTab.Controls.Add(this.tableLayoutPanel2);
-            this.TrucksTab.ImageIndex = 5;
-            this.TrucksTab.Location = new System.Drawing.Point(4, 33);
-            this.TrucksTab.Name = "TrucksTab";
-            this.TrucksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TrucksTab.Size = new System.Drawing.Size(776, 449);
-            this.TrucksTab.TabIndex = 1;
-            this.TrucksTab.Text = "!Trucks";
-            this.TrucksTab.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.DefaultInventoryButton, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.RemoveTruckButton, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TruckGridView, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.AddTruckButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.EditTruckButton, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ShowDeletedTrucks, 4, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 443);
-            this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // DefaultInventoryButton
-            // 
-            this.DefaultInventoryButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.DefaultInventoryButton.AutoSize = true;
-            this.DefaultInventoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DefaultInventoryButton.Location = new System.Drawing.Point(246, 3);
-            this.DefaultInventoryButton.Name = "DefaultInventoryButton";
-            this.DefaultInventoryButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.DefaultInventoryButton.Size = new System.Drawing.Size(103, 29);
-            this.DefaultInventoryButton.TabIndex = 5;
-            this.DefaultInventoryButton.Text = "!Default Inventory";
-            this.DefaultInventoryButton.UseVisualStyleBackColor = true;
-            this.DefaultInventoryButton.Click += new System.EventHandler(this.DefaultInventoryButton_Click);
-            // 
-            // RemoveTruckButton
-            // 
-            this.RemoveTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveTruckButton.AutoSize = true;
-            this.RemoveTruckButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveTruckButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveTruckButton.Name = "RemoveTruckButton";
-            this.RemoveTruckButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveTruckButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveTruckButton.TabIndex = 2;
-            this.RemoveTruckButton.Text = "!Remove";
-            this.RemoveTruckButton.UseVisualStyleBackColor = true;
-            this.RemoveTruckButton.Click += new System.EventHandler(this.RemoveTruckButton_Click);
-            // 
-            // TruckGridView
-            // 
-            this.TruckGridView.AllowUserToAddRows = false;
-            this.TruckGridView.AllowUserToDeleteRows = false;
-            this.TruckGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.TruckGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel2.SetColumnSpan(this.TruckGridView, 5);
-            this.TruckGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TruckGridView.Location = new System.Drawing.Point(3, 38);
-            this.TruckGridView.MultiSelect = false;
-            this.TruckGridView.Name = "TruckGridView";
-            this.TruckGridView.ReadOnly = true;
-            this.TruckGridView.RowHeadersVisible = false;
-            this.TruckGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TruckGridView.Size = new System.Drawing.Size(764, 402);
-            this.TruckGridView.TabIndex = 4;
-            // 
-            // AddTruckButton
-            // 
-            this.AddTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddTruckButton.AutoSize = true;
-            this.AddTruckButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddTruckButton.Location = new System.Drawing.Point(3, 3);
-            this.AddTruckButton.Name = "AddTruckButton";
-            this.AddTruckButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddTruckButton.Size = new System.Drawing.Size(75, 29);
-            this.AddTruckButton.TabIndex = 1;
-            this.AddTruckButton.Text = "!Add";
-            this.AddTruckButton.UseVisualStyleBackColor = true;
-            this.AddTruckButton.Click += new System.EventHandler(this.AddTruckButton_Click);
-            // 
-            // EditTruckButton
-            // 
-            this.EditTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditTruckButton.AutoSize = true;
-            this.EditTruckButton.Location = new System.Drawing.Point(84, 3);
-            this.EditTruckButton.Name = "EditTruckButton";
-            this.EditTruckButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditTruckButton.Size = new System.Drawing.Size(75, 29);
-            this.EditTruckButton.TabIndex = 0;
-            this.EditTruckButton.Text = "!Edit";
-            this.EditTruckButton.UseVisualStyleBackColor = true;
-            this.EditTruckButton.Click += new System.EventHandler(this.EditTruckButton_Click);
-            // 
-            // ShowDeletedTrucks
-            // 
-            this.ShowDeletedTrucks.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedTrucks.AutoSize = true;
-            this.ShowDeletedTrucks.Location = new System.Drawing.Point(355, 9);
-            this.ShowDeletedTrucks.Name = "ShowDeletedTrucks";
-            this.ShowDeletedTrucks.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedTrucks.TabIndex = 3;
-            this.ShowDeletedTrucks.Text = "!Show Deleted";
-            this.ShowDeletedTrucks.UseVisualStyleBackColor = true;
-            this.ShowDeletedTrucks.CheckedChanged += new System.EventHandler(this.RefreshTruckTable);
-            // 
-            // ItemsTab
-            // 
-            this.ItemsTab.Controls.Add(this.ItemLayoutTable);
-            this.ItemsTab.ImageIndex = 2;
-            this.ItemsTab.Location = new System.Drawing.Point(4, 33);
-            this.ItemsTab.Name = "ItemsTab";
-            this.ItemsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ItemsTab.Size = new System.Drawing.Size(776, 449);
-            this.ItemsTab.TabIndex = 2;
-            this.ItemsTab.Text = "!Items";
-            this.ItemsTab.UseVisualStyleBackColor = true;
-            // 
-            // ItemLayoutTable
-            // 
-            this.ItemLayoutTable.ColumnCount = 4;
-            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
-            this.ItemLayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
-            this.ItemLayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
-            this.ItemLayoutTable.Controls.Add(this.AddItemButton, 0, 0);
-            this.ItemLayoutTable.Controls.Add(this.EditItemButton, 1, 0);
-            this.ItemLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemLayoutTable.Location = new System.Drawing.Point(3, 3);
-            this.ItemLayoutTable.Name = "ItemLayoutTable";
-            this.ItemLayoutTable.RowCount = 2;
-            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ItemLayoutTable.Size = new System.Drawing.Size(770, 443);
-            this.ItemLayoutTable.TabIndex = 1;
-            // 
-            // ItemGridView
-            // 
-            this.ItemGridView.AllowUserToAddRows = false;
-            this.ItemGridView.AllowUserToDeleteRows = false;
-            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
-            this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemGridView.Location = new System.Drawing.Point(3, 38);
-            this.ItemGridView.MultiSelect = false;
-            this.ItemGridView.Name = "ItemGridView";
-            this.ItemGridView.ReadOnly = true;
-            this.ItemGridView.RowHeadersVisible = false;
-            this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemGridView.Size = new System.Drawing.Size(764, 402);
-            this.ItemGridView.TabIndex = 5;
-            // 
-            // RemoveItemButton
-            // 
-            this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveItemButton.AutoSize = true;
-            this.RemoveItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveItemButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveItemButton.Name = "RemoveItemButton";
-            this.RemoveItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveItemButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveItemButton.TabIndex = 2;
-            this.RemoveItemButton.Text = "!Remove";
-            this.RemoveItemButton.UseVisualStyleBackColor = true;
-            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
-            // 
-            // ShowDeletedItems
-            // 
-            this.ShowDeletedItems.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedItems.AutoSize = true;
-            this.ShowDeletedItems.Location = new System.Drawing.Point(246, 9);
-            this.ShowDeletedItems.Name = "ShowDeletedItems";
-            this.ShowDeletedItems.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedItems.TabIndex = 3;
-            this.ShowDeletedItems.Text = "!Show Deleted";
-            this.ShowDeletedItems.UseVisualStyleBackColor = true;
-            this.ShowDeletedItems.CheckedChanged += new System.EventHandler(this.RefreshItemTable);
-            // 
-            // AddItemButton
-            // 
-            this.AddItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddItemButton.AutoSize = true;
-            this.AddItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddItemButton.Location = new System.Drawing.Point(3, 3);
-            this.AddItemButton.Name = "AddItemButton";
-            this.AddItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddItemButton.Size = new System.Drawing.Size(75, 29);
-            this.AddItemButton.TabIndex = 1;
-            this.AddItemButton.Text = "!Add";
-            this.AddItemButton.UseVisualStyleBackColor = true;
-            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
-            // 
-            // EditItemButton
-            // 
-            this.EditItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditItemButton.AutoSize = true;
-            this.EditItemButton.Location = new System.Drawing.Point(84, 3);
-            this.EditItemButton.Name = "EditItemButton";
-            this.EditItemButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditItemButton.Size = new System.Drawing.Size(75, 29);
-            this.EditItemButton.TabIndex = 0;
-            this.EditItemButton.Text = "!Edit";
-            this.EditItemButton.UseVisualStyleBackColor = true;
-            this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
-            // 
-            // DriversTab
-            // 
-            this.DriversTab.Controls.Add(this.tableLayoutPanel1);
-            this.DriversTab.ImageIndex = 1;
-            this.DriversTab.Location = new System.Drawing.Point(4, 33);
-            this.DriversTab.Name = "DriversTab";
-            this.DriversTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DriversTab.Size = new System.Drawing.Size(776, 449);
-            this.DriversTab.TabIndex = 3;
-            this.DriversTab.Text = "!Drivers";
-            this.DriversTab.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.DriverGridView, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.RemoveDriverButton, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ShowDeletedDrivers, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.AddDriverButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.EditDriverButton, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(770, 443);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // DriverGridView
-            // 
-            this.DriverGridView.AllowUserToAddRows = false;
-            this.DriverGridView.AllowUserToDeleteRows = false;
-            this.DriverGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.DriverGridView, 4);
-            this.DriverGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DriverGridView.Location = new System.Drawing.Point(3, 38);
-            this.DriverGridView.MultiSelect = false;
-            this.DriverGridView.Name = "DriverGridView";
-            this.DriverGridView.ReadOnly = true;
-            this.DriverGridView.RowHeadersVisible = false;
-            this.DriverGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DriverGridView.Size = new System.Drawing.Size(764, 402);
-            this.DriverGridView.TabIndex = 5;
-            // 
-            // RemoveDriverButton
-            // 
-            this.RemoveDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveDriverButton.AutoSize = true;
-            this.RemoveDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveDriverButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveDriverButton.Name = "RemoveDriverButton";
-            this.RemoveDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveDriverButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveDriverButton.TabIndex = 2;
-            this.RemoveDriverButton.Text = "!Remove";
-            this.RemoveDriverButton.UseVisualStyleBackColor = true;
-            this.RemoveDriverButton.Click += new System.EventHandler(this.RemoveDriverButton_Click);
-            // 
-            // ShowDeletedDrivers
-            // 
-            this.ShowDeletedDrivers.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedDrivers.AutoSize = true;
-            this.ShowDeletedDrivers.Location = new System.Drawing.Point(246, 9);
-            this.ShowDeletedDrivers.Name = "ShowDeletedDrivers";
-            this.ShowDeletedDrivers.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedDrivers.TabIndex = 3;
-            this.ShowDeletedDrivers.Text = "!Show Deleted";
-            this.ShowDeletedDrivers.UseVisualStyleBackColor = true;
-            this.ShowDeletedDrivers.CheckedChanged += new System.EventHandler(this.RefreshDriverTable);
-            // 
-            // AddDriverButton
-            // 
-            this.AddDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddDriverButton.AutoSize = true;
-            this.AddDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddDriverButton.Location = new System.Drawing.Point(3, 3);
-            this.AddDriverButton.Name = "AddDriverButton";
-            this.AddDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddDriverButton.Size = new System.Drawing.Size(75, 29);
-            this.AddDriverButton.TabIndex = 1;
-            this.AddDriverButton.Text = "!Add";
-            this.AddDriverButton.UseVisualStyleBackColor = true;
-            this.AddDriverButton.Click += new System.EventHandler(this.AddDriverButton_Click);
-            // 
-            // EditDriverButton
-            // 
-            this.EditDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditDriverButton.AutoSize = true;
-            this.EditDriverButton.Location = new System.Drawing.Point(84, 3);
-            this.EditDriverButton.Name = "EditDriverButton";
-            this.EditDriverButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditDriverButton.Size = new System.Drawing.Size(75, 29);
-            this.EditDriverButton.TabIndex = 0;
-            this.EditDriverButton.Text = "!Edit";
-            this.EditDriverButton.UseVisualStyleBackColor = true;
-            this.EditDriverButton.Click += new System.EventHandler(this.EditDriverButton_Click);
-            // 
-            // RoutesTab
-            // 
-            this.RoutesTab.Controls.Add(this.RoutesLayoutTable);
-            this.RoutesTab.ImageIndex = 4;
-            this.RoutesTab.Location = new System.Drawing.Point(4, 33);
-            this.RoutesTab.Name = "RoutesTab";
-            this.RoutesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RoutesTab.Size = new System.Drawing.Size(776, 449);
-            this.RoutesTab.TabIndex = 4;
-            this.RoutesTab.Text = "!Routes";
-            this.RoutesTab.UseVisualStyleBackColor = true;
-            // 
-            // RoutesLayoutTable
-            // 
-            this.RoutesLayoutTable.ColumnCount = 4;
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoutesLayoutTable.Controls.Add(this.RemoveRouteButton, 2, 0);
-            this.RoutesLayoutTable.Controls.Add(this.ShowDeletedRoutes, 3, 0);
-            this.RoutesLayoutTable.Controls.Add(this.RouteGridView, 0, 1);
-            this.RoutesLayoutTable.Controls.Add(this.AddRouteButton, 0, 0);
-            this.RoutesLayoutTable.Controls.Add(this.EditRouteButton, 1, 0);
-            this.RoutesLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RoutesLayoutTable.Location = new System.Drawing.Point(3, 3);
-            this.RoutesLayoutTable.Name = "RoutesLayoutTable";
-            this.RoutesLayoutTable.RowCount = 2;
-            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.RoutesLayoutTable.Size = new System.Drawing.Size(770, 443);
-            this.RoutesLayoutTable.TabIndex = 2;
-            // 
-            // RemoveRouteButton
-            // 
-            this.RemoveRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveRouteButton.AutoSize = true;
-            this.RemoveRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveRouteButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveRouteButton.Name = "RemoveRouteButton";
-            this.RemoveRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveRouteButton.TabIndex = 2;
-            this.RemoveRouteButton.Text = "!Remove";
-            this.RemoveRouteButton.UseVisualStyleBackColor = true;
-            this.RemoveRouteButton.Click += new System.EventHandler(this.RemoveRouteButton_Click);
-            // 
-            // ShowDeletedRoutes
-            // 
-            this.ShowDeletedRoutes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedRoutes.AutoSize = true;
-            this.ShowDeletedRoutes.Location = new System.Drawing.Point(246, 9);
-            this.ShowDeletedRoutes.Name = "ShowDeletedRoutes";
-            this.ShowDeletedRoutes.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedRoutes.TabIndex = 3;
-            this.ShowDeletedRoutes.Text = "!Show Deleted";
-            this.ShowDeletedRoutes.UseVisualStyleBackColor = true;
-            this.ShowDeletedRoutes.CheckedChanged += new System.EventHandler(this.RefreshRouteTable);
-            // 
-            // RouteGridView
-            // 
-            this.RouteGridView.AllowUserToAddRows = false;
-            this.RouteGridView.AllowUserToDeleteRows = false;
-            this.RouteGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.RouteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RoutesLayoutTable.SetColumnSpan(this.RouteGridView, 4);
-            this.RouteGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RouteGridView.Location = new System.Drawing.Point(3, 38);
-            this.RouteGridView.MultiSelect = false;
-            this.RouteGridView.Name = "RouteGridView";
-            this.RouteGridView.ReadOnly = true;
-            this.RouteGridView.RowHeadersVisible = false;
-            this.RouteGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RouteGridView.Size = new System.Drawing.Size(764, 402);
-            this.RouteGridView.TabIndex = 4;
-            // 
-            // AddRouteButton
-            // 
-            this.AddRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddRouteButton.AutoSize = true;
-            this.AddRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddRouteButton.Location = new System.Drawing.Point(3, 3);
-            this.AddRouteButton.Name = "AddRouteButton";
-            this.AddRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.AddRouteButton.TabIndex = 1;
-            this.AddRouteButton.Text = "!Add";
-            this.AddRouteButton.UseVisualStyleBackColor = true;
-            this.AddRouteButton.Click += new System.EventHandler(this.AddRouteButton_Click);
-            // 
-            // EditRouteButton
-            // 
-            this.EditRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditRouteButton.AutoSize = true;
-            this.EditRouteButton.Location = new System.Drawing.Point(84, 3);
-            this.EditRouteButton.Name = "EditRouteButton";
-            this.EditRouteButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditRouteButton.Size = new System.Drawing.Size(75, 29);
-            this.EditRouteButton.TabIndex = 0;
-            this.EditRouteButton.Text = "!Edit";
-            this.EditRouteButton.UseVisualStyleBackColor = true;
-            this.EditRouteButton.Click += new System.EventHandler(this.EditRouteButton_Click);
-            // 
-            // CitiesTab
-            // 
-            this.CitiesTab.Controls.Add(this.CityLayoutTable);
-            this.CitiesTab.ImageIndex = 0;
-            this.CitiesTab.Location = new System.Drawing.Point(4, 33);
-            this.CitiesTab.Name = "CitiesTab";
-            this.CitiesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CitiesTab.Size = new System.Drawing.Size(776, 449);
-            this.CitiesTab.TabIndex = 5;
-            this.CitiesTab.Text = "!Cities";
-            this.CitiesTab.UseVisualStyleBackColor = true;
-            // 
-            // CityLayoutTable
-            // 
-            this.CityLayoutTable.ColumnCount = 4;
-            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.CityLayoutTable.Controls.Add(this.RemoveCityButton, 2, 0);
-            this.CityLayoutTable.Controls.Add(this.ShowDeletedCities, 3, 0);
-            this.CityLayoutTable.Controls.Add(this.CityGridView, 0, 1);
-            this.CityLayoutTable.Controls.Add(this.AddCityButton, 0, 0);
-            this.CityLayoutTable.Controls.Add(this.EditCityButton, 1, 0);
-            this.CityLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CityLayoutTable.Location = new System.Drawing.Point(3, 3);
-            this.CityLayoutTable.Name = "CityLayoutTable";
-            this.CityLayoutTable.RowCount = 2;
-            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.CityLayoutTable.Size = new System.Drawing.Size(770, 443);
-            this.CityLayoutTable.TabIndex = 2;
-            // 
-            // RemoveCityButton
-            // 
-            this.RemoveCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RemoveCityButton.AutoSize = true;
-            this.RemoveCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoveCityButton.Location = new System.Drawing.Point(165, 3);
-            this.RemoveCityButton.Name = "RemoveCityButton";
-            this.RemoveCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.RemoveCityButton.Size = new System.Drawing.Size(75, 29);
-            this.RemoveCityButton.TabIndex = 2;
-            this.RemoveCityButton.Text = "!Remove";
-            this.RemoveCityButton.UseVisualStyleBackColor = true;
-            this.RemoveCityButton.Click += new System.EventHandler(this.RemoveCityButton_Click);
-            // 
-            // ShowDeletedCities
-            // 
-            this.ShowDeletedCities.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ShowDeletedCities.AutoSize = true;
-            this.ShowDeletedCities.Location = new System.Drawing.Point(246, 9);
-            this.ShowDeletedCities.Name = "ShowDeletedCities";
-            this.ShowDeletedCities.Size = new System.Drawing.Size(96, 17);
-            this.ShowDeletedCities.TabIndex = 3;
-            this.ShowDeletedCities.Text = "!Show Deleted";
-            this.ShowDeletedCities.UseVisualStyleBackColor = true;
-            this.ShowDeletedCities.CheckedChanged += new System.EventHandler(this.RefreshCityTable);
-            // 
-            // CityGridView
-            // 
-            this.CityGridView.AllowUserToAddRows = false;
-            this.CityGridView.AllowUserToDeleteRows = false;
-            this.CityGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.CityGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CityLayoutTable.SetColumnSpan(this.CityGridView, 4);
-            this.CityGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CityGridView.Location = new System.Drawing.Point(3, 38);
-            this.CityGridView.MultiSelect = false;
-            this.CityGridView.Name = "CityGridView";
-            this.CityGridView.ReadOnly = true;
-            this.CityGridView.RowHeadersVisible = false;
-            this.CityGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CityGridView.Size = new System.Drawing.Size(764, 402);
-            this.CityGridView.TabIndex = 4;
-            // 
-            // AddCityButton
-            // 
-            this.AddCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddCityButton.AutoSize = true;
-            this.AddCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AddCityButton.Location = new System.Drawing.Point(3, 3);
-            this.AddCityButton.Name = "AddCityButton";
-            this.AddCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.AddCityButton.Size = new System.Drawing.Size(75, 29);
-            this.AddCityButton.TabIndex = 1;
-            this.AddCityButton.Text = "!Add";
-            this.AddCityButton.UseVisualStyleBackColor = true;
-            this.AddCityButton.Click += new System.EventHandler(this.AddCityButton_Click);
-            // 
-            // EditCityButton
-            // 
-            this.EditCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EditCityButton.AutoSize = true;
-            this.EditCityButton.Location = new System.Drawing.Point(84, 3);
-            this.EditCityButton.Name = "EditCityButton";
-            this.EditCityButton.Padding = new System.Windows.Forms.Padding(2, 3, 0, 3);
-            this.EditCityButton.Size = new System.Drawing.Size(75, 29);
-            this.EditCityButton.TabIndex = 0;
-            this.EditCityButton.Text = "!Edit";
-            this.EditCityButton.UseVisualStyleBackColor = true;
-            this.EditCityButton.Click += new System.EventHandler(this.EditCityButton_Click);
-            // 
-            // ButtonIcons
-            // 
-            this.ButtonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ButtonIcons.ImageStream")));
-            this.ButtonIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.ButtonIcons.Images.SetKeyName(0, "Cities.png");
-            this.ButtonIcons.Images.SetKeyName(1, "Drivers.png");
-            this.ButtonIcons.Images.SetKeyName(2, "Items.png");
-            this.ButtonIcons.Images.SetKeyName(3, "Revenue.png");
-            this.ButtonIcons.Images.SetKeyName(4, "Routes.png");
-            this.ButtonIcons.Images.SetKeyName(5, "Trucks.png");
-            this.ButtonIcons.Images.SetKeyName(6, "Inventory.png");
-            this.ButtonIcons.Images.SetKeyName(7, "Batch.png");
-            // 
-            // StatusBar
-            // 
-            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProgressBar,
-            this.StatusLabel});
-            this.StatusBar.Location = new System.Drawing.Point(0, 489);
-            this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(784, 22);
-            this.StatusBar.TabIndex = 3;
-            // 
-            // ProgressBar
-            // 
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(300, 19);
-            this.ProgressBar.Visible = false;
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            this.StatusLabel.Size = new System.Drawing.Size(114, 20);
-            this.StatusLabel.Text = "!Processing...";
-            this.StatusLabel.Visible = false;
-            // 
-            // ExtraButtonsLayout
-            // 
-            this.ExtraButtonsLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExtraButtonsLayout.AutoSize = true;
-            this.ExtraButtonsLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ExtraButtonsLayout.ColumnCount = 3;
-            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.ExtraButtonsLayout.Controls.Add(this.SettingsButton, 0, 0);
-            this.ExtraButtonsLayout.Controls.Add(this.LogButton, 1, 0);
-            this.ExtraButtonsLayout.Controls.Add(this.AboutButton, 2, 0);
-            this.ExtraButtonsLayout.Location = new System.Drawing.Point(686, -2);
-            this.ExtraButtonsLayout.Name = "ExtraButtonsLayout";
-            this.ExtraButtonsLayout.RowCount = 1;
-            this.ExtraButtonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ExtraButtonsLayout.Size = new System.Drawing.Size(90, 22);
-            this.ExtraButtonsLayout.TabIndex = 8;
-            // 
-            // SettingsButton
-            // 
-            this.SettingsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SettingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SettingsButton.FlatAppearance.BorderSize = 0;
-            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsButton.Image")));
-            this.SettingsButton.Location = new System.Drawing.Point(4, 0);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(0);
-            this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(22, 22);
-            this.SettingsButton.TabIndex = 7;
-            this.MainToolTips.SetToolTip(this.SettingsButton, "!Settings");
-            this.SettingsButton.UseVisualStyleBackColor = true;
-            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
-            // 
-            // LogButton
-            // 
-            this.LogButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LogButton.FlatAppearance.BorderSize = 0;
-            this.LogButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogButton.Image = ((System.Drawing.Image)(resources.GetObject("LogButton.Image")));
-            this.LogButton.Location = new System.Drawing.Point(34, 0);
-            this.LogButton.Margin = new System.Windows.Forms.Padding(0);
-            this.LogButton.Name = "LogButton";
-            this.LogButton.Size = new System.Drawing.Size(22, 22);
-            this.LogButton.TabIndex = 8;
-            this.MainToolTips.SetToolTip(this.LogButton, "!View Log");
-            this.LogButton.UseVisualStyleBackColor = true;
-            this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
-            // 
-            // AboutButton
-            // 
-            this.AboutButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AboutButton.FlatAppearance.BorderSize = 0;
-            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
-            this.AboutButton.Location = new System.Drawing.Point(64, 0);
-            this.AboutButton.Margin = new System.Windows.Forms.Padding(0);
-            this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(22, 22);
-            this.AboutButton.TabIndex = 9;
-            this.MainToolTips.SetToolTip(this.AboutButton, "!About");
-            this.AboutButton.UseVisualStyleBackColor = true;
-            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
-            // 
-            // MainFormLayout
-            // 
-            this.MainFormLayout.ColumnCount = 1;
-            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
-            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
-            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.MainFormLayout.Name = "MainFormLayout";
-            this.MainFormLayout.RowCount = 2;
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainFormLayout.Size = new System.Drawing.Size(784, 511);
-            this.MainFormLayout.TabIndex = 10;
             // 
             // BatchTabLayout
             // 
@@ -1063,11 +424,12 @@
             this.BatchTabLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.BatchTabLayout.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.BatchTabLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BatchTabLayout.Location = new System.Drawing.Point(3, 3);
+            this.BatchTabLayout.Location = new System.Drawing.Point(6, 6);
+            this.BatchTabLayout.Margin = new System.Windows.Forms.Padding(6);
             this.BatchTabLayout.Name = "BatchTabLayout";
             this.BatchTabLayout.RowCount = 1;
             this.BatchTabLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BatchTabLayout.Size = new System.Drawing.Size(770, 446);
+            this.BatchTabLayout.Size = new System.Drawing.Size(1540, 843);
             this.BatchTabLayout.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -1091,7 +453,8 @@
             this.tableLayoutPanel4.Controls.Add(this.LoadCityFileButton, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.ProcessStartOfDayButton, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.LoadSalesFileButton, 0, 12);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(290, 20);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(583, 92);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 14;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1108,200 +471,902 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(189, 406);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(374, 658);
             this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // ProcessStartOfDayButton
-            // 
-            this.ProcessStartOfDayButton.AutoSize = true;
-            this.ProcessStartOfDayButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ProcessStartOfDayButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessStartOfDayButton.Location = new System.Drawing.Point(3, 3);
-            this.ProcessStartOfDayButton.Name = "ProcessStartOfDayButton";
-            this.ProcessStartOfDayButton.Size = new System.Drawing.Size(183, 23);
-            this.ProcessStartOfDayButton.TabIndex = 0;
-            this.ProcessStartOfDayButton.Text = "!ProcessStartOfDay";
-            this.ProcessStartOfDayButton.UseVisualStyleBackColor = true;
-            this.ProcessStartOfDayButton.Click += new System.EventHandler(this.ProcessStartOfDayButton_Click);
-            // 
-            // LoadCityFileButton
-            // 
-            this.LoadCityFileButton.AutoSize = true;
-            this.LoadCityFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadCityFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadCityFileButton.Location = new System.Drawing.Point(3, 32);
-            this.LoadCityFileButton.Name = "LoadCityFileButton";
-            this.LoadCityFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadCityFileButton.TabIndex = 1;
-            this.LoadCityFileButton.Text = "!LoadCityFile";
-            this.LoadCityFileButton.UseVisualStyleBackColor = true;
-            this.LoadCityFileButton.Click += new System.EventHandler(this.LoadCityFileButton_Click);
-            // 
-            // LoadCityFileExtensionButton
-            // 
-            this.LoadCityFileExtensionButton.AutoSize = true;
-            this.LoadCityFileExtensionButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadCityFileExtensionButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadCityFileExtensionButton.Location = new System.Drawing.Point(3, 61);
-            this.LoadCityFileExtensionButton.Name = "LoadCityFileExtensionButton";
-            this.LoadCityFileExtensionButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadCityFileExtensionButton.TabIndex = 2;
-            this.LoadCityFileExtensionButton.Text = "!LoadCityFileExtension";
-            this.LoadCityFileExtensionButton.UseVisualStyleBackColor = true;
-            this.LoadCityFileExtensionButton.Click += new System.EventHandler(this.LoadCityFileExtensionButton_Click);
-            // 
-            // LoadRouteFileButton
-            // 
-            this.LoadRouteFileButton.AutoSize = true;
-            this.LoadRouteFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadRouteFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadRouteFileButton.Location = new System.Drawing.Point(3, 90);
-            this.LoadRouteFileButton.Name = "LoadRouteFileButton";
-            this.LoadRouteFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadRouteFileButton.TabIndex = 3;
-            this.LoadRouteFileButton.Text = "!LoadRouteFile";
-            this.LoadRouteFileButton.UseVisualStyleBackColor = true;
-            this.LoadRouteFileButton.Click += new System.EventHandler(this.LoadRouteFileButton_Click);
-            // 
-            // LoadDriverFileButton
-            // 
-            this.LoadDriverFileButton.AutoSize = true;
-            this.LoadDriverFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadDriverFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadDriverFileButton.Location = new System.Drawing.Point(3, 119);
-            this.LoadDriverFileButton.Name = "LoadDriverFileButton";
-            this.LoadDriverFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadDriverFileButton.TabIndex = 4;
-            this.LoadDriverFileButton.Text = "!LoadDriverFile";
-            this.LoadDriverFileButton.UseVisualStyleBackColor = true;
-            this.LoadDriverFileButton.Click += new System.EventHandler(this.LoadDriverFileButton_Click);
-            // 
-            // LoadTruckFileButton
-            // 
-            this.LoadTruckFileButton.AutoSize = true;
-            this.LoadTruckFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadTruckFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadTruckFileButton.Location = new System.Drawing.Point(3, 148);
-            this.LoadTruckFileButton.Name = "LoadTruckFileButton";
-            this.LoadTruckFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadTruckFileButton.TabIndex = 5;
-            this.LoadTruckFileButton.Text = "!LoadTruckFile";
-            this.LoadTruckFileButton.UseVisualStyleBackColor = true;
-            this.LoadTruckFileButton.Click += new System.EventHandler(this.LoadTruckFileButton_Click);
-            // 
-            // LoadTruckFuelFileButton
-            // 
-            this.LoadTruckFuelFileButton.AutoSize = true;
-            this.LoadTruckFuelFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadTruckFuelFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadTruckFuelFileButton.Location = new System.Drawing.Point(3, 177);
-            this.LoadTruckFuelFileButton.Name = "LoadTruckFuelFileButton";
-            this.LoadTruckFuelFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadTruckFuelFileButton.TabIndex = 6;
-            this.LoadTruckFuelFileButton.Text = "!LoadTruckFuelFile";
-            this.LoadTruckFuelFileButton.UseVisualStyleBackColor = true;
-            this.LoadTruckFuelFileButton.Click += new System.EventHandler(this.LoadTruckFuelFileButton_Click);
-            // 
-            // LoadTruckInventoryFileButton
-            // 
-            this.LoadTruckInventoryFileButton.AutoSize = true;
-            this.LoadTruckInventoryFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadTruckInventoryFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadTruckInventoryFileButton.Location = new System.Drawing.Point(3, 206);
-            this.LoadTruckInventoryFileButton.Name = "LoadTruckInventoryFileButton";
-            this.LoadTruckInventoryFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadTruckInventoryFileButton.TabIndex = 7;
-            this.LoadTruckInventoryFileButton.Text = "!LoadTruckInventoryFile";
-            this.LoadTruckInventoryFileButton.UseVisualStyleBackColor = true;
-            this.LoadTruckInventoryFileButton.Click += new System.EventHandler(this.LoadTruckInventoryFileButton_Click);
-            // 
-            // LoadOverallInventoryFileButton
-            // 
-            this.LoadOverallInventoryFileButton.AutoSize = true;
-            this.LoadOverallInventoryFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadOverallInventoryFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadOverallInventoryFileButton.Location = new System.Drawing.Point(3, 235);
-            this.LoadOverallInventoryFileButton.Name = "LoadOverallInventoryFileButton";
-            this.LoadOverallInventoryFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadOverallInventoryFileButton.TabIndex = 8;
-            this.LoadOverallInventoryFileButton.Text = "!LoadOverallInventoryFile";
-            this.LoadOverallInventoryFileButton.UseVisualStyleBackColor = true;
-            this.LoadOverallInventoryFileButton.Click += new System.EventHandler(this.LoadOverallInventoryFileButton_Click);
-            // 
-            // LoadOverallInventoryExtensionFileButton
-            // 
-            this.LoadOverallInventoryExtensionFileButton.AutoSize = true;
-            this.LoadOverallInventoryExtensionFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadOverallInventoryExtensionFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadOverallInventoryExtensionFileButton.Location = new System.Drawing.Point(3, 264);
-            this.LoadOverallInventoryExtensionFileButton.Name = "LoadOverallInventoryExtensionFileButton";
-            this.LoadOverallInventoryExtensionFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadOverallInventoryExtensionFileButton.TabIndex = 9;
-            this.LoadOverallInventoryExtensionFileButton.Text = "!LoadOverallInventoryExtensionFile";
-            this.LoadOverallInventoryExtensionFileButton.UseVisualStyleBackColor = true;
-            this.LoadOverallInventoryExtensionFileButton.Click += new System.EventHandler(this.LoadOverallInventoryExtensionFileButton_Click);
-            // 
-            // LoadTruckDriverFileButton
-            // 
-            this.LoadTruckDriverFileButton.AutoSize = true;
-            this.LoadTruckDriverFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadTruckDriverFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadTruckDriverFileButton.Location = new System.Drawing.Point(3, 293);
-            this.LoadTruckDriverFileButton.Name = "LoadTruckDriverFileButton";
-            this.LoadTruckDriverFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadTruckDriverFileButton.TabIndex = 10;
-            this.LoadTruckDriverFileButton.Text = "!LoadTruckDriverFile";
-            this.LoadTruckDriverFileButton.UseVisualStyleBackColor = true;
-            this.LoadTruckDriverFileButton.Click += new System.EventHandler(this.LoadTruckDriverFileButton_Click);
-            // 
-            // LoadTruckRouteFileButton
-            // 
-            this.LoadTruckRouteFileButton.AutoSize = true;
-            this.LoadTruckRouteFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadTruckRouteFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadTruckRouteFileButton.Location = new System.Drawing.Point(3, 322);
-            this.LoadTruckRouteFileButton.Name = "LoadTruckRouteFileButton";
-            this.LoadTruckRouteFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadTruckRouteFileButton.TabIndex = 11;
-            this.LoadTruckRouteFileButton.Text = "!LoadTruckRouteFile";
-            this.LoadTruckRouteFileButton.UseVisualStyleBackColor = true;
-            this.LoadTruckRouteFileButton.Click += new System.EventHandler(this.LoadTruckRouteFileButton_Click);
-            // 
-            // LoadSalesFileButton
-            // 
-            this.LoadSalesFileButton.AutoSize = true;
-            this.LoadSalesFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.LoadSalesFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadSalesFileButton.Location = new System.Drawing.Point(3, 351);
-            this.LoadSalesFileButton.Name = "LoadSalesFileButton";
-            this.LoadSalesFileButton.Size = new System.Drawing.Size(183, 23);
-            this.LoadSalesFileButton.TabIndex = 12;
-            this.LoadSalesFileButton.Text = "!LoadSalesFile";
-            this.LoadSalesFileButton.UseVisualStyleBackColor = true;
-            this.LoadSalesFileButton.Click += new System.EventHandler(this.LoadSalesFileButton_Click);
             // 
             // ProcessEndOfDayButton
             // 
             this.ProcessEndOfDayButton.AutoSize = true;
             this.ProcessEndOfDayButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ProcessEndOfDayButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessEndOfDayButton.Location = new System.Drawing.Point(3, 380);
+            this.ProcessEndOfDayButton.Location = new System.Drawing.Point(6, 617);
+            this.ProcessEndOfDayButton.Margin = new System.Windows.Forms.Padding(6);
             this.ProcessEndOfDayButton.Name = "ProcessEndOfDayButton";
-            this.ProcessEndOfDayButton.Size = new System.Drawing.Size(183, 23);
+            this.ProcessEndOfDayButton.Size = new System.Drawing.Size(362, 35);
             this.ProcessEndOfDayButton.TabIndex = 13;
             this.ProcessEndOfDayButton.Text = "!ProcessEndOfDay";
             this.ProcessEndOfDayButton.UseVisualStyleBackColor = true;
             this.ProcessEndOfDayButton.Click += new System.EventHandler(this.ProcessEndOfDayButton_Click);
             // 
+            // LoadTruckRouteFileButton
+            // 
+            this.LoadTruckRouteFileButton.AutoSize = true;
+            this.LoadTruckRouteFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadTruckRouteFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadTruckRouteFileButton.Location = new System.Drawing.Point(6, 523);
+            this.LoadTruckRouteFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadTruckRouteFileButton.Name = "LoadTruckRouteFileButton";
+            this.LoadTruckRouteFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadTruckRouteFileButton.TabIndex = 11;
+            this.LoadTruckRouteFileButton.Text = "!LoadTruckRouteFile";
+            this.LoadTruckRouteFileButton.UseVisualStyleBackColor = true;
+            this.LoadTruckRouteFileButton.Click += new System.EventHandler(this.LoadTruckRouteFileButton_Click);
+            // 
+            // LoadTruckDriverFileButton
+            // 
+            this.LoadTruckDriverFileButton.AutoSize = true;
+            this.LoadTruckDriverFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadTruckDriverFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadTruckDriverFileButton.Location = new System.Drawing.Point(6, 476);
+            this.LoadTruckDriverFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadTruckDriverFileButton.Name = "LoadTruckDriverFileButton";
+            this.LoadTruckDriverFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadTruckDriverFileButton.TabIndex = 10;
+            this.LoadTruckDriverFileButton.Text = "!LoadTruckDriverFile";
+            this.LoadTruckDriverFileButton.UseVisualStyleBackColor = true;
+            this.LoadTruckDriverFileButton.Click += new System.EventHandler(this.LoadTruckDriverFileButton_Click);
+            // 
+            // LoadOverallInventoryExtensionFileButton
+            // 
+            this.LoadOverallInventoryExtensionFileButton.AutoSize = true;
+            this.LoadOverallInventoryExtensionFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadOverallInventoryExtensionFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadOverallInventoryExtensionFileButton.Location = new System.Drawing.Point(6, 429);
+            this.LoadOverallInventoryExtensionFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadOverallInventoryExtensionFileButton.Name = "LoadOverallInventoryExtensionFileButton";
+            this.LoadOverallInventoryExtensionFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadOverallInventoryExtensionFileButton.TabIndex = 9;
+            this.LoadOverallInventoryExtensionFileButton.Text = "!LoadOverallInventoryExtensionFile";
+            this.LoadOverallInventoryExtensionFileButton.UseVisualStyleBackColor = true;
+            this.LoadOverallInventoryExtensionFileButton.Click += new System.EventHandler(this.LoadOverallInventoryExtensionFileButton_Click);
+            // 
+            // LoadOverallInventoryFileButton
+            // 
+            this.LoadOverallInventoryFileButton.AutoSize = true;
+            this.LoadOverallInventoryFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadOverallInventoryFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadOverallInventoryFileButton.Location = new System.Drawing.Point(6, 382);
+            this.LoadOverallInventoryFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadOverallInventoryFileButton.Name = "LoadOverallInventoryFileButton";
+            this.LoadOverallInventoryFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadOverallInventoryFileButton.TabIndex = 8;
+            this.LoadOverallInventoryFileButton.Text = "!LoadOverallInventoryFile";
+            this.LoadOverallInventoryFileButton.UseVisualStyleBackColor = true;
+            this.LoadOverallInventoryFileButton.Click += new System.EventHandler(this.LoadOverallInventoryFileButton_Click);
+            // 
+            // LoadTruckInventoryFileButton
+            // 
+            this.LoadTruckInventoryFileButton.AutoSize = true;
+            this.LoadTruckInventoryFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadTruckInventoryFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadTruckInventoryFileButton.Location = new System.Drawing.Point(6, 335);
+            this.LoadTruckInventoryFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadTruckInventoryFileButton.Name = "LoadTruckInventoryFileButton";
+            this.LoadTruckInventoryFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadTruckInventoryFileButton.TabIndex = 7;
+            this.LoadTruckInventoryFileButton.Text = "!LoadTruckInventoryFile";
+            this.LoadTruckInventoryFileButton.UseVisualStyleBackColor = true;
+            this.LoadTruckInventoryFileButton.Click += new System.EventHandler(this.LoadTruckInventoryFileButton_Click);
+            // 
+            // LoadTruckFuelFileButton
+            // 
+            this.LoadTruckFuelFileButton.AutoSize = true;
+            this.LoadTruckFuelFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadTruckFuelFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadTruckFuelFileButton.Location = new System.Drawing.Point(6, 288);
+            this.LoadTruckFuelFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadTruckFuelFileButton.Name = "LoadTruckFuelFileButton";
+            this.LoadTruckFuelFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadTruckFuelFileButton.TabIndex = 6;
+            this.LoadTruckFuelFileButton.Text = "!LoadTruckFuelFile";
+            this.LoadTruckFuelFileButton.UseVisualStyleBackColor = true;
+            this.LoadTruckFuelFileButton.Click += new System.EventHandler(this.LoadTruckFuelFileButton_Click);
+            // 
+            // LoadTruckFileButton
+            // 
+            this.LoadTruckFileButton.AutoSize = true;
+            this.LoadTruckFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadTruckFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadTruckFileButton.Location = new System.Drawing.Point(6, 241);
+            this.LoadTruckFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadTruckFileButton.Name = "LoadTruckFileButton";
+            this.LoadTruckFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadTruckFileButton.TabIndex = 5;
+            this.LoadTruckFileButton.Text = "!LoadTruckFile";
+            this.LoadTruckFileButton.UseVisualStyleBackColor = true;
+            this.LoadTruckFileButton.Click += new System.EventHandler(this.LoadTruckFileButton_Click);
+            // 
+            // LoadDriverFileButton
+            // 
+            this.LoadDriverFileButton.AutoSize = true;
+            this.LoadDriverFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadDriverFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadDriverFileButton.Location = new System.Drawing.Point(6, 194);
+            this.LoadDriverFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadDriverFileButton.Name = "LoadDriverFileButton";
+            this.LoadDriverFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadDriverFileButton.TabIndex = 4;
+            this.LoadDriverFileButton.Text = "!LoadDriverFile";
+            this.LoadDriverFileButton.UseVisualStyleBackColor = true;
+            this.LoadDriverFileButton.Click += new System.EventHandler(this.LoadDriverFileButton_Click);
+            // 
+            // LoadRouteFileButton
+            // 
+            this.LoadRouteFileButton.AutoSize = true;
+            this.LoadRouteFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadRouteFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadRouteFileButton.Location = new System.Drawing.Point(6, 147);
+            this.LoadRouteFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadRouteFileButton.Name = "LoadRouteFileButton";
+            this.LoadRouteFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadRouteFileButton.TabIndex = 3;
+            this.LoadRouteFileButton.Text = "!LoadRouteFile";
+            this.LoadRouteFileButton.UseVisualStyleBackColor = true;
+            this.LoadRouteFileButton.Click += new System.EventHandler(this.LoadRouteFileButton_Click);
+            // 
+            // LoadCityFileExtensionButton
+            // 
+            this.LoadCityFileExtensionButton.AutoSize = true;
+            this.LoadCityFileExtensionButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadCityFileExtensionButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadCityFileExtensionButton.Location = new System.Drawing.Point(6, 100);
+            this.LoadCityFileExtensionButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadCityFileExtensionButton.Name = "LoadCityFileExtensionButton";
+            this.LoadCityFileExtensionButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadCityFileExtensionButton.TabIndex = 2;
+            this.LoadCityFileExtensionButton.Text = "!LoadCityFileExtension";
+            this.LoadCityFileExtensionButton.UseVisualStyleBackColor = true;
+            this.LoadCityFileExtensionButton.Click += new System.EventHandler(this.LoadCityFileExtensionButton_Click);
+            // 
+            // LoadCityFileButton
+            // 
+            this.LoadCityFileButton.AutoSize = true;
+            this.LoadCityFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadCityFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadCityFileButton.Location = new System.Drawing.Point(6, 53);
+            this.LoadCityFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadCityFileButton.Name = "LoadCityFileButton";
+            this.LoadCityFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadCityFileButton.TabIndex = 1;
+            this.LoadCityFileButton.Text = "!LoadCityFile";
+            this.LoadCityFileButton.UseVisualStyleBackColor = true;
+            this.LoadCityFileButton.Click += new System.EventHandler(this.LoadCityFileButton_Click);
+            // 
+            // ProcessStartOfDayButton
+            // 
+            this.ProcessStartOfDayButton.AutoSize = true;
+            this.ProcessStartOfDayButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ProcessStartOfDayButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProcessStartOfDayButton.Location = new System.Drawing.Point(6, 6);
+            this.ProcessStartOfDayButton.Margin = new System.Windows.Forms.Padding(6);
+            this.ProcessStartOfDayButton.Name = "ProcessStartOfDayButton";
+            this.ProcessStartOfDayButton.Size = new System.Drawing.Size(362, 35);
+            this.ProcessStartOfDayButton.TabIndex = 0;
+            this.ProcessStartOfDayButton.Text = "!ProcessStartOfDay";
+            this.ProcessStartOfDayButton.UseVisualStyleBackColor = true;
+            this.ProcessStartOfDayButton.Click += new System.EventHandler(this.ProcessStartOfDayButton_Click);
+            // 
+            // LoadSalesFileButton
+            // 
+            this.LoadSalesFileButton.AutoSize = true;
+            this.LoadSalesFileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoadSalesFileButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadSalesFileButton.Location = new System.Drawing.Point(6, 570);
+            this.LoadSalesFileButton.Margin = new System.Windows.Forms.Padding(6);
+            this.LoadSalesFileButton.Name = "LoadSalesFileButton";
+            this.LoadSalesFileButton.Size = new System.Drawing.Size(362, 35);
+            this.LoadSalesFileButton.TabIndex = 12;
+            this.LoadSalesFileButton.Text = "!LoadSalesFile";
+            this.LoadSalesFileButton.UseVisualStyleBackColor = true;
+            this.LoadSalesFileButton.Click += new System.EventHandler(this.LoadSalesFileButton_Click);
+            // 
+            // TrucksTab
+            // 
+            this.TrucksTab.Controls.Add(this.tableLayoutPanel2);
+            this.TrucksTab.ImageIndex = 5;
+            this.TrucksTab.Location = new System.Drawing.Point(8, 47);
+            this.TrucksTab.Margin = new System.Windows.Forms.Padding(6);
+            this.TrucksTab.Name = "TrucksTab";
+            this.TrucksTab.Padding = new System.Windows.Forms.Padding(6);
+            this.TrucksTab.Size = new System.Drawing.Size(1552, 855);
+            this.TrucksTab.TabIndex = 1;
+            this.TrucksTab.Text = "!Trucks";
+            this.TrucksTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.DefaultInventoryButton, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.RemoveTruckButton, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.TruckGridView, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.AddTruckButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.EditTruckButton, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ShowDeletedTrucks, 4, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1540, 843);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // DefaultInventoryButton
+            // 
+            this.DefaultInventoryButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.DefaultInventoryButton.AutoSize = true;
+            this.DefaultInventoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DefaultInventoryButton.Location = new System.Drawing.Point(560, 6);
+            this.DefaultInventoryButton.Margin = new System.Windows.Forms.Padding(6);
+            this.DefaultInventoryButton.Name = "DefaultInventoryButton";
+            this.DefaultInventoryButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.DefaultInventoryButton.Size = new System.Drawing.Size(384, 79);
+            this.DefaultInventoryButton.TabIndex = 5;
+            this.DefaultInventoryButton.Text = "!Default Inventory";
+            this.DefaultInventoryButton.UseVisualStyleBackColor = true;
+            this.DefaultInventoryButton.Click += new System.EventHandler(this.DefaultInventoryButton_Click);
+            // 
+            // RemoveTruckButton
+            // 
+            this.RemoveTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveTruckButton.AutoSize = true;
+            this.RemoveTruckButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveTruckButton.Location = new System.Drawing.Point(330, 6);
+            this.RemoveTruckButton.Margin = new System.Windows.Forms.Padding(6);
+            this.RemoveTruckButton.Name = "RemoveTruckButton";
+            this.RemoveTruckButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.RemoveTruckButton.Size = new System.Drawing.Size(218, 79);
+            this.RemoveTruckButton.TabIndex = 2;
+            this.RemoveTruckButton.Text = "!Remove";
+            this.RemoveTruckButton.UseVisualStyleBackColor = true;
+            this.RemoveTruckButton.Click += new System.EventHandler(this.RemoveTruckButton_Click);
+            // 
+            // TruckGridView
+            // 
+            this.TruckGridView.AllowUserToAddRows = false;
+            this.TruckGridView.AllowUserToDeleteRows = false;
+            this.TruckGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.TruckGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel2.SetColumnSpan(this.TruckGridView, 5);
+            this.TruckGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TruckGridView.Location = new System.Drawing.Point(6, 97);
+            this.TruckGridView.Margin = new System.Windows.Forms.Padding(6);
+            this.TruckGridView.MultiSelect = false;
+            this.TruckGridView.Name = "TruckGridView";
+            this.TruckGridView.ReadOnly = true;
+            this.TruckGridView.RowHeadersVisible = false;
+            this.TruckGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.TruckGridView.Size = new System.Drawing.Size(1528, 740);
+            this.TruckGridView.TabIndex = 4;
+            // 
+            // AddTruckButton
+            // 
+            this.AddTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddTruckButton.AutoSize = true;
+            this.AddTruckButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddTruckButton.Location = new System.Drawing.Point(6, 6);
+            this.AddTruckButton.Margin = new System.Windows.Forms.Padding(6);
+            this.AddTruckButton.Name = "AddTruckButton";
+            this.AddTruckButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.AddTruckButton.Size = new System.Drawing.Size(150, 79);
+            this.AddTruckButton.TabIndex = 1;
+            this.AddTruckButton.Text = "!Add";
+            this.AddTruckButton.UseVisualStyleBackColor = true;
+            this.AddTruckButton.Click += new System.EventHandler(this.AddTruckButton_Click);
+            // 
+            // EditTruckButton
+            // 
+            this.EditTruckButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditTruckButton.AutoSize = true;
+            this.EditTruckButton.Location = new System.Drawing.Point(168, 6);
+            this.EditTruckButton.Margin = new System.Windows.Forms.Padding(6);
+            this.EditTruckButton.Name = "EditTruckButton";
+            this.EditTruckButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.EditTruckButton.Size = new System.Drawing.Size(150, 79);
+            this.EditTruckButton.TabIndex = 0;
+            this.EditTruckButton.Text = "!Edit";
+            this.EditTruckButton.UseVisualStyleBackColor = true;
+            this.EditTruckButton.Click += new System.EventHandler(this.EditTruckButton_Click);
+            // 
+            // ShowDeletedTrucks
+            // 
+            this.ShowDeletedTrucks.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedTrucks.AutoSize = true;
+            this.ShowDeletedTrucks.Location = new System.Drawing.Point(956, 31);
+            this.ShowDeletedTrucks.Margin = new System.Windows.Forms.Padding(6);
+            this.ShowDeletedTrucks.Name = "ShowDeletedTrucks";
+            this.ShowDeletedTrucks.Size = new System.Drawing.Size(183, 29);
+            this.ShowDeletedTrucks.TabIndex = 3;
+            this.ShowDeletedTrucks.Text = "!Show Deleted";
+            this.ShowDeletedTrucks.UseVisualStyleBackColor = true;
+            this.ShowDeletedTrucks.CheckedChanged += new System.EventHandler(this.RefreshTruckTable);
+            // 
+            // ItemsTab
+            // 
+            this.ItemsTab.Controls.Add(this.ItemLayoutTable);
+            this.ItemsTab.ImageIndex = 2;
+            this.ItemsTab.Location = new System.Drawing.Point(8, 47);
+            this.ItemsTab.Margin = new System.Windows.Forms.Padding(6);
+            this.ItemsTab.Name = "ItemsTab";
+            this.ItemsTab.Padding = new System.Windows.Forms.Padding(6);
+            this.ItemsTab.Size = new System.Drawing.Size(1552, 855);
+            this.ItemsTab.TabIndex = 2;
+            this.ItemsTab.Text = "!Items";
+            this.ItemsTab.UseVisualStyleBackColor = true;
+            // 
+            // ItemLayoutTable
+            // 
+            this.ItemLayoutTable.ColumnCount = 4;
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ItemLayoutTable.Controls.Add(this.ItemGridView, 0, 1);
+            this.ItemLayoutTable.Controls.Add(this.RemoveItemButton, 2, 0);
+            this.ItemLayoutTable.Controls.Add(this.ShowDeletedItems, 3, 0);
+            this.ItemLayoutTable.Controls.Add(this.AddItemButton, 0, 0);
+            this.ItemLayoutTable.Controls.Add(this.EditItemButton, 1, 0);
+            this.ItemLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemLayoutTable.Location = new System.Drawing.Point(6, 6);
+            this.ItemLayoutTable.Margin = new System.Windows.Forms.Padding(6);
+            this.ItemLayoutTable.Name = "ItemLayoutTable";
+            this.ItemLayoutTable.RowCount = 2;
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ItemLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ItemLayoutTable.Size = new System.Drawing.Size(1540, 843);
+            this.ItemLayoutTable.TabIndex = 1;
+            // 
+            // ItemGridView
+            // 
+            this.ItemGridView.AllowUserToAddRows = false;
+            this.ItemGridView.AllowUserToDeleteRows = false;
+            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemLayoutTable.SetColumnSpan(this.ItemGridView, 4);
+            this.ItemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemGridView.Location = new System.Drawing.Point(6, 97);
+            this.ItemGridView.Margin = new System.Windows.Forms.Padding(6);
+            this.ItemGridView.MultiSelect = false;
+            this.ItemGridView.Name = "ItemGridView";
+            this.ItemGridView.ReadOnly = true;
+            this.ItemGridView.RowHeadersVisible = false;
+            this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemGridView.Size = new System.Drawing.Size(1528, 740);
+            this.ItemGridView.TabIndex = 5;
+            // 
+            // RemoveItemButton
+            // 
+            this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveItemButton.AutoSize = true;
+            this.RemoveItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveItemButton.Location = new System.Drawing.Point(330, 6);
+            this.RemoveItemButton.Margin = new System.Windows.Forms.Padding(6);
+            this.RemoveItemButton.Name = "RemoveItemButton";
+            this.RemoveItemButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.RemoveItemButton.Size = new System.Drawing.Size(218, 79);
+            this.RemoveItemButton.TabIndex = 2;
+            this.RemoveItemButton.Text = "!Remove";
+            this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
+            // 
+            // ShowDeletedItems
+            // 
+            this.ShowDeletedItems.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedItems.AutoSize = true;
+            this.ShowDeletedItems.Location = new System.Drawing.Point(560, 31);
+            this.ShowDeletedItems.Margin = new System.Windows.Forms.Padding(6);
+            this.ShowDeletedItems.Name = "ShowDeletedItems";
+            this.ShowDeletedItems.Size = new System.Drawing.Size(183, 29);
+            this.ShowDeletedItems.TabIndex = 3;
+            this.ShowDeletedItems.Text = "!Show Deleted";
+            this.ShowDeletedItems.UseVisualStyleBackColor = true;
+            this.ShowDeletedItems.CheckedChanged += new System.EventHandler(this.RefreshItemTable);
+            // 
+            // AddItemButton
+            // 
+            this.AddItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddItemButton.AutoSize = true;
+            this.AddItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddItemButton.Location = new System.Drawing.Point(6, 6);
+            this.AddItemButton.Margin = new System.Windows.Forms.Padding(6);
+            this.AddItemButton.Name = "AddItemButton";
+            this.AddItemButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.AddItemButton.Size = new System.Drawing.Size(150, 79);
+            this.AddItemButton.TabIndex = 1;
+            this.AddItemButton.Text = "!Add";
+            this.AddItemButton.UseVisualStyleBackColor = true;
+            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
+            // 
+            // EditItemButton
+            // 
+            this.EditItemButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditItemButton.AutoSize = true;
+            this.EditItemButton.Location = new System.Drawing.Point(168, 6);
+            this.EditItemButton.Margin = new System.Windows.Forms.Padding(6);
+            this.EditItemButton.Name = "EditItemButton";
+            this.EditItemButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.EditItemButton.Size = new System.Drawing.Size(150, 79);
+            this.EditItemButton.TabIndex = 0;
+            this.EditItemButton.Text = "!Edit";
+            this.EditItemButton.UseVisualStyleBackColor = true;
+            this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
+            // 
+            // DriversTab
+            // 
+            this.DriversTab.Controls.Add(this.tableLayoutPanel1);
+            this.DriversTab.ImageIndex = 1;
+            this.DriversTab.Location = new System.Drawing.Point(8, 47);
+            this.DriversTab.Margin = new System.Windows.Forms.Padding(6);
+            this.DriversTab.Name = "DriversTab";
+            this.DriversTab.Padding = new System.Windows.Forms.Padding(6);
+            this.DriversTab.Size = new System.Drawing.Size(1552, 855);
+            this.DriversTab.TabIndex = 3;
+            this.DriversTab.Text = "!Drivers";
+            this.DriversTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.DriverGridView, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.RemoveDriverButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ShowDeletedDrivers, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AddDriverButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.EditDriverButton, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1540, 843);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // DriverGridView
+            // 
+            this.DriverGridView.AllowUserToAddRows = false;
+            this.DriverGridView.AllowUserToDeleteRows = false;
+            this.DriverGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.DriverGridView, 4);
+            this.DriverGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DriverGridView.Location = new System.Drawing.Point(6, 97);
+            this.DriverGridView.Margin = new System.Windows.Forms.Padding(6);
+            this.DriverGridView.MultiSelect = false;
+            this.DriverGridView.Name = "DriverGridView";
+            this.DriverGridView.ReadOnly = true;
+            this.DriverGridView.RowHeadersVisible = false;
+            this.DriverGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DriverGridView.Size = new System.Drawing.Size(1528, 740);
+            this.DriverGridView.TabIndex = 5;
+            // 
+            // RemoveDriverButton
+            // 
+            this.RemoveDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveDriverButton.AutoSize = true;
+            this.RemoveDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveDriverButton.Location = new System.Drawing.Point(330, 6);
+            this.RemoveDriverButton.Margin = new System.Windows.Forms.Padding(6);
+            this.RemoveDriverButton.Name = "RemoveDriverButton";
+            this.RemoveDriverButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.RemoveDriverButton.Size = new System.Drawing.Size(218, 79);
+            this.RemoveDriverButton.TabIndex = 2;
+            this.RemoveDriverButton.Text = "!Remove";
+            this.RemoveDriverButton.UseVisualStyleBackColor = true;
+            this.RemoveDriverButton.Click += new System.EventHandler(this.RemoveDriverButton_Click);
+            // 
+            // ShowDeletedDrivers
+            // 
+            this.ShowDeletedDrivers.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedDrivers.AutoSize = true;
+            this.ShowDeletedDrivers.Location = new System.Drawing.Point(560, 31);
+            this.ShowDeletedDrivers.Margin = new System.Windows.Forms.Padding(6);
+            this.ShowDeletedDrivers.Name = "ShowDeletedDrivers";
+            this.ShowDeletedDrivers.Size = new System.Drawing.Size(183, 29);
+            this.ShowDeletedDrivers.TabIndex = 3;
+            this.ShowDeletedDrivers.Text = "!Show Deleted";
+            this.ShowDeletedDrivers.UseVisualStyleBackColor = true;
+            this.ShowDeletedDrivers.CheckedChanged += new System.EventHandler(this.RefreshDriverTable);
+            // 
+            // AddDriverButton
+            // 
+            this.AddDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddDriverButton.AutoSize = true;
+            this.AddDriverButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddDriverButton.Location = new System.Drawing.Point(6, 6);
+            this.AddDriverButton.Margin = new System.Windows.Forms.Padding(6);
+            this.AddDriverButton.Name = "AddDriverButton";
+            this.AddDriverButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.AddDriverButton.Size = new System.Drawing.Size(150, 79);
+            this.AddDriverButton.TabIndex = 1;
+            this.AddDriverButton.Text = "!Add";
+            this.AddDriverButton.UseVisualStyleBackColor = true;
+            this.AddDriverButton.Click += new System.EventHandler(this.AddDriverButton_Click);
+            // 
+            // EditDriverButton
+            // 
+            this.EditDriverButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditDriverButton.AutoSize = true;
+            this.EditDriverButton.Location = new System.Drawing.Point(168, 6);
+            this.EditDriverButton.Margin = new System.Windows.Forms.Padding(6);
+            this.EditDriverButton.Name = "EditDriverButton";
+            this.EditDriverButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.EditDriverButton.Size = new System.Drawing.Size(150, 79);
+            this.EditDriverButton.TabIndex = 0;
+            this.EditDriverButton.Text = "!Edit";
+            this.EditDriverButton.UseVisualStyleBackColor = true;
+            this.EditDriverButton.Click += new System.EventHandler(this.EditDriverButton_Click);
+            // 
+            // RoutesTab
+            // 
+            this.RoutesTab.Controls.Add(this.RoutesLayoutTable);
+            this.RoutesTab.ImageIndex = 4;
+            this.RoutesTab.Location = new System.Drawing.Point(8, 47);
+            this.RoutesTab.Margin = new System.Windows.Forms.Padding(6);
+            this.RoutesTab.Name = "RoutesTab";
+            this.RoutesTab.Padding = new System.Windows.Forms.Padding(6);
+            this.RoutesTab.Size = new System.Drawing.Size(1552, 855);
+            this.RoutesTab.TabIndex = 4;
+            this.RoutesTab.Text = "!Routes";
+            this.RoutesTab.UseVisualStyleBackColor = true;
+            // 
+            // RoutesLayoutTable
+            // 
+            this.RoutesLayoutTable.ColumnCount = 4;
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.RoutesLayoutTable.Controls.Add(this.RemoveRouteButton, 2, 0);
+            this.RoutesLayoutTable.Controls.Add(this.ShowDeletedRoutes, 3, 0);
+            this.RoutesLayoutTable.Controls.Add(this.RouteGridView, 0, 1);
+            this.RoutesLayoutTable.Controls.Add(this.AddRouteButton, 0, 0);
+            this.RoutesLayoutTable.Controls.Add(this.EditRouteButton, 1, 0);
+            this.RoutesLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoutesLayoutTable.Location = new System.Drawing.Point(6, 6);
+            this.RoutesLayoutTable.Margin = new System.Windows.Forms.Padding(6);
+            this.RoutesLayoutTable.Name = "RoutesLayoutTable";
+            this.RoutesLayoutTable.RowCount = 2;
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RoutesLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RoutesLayoutTable.Size = new System.Drawing.Size(1540, 843);
+            this.RoutesLayoutTable.TabIndex = 2;
+            // 
+            // RemoveRouteButton
+            // 
+            this.RemoveRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveRouteButton.AutoSize = true;
+            this.RemoveRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveRouteButton.Location = new System.Drawing.Point(330, 6);
+            this.RemoveRouteButton.Margin = new System.Windows.Forms.Padding(6);
+            this.RemoveRouteButton.Name = "RemoveRouteButton";
+            this.RemoveRouteButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.RemoveRouteButton.Size = new System.Drawing.Size(218, 79);
+            this.RemoveRouteButton.TabIndex = 2;
+            this.RemoveRouteButton.Text = "!Remove";
+            this.RemoveRouteButton.UseVisualStyleBackColor = true;
+            this.RemoveRouteButton.Click += new System.EventHandler(this.RemoveRouteButton_Click);
+            // 
+            // ShowDeletedRoutes
+            // 
+            this.ShowDeletedRoutes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedRoutes.AutoSize = true;
+            this.ShowDeletedRoutes.Location = new System.Drawing.Point(560, 31);
+            this.ShowDeletedRoutes.Margin = new System.Windows.Forms.Padding(6);
+            this.ShowDeletedRoutes.Name = "ShowDeletedRoutes";
+            this.ShowDeletedRoutes.Size = new System.Drawing.Size(183, 29);
+            this.ShowDeletedRoutes.TabIndex = 3;
+            this.ShowDeletedRoutes.Text = "!Show Deleted";
+            this.ShowDeletedRoutes.UseVisualStyleBackColor = true;
+            this.ShowDeletedRoutes.CheckedChanged += new System.EventHandler(this.RefreshRouteTable);
+            // 
+            // RouteGridView
+            // 
+            this.RouteGridView.AllowUserToAddRows = false;
+            this.RouteGridView.AllowUserToDeleteRows = false;
+            this.RouteGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.RouteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RoutesLayoutTable.SetColumnSpan(this.RouteGridView, 4);
+            this.RouteGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RouteGridView.Location = new System.Drawing.Point(6, 97);
+            this.RouteGridView.Margin = new System.Windows.Forms.Padding(6);
+            this.RouteGridView.MultiSelect = false;
+            this.RouteGridView.Name = "RouteGridView";
+            this.RouteGridView.ReadOnly = true;
+            this.RouteGridView.RowHeadersVisible = false;
+            this.RouteGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RouteGridView.Size = new System.Drawing.Size(1528, 740);
+            this.RouteGridView.TabIndex = 4;
+            // 
+            // AddRouteButton
+            // 
+            this.AddRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddRouteButton.AutoSize = true;
+            this.AddRouteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddRouteButton.Location = new System.Drawing.Point(6, 6);
+            this.AddRouteButton.Margin = new System.Windows.Forms.Padding(6);
+            this.AddRouteButton.Name = "AddRouteButton";
+            this.AddRouteButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.AddRouteButton.Size = new System.Drawing.Size(150, 79);
+            this.AddRouteButton.TabIndex = 1;
+            this.AddRouteButton.Text = "!Add";
+            this.AddRouteButton.UseVisualStyleBackColor = true;
+            this.AddRouteButton.Click += new System.EventHandler(this.AddRouteButton_Click);
+            // 
+            // EditRouteButton
+            // 
+            this.EditRouteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditRouteButton.AutoSize = true;
+            this.EditRouteButton.Location = new System.Drawing.Point(168, 6);
+            this.EditRouteButton.Margin = new System.Windows.Forms.Padding(6);
+            this.EditRouteButton.Name = "EditRouteButton";
+            this.EditRouteButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.EditRouteButton.Size = new System.Drawing.Size(150, 79);
+            this.EditRouteButton.TabIndex = 0;
+            this.EditRouteButton.Text = "!Edit";
+            this.EditRouteButton.UseVisualStyleBackColor = true;
+            this.EditRouteButton.Click += new System.EventHandler(this.EditRouteButton_Click);
+            // 
+            // CitiesTab
+            // 
+            this.CitiesTab.Controls.Add(this.CityLayoutTable);
+            this.CitiesTab.ImageIndex = 0;
+            this.CitiesTab.Location = new System.Drawing.Point(8, 47);
+            this.CitiesTab.Margin = new System.Windows.Forms.Padding(6);
+            this.CitiesTab.Name = "CitiesTab";
+            this.CitiesTab.Padding = new System.Windows.Forms.Padding(6);
+            this.CitiesTab.Size = new System.Drawing.Size(1552, 855);
+            this.CitiesTab.TabIndex = 5;
+            this.CitiesTab.Text = "!Cities";
+            this.CitiesTab.UseVisualStyleBackColor = true;
+            // 
+            // CityLayoutTable
+            // 
+            this.CityLayoutTable.ColumnCount = 4;
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.CityLayoutTable.Controls.Add(this.RemoveCityButton, 2, 0);
+            this.CityLayoutTable.Controls.Add(this.ShowDeletedCities, 3, 0);
+            this.CityLayoutTable.Controls.Add(this.CityGridView, 0, 1);
+            this.CityLayoutTable.Controls.Add(this.AddCityButton, 0, 0);
+            this.CityLayoutTable.Controls.Add(this.EditCityButton, 1, 0);
+            this.CityLayoutTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CityLayoutTable.Location = new System.Drawing.Point(6, 6);
+            this.CityLayoutTable.Margin = new System.Windows.Forms.Padding(6);
+            this.CityLayoutTable.Name = "CityLayoutTable";
+            this.CityLayoutTable.RowCount = 2;
+            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.CityLayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.CityLayoutTable.Size = new System.Drawing.Size(1540, 843);
+            this.CityLayoutTable.TabIndex = 2;
+            // 
+            // RemoveCityButton
+            // 
+            this.RemoveCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RemoveCityButton.AutoSize = true;
+            this.RemoveCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoveCityButton.Location = new System.Drawing.Point(330, 6);
+            this.RemoveCityButton.Margin = new System.Windows.Forms.Padding(6);
+            this.RemoveCityButton.Name = "RemoveCityButton";
+            this.RemoveCityButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.RemoveCityButton.Size = new System.Drawing.Size(218, 79);
+            this.RemoveCityButton.TabIndex = 2;
+            this.RemoveCityButton.Text = "!Remove";
+            this.RemoveCityButton.UseVisualStyleBackColor = true;
+            this.RemoveCityButton.Click += new System.EventHandler(this.RemoveCityButton_Click);
+            // 
+            // ShowDeletedCities
+            // 
+            this.ShowDeletedCities.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ShowDeletedCities.AutoSize = true;
+            this.ShowDeletedCities.Location = new System.Drawing.Point(560, 31);
+            this.ShowDeletedCities.Margin = new System.Windows.Forms.Padding(6);
+            this.ShowDeletedCities.Name = "ShowDeletedCities";
+            this.ShowDeletedCities.Size = new System.Drawing.Size(183, 29);
+            this.ShowDeletedCities.TabIndex = 3;
+            this.ShowDeletedCities.Text = "!Show Deleted";
+            this.ShowDeletedCities.UseVisualStyleBackColor = true;
+            this.ShowDeletedCities.CheckedChanged += new System.EventHandler(this.RefreshCityTable);
+            // 
+            // CityGridView
+            // 
+            this.CityGridView.AllowUserToAddRows = false;
+            this.CityGridView.AllowUserToDeleteRows = false;
+            this.CityGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.CityGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CityLayoutTable.SetColumnSpan(this.CityGridView, 4);
+            this.CityGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CityGridView.Location = new System.Drawing.Point(6, 97);
+            this.CityGridView.Margin = new System.Windows.Forms.Padding(6);
+            this.CityGridView.MultiSelect = false;
+            this.CityGridView.Name = "CityGridView";
+            this.CityGridView.ReadOnly = true;
+            this.CityGridView.RowHeadersVisible = false;
+            this.CityGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CityGridView.Size = new System.Drawing.Size(1528, 740);
+            this.CityGridView.TabIndex = 4;
+            // 
+            // AddCityButton
+            // 
+            this.AddCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddCityButton.AutoSize = true;
+            this.AddCityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddCityButton.Location = new System.Drawing.Point(6, 6);
+            this.AddCityButton.Margin = new System.Windows.Forms.Padding(6);
+            this.AddCityButton.Name = "AddCityButton";
+            this.AddCityButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.AddCityButton.Size = new System.Drawing.Size(150, 79);
+            this.AddCityButton.TabIndex = 1;
+            this.AddCityButton.Text = "!Add";
+            this.AddCityButton.UseVisualStyleBackColor = true;
+            this.AddCityButton.Click += new System.EventHandler(this.AddCityButton_Click);
+            // 
+            // EditCityButton
+            // 
+            this.EditCityButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EditCityButton.AutoSize = true;
+            this.EditCityButton.Location = new System.Drawing.Point(168, 6);
+            this.EditCityButton.Margin = new System.Windows.Forms.Padding(6);
+            this.EditCityButton.Name = "EditCityButton";
+            this.EditCityButton.Padding = new System.Windows.Forms.Padding(4, 6, 0, 6);
+            this.EditCityButton.Size = new System.Drawing.Size(150, 79);
+            this.EditCityButton.TabIndex = 0;
+            this.EditCityButton.Text = "!Edit";
+            this.EditCityButton.UseVisualStyleBackColor = true;
+            this.EditCityButton.Click += new System.EventHandler(this.EditCityButton_Click);
+            // 
+            // ButtonIcons
+            // 
+            this.ButtonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ButtonIcons.ImageStream")));
+            this.ButtonIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.ButtonIcons.Images.SetKeyName(0, "Cities.png");
+            this.ButtonIcons.Images.SetKeyName(1, "Drivers.png");
+            this.ButtonIcons.Images.SetKeyName(2, "Items.png");
+            this.ButtonIcons.Images.SetKeyName(3, "Revenue.png");
+            this.ButtonIcons.Images.SetKeyName(4, "Routes.png");
+            this.ButtonIcons.Images.SetKeyName(5, "Trucks.png");
+            this.ButtonIcons.Images.SetKeyName(6, "Inventory.png");
+            this.ButtonIcons.Images.SetKeyName(7, "Batch.png");
+            // 
+            // StatusBar
+            // 
+            this.StatusBar.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ProgressBar,
+            this.StatusLabel});
+            this.StatusBar.Location = new System.Drawing.Point(0, 961);
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.StatusBar.Size = new System.Drawing.Size(1568, 22);
+            this.StatusBar.TabIndex = 3;
+            // 
+            // ProgressBar
+            // 
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(600, 67);
+            this.ProgressBar.Visible = false;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Image = global::IceCreamManager.Properties.Resources.Progress;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            this.StatusLabel.Size = new System.Drawing.Size(204, 36);
+            this.StatusLabel.Text = "!Processing...";
+            this.StatusLabel.Visible = false;
+            // 
+            // ExtraButtonsLayout
+            // 
+            this.ExtraButtonsLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExtraButtonsLayout.AutoSize = true;
+            this.ExtraButtonsLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ExtraButtonsLayout.ColumnCount = 3;
+            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.ExtraButtonsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.ExtraButtonsLayout.Controls.Add(this.SettingsButton, 0, 0);
+            this.ExtraButtonsLayout.Controls.Add(this.LogButton, 1, 0);
+            this.ExtraButtonsLayout.Controls.Add(this.AboutButton, 2, 0);
+            this.ExtraButtonsLayout.Location = new System.Drawing.Point(1372, -4);
+            this.ExtraButtonsLayout.Margin = new System.Windows.Forms.Padding(6);
+            this.ExtraButtonsLayout.Name = "ExtraButtonsLayout";
+            this.ExtraButtonsLayout.RowCount = 1;
+            this.ExtraButtonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ExtraButtonsLayout.Size = new System.Drawing.Size(180, 42);
+            this.ExtraButtonsLayout.TabIndex = 8;
+            // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SettingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SettingsButton.FlatAppearance.BorderSize = 0;
+            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsButton.Image")));
+            this.SettingsButton.Location = new System.Drawing.Point(8, 0);
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(44, 42);
+            this.SettingsButton.TabIndex = 7;
+            this.MainToolTips.SetToolTip(this.SettingsButton, "!Settings");
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
+            // LogButton
+            // 
+            this.LogButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LogButton.FlatAppearance.BorderSize = 0;
+            this.LogButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LogButton.Image = ((System.Drawing.Image)(resources.GetObject("LogButton.Image")));
+            this.LogButton.Location = new System.Drawing.Point(68, 0);
+            this.LogButton.Margin = new System.Windows.Forms.Padding(0);
+            this.LogButton.Name = "LogButton";
+            this.LogButton.Size = new System.Drawing.Size(44, 42);
+            this.LogButton.TabIndex = 8;
+            this.MainToolTips.SetToolTip(this.LogButton, "!View Log");
+            this.LogButton.UseVisualStyleBackColor = true;
+            this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
+            // 
+            // AboutButton
+            // 
+            this.AboutButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AboutButton.FlatAppearance.BorderSize = 0;
+            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
+            this.AboutButton.Location = new System.Drawing.Point(128, 0);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(0);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(44, 42);
+            this.AboutButton.TabIndex = 9;
+            this.MainToolTips.SetToolTip(this.AboutButton, "!About");
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
+            // 
+            // MainFormLayout
+            // 
+            this.MainFormLayout.ColumnCount = 1;
+            this.MainFormLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.Controls.Add(this.MainTabs, 0, 0);
+            this.MainFormLayout.Controls.Add(this.StatusBar, 0, 1);
+            this.MainFormLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainFormLayout.Location = new System.Drawing.Point(0, 0);
+            this.MainFormLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainFormLayout.Name = "MainFormLayout";
+            this.MainFormLayout.RowCount = 2;
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.MainFormLayout.Size = new System.Drawing.Size(1568, 983);
+            this.MainFormLayout.TabIndex = 10;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 511);
+            this.ClientSize = new System.Drawing.Size(1568, 983);
             this.Controls.Add(this.ExtraButtonsLayout);
             this.Controls.Add(this.MainFormLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 550);
+            this.Margin = new System.Windows.Forms.Padding(6);
+            this.MinimumSize = new System.Drawing.Size(1574, 992);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "!Ice Cream Manager";
@@ -1313,6 +1378,10 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.BatchTab.ResumeLayout(false);
+            this.BatchTabLayout.ResumeLayout(false);
+            this.BatchTabLayout.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.TrucksTab.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -1338,10 +1407,6 @@
             this.ExtraButtonsLayout.ResumeLayout(false);
             this.MainFormLayout.ResumeLayout(false);
             this.MainFormLayout.PerformLayout();
-            this.BatchTabLayout.ResumeLayout(false);
-            this.BatchTabLayout.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
