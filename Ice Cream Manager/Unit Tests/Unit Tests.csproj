@@ -65,6 +65,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controller\TestLanguageParser.cs" />
+    <Compile Include="Controller\TestsBatchFileProcessing.cs" />
     <Compile Include="Model\TestsCity.cs" />
     <Compile Include="Model\TestsDatabaseManager.cs" />
     <Compile Include="Model\TestsItem.cs" />

@@ -68,7 +68,7 @@ namespace IceCreamManager.Model
             var batchHistoryEntry = new BatchHistoryEntry();
 
             batchHistoryEntry.ID = row.Col("ID");
-            batchHistoryEntry.SequenceNumber = row.Col("SequenceNumber");
+            batchHistoryEntry.sequenceNumber = row.Col("SequenceNumber");
             batchHistoryEntry.DateUpdated = row.Col<DateTime>("DateUpdated");
             batchHistoryEntry.InDatabase = true;
             batchHistoryEntry.IsSaved = false;
