@@ -23,7 +23,7 @@ namespace IceCreamManager.View
             InitializeRowStyles();
             InitializeEventHandlers();
             InitializeGridViews();
-            LocalizeForm(null, null);
+            
 
             InitializeCriteriaControls();
 
@@ -128,12 +128,14 @@ namespace IceCreamManager.View
             StyleGridView(ref RouteGridView);
             StyleGridView(ref DriverGridView);
             StyleGridView(ref TruckGridView);
+            StyleGridView(ref RevenueGrid);
         }
 
         protected override void OnLoad(EventArgs e)
         {
             LogButton_Click(null, null);
             RefreshRevenueTab();
+            LocalizeForm(null, null);
 
             base.OnLoad(e);
         }
@@ -298,7 +300,7 @@ namespace IceCreamManager.View
                     RefreshRevenueTab();
                     break;
                 case "BatchTab":
-                     
+                    SetLocalizedBatchStrings();
                     break;
                 case "TrucksTab":
                     RefreshTruckTable();
@@ -437,6 +439,6 @@ namespace IceCreamManager.View
             RefreshRevenueTab();
         }
 
-        
+
     }
 }

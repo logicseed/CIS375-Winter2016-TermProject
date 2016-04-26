@@ -116,6 +116,15 @@ ProcessEndOfDay = Prozess Ende des Tages
 BatchFiles = Batch-Dateien
 AllFiles = Alle Dateien
 
+LogViewer = Protokoll Zuschauer
+Refresh = Auffrischen
+MaxEntries = Höchst-Einträge
+Date = Termin
+Sales = Umsatz
+ItemWaste = Müll
+FuelUse = Treibstoff
+SalaryCost = Gehalt
+
 # Unit test strings
 Test = This could be anything.
 Test2    = English test 2

@@ -116,6 +116,15 @@ ProcessEndOfDay = Process End of Day
 BatchFiles = Batch Files
 AllFiles = All Files
 
+LogViewer = Log Viewer
+Refresh = Refresh
+MaxEntries = Max Entries
+Date = Date
+Sales = Sales
+ItemWaste = ItemWaste
+FuelUse = FuelUse
+SalaryCost = SalaryCost
+
 # Unit test strings
 Test = This could be anything.
 Test2    = English test 2

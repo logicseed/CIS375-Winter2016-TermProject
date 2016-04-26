@@ -7,114 +7,123 @@
 
 # Main screen
 
-Revenue = Revenue
-Truck = Truck
-Trucks = Trucks
-Item = Item
-Items = Items
-Driver = Driver
-Drivers = Drivers
-Route = Route
-Routes = Routes
-City = City
-Cities = Cities
-Batch = Batch
-Processing = Processing
-Settings = Settings
-ViewLog = View Log
-About = About
-StartDate = Start Date
-EndDate = End Date
+Revenue = Ingresos
+Truck = Camión
+Trucks = Camiónes
+Item = Artículo 
+Items = Artículos 
+Driver = Conductor
+Drivers = Conductores
+Route = Ruta
+Routes = Rutas
+City = Ciudad
+Cities = Ciudades
+Batch = Lote
+Processing = Tratamiento
+Settings = Ajustes
+ViewLog = Ver Registro
+About = Sobre
+StartDate = Fecha de Comenzar
+EndDate = Fecha de Acabar
 
 # Truck Editor
 
-AddCity = Add City
-AddItem = Add Item
-RemoveCity = Remove City
-RemoveItem = Remove Item
-WasteItem = Waste Item
-SellItem = Sell Item
+AddCity = Añadir Ciudad
+AddItem = Añadir Artículo
+RemoveCity = Quitar Ciudad
+RemoveItem = Quitar Artículo
+WasteItem = Sobrar Artículo
+SellItem = Vender Artículo
 
 # Generic Editor
 
-Save = Save
-Discard = Discard
+Save = Guardar
+Discard = Desechar
 OK = OK
-Update = Update
-All = All
-ItemEditor = Item Editor
-CityEditor = City Editor
-RouteEditor = Route Editor
-DriverEditor = Driver Editor
-TruckEditor = Truck Editor
-DefaultInventoryEditor = Default Inventory Editor
+Update = Actualizar 
+All = Todo
+ItemEditor = Editor de Artículo
+CityEditor = Editor de Ciudad
+RouteEditor = Editor de Ruta
+DriverEditor = Editor de Conductor
+TruckEditor = Editor de Camión
+DefaultInventoryEditor = Editor de Inventario por Defecto 
 
 # Settings Editor
 
-SettingsEditor = Settings Editor
-Language = Language
-Currency = Currency
-FuelRate = Fuel Rate
+SettingsEditor = Editor de Ajustes
+Language = Idioma
+Currency = Moneda
+FuelRate = Tarifa de Gasolina
 
 # Entity Lists
 
-Add = Add
-Edit = Edit
-Remove = Remove
-ShowDeleted = Show Deleted
-Deleted = Deleted
-Stock = Stock
-DefaultInventory = Default Inventory
+Add = Añadir
+Edit = Editar
+Remove = Quitar
+ShowDeleted = Mostrar Borrado
+Deleted = Borrado
+Stock = Reserva
+DefaultInventory = Inventario por Defecto
 
 
-Label = Label
-State = State
-Name = Name
-Miles = Miles
-Hours = Hours
-Number = Number
-Description = Description
-Price = Price
-Quantity = Quantity
-Lifetime = Lifetime
-WarehouseQuantity = Quantity
+Label = Etiqueta
+State = Estado
+Name = Nombre
+Miles = Millas
+Hours = Horas
+Number = Numeros
+Description = Descripción
+Price = Precio
+Quantity = Cantidad
+Lifetime = Duración
+WarehouseQuantity = Cantidad
 HourlyRate = Hourly Rate
 
-NumberInUse = Number in Use
-NumberInUseMsg = This number is in use.
-LabelInUse = Label in Use
-LabelInUseMsg = This label is in use.
-LabelBlank = Label Blank
-LabelBlankMsg = The label cannot be blank.
-NameBlank = Name Blank
-NameBlankMsg = The name cannot be blank.
-StateBlank = State Blank
-StateBlankMsg = The state cannot be blank.
-DescriptionBlank = Description Blank
-DescriptionBlankMsg = The description cannot be blank.
-RouteCityBlank = No Route Cities
-RouteCityBlankMsg = A route must contain cities.
-DefaultItemMax = Too Many Items
-DefaultItemMaxMsg = You cannot add more items to the default inventory.
-TooManyItems = Too Many Items
-TooManyItemsMsg = You cannot add more items to the inventory.
+NumberInUse = Numero en Uso
+NumberInUseMsg = Este número está en uso.
+LabelInUse = Etiqueta en Uso
+LabelInUseMsg = Este etiqueta está en uso.
+LabelBlank = Etiqueta Vacío
+LabelBlankMsg = La etiqueta no puede ser vacío.
+NameBlank = Nombre Vacío
+NameBlankMsg = El nombre no puede ser vacío.
+StateBlank = Estado Vacío
+StateBlankMsg = El estado no puede ser vacío.
+DescriptionBlank = Descripción Vacío
+DescriptionBlankMsg = El descripción no puede ser vacío.
+RouteCityBlank = No Ciudades de Ruta
+RouteCityBlankMsg = Una ruta debe contener las ciudades.
+DefaultItemMax = Demasiado Artículos
+DefaultItemMaxMsg = No se puede agregar más artículos al inventario por defecto.
+TooManyItems = Demasiado Artículos
+TooManyItemsMsg = No se puede agregar más artículos al inventario por defecto.
 
-ProcessStartOfDay = Process Start of Day
-LoadCityFile = Load City File
-LoadCityFileExtension = Load City File Extension
-LoadRouteFile = Load Route File
-LoadDriverFile = Load Driver File
-LoadTruckFile = Load Truck File
-LoadTruckFuelFile = Load Truck Fuel File
-LoadTruckInventoryFile = Load Truck Inventory File
-LoadOverallInventoryFile = Load Overall Inventory File
-LoadOverallInventoryExtensionFile = Load Overall Inventory Extension File
-LoadTruckDriverFile = Load Truck Driver File
-LoadTruckRouteFile = Load Truck Route File
-LoadSalesFile = Load Sales File
-ProcessEndOfDay = Process End of Day
-BatchFiles = Batch Files
-AllFiles = All Files
+ProcessStartOfDay = Procesar el Comienzo del Día.
+LoadCityFile = Cargar Archivo de Ciudad
+LoadCityFileExtension = Cargar Archivo Extensión de Ciudad
+LoadRouteFile = Cargar Archivo de Ruta
+LoadDriverFile = Cargar Archivo de Conductor
+LoadTruckFile = Cargar Archivo de Camión
+LoadTruckFuelFile = Cargar Archivo de Gasolina de Camión
+LoadTruckInventoryFile = Cargar Archivo de Inventario de Camión
+LoadOverallInventoryFile = Cargar Archivo de Inventario Total
+LoadOverallInventoryExtensionFile = Cargar Archivo Extensión de Inventario Total
+LoadTruckDriverFile = Cargar Archivo de Conductor de Camión
+LoadTruckRouteFile = Cargar Archivo de Ruta de Camión
+LoadSalesFile = Cargar Archivo de Ventas
+ProcessEndOfDay = Procesar el Final del Día.
+BatchFiles = Archivo de Lotes
+AllFiles = Todos Archivos
+
+LogViewer = Visor de registro
+Refresh = Refrescar
+MaxEntries = Máximo entradas
+Date = Fecha
+Sales = Ventas
+ItemWaste = Basura
+FuelUse = Gasolina
+SalaryCost = Salario
 
 # Unit test strings
 Test = This could be anything.

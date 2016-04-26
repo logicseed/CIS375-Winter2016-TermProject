@@ -12,6 +12,8 @@ namespace IceCreamManager.View
 {
     public partial class LogViewer : Form
     {
+        LanguageManager Language = LanguageManager.Reference;
+
         private DataTable LogTable = new DataTable();
         private DateTime LastUpdate = DateTime.Now;
 
@@ -23,23 +25,21 @@ namespace IceCreamManager.View
 
             SetLogGridViewStyles();
 
+            LocalizeForm(null, null);
+
+            Manage.Events.OnChangedLanguage += new EventHandler(LocalizeForm);
             Manage.Events.OnNewLogEntry += new EventHandler(RefreshButton_Click);
         }
 
+        private void LocalizeForm(object sender, EventArgs e)
+        {
+            Text = Language["LogViewer"];
+            RefreshButton.Text = Language["Refresh"];
+            MaxEntriesLabel.Text = Language["MaxEntries"];
+        }
 
         public void RefreshDataSource()
         {
-            // Not enough entries, start over
-            //if (LogGridView.Rows.Count < MaxEntriesBox.Value)
-            //{
-            //    BuildDataSource();
-            //}
-            //else
-            //{
-            //    LogTable.Merge(Factory.Log.GetUpdatedRows(LastUpdate, (int)MaxEntriesBox.Value));
-            //    CullLogTable();
-            //}
-            //LastUpdate = DateTime.Now;
             BuildDataSource();
             LogGridView.Refresh();
             MarkFailureRows();

@@ -71,8 +71,8 @@ Label = метка
 State = государство
 Name = имя
 Miles = миль
-Hours = Hours
-Number = часов
+Hours = часов
+Number = Число
 Description = Описание
 Price = Цена
 Quantity = Количество
@@ -115,6 +115,15 @@ LoadSalesFile = Загрузить файл по продажам
 ProcessEndOfDay = Процесс Конец дня
 BatchFiles = Пакетные файлы
 AllFiles = Все файлы
+
+LogViewer = чтения журнала
+Refresh = обновление
+MaxEntries = sмаксимальная Записи
+Date = Дата
+Sales = Продажи
+ItemWaste = отходов
+FuelUse = топлива
+SalaryCost = зарплата
 
 # Unit Test strings
 Test=Russian test 1

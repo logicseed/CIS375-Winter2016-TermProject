@@ -12,7 +12,7 @@ namespace IceCreamManager.View
 
         private void LocalizeForm(object sender, EventArgs e)
         {
-            Text = "!Ice Cream Manager";
+            Text = "Ice Cream Manager";
             RevenueTab.Text = Language["Revenue"];
             BatchTab.Text = Language["Batch"];
             TrucksTab.Text = Language["Trucks"];
@@ -25,14 +25,30 @@ namespace IceCreamManager.View
             MainToolTips.SetToolTip(this.LogButton, Language["ViewLog"]);
             MainToolTips.SetToolTip(this.AboutButton, Language["About"]);
 
-            SetLocalizedBatchStrings();
-            SetLocalizedCityStrings();
-            SetLocalizedDriverStrings();
-            SetLocalizedItemStrings();
-            SetLocalizedRevenueStrings();
-            SetLocalizedRouteStrings();
-            SetLocalizedTruckStrings();
-            
+            switch (MainTabs.SelectedTab.Name)
+            {
+                case "BatchTab":
+                    SetLocalizedBatchStrings();
+                    break;
+                case "CitiesTab":
+                    SetLocalizedCityStrings();
+                    break;
+                case "DriversTab":
+                    SetLocalizedDriverStrings();
+                    break;
+                case "ItemsTab":
+                    SetLocalizedItemStrings();
+                    break;
+                case "RevenueTab":
+                    SetLocalizedRevenueStrings();
+                    break;
+                case "RoutesTab":
+                    SetLocalizedRouteStrings();
+                    break;
+                case "TrucksTab":
+                    SetLocalizedTruckStrings();
+                    break;
+            }
         }
 
         private void SetLocalizedCityStrings()
@@ -42,6 +58,11 @@ namespace IceCreamManager.View
             RemoveCityButton.Text = Language["Remove"];
             ShowDeletedCities.Text = Language["ShowDeleted"];
 
+            CityGridView.Columns["Label"].HeaderText = Language["Label"];
+            CityGridView.Columns["Name"].HeaderText = Language["Name"];
+            CityGridView.Columns["State"].HeaderText = Language["State"];
+            CityGridView.Columns["Miles"].HeaderText = Language["Miles"];
+            CityGridView.Columns["Hours"].HeaderText = Language["Hours"];
         }
 
         private void SetLocalizedDriverStrings()
@@ -50,6 +71,10 @@ namespace IceCreamManager.View
             EditDriverButton.Text = Language["Edit"];
             RemoveDriverButton.Text = Language["Remove"];
             ShowDeletedDrivers.Text = Language["ShowDeleted"];
+
+            DriverGridView.Columns["Number"].HeaderText = Language["Number"];
+            DriverGridView.Columns["Name"].HeaderText = Language["Name"];
+            DriverGridView.Columns["HourlyRate"].HeaderText = Language["HourlyRate"];
         }
 
         private void SetLocalizedItemStrings()
@@ -58,6 +83,12 @@ namespace IceCreamManager.View
             EditItemButton.Text = Language["Edit"];
             RemoveItemButton.Text = Language["Remove"];
             ShowDeletedItems.Text = Language["ShowDeleted"];
+
+            ItemGridView.Columns["Number"].HeaderText = Language["Number"];
+            ItemGridView.Columns["Description"].HeaderText = Language["Description"];
+            ItemGridView.Columns["Price"].HeaderText = Language["Price"];
+            ItemGridView.Columns["Quantity"].HeaderText = Language["Quantity"];
+            ItemGridView.Columns["Lifetime"].HeaderText = Language["Lifetime"];
         }
 
         private void SetLocalizedRouteStrings()
@@ -66,6 +97,9 @@ namespace IceCreamManager.View
             EditRouteButton.Text = Language["Edit"];
             RemoveRouteButton.Text = Language["Remove"];
             ShowDeletedRoutes.Text = Language["ShowDeleted"];
+
+            RouteGridView.Columns["Number"].HeaderText = Language["Number"];
+            RouteGridView.Columns["Cities"].HeaderText = Language["Cities"];
         }
 
         private void SetLocalizedTruckStrings()
@@ -75,6 +109,12 @@ namespace IceCreamManager.View
             RemoveTruckButton.Text = Language["Remove"];
             DefaultInventoryButton.Text = Language["DefaultInventory"];
             ShowDeletedTrucks.Text = Language["ShowDeleted"];
+
+            TruckGridView.Columns["Number"].HeaderText = Language["Number"];
+            TruckGridView.Columns["Driver"].HeaderText = Language["Driver"];
+            TruckGridView.Columns["Route"].HeaderText = Language["Route"];
+            TruckGridView.Columns["FuelRate"].HeaderText = Language["FuelRate"];
+            TruckGridView.Columns["Items"].HeaderText = Language["Items"];
         }
 
         private void SetLocalizedRevenueStrings()
@@ -86,6 +126,13 @@ namespace IceCreamManager.View
             TruckRevenueLabel.Text = Language["Truck"];
             DriverRevenueLabel.Text = Language["Driver"];
             ItemRevenueLabel.Text = Language["Item"];
+
+            RevenueGrid.Columns["Revenue"].HeaderText = Language["Revenue"];
+            RevenueGrid.Columns["Date"].HeaderText = Language["Date"];
+            RevenueGrid.Columns["Sales"].HeaderText = Language["Sales"];
+            RevenueGrid.Columns["ItemWaste"].HeaderText = Language["ItemWaste"];
+            RevenueGrid.Columns["FuelUse"].HeaderText = Language["FuelUse"];
+            RevenueGrid.Columns["SalaryCost"].HeaderText = Language["SalaryCost"];
         }
     }
 }
