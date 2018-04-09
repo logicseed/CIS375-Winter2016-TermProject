@@ -24,30 +24,30 @@ __Timeline:__ 4 weeks for implementation
 
 ### Screenshots
 
-[![Revenue](Screenshots/Revenue.png?raw=true "Revenue")](Screenshots/Revenue.png?raw=true)
+[![Revenue](Screenshots/Revenue.PNG?raw=true "Revenue")](Screenshots/Revenue.PNG?raw=true)
 
-[![BatchProcessing](Screenshots/BatchProcessing.png?raw=true "BatchProcessing")](Screenshots/BatchProcessing.png?raw=true)
+[![BatchProcessing](Screenshots/BatchProcessing.PNG?raw=true "BatchProcessing")](Screenshots/BatchProcessing.PNG?raw=true)
 
-[![Trucks](Screenshots/Trucks.png?raw=true "Trucks")](Screenshots/Trucks.png?raw=true)
+[![Trucks](Screenshots/Trucks.PNG?raw=true "Trucks")](Screenshots/Trucks.PNG?raw=true)
 
-[![TruckEditor](Screenshots/TruckEditor.png?raw=true "TruckEditor")](Screenshots/TruckEditor.png?raw=true)
+[![TruckEditor](Screenshots/TruckEditor.PNG?raw=true "TruckEditor")](Screenshots/TruckEditor.PNG?raw=true)
 
-[![Items](Screenshots/Items.png?raw=true "Items")](Screenshots/Items.png?raw=true)
+[![Items](Screenshots/Items.PNG?raw=true "Items")](Screenshots/Items.PNG?raw=true)
 
-[![ItemEditor](Screenshots/ItemEditor.png?raw=true "ItemEditor")](Screenshots/ItemEditor.png?raw=true)
+[![ItemEditor](Screenshots/ItemEditor.PNG?raw=true "ItemEditor")](Screenshots/ItemEditor.PNG?raw=true)
 
-[![Drivers](Screenshots/Drivers.png?raw=true "Drivers")](Screenshots/Drivers.png?raw=true)
+[![Drivers](Screenshots/Drivers.PNG?raw=true "Drivers")](Screenshots/Drivers.PNG?raw=true)
 
-[![DriverEditor](Screenshots/DriverEditor.png?raw=true "DriverEditor")](Screenshots/DriverEditor.png?raw=true)
+[![DriverEditor](Screenshots/DriverEditor.PNG?raw=true "DriverEditor")](Screenshots/DriverEditor.PNG?raw=true)
 
-[![Routes](Screenshots/Routes.png?raw=true "Routes")](Screenshots/Routes.png?raw=true)
+[![Routes](Screenshots/Routes.PNG?raw=true "Routes")](Screenshots/Routes.PNG?raw=true)
 
-[![RouteEditor](Screenshots/RouteEditor.png?raw=true "RouteEditor")](Screenshots/RouteEditor.png?raw=true)
+[![RouteEditor](Screenshots/RouteEditor.PNG?raw=true "RouteEditor")](Screenshots/RouteEditor.PNG?raw=true)
 
-[![Cities](Screenshots/Cities.png?raw=true "Cities")](Screenshots/Cities.png?raw=true)
+[![Cities](Screenshots/Cities.PNG?raw=true "Cities")](Screenshots/Cities.PNG?raw=true)
 
-[![CityEditor](Screenshots/CityEditor.png?raw=true "CityEditor")](Screenshots/CityEditor.png?raw=true)
+[![CityEditor](Screenshots/CityEditor.PNG?raw=true "CityEditor")](Screenshots/CityEditor.PNG?raw=true)
 
-[![SettingsEditor](Screenshots/SettingsEditor.png?raw=true "SettingsEditor")](Screenshots/SettingsEditor.png?raw=true)
+[![SettingsEditor](Screenshots/SettingsEditor.PNG?raw=true "SettingsEditor")](Screenshots/SettingsEditor.PNG?raw=true)
 
-[![LogViewer](Screenshots/LogViewer.png?raw=true "LogViewer")](Screenshots/LogViewer.png?raw=true)
+[![LogViewer](Screenshots/LogViewer.PNG?raw=true "LogViewer")](Screenshots/LogViewer.PNG?raw=true)
