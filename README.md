@@ -1,3 +1,8 @@
+:warning: | __The content of this repository is explicitly NOT LICENSED for use, modification, or sharing. Per GitHub's terms of service it may only be viewed. See [No License] for more information.__ | :warning:
+--------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------
+
+[No License]: https://choosealicense.com/no-permission/
+
 Software Engineering I - CIS375 Winter 2016
 ======
 >We were tasked with creating a system to assist in the management of a fictional ice cream truck
