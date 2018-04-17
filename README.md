@@ -6,7 +6,7 @@
 Software Engineering I - CIS375 Winter 2016
 ======
 >We were tasked with creating a system to assist in the management of a fictional ice cream truck
->company. Some features include inventory, employee, truck management, along with sales tracking
+>company. Some features include inventory, employee, truck management, as well as sales tracking
 >and batch input from flat files.
 
 ### Details
